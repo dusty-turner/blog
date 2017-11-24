@@ -1,0 +1,833 @@
+
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+pre, code { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #204a87; font-weight: bold; }  
+code span.dt { color: #204a87; }  
+code span.dv { color: #0000cf; }  
+code span.bn { color: #0000cf; }  
+code span.fl { color: #0000cf; }  
+code span.ch { color: #4e9a06; }  
+code span.st { color: #4e9a06; }  
+code span.co { color: #8f5902; font-style: italic; }  
+code span.ot { color: #8f5902; }  
+code span.al { color: #ef2929; }  
+code span.fu { color: #000000; }  
+code span.er { color: #a40000; font-weight: bold; }  
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; }  
+code span.cn { color: #000000; }  
+code span.sc { color: #000000; }  
+code span.vs { color: #4e9a06; }  
+code span.ss { color: #4e9a06; }  
+code span.im { }  
+code span.va { color: #000000; }  
+code span.cf { color: #204a87; font-weight: bold; }  
+code span.op { color: #ce5c00; font-weight: bold; }  
+code span.pp { color: #8f5902; font-style: italic; }  
+code span.ex { }  
+code span.at { color: #c4a000; }  
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; }  
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; }  
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; }  
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; }  
+</style>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#exploratory-data-anlaysis">Exploratory Data Anlaysis</a></li>
+</ul>
+</div>
+
+<section id="introduction" class="level2">
+<h2>Introduction</h2>
+<p>A colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.</p>
+<section id="install-andor-load-necessary-packages" class="level3">
+<h3>Install and/or load necessary packages</h3>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;ggplot2&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</div>
+<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;readr&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;readr&quot;</span>)</div>
+<div class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;lubridate&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</div>
+<div class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;stringi&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;stringi&quot;</span>)</div></code></pre>
+</section>
+<section id="set-working-directory-if-necessary" class="level3">
+<h3>Set Working Directory If Necessary</h3>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># setwd(&quot;//filepath/of/your/csvfile&quot;)</span></div></code></pre>
+</section>
+<section id="read-in-data" class="level3">
+<h3>Read in data</h3>
+<p>We use <code>read_csv</code> from the <code>readr</code> package because it does a better job than the base <code>read.csv</code> command at recognizing data types from our csv file.</p>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">data =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data.csv&quot;</span>)</div></code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   `Date Time (GMT)` = col_character(),
+##   DotW = col_character(),
+##   Hosts = col_integer(),
+##   Users = col_integer(),
+##   `Users Per Host` = col_double(),
+##   weekno = col_integer(),
+##   desdate = col_double()
+## )</code></pre>
+<p>We notice that it read in our data column as a character string. We’ll have to do some work to fix that, but lets to some further exploration for now.</p>
+</section>
+</section>
+<section id="exploratory-data-anlaysis" class="level2">
+<h2>Exploratory Data Anlaysis</h2>
+<p>First, we will look at our data summary</p>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">summary</span>(data)</div></code></pre>
+<pre><code>##  Date Time (GMT)        DotW               Hosts          Users       Users Per Host       weekno         desdate     
+##  Length:7519        Length:7519        Min.   :  82   Min.   : 1042   Min.   : 1.078   Min.   :1.000   Min.   :42875  
+##  Class :character   Class :character   1st Qu.:1146   1st Qu.:18585   1st Qu.:14.327   1st Qu.:2.000   1st Qu.:42914  
+##  Mode  :character   Mode  :character   Median :1286   Median :21483   Median :16.421   Median :3.000   Median :42950  
+##                                        Mean   :1286   Mean   :21372   Mean   :16.799   Mean   :2.657   Mean   :42950  
+##                                        3rd Qu.:1423   3rd Qu.:24269   3rd Qu.:19.040   3rd Qu.:3.000   3rd Qu.:42986  
+##                                        Max.   :1921   Max.   :41216   Max.   :34.664   Max.   :3.000   Max.   :43028</code></pre>
+<p>This confirms that our date is in the wrong format. It appears everything else is fine.</p>
+<p>The structure command is also a valuable tool. This shows us how R interprets the data and if there are any hidden levels or format issues in which we are unaware.</p>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">str</span>(data)</div></code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    7519 obs. of  7 variables:
+##  $ Date Time (GMT): chr  &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; ...
+##  $ DotW           : chr  &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; ...
+##  $ Hosts          : int  1368 1355 1351 1344 1375 1411 1462 1402 1427 1436 ...
+##  $ Users          : int  27084 26674 26424 28796 29589 30998 32096 31137 31193 29795 ...
+##  $ Users Per Host : num  19.8 19.7 19.6 21.4 21.5 ...
+##  $ weekno         : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ desdate        : num  42875 42875 42875 42875 42875 ...
+##  - attr(*, &quot;spec&quot;)=List of 2
+##   ..$ cols   :List of 7
+##   .. ..$ Date Time (GMT): list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
+##   .. ..$ DotW           : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
+##   .. ..$ Hosts          : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ Users          : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ Users Per Host : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_double&quot; &quot;collector&quot;
+##   .. ..$ weekno         : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ desdate        : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_double&quot; &quot;collector&quot;
+##   ..$ default: list()
+##   .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_guess&quot; &quot;collector&quot;
+##   ..- attr(*, &quot;class&quot;)= chr &quot;col_spec&quot;</code></pre>
+<p>One issue we notice is there there areparenthesis <code>()</code> in the <code>Date Time (GMT)</code> column name. We will run into issues calling this column in the future because we will have to put the name in ‘single quotes’. To allow us to directly call the column name, we will rename this column, as well as several others for similar reasons.</p>
+<p>An ounce of prevention…</p>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">names</span>(data) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DateTimeGMT&quot;</span>, <span class="st">&quot;DotW&quot;</span>,<span class="st">&quot;Hosts&quot;</span>, <span class="st">&quot;Users&quot;</span>, <span class="st">&quot;UsersPerHost&quot;</span>, <span class="st">&quot;weekno&quot;</span>, <span class="st">&quot;desdate&quot;</span>)</div>
+<div class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">names</span>(data)</div></code></pre>
+<pre><code>## [1] &quot;DateTimeGMT&quot;  &quot;DotW&quot;         &quot;Hosts&quot;        &quot;Users&quot;        &quot;UsersPerHost&quot; &quot;weekno&quot;       &quot;desdate&quot;</code></pre>
+<p>Much better!</p>
+<section id="handle-the-date-column" class="level3">
+<h3>Handle the Date column</h3>
+<p>In order for R to read <code>DateTimeGMT</code> as a Date and not as a character string, we’ll use several commands from the <code>lubridate</code> package.</p>
+<p>It will be best if we translate our time into ‘POSIXct’.</p>
+<ul>
+<li><strong>POSIX</strong> time is the number of seconds that have elapsed since January 1, 1970.</li>
+<li><strong>ct</strong> stands for ‘calendar time’.</li>
+</ul>
+<p>This should give you insite as to how R is storing the information. Now we need to tell R the order of our characters.</p>
+<p>Here is a snipit of what it looks like.</p>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">data<span class="op">$</span>DateTimeGMT[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</div></code></pre>
+<pre><code>##  [1] &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; &quot;5/20/2017 3:36&quot; &quot;5/20/2017 4:07&quot;
+##  [7] &quot;5/20/2017 4:37&quot; &quot;5/20/2017 5:02&quot; &quot;5/20/2017 5:27&quot; &quot;5/20/2017 5:52&quot;</code></pre>
+<p>We must tell R where the months, days, years, hours, minutes, etc are located in the character vector we provide.</p>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1">data<span class="op">$</span>newdate =<span class="st"> </span><span class="kw">as.POSIXct</span>(data<span class="op">$</span>DateTimeGMT, <span class="st">&quot;%m/%d/%Y %H:%M&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>)</div>
+<div class="sourceLine" id="cb13-2" data-line-number="2">data<span class="op">$</span>newdate[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</div></code></pre>
+<pre><code>##  [1] &quot;2017-05-20 00:35:00 UTC&quot; &quot;2017-05-20 02:19:00 UTC&quot; &quot;2017-05-20 02:24:00 UTC&quot; &quot;2017-05-20 03:11:00 UTC&quot;
+##  [5] &quot;2017-05-20 03:36:00 UTC&quot; &quot;2017-05-20 04:07:00 UTC&quot; &quot;2017-05-20 04:37:00 UTC&quot; &quot;2017-05-20 05:02:00 UTC&quot;
+##  [9] &quot;2017-05-20 05:27:00 UTC&quot; &quot;2017-05-20 05:52:00 UTC&quot;</code></pre>
+<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">class</span>(data<span class="op">$</span>newdate)</div></code></pre>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<p>Nice - we can see how it is being stored and that the data time is correct.</p>
+</section>
+<section id="visualise" class="level3">
+<h3>Visualise</h3>
+<p>Lets take a first look at at our UsersPerHost over time.</p>
+<pre class="sourceCode r" id="cb17"><code class="sourceCode r"><div class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/first look-1.png" width="672" /></p>
+<p>There is clearly something going on here. Lets explore more deeply by creating a column for day of the week and month.</p>
+<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1">data<span class="op">$</span>weekday =<span class="st"> </span><span class="kw">wday</span>(data<span class="op">$</span>newdate)</div>
+<div class="sourceLine" id="cb18-2" data-line-number="2">data<span class="op">$</span>month =<span class="st"> </span><span class="kw">month</span>(data<span class="op">$</span>newdate)</div></code></pre>
+<p>A good tool for seeing how data changes based on certain factors is by changing the colors based on a level of a specific factor.</p>
+</section>
+<section id="plot-it" class="level3">
+<h3>Plot it</h3>
+<p>Lets see how <code>UsersPerHost</code> changes based off of days of the week.</p>
+<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> weekday)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/different colors-1.png" width="672" /></p>
+<p>Notice how our points are shaded by a fluid scale instead of having one color per day of the week. This is because R sees <code>weekday</code> as a continuous variable. Lets fix that by adding <code>as.factor(weekday)</code> to our <code>color</code> argument.</p>
+<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/different colors factor-1.png" width="672" /></p>
+<p>That looks better – and it appears that <code>weekday</code>effects <code>UsersPerHost</code></p>
+<p>And maybe it would be better to see this effect by month.</p>
+<pre class="sourceCode r" id="cb21"><code class="sourceCode r"><div class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>What’s Wrong? Our data points are all clumped together. That’s because we are faceting, but our x axis maintains what we are faceting by. We have to remove that from our x value. We will do that by extracting the time from our <code>DateTimeGMT</code> column.</p>
+<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1">time =<span class="st"> </span><span class="kw">stri_sub</span>(data<span class="op">$</span>DateTimeGMT, <span class="dv">-5</span>,<span class="op">-</span><span class="dv">1</span>)</div>
+<div class="sourceLine" id="cb22-2" data-line-number="2">data<span class="op">$</span>time =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>,<span class="dv">0</span>, time)</div></code></pre>
+<p>Lets try the plot again using <code>time</code> as our x variable.</p>
+<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Since there appears to be a relationship, lets test this using a <code>pairwise.t.test</code></p>
+<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">pairwise.t.test</span>(data<span class="op">$</span>UsersPerHost,<span class="kw">as.factor</span>(data<span class="op">$</span>weekday), <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</div></code></pre>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  data$UsersPerHost and as.factor(data$weekday) 
+## 
+##   1       2       3       4       5       6      
+## 2 &lt; 2e-16 -       -       -       -       -      
+## 3 &lt; 2e-16 &lt; 2e-16 -       -       -       -      
+## 4 &lt; 2e-16 &lt; 2e-16 9.1e-09 -       -       -      
+## 5 &lt; 2e-16 &lt; 2e-16 2.5e-05 1.000   -       -      
+## 6 &lt; 2e-16 &lt; 2e-16 0.070   0.026   1.000   -      
+## 7 &lt; 2e-16 1.000   &lt; 2e-16 &lt; 2e-16 &lt; 2e-16 &lt; 2e-16
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>The null hypothesis is that the levels are the same. Everywhere the P Values are &lt;.05, we determine that the levels are different.</p>
+<p>Lets make this information more conveyable. We’ll do that with a graphic.</p>
+<p>The following code will execute an ANOVA (analysis of variance) and extract the Tukey comparisons. The Tukey results show us the estimated mean of the level and it provides a confidence interval of the true mean.</p>
+<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1">results =<span class="st"> </span><span class="kw">aov</span>(UsersPerHost<span class="op">~</span><span class="kw">as.factor</span>(weekday), <span class="dt">data =</span> data)</div>
+<div class="sourceLine" id="cb26-2" data-line-number="2">tukey =<span class="st"> </span><span class="kw">TukeyHSD</span>(results)</div>
+<div class="sourceLine" id="cb26-3" data-line-number="3">tukey</div></code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = UsersPerHost ~ as.factor(weekday), data = data)
+## 
+## $`as.factor(weekday)`
+##            diff         lwr          upr     p adj
+## 2-1 -2.86319494 -3.21018235 -2.516207527 0.0000000
+## 3-1 -4.55973264 -4.91048577 -4.208979503 0.0000000
+## 4-1 -5.32234667 -5.67562184 -4.969071512 0.0000000
+## 5-1 -5.15195058 -5.50443012 -4.799471047 0.0000000
+## 6-1 -4.92126477 -5.27784546 -4.564684093 0.0000000
+## 7-1 -2.89897050 -3.24989374 -2.548047250 0.0000000
+## 3-2 -1.69653770 -2.05022084 -1.342854558 0.0000000
+## 4-2 -2.45915174 -2.81533616 -2.102967312 0.0000000
+## 5-2 -2.28875565 -2.64415096 -1.933360335 0.0000000
+## 6-2 -2.05806984 -2.41753303 -1.698606645 0.0000000
+## 7-2 -0.03577556 -0.38962741  0.318076287 0.9999433
+## 4-3 -0.76261404 -1.12246796 -0.402760118 0.0000000
+## 5-3 -0.59221794 -0.95129081 -0.233145076 0.0000242
+## 6-3 -0.36153214 -0.72463169  0.001567416 0.0518596
+## 7-3  1.66076214  1.30321686  2.018307421 0.0000000
+## 5-4  0.17039609 -0.19114077  0.531932957 0.8074670
+## 6-4  0.40108190  0.03554549  0.766618307 0.0208059
+## 7-4  2.42337618  2.06335645  2.783395909 0.0000000
+## 6-5  0.23068581 -0.13408172  0.595453332 0.5038032
+## 7-5  2.25298009  1.89374104  2.612219127 0.0000000
+## 7-6  2.02229428  1.65903039  2.385558162 0.0000000</code></pre>
+<p>Lets put this information in a datafame that we can plot.</p>
+<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1">plotting =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">rownames</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>),</div>
+<div class="sourceLine" id="cb28-2" data-line-number="2">                      <span class="dt">diff =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">1</span>],</div>
+<div class="sourceLine" id="cb28-3" data-line-number="3">                      <span class="dt">ymin =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">2</span>],</div>
+<div class="sourceLine" id="cb28-4" data-line-number="4">                      <span class="dt">ymax =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">3</span>])</div>
+<div class="sourceLine" id="cb28-5" data-line-number="5">plotting</div></code></pre>
+<pre><code>##     names        diff        ymin         ymax
+## 2-1   2-1 -2.86319494 -3.21018235 -2.516207527
+## 3-1   3-1 -4.55973264 -4.91048577 -4.208979503
+## 4-1   4-1 -5.32234667 -5.67562184 -4.969071512
+## 5-1   5-1 -5.15195058 -5.50443012 -4.799471047
+## 6-1   6-1 -4.92126477 -5.27784546 -4.564684093
+## 7-1   7-1 -2.89897050 -3.24989374 -2.548047250
+## 3-2   3-2 -1.69653770 -2.05022084 -1.342854558
+## 4-2   4-2 -2.45915174 -2.81533616 -2.102967312
+## 5-2   5-2 -2.28875565 -2.64415096 -1.933360335
+## 6-2   6-2 -2.05806984 -2.41753303 -1.698606645
+## 7-2   7-2 -0.03577556 -0.38962741  0.318076287
+## 4-3   4-3 -0.76261404 -1.12246796 -0.402760118
+## 5-3   5-3 -0.59221794 -0.95129081 -0.233145076
+## 6-3   6-3 -0.36153214 -0.72463169  0.001567416
+## 7-3   7-3  1.66076214  1.30321686  2.018307421
+## 5-4   5-4  0.17039609 -0.19114077  0.531932957
+## 6-4   6-4  0.40108190  0.03554549  0.766618307
+## 7-4   7-4  2.42337618  2.06335645  2.783395909
+## 6-5   6-5  0.23068581 -0.13408172  0.595453332
+## 7-5   7-5  2.25298009  1.89374104  2.612219127
+## 7-6   7-6  2.02229428  1.65903039  2.385558162</code></pre>
+<p>Lets plot this.</p>
+<pre class="sourceCode r" id="cb30"><code class="sourceCode r"><div class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb30-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>)</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Every group whose error bar does not overlap is different from all other groups.</p>
+<p>We can do this by week also.</p>
+<pre class="sourceCode r" id="cb31"><code class="sourceCode r"><div class="sourceLine" id="cb31-1" data-line-number="1">data<span class="op">$</span>week =<span class="st"> </span><span class="kw">trunc</span>((data<span class="op">$</span>newdate <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(data<span class="op">$</span>newdate))<span class="op">/</span><span class="kw">dweeks</span>(<span class="dv">1</span>))</div>
+<div class="sourceLine" id="cb31-2" data-line-number="2"></div>
+<div class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb31-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb31-5" data-line-number="5"><span class="st">  </span><span class="co"># geom_boxplot() +</span></div>
+<div class="sourceLine" id="cb31-6" data-line-number="6"><span class="st">  </span><span class="co"># geom_smooth() +</span></div>
+<div class="sourceLine" id="cb31-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(week))</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="sourceCode r" id="cb32"><code class="sourceCode r"><div class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">pairwise.t.test</span>(data<span class="op">$</span>UsersPerHost,<span class="kw">as.factor</span>(data<span class="op">$</span>week), <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</div></code></pre>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  data$UsersPerHost and as.factor(data$week) 
+## 
+##    0       1       2       3       4       5       6       7       8       9       10      11      12      13     
+## 1  1.00000 -       -       -       -       -       -       -       -       -       -       -       -       -      
+## 2  1.00000 0.60430 -       -       -       -       -       -       -       -       -       -       -       -      
+## 3  1.00000 1.00000 1.00000 -       -       -       -       -       -       -       -       -       -       -      
+## 4  0.02259 2.3e-05 1.00000 0.03899 -       -       -       -       -       -       -       -       -       -      
+## 5  1.00000 0.55776 1.00000 1.00000 1.00000 -       -       -       -       -       -       -       -       -      
+## 6  5.7e-15 &lt; 2e-16 5.3e-11 1.7e-14 0.00210 3.1e-11 -       -       -       -       -       -       -       -      
+## 7  1.00000 1.00000 0.07406 1.00000 5.0e-08 0.06352 &lt; 2e-16 -       -       -       -       -       -       -      
+## 8  1.00000 0.10603 1.00000 1.00000 1.00000 1.00000 1.4e-09 0.00599 -       -       -       -       -       -      
+## 9  1.00000 1.00000 1.00000 1.00000 7.3e-05 1.00000 &lt; 2e-16 1.00000 0.88864 -       -       -       -       -      
+## 10 1.00000 0.90938 1.00000 1.00000 1.00000 1.00000 3.2e-10 0.15135 1.00000 1.00000 -       -       -       -      
+## 11 1.00000 0.17896 1.00000 1.00000 1.00000 1.00000 2.0e-09 0.01407 1.00000 1.00000 1.00000 -       -       -      
+## 12 0.03348 3.4e-05 1.00000 0.05774 1.00000 1.00000 0.00056 6.7e-08 1.00000 0.00011 1.00000 1.00000 -       -      
+## 13 1.00000 1.00000 1.00000 1.00000 0.00014 1.00000 &lt; 2e-16 1.00000 1.00000 1.00000 1.00000 1.00000 0.00020 -      
+## 14 1.7e-08 0.30028 1.1e-11 6.3e-09 &lt; 2e-16 5.6e-12 &lt; 2e-16 0.02757 4.5e-14 2.0e-05 1.5e-10 5.1e-13 &lt; 2e-16 9.2e-06
+## 15 0.59539 1.00000 0.01056 0.36391 1.4e-09 0.00864 &lt; 2e-16 1.00000 0.00058 1.00000 0.02616 0.00163 1.7e-09 1.00000
+## 16 2.0e-09 0.11862 8.7e-13 6.7e-10 &lt; 2e-16 4.4e-13 &lt; 2e-16 0.00741 2.8e-15 3.2e-06 1.5e-11 3.8e-14 &lt; 2e-16 1.4e-06
+## 17 1.00000 1.00000 0.18496 1.00000 1.5e-07 0.16033 &lt; 2e-16 1.00000 0.01616 1.00000 0.36015 0.03678 2.0e-07 1.00000
+## 18 1.00000 1.00000 1.00000 1.00000 0.47681 1.00000 1.3e-08 1.00000 1.00000 1.00000 1.00000 1.00000 0.66129 1.00000
+## 19 1.00000 1.00000 1.00000 1.00000 2.5e-05 1.00000 &lt; 2e-16 1.00000 0.26417 1.00000 1.00000 0.46514 3.6e-05 1.00000
+## 20 8.2e-09 0.14035 6.0e-12 3.1e-09 &lt; 2e-16 3.3e-12 &lt; 2e-16 0.01147 3.1e-14 8.4e-06 7.6e-11 3.1e-13 &lt; 2e-16 3.9e-06
+## 21 0.01222 1.00000 0.00013 0.00687 1.1e-11 0.00010 &lt; 2e-16 1.00000 5.7e-06 0.67809 0.00039 1.8e-05 1.4e-11 0.45408
+##    14      15      16      17      18      19      20     
+## 1  -       -       -       -       -       -       -      
+## 2  -       -       -       -       -       -       -      
+## 3  -       -       -       -       -       -       -      
+## 4  -       -       -       -       -       -       -      
+## 5  -       -       -       -       -       -       -      
+## 6  -       -       -       -       -       -       -      
+## 7  -       -       -       -       -       -       -      
+## 8  -       -       -       -       -       -       -      
+## 9  -       -       -       -       -       -       -      
+## 10 -       -       -       -       -       -       -      
+## 11 -       -       -       -       -       -       -      
+## 12 -       -       -       -       -       -       -      
+## 13 -       -       -       -       -       -       -      
+## 14 -       -       -       -       -       -       -      
+## 15 0.09754 -       -       -       -       -       -      
+## 16 1.00000 0.02807 -       -       -       -       -      
+## 17 0.00383 1.00000 0.00086 -       -       -       -      
+## 18 0.00023 1.00000 6.5e-05 1.00000 -       -       -      
+## 19 0.00256 1.00000 0.00063 1.00000 1.00000 -       -      
+## 20 1.00000 0.04101 1.00000 0.00157 9.7e-05 0.00106 -      
+## 21 1.00000 1.00000 1.00000 1.00000 0.39854 1.00000 1.00000
+## 
+## P value adjustment method: bonferroni</code></pre>
+<pre class="sourceCode r" id="cb34"><code class="sourceCode r"><div class="sourceLine" id="cb34-1" data-line-number="1">results =<span class="st"> </span><span class="kw">aov</span>(UsersPerHost<span class="op">~</span><span class="kw">as.factor</span>(week), <span class="dt">data =</span> data)</div>
+<div class="sourceLine" id="cb34-2" data-line-number="2">tukey =<span class="st"> </span><span class="kw">TukeyHSD</span>(results)</div>
+<div class="sourceLine" id="cb34-3" data-line-number="3">tukey</div></code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = UsersPerHost ~ as.factor(week), data = data)
+## 
+## $`as.factor(week)`
+##               diff         lwr          upr     p adj
+## 1-0   -0.612459276 -1.64536115  0.420442598 0.8749247
+## 2-0    0.256738191 -0.59844952  1.111925905 0.9999835
+## 3-0    0.033425416 -0.81478055  0.881631378 1.0000000
+## 4-0    0.934137905  0.07281567  1.795460142 0.0171563
+## 5-0    0.257728123 -0.58879328  1.104249524 0.9999791
+## 6-0    1.990266629  1.14758603  2.832947225 0.0000000
+## 7-0   -0.613554088 -1.47677634  0.249668164 0.5891041
+## 8-0    0.389061846 -0.45308007  1.231203760 0.9903358
+## 9-0   -0.282978196 -1.12565879  0.559702400 0.9998960
+## 10-0   0.243912794 -0.64688483  1.134710415 0.9999966
+## 11-0   0.363719574 -0.49823286  1.225672004 0.9969779
+## 12-0   0.891852217  0.04863047  1.735073960 0.0244583
+## 13-0  -0.252555860 -1.09416154  0.589049822 0.9999836
+## 14-0  -1.534517637 -2.38048272 -0.688552551 0.0000000
+## 15-0  -0.708721887 -1.55358205  0.136138271 0.2541860
+## 16-0  -1.607120556 -2.45143206 -0.762809048 0.0000000
+## 17-0  -0.532126723 -1.37161163  0.307358180 0.7925109
+## 18-0  -0.025468420 -1.13541025  1.084473412 1.0000000
+## 19-0  -0.427096563 -1.33537607  0.481182946 0.9880372
+## 20-0  -1.621291377 -2.50008444 -0.742498315 0.0000000
+## 21-0  -1.051350886 -1.98559784 -0.117103930 0.0097662
+## 2-1    0.869197467 -0.16851643  1.906911360 0.2568163
+## 3-1    0.645884692 -0.38608307  1.677852449 0.8104014
+## 4-1    1.546597181  0.50382199  2.589372369 0.0000226
+## 5-1    0.870187399 -0.16039621  1.900771010 0.2428591
+## 6-1    2.602725905  1.57529480  3.630157015 0.0000000
+## 7-1   -0.001094812 -1.04543994  1.043250320 1.0000000
+## 8-1    1.001521122 -0.02546822  2.028510460 0.0666352
+## 9-1    0.329481080 -0.69795003  1.356912190 0.9999505
+## 10-1   0.856372070 -0.21087884  1.923622977 0.3372848
+## 11-1   0.976178850 -0.06711693  2.019474633 0.1025651
+## 12-1   1.504311493  0.47643650  2.532186489 0.0000331
+## 13-1   0.359903416 -0.66664625  1.386453084 0.9997951
+## 14-1  -0.922058361 -1.95218507  0.108068343 0.1540853
+## 15-1  -0.096262611 -1.12548211  0.932956892 1.0000000
+## 16-1  -0.994661280 -2.02343046  0.034107897 0.0731962
+## 17-1   0.080332553 -0.94447914  1.105144243 1.0000000
+## 18-1   0.586990855 -0.66898485  1.842966560 0.9888834
+## 19-1   0.185362713 -0.89652257  1.267247996 1.0000000
+## 20-1  -1.008832101 -2.06608389  0.048419687 0.0841384
+## 21-1  -0.438891610 -1.54266762  0.664884396 0.9986692
+## 3-2   -0.223312775 -1.07737202  0.630746471 0.9999985
+## 4-2    0.677399714 -0.18968727  1.544486698 0.3913270
+## 5-2    0.000989932 -0.85139632  0.853376185 1.0000000
+## 6-2    1.733528438  0.88495644  2.582100432 0.0000000
+## 7-2   -0.870292279 -1.73926667 -0.001317884 0.0491095
+## 8-2    0.132323655 -0.71571340  0.980360709 1.0000000
+## 9-2   -0.539716387 -1.38828838  0.308855607 0.7875495
+## 10-2  -0.012825397 -0.90919822  0.883547429 1.0000000
+## 11-2   0.106981383 -0.76073161  0.974694374 1.0000000
+## 12-2   0.635114026 -0.21399536  1.484223413 0.4825813
+## 13-2  -0.509294051 -1.35679860  0.338210501 0.8606920
+## 14-2  -1.791255828 -2.64308960 -0.939422059 0.0000000
+## 15-2  -0.965460078 -1.81619654 -0.114723615 0.0085291
+## 16-2  -1.863858747 -2.71405035 -1.013667143 0.0000000
+## 17-2  -0.788864914 -1.63426349  0.056533657 0.1053261
+## 18-2  -0.282206611 -1.39662786  0.832214635 0.9999992
+## 19-2  -0.683834754 -1.59758281  0.229913302 0.4814288
+## 20-2  -1.878029568 -2.76247351 -0.993585625 0.0000000
+## 21-2  -1.308089077 -2.24765345 -0.368524701 0.0001261
+## 4-3    0.900712489  0.04051067  1.760914306 0.0280196
+## 5-3    0.224302707 -0.62107866  1.069684072 0.9999981
+## 6-3    1.956841213  1.11530586  2.798376570 0.0000000
+## 7-3   -0.646979504 -1.50908381  0.215124798 0.4755556
+## 8-3    0.355636430 -0.48535951  1.196632371 0.9968899
+## 9-3   -0.316403611 -1.15793897  0.525131746 0.9994084
+## 10-3   0.210487378 -0.67922694  1.100201698 0.9999998
+## 11-3   0.330294158 -0.53053867  1.191126989 0.9992030
+## 12-3   0.858426801  0.01634956  1.700504042 0.0395875
+## 13-3  -0.285981276 -1.12644025  0.554477702 0.9998717
+## 14-3  -1.567943053 -2.41276735 -0.723118753 0.0000000
+## 15-3  -0.742147303 -1.58586518  0.101570575 0.1781840
+## 16-3  -1.640545972 -2.48371446 -0.797377488 0.0000000
+## 17-3  -0.565552139 -1.40388744  0.272783159 0.6902675
+## 18-3  -0.058893836 -1.16796644  1.050178768 1.0000000
+## 19-3  -0.460521979 -1.36773906  0.446695105 0.9714345
+## 20-3  -1.654716793 -2.53241174 -0.777021848 0.0000000
+## 21-3  -1.084776302 -2.01799040 -0.151562208 0.0057097
+## 5-4   -0.676409782 -1.53495058  0.182131011 0.3740200
+## 6-4    1.056128724  0.20137473  1.910882723 0.0018511
+## 7-4   -1.547691993 -2.42270426 -0.672679725 0.0000000
+## 8-4   -0.545076060 -1.39929899  0.309146871 0.7827405
+## 9-4   -1.217116101 -2.07187010 -0.362362102 0.0000701
+## 10-4  -0.690225112 -1.59245247  0.212002251 0.4350180
+## 11-4  -0.570418331 -1.44417791  0.303341249 0.7470268
+## 12-4  -0.042285688 -0.89757320  0.813001819 1.0000000
+## 13-4  -1.186693765 -2.04038805 -0.332999478 0.0001312
+## 14-4  -2.468655542 -3.32664781 -1.610663270 0.0000000
+## 15-4  -1.642859792 -2.49976264 -0.785956940 0.0000000
+## 16-4  -2.541258461 -3.39762038 -1.684896544 0.0000000
+## 17-4  -1.466264628 -2.31786824 -0.614661015 0.0000001
+## 18-4  -0.959606326 -2.07874201  0.159529360 0.2172422
+## 19-4  -1.361234468 -2.28072644 -0.441742500 0.0000238
+## 20-4  -2.555429282 -3.44580620 -1.665052363 0.0000000
+## 21-4  -1.985488791 -2.93064020 -1.040337382 0.0000000
+## 6-5    1.732538506  0.89270109  2.572375922 0.0000000
+## 7-5   -0.871282211 -1.73172916 -0.010835260 0.0430097
+## 8-5    0.131333723 -0.70796319  0.970630632 1.0000000
+## 9-5   -0.540706319 -1.38054373  0.299131097 0.7691513
+## 10-5  -0.013815329 -0.90192383  0.874293166 1.0000000
+## 11-5   0.105991451 -0.75318158  0.965164478 1.0000000
+## 12-5   0.634124094 -0.20625630  1.474504488 0.4640295
+## 13-5  -0.510283983 -1.34904284  0.328474875 0.8465885
+## 14-5  -1.792245760 -2.63537874 -0.949112778 0.0000000
+## 15-5  -0.966450010 -1.80847435 -0.124425673 0.0070777
+## 16-5  -1.864848679 -2.70632252 -1.023374841 0.0000000
+## 17-5  -0.789854846 -1.62648571  0.046776017 0.0938253
+## 18-5  -0.283196543 -1.39098135  0.824588260 0.9999990
+## 19-5  -0.684824686 -1.59046698  0.220817608 0.4595326
+## 20-5  -1.879019500 -2.75508659 -1.002952411 0.0000000
+## 21-5  -1.309079009 -2.24076226 -0.377395762 0.0000996
+## 7-6   -2.603820717 -3.46048930 -1.747152134 0.0000000
+## 8-6   -1.601204783 -2.43662767 -0.765781892 0.0000000
+## 9-6   -2.273244825 -3.10921073 -1.437278922 0.0000000
+## 10-6  -1.746353835 -2.63080214 -0.861905530 0.0000000
+## 11-6  -1.626547055 -2.48193609 -0.771158023 0.0000000
+## 12-6  -1.098414412 -1.93492581 -0.261903018 0.0005127
+## 13-6  -2.242822489 -3.07770483 -1.407940146 0.0000000
+## 14-6  -3.524784266 -4.36406094 -2.685507595 0.0000000
+## 15-6  -2.698988516 -3.53715144 -1.860825590 0.0000000
+## 16-6  -3.597387185 -4.43499707 -2.759777297 0.0000000
+## 17-6  -2.522393352 -3.35513779 -1.689648910 0.0000000
+## 18-6  -2.015735049 -3.12058765 -0.910882446 0.0000000
+## 19-6  -2.417363192 -3.31941644 -1.515309940 0.0000000
+## 20-6  -3.611558006 -4.48391438 -2.739201629 0.0000000
+## 21-6  -3.041617515 -3.96981242 -2.113422612 0.0000000
+## 8-7    1.002615933  0.14647723  1.858754635 0.0050183
+## 9-7    0.330575892 -0.52609269  1.187244474 0.9991341
+## 10-7   0.857466881 -0.04657453  1.761508293 0.0895124
+## 11-7   0.977273662  0.10164105  1.852906270 0.0111281
+## 12-7   1.505406304  0.64820540  2.362607204 0.0000001
+## 13-7   0.360998228 -0.49461301  1.216609469 0.9969830
+## 14-7  -0.920963550 -1.78086320 -0.061063904 0.0205437
+## 15-7  -0.095167799 -0.95398044  0.763644846 1.0000000
+## 16-7  -0.993566468 -1.85183938 -0.135293554 0.0061264
+## 17-7   0.081427364 -0.77209790  0.934952628 1.0000000
+## 18-7   0.588085667 -0.53251299  1.708684322 0.9594617
+## 19-7   0.186457525 -0.73481450  1.107729547 1.0000000
+## 20-7  -1.007737289 -1.89995235 -0.115522226 0.0092095
+## 21-7  -0.437796798 -1.38468003  0.509086430 0.9902423
+## 9-8   -0.672040041 -1.50746293  0.163382850 0.3323300
+## 10-8  -0.145149052 -1.02908413  0.738786026 1.0000000
+## 11-8  -0.025342271 -0.88020063  0.829516087 1.0000000
+## 12-8   0.502790371 -0.33317837  1.338759108 0.8597464
+## 13-8  -0.641617705 -1.47595633  0.192720921 0.4241060
+## 14-8  -1.923579483 -2.76231529 -1.084843679 0.0000000
+## 15-8  -1.097783733 -1.93540507 -0.260162394 0.0005351
+## 16-8  -1.996182401 -2.83325034 -1.159114458 0.0000000
+## 17-8  -0.921188569 -1.75338790 -0.088989240 0.0126393
+## 18-8  -0.414530266 -1.51897207  0.689911535 0.9994235
+## 19-8  -0.816158408 -1.71770845  0.085391638 0.1396004
+## 20-8  -2.010353222 -2.88218925 -1.138517191 0.0000000
+## 21-8  -1.440412732 -2.36811861 -0.512706854 0.0000056
+## 10-9   0.526890989 -0.35755732  1.411339295 0.8700769
+## 11-9   0.646697770 -0.20869126  1.502086801 0.4599462
+## 12-9   1.174830412  0.33831902  2.011341806 0.0001008
+## 13-9   0.030422336 -0.80446001  0.865304679 1.0000000
+## 14-9  -1.251539442 -2.09081611 -0.412262770 0.0000193
+## 15-9  -0.425743692 -1.26390662  0.412419234 0.9712348
+## 16-9  -1.324142360 -2.16175225 -0.486532472 0.0000031
+## 17-9  -0.249148528 -1.08189297  0.583595914 0.9999844
+## 18-9   0.257509775 -0.84734283  1.362362378 0.9999998
+## 19-9  -0.144118367 -1.04617162  0.757934885 1.0000000
+## 20-9  -1.338313181 -2.21066956 -0.465956804 0.0000082
+## 21-9  -0.768372691 -1.69656759  0.159822212 0.2779252
+## 11-10  0.119806781 -0.78302222  1.022635785 1.0000000
+## 12-10  0.647939423 -0.23702449  1.532903336 0.5276588
+## 13-10 -0.496468653 -1.37989287  0.386955560 0.9213310
+## 14-10 -1.778430431 -2.66600868 -0.890852183 0.0000000
+## 15-10 -0.952634681 -1.83915987 -0.066109495 0.0195989
+## 16-10 -1.851033349 -2.73703569 -0.965031013 0.0000000
+## 17-10 -0.776039517 -1.65744358  0.105364545 0.1768052
+## 18-10 -0.269381214 -1.41135717  0.872594744 0.9999998
+## 19-10 -0.671009356 -1.61816820  0.276149492 0.5957661
+## 20-10 -1.865204170 -2.78412499 -0.946283356 0.0000000
+## 21-10 -1.295263680 -2.26735194 -0.323175416 0.0003668
+## 12-11  0.528132643 -0.32778950  1.384054787 0.8292141
+## 13-11 -0.616275434 -1.47060554  0.238054673 0.5587163
+## 14-11 -1.898237211 -2.75686212 -1.039612301 0.0000000
+## 15-11 -1.072441461 -1.92997776 -0.214905167 0.0014539
+## 16-11 -1.970840130 -2.82783589 -1.113844371 0.0000000
+## 17-11 -0.895846297 -1.74808729 -0.043605304 0.0265980
+## 18-11 -0.389187995 -1.50880877  0.730432781 0.9998207
+## 19-11 -0.790816137 -1.71089846  0.129266183 0.2133965
+## 20-11 -1.985010951 -2.87599751 -1.094024389 0.0000000
+## 21-11 -1.415070460 -2.36079620 -0.469344716 0.0000175
+## 13-12 -1.144408076 -1.97983662 -0.308979534 0.0001893
+## 14-12 -2.426369854 -3.26618987 -1.586549841 0.0000000
+## 15-12 -1.600574104 -2.43928109 -0.761867115 0.0000000
+## 16-12 -2.498972772 -3.33712708 -1.660818463 0.0000000
+## 17-12 -1.423978940 -2.25727098 -0.590686898 0.0000002
+## 18-12 -0.917320637 -2.02258603  0.187944760 0.2732231
+## 19-12 -1.318948779 -2.22150758 -0.416389977 0.0000345
+## 20-12 -2.513143594 -3.38602272 -1.640264466 0.0000000
+## 21-12 -1.943203103 -2.87188933 -1.014516880 0.0000000
+## 14-13 -1.281961778 -2.12015917 -0.443764386 0.0000090
+## 15-13 -0.456166027 -1.29324824  0.380916183 0.9410400
+## 16-13 -1.354564696 -2.19109315 -0.518036238 0.0000014
+## 17-13 -0.279570864 -1.11122755  0.552085821 0.9998942
+## 18-13  0.227087439 -0.87694554  1.331120415 1.0000000
+## 19-13 -0.174540703 -1.07558987  0.726508467 1.0000000
+## 20-13 -1.368735517 -2.24005359 -0.497417444 0.0000039
+## 21-13 -0.798795026 -1.72601416  0.128424103 0.2097137
+## 15-14  0.825795750 -0.01566930  1.667260801 0.0621075
+## 16-14 -0.072602919 -0.91351710  0.768311266 1.0000000
+## 17-14  1.002390914  0.16632295  1.838458882 0.0032897
+## 18-14  1.509049217  0.40168947  2.616408967 0.0002149
+## 19-14  1.107421075  0.20229876  2.012543393 0.0022429
+## 20-14 -0.086773740 -0.96230329  0.788755809 1.0000000
+## 21-14  0.483166751 -0.44801106  1.414344564 0.9639494
+## 16-15 -0.898398669 -1.73820128 -0.058596058 0.0208821
+## 17-15  0.176595164 -0.65835478  1.011545106 1.0000000
+## 18-15  0.683253467 -0.42326241  1.789769339 0.8282857
+## 19-15  0.281625324 -0.62246437  1.185715016 0.9999693
+## 20-15 -0.912569490 -1.78703147 -0.038107513 0.0293010
+## 21-15 -0.342628999 -1.27280311  0.587545113 0.9995643
+## 17-16  1.074993832  0.24059906  1.909388607 0.0007801
+## 18-16  1.581652135  0.47555512  2.687749152 0.0000627
+## 19-16  1.180023993  0.27644699  2.083600998 0.0005793
+## 20-16 -0.014170821 -0.88810273  0.859761089 1.0000000
+## 21-16  0.555769670 -0.37390614  1.485445480 0.8663707
+## 18-17  0.506658303 -0.59575886  1.609075461 0.9909333
+## 19-17  0.105030161 -0.79403846  1.004098782 1.0000000
+## 20-17 -1.089164654 -1.95843444 -0.219894866 0.0013993
+## 21-17 -0.519224163 -1.44451876  0.406070435 0.9223938
+## 19-18 -0.401628142 -1.55729261  0.754036322 0.9998213
+## 20-18 -1.595822956 -2.72845967 -0.463186239 0.0000927
+## 21-18 -1.025882466 -2.20206530  0.150300370 0.1906273
+## 20-19 -1.194194814 -2.13007233 -0.258317296 0.0009584
+## 21-19 -0.624254323 -1.61238734  0.363878693 0.7973367
+## 21-20  0.569940491 -0.39115911  1.531040088 0.8748235</code></pre>
+<p>Lets put this information in a datafame that we can plot.</p>
+<pre class="sourceCode r" id="cb36"><code class="sourceCode r"><div class="sourceLine" id="cb36-1" data-line-number="1">plotting =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">rownames</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>),</div>
+<div class="sourceLine" id="cb36-2" data-line-number="2">                      <span class="dt">diff =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[,<span class="dv">1</span>],</div>
+<div class="sourceLine" id="cb36-3" data-line-number="3">                      <span class="dt">ymin =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[,<span class="dv">2</span>],</div>
+<div class="sourceLine" id="cb36-4" data-line-number="4">                      <span class="dt">ymax =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[,<span class="dv">3</span>])</div>
+<div class="sourceLine" id="cb36-5" data-line-number="5">plotting</div></code></pre>
+<pre><code>##       names         diff        ymin         ymax
+## 1-0     1-0 -0.612459276 -1.64536115  0.420442598
+## 2-0     2-0  0.256738191 -0.59844952  1.111925905
+## 3-0     3-0  0.033425416 -0.81478055  0.881631378
+## 4-0     4-0  0.934137905  0.07281567  1.795460142
+## 5-0     5-0  0.257728123 -0.58879328  1.104249524
+## 6-0     6-0  1.990266629  1.14758603  2.832947225
+## 7-0     7-0 -0.613554088 -1.47677634  0.249668164
+## 8-0     8-0  0.389061846 -0.45308007  1.231203760
+## 9-0     9-0 -0.282978196 -1.12565879  0.559702400
+## 10-0   10-0  0.243912794 -0.64688483  1.134710415
+## 11-0   11-0  0.363719574 -0.49823286  1.225672004
+## 12-0   12-0  0.891852217  0.04863047  1.735073960
+## 13-0   13-0 -0.252555860 -1.09416154  0.589049822
+## 14-0   14-0 -1.534517637 -2.38048272 -0.688552551
+## 15-0   15-0 -0.708721887 -1.55358205  0.136138271
+## 16-0   16-0 -1.607120556 -2.45143206 -0.762809048
+## 17-0   17-0 -0.532126723 -1.37161163  0.307358180
+## 18-0   18-0 -0.025468420 -1.13541025  1.084473412
+## 19-0   19-0 -0.427096563 -1.33537607  0.481182946
+## 20-0   20-0 -1.621291377 -2.50008444 -0.742498315
+## 21-0   21-0 -1.051350886 -1.98559784 -0.117103930
+## 2-1     2-1  0.869197467 -0.16851643  1.906911360
+## 3-1     3-1  0.645884692 -0.38608307  1.677852449
+## 4-1     4-1  1.546597181  0.50382199  2.589372369
+## 5-1     5-1  0.870187399 -0.16039621  1.900771010
+## 6-1     6-1  2.602725905  1.57529480  3.630157015
+## 7-1     7-1 -0.001094812 -1.04543994  1.043250320
+## 8-1     8-1  1.001521122 -0.02546822  2.028510460
+## 9-1     9-1  0.329481080 -0.69795003  1.356912190
+## 10-1   10-1  0.856372070 -0.21087884  1.923622977
+## 11-1   11-1  0.976178850 -0.06711693  2.019474633
+## 12-1   12-1  1.504311493  0.47643650  2.532186489
+## 13-1   13-1  0.359903416 -0.66664625  1.386453084
+## 14-1   14-1 -0.922058361 -1.95218507  0.108068343
+## 15-1   15-1 -0.096262611 -1.12548211  0.932956892
+## 16-1   16-1 -0.994661280 -2.02343046  0.034107897
+## 17-1   17-1  0.080332553 -0.94447914  1.105144243
+## 18-1   18-1  0.586990855 -0.66898485  1.842966560
+## 19-1   19-1  0.185362713 -0.89652257  1.267247996
+## 20-1   20-1 -1.008832101 -2.06608389  0.048419687
+## 21-1   21-1 -0.438891610 -1.54266762  0.664884396
+## 3-2     3-2 -0.223312775 -1.07737202  0.630746471
+## 4-2     4-2  0.677399714 -0.18968727  1.544486698
+## 5-2     5-2  0.000989932 -0.85139632  0.853376185
+## 6-2     6-2  1.733528438  0.88495644  2.582100432
+## 7-2     7-2 -0.870292279 -1.73926667 -0.001317884
+## 8-2     8-2  0.132323655 -0.71571340  0.980360709
+## 9-2     9-2 -0.539716387 -1.38828838  0.308855607
+## 10-2   10-2 -0.012825397 -0.90919822  0.883547429
+## 11-2   11-2  0.106981383 -0.76073161  0.974694374
+## 12-2   12-2  0.635114026 -0.21399536  1.484223413
+## 13-2   13-2 -0.509294051 -1.35679860  0.338210501
+## 14-2   14-2 -1.791255828 -2.64308960 -0.939422059
+## 15-2   15-2 -0.965460078 -1.81619654 -0.114723615
+## 16-2   16-2 -1.863858747 -2.71405035 -1.013667143
+## 17-2   17-2 -0.788864914 -1.63426349  0.056533657
+## 18-2   18-2 -0.282206611 -1.39662786  0.832214635
+## 19-2   19-2 -0.683834754 -1.59758281  0.229913302
+## 20-2   20-2 -1.878029568 -2.76247351 -0.993585625
+## 21-2   21-2 -1.308089077 -2.24765345 -0.368524701
+## 4-3     4-3  0.900712489  0.04051067  1.760914306
+## 5-3     5-3  0.224302707 -0.62107866  1.069684072
+## 6-3     6-3  1.956841213  1.11530586  2.798376570
+## 7-3     7-3 -0.646979504 -1.50908381  0.215124798
+## 8-3     8-3  0.355636430 -0.48535951  1.196632371
+## 9-3     9-3 -0.316403611 -1.15793897  0.525131746
+## 10-3   10-3  0.210487378 -0.67922694  1.100201698
+## 11-3   11-3  0.330294158 -0.53053867  1.191126989
+## 12-3   12-3  0.858426801  0.01634956  1.700504042
+## 13-3   13-3 -0.285981276 -1.12644025  0.554477702
+## 14-3   14-3 -1.567943053 -2.41276735 -0.723118753
+## 15-3   15-3 -0.742147303 -1.58586518  0.101570575
+## 16-3   16-3 -1.640545972 -2.48371446 -0.797377488
+## 17-3   17-3 -0.565552139 -1.40388744  0.272783159
+## 18-3   18-3 -0.058893836 -1.16796644  1.050178768
+## 19-3   19-3 -0.460521979 -1.36773906  0.446695105
+## 20-3   20-3 -1.654716793 -2.53241174 -0.777021848
+## 21-3   21-3 -1.084776302 -2.01799040 -0.151562208
+## 5-4     5-4 -0.676409782 -1.53495058  0.182131011
+## 6-4     6-4  1.056128724  0.20137473  1.910882723
+## 7-4     7-4 -1.547691993 -2.42270426 -0.672679725
+## 8-4     8-4 -0.545076060 -1.39929899  0.309146871
+## 9-4     9-4 -1.217116101 -2.07187010 -0.362362102
+## 10-4   10-4 -0.690225112 -1.59245247  0.212002251
+## 11-4   11-4 -0.570418331 -1.44417791  0.303341249
+## 12-4   12-4 -0.042285688 -0.89757320  0.813001819
+## 13-4   13-4 -1.186693765 -2.04038805 -0.332999478
+## 14-4   14-4 -2.468655542 -3.32664781 -1.610663270
+## 15-4   15-4 -1.642859792 -2.49976264 -0.785956940
+## 16-4   16-4 -2.541258461 -3.39762038 -1.684896544
+## 17-4   17-4 -1.466264628 -2.31786824 -0.614661015
+## 18-4   18-4 -0.959606326 -2.07874201  0.159529360
+## 19-4   19-4 -1.361234468 -2.28072644 -0.441742500
+## 20-4   20-4 -2.555429282 -3.44580620 -1.665052363
+## 21-4   21-4 -1.985488791 -2.93064020 -1.040337382
+## 6-5     6-5  1.732538506  0.89270109  2.572375922
+## 7-5     7-5 -0.871282211 -1.73172916 -0.010835260
+## 8-5     8-5  0.131333723 -0.70796319  0.970630632
+## 9-5     9-5 -0.540706319 -1.38054373  0.299131097
+## 10-5   10-5 -0.013815329 -0.90192383  0.874293166
+## 11-5   11-5  0.105991451 -0.75318158  0.965164478
+## 12-5   12-5  0.634124094 -0.20625630  1.474504488
+## 13-5   13-5 -0.510283983 -1.34904284  0.328474875
+## 14-5   14-5 -1.792245760 -2.63537874 -0.949112778
+## 15-5   15-5 -0.966450010 -1.80847435 -0.124425673
+## 16-5   16-5 -1.864848679 -2.70632252 -1.023374841
+## 17-5   17-5 -0.789854846 -1.62648571  0.046776017
+## 18-5   18-5 -0.283196543 -1.39098135  0.824588260
+## 19-5   19-5 -0.684824686 -1.59046698  0.220817608
+## 20-5   20-5 -1.879019500 -2.75508659 -1.002952411
+## 21-5   21-5 -1.309079009 -2.24076226 -0.377395762
+## 7-6     7-6 -2.603820717 -3.46048930 -1.747152134
+## 8-6     8-6 -1.601204783 -2.43662767 -0.765781892
+## 9-6     9-6 -2.273244825 -3.10921073 -1.437278922
+## 10-6   10-6 -1.746353835 -2.63080214 -0.861905530
+## 11-6   11-6 -1.626547055 -2.48193609 -0.771158023
+## 12-6   12-6 -1.098414412 -1.93492581 -0.261903018
+## 13-6   13-6 -2.242822489 -3.07770483 -1.407940146
+## 14-6   14-6 -3.524784266 -4.36406094 -2.685507595
+## 15-6   15-6 -2.698988516 -3.53715144 -1.860825590
+## 16-6   16-6 -3.597387185 -4.43499707 -2.759777297
+## 17-6   17-6 -2.522393352 -3.35513779 -1.689648910
+## 18-6   18-6 -2.015735049 -3.12058765 -0.910882446
+## 19-6   19-6 -2.417363192 -3.31941644 -1.515309940
+## 20-6   20-6 -3.611558006 -4.48391438 -2.739201629
+## 21-6   21-6 -3.041617515 -3.96981242 -2.113422612
+## 8-7     8-7  1.002615933  0.14647723  1.858754635
+## 9-7     9-7  0.330575892 -0.52609269  1.187244474
+## 10-7   10-7  0.857466881 -0.04657453  1.761508293
+## 11-7   11-7  0.977273662  0.10164105  1.852906270
+## 12-7   12-7  1.505406304  0.64820540  2.362607204
+## 13-7   13-7  0.360998228 -0.49461301  1.216609469
+## 14-7   14-7 -0.920963550 -1.78086320 -0.061063904
+## 15-7   15-7 -0.095167799 -0.95398044  0.763644846
+## 16-7   16-7 -0.993566468 -1.85183938 -0.135293554
+## 17-7   17-7  0.081427364 -0.77209790  0.934952628
+## 18-7   18-7  0.588085667 -0.53251299  1.708684322
+## 19-7   19-7  0.186457525 -0.73481450  1.107729547
+## 20-7   20-7 -1.007737289 -1.89995235 -0.115522226
+## 21-7   21-7 -0.437796798 -1.38468003  0.509086430
+## 9-8     9-8 -0.672040041 -1.50746293  0.163382850
+## 10-8   10-8 -0.145149052 -1.02908413  0.738786026
+## 11-8   11-8 -0.025342271 -0.88020063  0.829516087
+## 12-8   12-8  0.502790371 -0.33317837  1.338759108
+## 13-8   13-8 -0.641617705 -1.47595633  0.192720921
+## 14-8   14-8 -1.923579483 -2.76231529 -1.084843679
+## 15-8   15-8 -1.097783733 -1.93540507 -0.260162394
+## 16-8   16-8 -1.996182401 -2.83325034 -1.159114458
+## 17-8   17-8 -0.921188569 -1.75338790 -0.088989240
+## 18-8   18-8 -0.414530266 -1.51897207  0.689911535
+## 19-8   19-8 -0.816158408 -1.71770845  0.085391638
+## 20-8   20-8 -2.010353222 -2.88218925 -1.138517191
+## 21-8   21-8 -1.440412732 -2.36811861 -0.512706854
+## 10-9   10-9  0.526890989 -0.35755732  1.411339295
+## 11-9   11-9  0.646697770 -0.20869126  1.502086801
+## 12-9   12-9  1.174830412  0.33831902  2.011341806
+## 13-9   13-9  0.030422336 -0.80446001  0.865304679
+## 14-9   14-9 -1.251539442 -2.09081611 -0.412262770
+## 15-9   15-9 -0.425743692 -1.26390662  0.412419234
+## 16-9   16-9 -1.324142360 -2.16175225 -0.486532472
+## 17-9   17-9 -0.249148528 -1.08189297  0.583595914
+## 18-9   18-9  0.257509775 -0.84734283  1.362362378
+## 19-9   19-9 -0.144118367 -1.04617162  0.757934885
+## 20-9   20-9 -1.338313181 -2.21066956 -0.465956804
+## 21-9   21-9 -0.768372691 -1.69656759  0.159822212
+## 11-10 11-10  0.119806781 -0.78302222  1.022635785
+## 12-10 12-10  0.647939423 -0.23702449  1.532903336
+## 13-10 13-10 -0.496468653 -1.37989287  0.386955560
+## 14-10 14-10 -1.778430431 -2.66600868 -0.890852183
+## 15-10 15-10 -0.952634681 -1.83915987 -0.066109495
+## 16-10 16-10 -1.851033349 -2.73703569 -0.965031013
+## 17-10 17-10 -0.776039517 -1.65744358  0.105364545
+## 18-10 18-10 -0.269381214 -1.41135717  0.872594744
+## 19-10 19-10 -0.671009356 -1.61816820  0.276149492
+## 20-10 20-10 -1.865204170 -2.78412499 -0.946283356
+## 21-10 21-10 -1.295263680 -2.26735194 -0.323175416
+## 12-11 12-11  0.528132643 -0.32778950  1.384054787
+## 13-11 13-11 -0.616275434 -1.47060554  0.238054673
+## 14-11 14-11 -1.898237211 -2.75686212 -1.039612301
+## 15-11 15-11 -1.072441461 -1.92997776 -0.214905167
+## 16-11 16-11 -1.970840130 -2.82783589 -1.113844371
+## 17-11 17-11 -0.895846297 -1.74808729 -0.043605304
+## 18-11 18-11 -0.389187995 -1.50880877  0.730432781
+## 19-11 19-11 -0.790816137 -1.71089846  0.129266183
+## 20-11 20-11 -1.985010951 -2.87599751 -1.094024389
+## 21-11 21-11 -1.415070460 -2.36079620 -0.469344716
+## 13-12 13-12 -1.144408076 -1.97983662 -0.308979534
+## 14-12 14-12 -2.426369854 -3.26618987 -1.586549841
+## 15-12 15-12 -1.600574104 -2.43928109 -0.761867115
+## 16-12 16-12 -2.498972772 -3.33712708 -1.660818463
+## 17-12 17-12 -1.423978940 -2.25727098 -0.590686898
+## 18-12 18-12 -0.917320637 -2.02258603  0.187944760
+## 19-12 19-12 -1.318948779 -2.22150758 -0.416389977
+## 20-12 20-12 -2.513143594 -3.38602272 -1.640264466
+## 21-12 21-12 -1.943203103 -2.87188933 -1.014516880
+## 14-13 14-13 -1.281961778 -2.12015917 -0.443764386
+## 15-13 15-13 -0.456166027 -1.29324824  0.380916183
+## 16-13 16-13 -1.354564696 -2.19109315 -0.518036238
+## 17-13 17-13 -0.279570864 -1.11122755  0.552085821
+## 18-13 18-13  0.227087439 -0.87694554  1.331120415
+## 19-13 19-13 -0.174540703 -1.07558987  0.726508467
+## 20-13 20-13 -1.368735517 -2.24005359 -0.497417444
+## 21-13 21-13 -0.798795026 -1.72601416  0.128424103
+## 15-14 15-14  0.825795750 -0.01566930  1.667260801
+## 16-14 16-14 -0.072602919 -0.91351710  0.768311266
+## 17-14 17-14  1.002390914  0.16632295  1.838458882
+## 18-14 18-14  1.509049217  0.40168947  2.616408967
+## 19-14 19-14  1.107421075  0.20229876  2.012543393
+## 20-14 20-14 -0.086773740 -0.96230329  0.788755809
+## 21-14 21-14  0.483166751 -0.44801106  1.414344564
+## 16-15 16-15 -0.898398669 -1.73820128 -0.058596058
+## 17-15 17-15  0.176595164 -0.65835478  1.011545106
+## 18-15 18-15  0.683253467 -0.42326241  1.789769339
+## 19-15 19-15  0.281625324 -0.62246437  1.185715016
+## 20-15 20-15 -0.912569490 -1.78703147 -0.038107513
+## 21-15 21-15 -0.342628999 -1.27280311  0.587545113
+## 17-16 17-16  1.074993832  0.24059906  1.909388607
+## 18-16 18-16  1.581652135  0.47555512  2.687749152
+## 19-16 19-16  1.180023993  0.27644699  2.083600998
+## 20-16 20-16 -0.014170821 -0.88810273  0.859761089
+## 21-16 21-16  0.555769670 -0.37390614  1.485445480
+## 18-17 18-17  0.506658303 -0.59575886  1.609075461
+## 19-17 19-17  0.105030161 -0.79403846  1.004098782
+## 20-17 20-17 -1.089164654 -1.95843444 -0.219894866
+## 21-17 21-17 -0.519224163 -1.44451876  0.406070435
+## 19-18 19-18 -0.401628142 -1.55729261  0.754036322
+## 20-18 20-18 -1.595822956 -2.72845967 -0.463186239
+## 21-18 21-18 -1.025882466 -2.20206530  0.150300370
+## 20-19 20-19 -1.194194814 -2.13007233 -0.258317296
+## 21-19 21-19 -0.624254323 -1.61238734  0.363878693
+## 21-20 21-20  0.569940491 -0.39115911  1.531040088</code></pre>
+<pre class="sourceCode r" id="cb38"><code class="sourceCode r"><div class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>)</div></code></pre>
+<p><img src="2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</section>
+</section>

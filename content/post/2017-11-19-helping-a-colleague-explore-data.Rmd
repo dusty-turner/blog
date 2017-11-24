@@ -1,0 +1,317 @@
+---
+title: Helping A Colleague Explore Data
+author: Dusty Turner
+date: '2017-11-19'
+slug: helping-a-colleague-explore-data
+categories:
+  - r
+  - datascience
+  - ggplot2
+  - lubridate
+  - dplyr
+  - tidyverse
+  - beatnavy
+tags:
+  - r
+  - datascience
+  - ggplot2
+  - lubridate
+  - dplyr
+  - tidyverse
+  - beatnavy
+output: 
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+---
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 120)
+```
+
+## Introduction
+
+A colleague of mine asked me to help him explore a dataset in R.  He has little experience in R, so I will provide as much detail as I can in this exploration.  My goal here is to make this post both 'learn-able' and 'replicable'.
+
+### Install and/or load necessary packages
+
+```{r Load Packages, echo=TRUE, message=FALSE}
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("readr")) install.packages("readr")
+if (!require("lubridate")) install.packages("lubridate")
+if (!require("stringi")) install.packages("stringi")
+```
+
+### Set Working Directory If Necessary 
+```{r Set Working Directory, echo=TRUE, message=FALSE}
+# setwd("//filepath/of/your/csvfile")
+```
+
+### Read in data
+
+We use `read_csv` from the `readr` package because it does a better job than the base `read.csv` command at recognizing data types from our csv file.  
+
+```{r Read in Data, echo=TRUE, message=TRUE}
+data = read_csv("data.csv")
+```
+
+We notice that it read in our data column as a character string.  We'll have to do some work to fix that, but lets to some further exploration for now.
+
+## Exploratory Data Anlaysis
+
+First, we will look at our data summary
+
+```{r Summary, echo =TRUE, message = TRUE}
+summary(data)
+```
+
+This confirms that our date is in the wrong format.  It appears everything else is fine.
+
+The structure command is also a valuable tool.  This shows us how R interprets the data and if there are any hidden levels or format issues in which we are unaware.  
+
+```{r Structure, echo =TRUE, message = TRUE}
+str(data)
+``` 
+
+One issue we notice is there there areparenthesis `()` in the `Date Time (GMT)` column name.  We will run into issues calling this column in the future because we will have to put the name in 'single quotes'.  To allow us to directly call the column name, we will rename this column, as well as several others for similar reasons.  
+
+An ounce of prevention...
+
+```{r Change Names, echo = TRUE, message = TRUE}
+names(data) = c("DateTimeGMT", "DotW","Hosts", "Users", "UsersPerHost", "weekno", "desdate")
+names(data)
+```
+
+Much better!
+
+### Handle the Date column
+
+In order for R to read `DateTimeGMT` as a Date and not as a character string, we'll use several commands from the `lubridate` package. 
+
+It will be best if we translate our time into 'POSIXct'.
+
+- **POSIX** time is the number of seconds that have elapsed since January 1, 1970.
+- **ct** stands for 'calendar time'.  
+
+This should give you insite as to how R is storing the information.  Now we need to tell R the order of our characters.  
+
+Here is a snipit of what it looks like.
+
+```{r, echo = TRUE, message = TRUE}
+data$DateTimeGMT[1:10]
+```
+
+We must tell R where the months, days, years, hours, minutes, etc are located in the character vector we provide.
+
+```{r lubridate, echo = TRUE, message = TRUE}
+data$newdate = as.POSIXct(data$DateTimeGMT, "%m/%d/%Y %H:%M", tz = "UTC")
+data$newdate[1:10]
+class(data$newdate)
+```
+
+Nice - we can see how it is being stored and that the data time is correct.  
+
+### Visualise 
+
+Lets take a first look at at our UsersPerHost over time.
+
+```{r first look, echo = TRUE, message = TRUE}
+ggplot(data, aes(x=newdate, y = UsersPerHost)) +
+  geom_point()
+```
+
+There is clearly something going on here.  Lets explore more deeply by creating a column for day of the week and month.  We'll plot the data based on these different levels.  
+
+```{r variable creations, echo = TRUE}
+data$weekday = wday(data$newdate)
+data$month = month(data$newdate)
+```
+
+A good tool for seeing how data changes based on certain factors is by changing the colors based on a level of a specific factor.
+
+### Plot it
+
+Lets see how `UsersPerHost` changes based off of month.
+
+```{r different colors, echo=TRUE}
+ggplot(data, aes(x=newdate, y = UsersPerHost, color = weekday)) +
+  geom_point()
+``` 
+
+Notice how our points are shaded by a fluid scale instead of having one color per day of the week.  This is because R sees `weekday` as a continuous variable.  Lets fix that by adding `as.factor(weekday)` to our `color` argument. 
+
+
+```{r different colors factor, echo=TRUE}
+ggplot(data, aes(x=newdate, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point()
+```
+
+That looks better -- and it appears that each level of `weekday` has an impact on `UsersPerHost`.
+
+Maybe it would be better to see this effect by month?
+
+```{r, echo=TRUE}
+ggplot(data, aes(x=newdate, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  facet_wrap(~month)
+```
+
+What's Wrong?  Our data points are all clumped together.  That's because we are faceting over each month (good), but our x axis contains the entire time scale over each facet (bad).  We have to remove the month value  from our x and maintain only the time element.  We will do that by extracting the time from our `DateTimeGMT` column.
+
+```{r, echo=TRUE}
+time = stri_sub(data$DateTimeGMT, -5,-1)
+data$time = gsub(" ",0, time)
+```
+
+Lets try the plot again using `time` as our x variable.
+
+```{r, echo=TRUE}
+ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  facet_wrap(~month)
+```
+
+There certainly appears to be a relationship.
+
+## Statistical Analysis
+
+Lets test this using a `pairwise.t.test`
+
+```{r}
+test = pairwise.t.test(data$UsersPerHost,as.factor(data$weekday), p.adjust.method = "bonferroni")
+```
+
+The null hypothesis is that the `UsersPerHost` are equal to each other across all months.  Everywhere the P Values are <.05, we reject the null hypothesis and determine that the `UsersPerHost` for that specific month to month combination are different.    
+
+Lets make this information more conveyable.  We'll do that with a graphic with a little different test.
+
+The following code will execute an ANOVA (analysis of variance) and extract the Tukey comparisons.  The Tukey results show us the estimated mean of the level and it provides a confidence interval of the true mean.  
+
+```{r, echo=TRUE}
+results = aov(UsersPerHost~as.factor(weekday), data = data)
+tukey = TukeyHSD(results)
+```
+
+Lets put this information in a datafame that we can plot using `ggplot`.
+
+```{r, echo=TRUE}
+plotting = data.frame(names = rownames(tukey$`as.factor(weekday)`),
+                      diff = tukey$`as.factor(weekday)`[,1],
+                      ymin = tukey$`as.factor(weekday)`[,2],
+                      ymax = tukey$`as.factor(weekday)`[,3])
+plotting
+```
+
+### Plot Tukey Comparisons
+
+```{r, echo=TRUE}
+ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = "dotted")
+```
+
+We should draw two conclusions.  
+
+1. If the error bar overlaps `0`, we conclude the `UsersPerHost` are not different across that month pair.
+2.  Every month pair whose error bar does not overlap is different from all other months.
+
+###  Analysis by week
+
+Lets plot the `UsersPerHost` by week.    
+
+First, we must create a column for week.  The code below identifies each week in the dataset and numbers them 1 through n.  
+
+```{r, echo = TRUE}
+data$week = trunc((data$newdate - min(data$newdate))/dweeks(1))
+```
+
+Now for the plot by week.  
+
+```{r, echo = TRUE}
+ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  # geom_boxplot() +
+  # geom_smooth() +
+  facet_wrap(~as.factor(week))
+
+```
+
+Much like the analysis above, lets see if there's a differnece between any week pair.  
+
+```{r}
+options(scipen=999)
+test = pairwise.t.test(data$UsersPerHost,as.factor(data$week), p.adjust.method = "bonferroni")
+round(test$p.value[,c(1:15)],3)
+```
+
+We will explore the same ANOVA as before with Tukey results. This time, however, since there are 231 pairwise comparisons, I will only display a sample of 20 weeks  that are different from each other.
+
+```{r, echo=TRUE}
+options(scipen=999)
+results = aov(UsersPerHost~as.factor(week), data = data)
+tukey = TukeyHSD(results)
+helper = as.data.frame(round(tukey$`as.factor(week)`[which(tukey$`as.factor(week)`[,4]<.001),],3)) %>% 
+  sample_n(20) 
+helper %>%  
+  mutate(weekpair = rownames(helper)) %>%
+  arrange(desc(diff)) %>%
+  select("weekpair", "p adj", "diff", "lwr", "upr")
+```
+
+Lets tranform this information into a datafame that we can plot.
+
+```{r, echo=TRUE}
+tukeydata = as.data.frame(tukey$`as.factor(week)`)
+plotting = tukeydata %>%
+  mutate(names = rownames(tukeydata), ymin = lwr, ymax = upr) %>%
+  select(names, diff, ymin, ymax) %>%
+  arrange(diff)
+```
+
+Lets view a sample of 20 rows.
+
+```{r, echo=TRUE}
+plotting %>%
+  sample_n(20) %>%
+  arrange(diff)
+```
+
+### Plots of Pairwise Compaisons
+
+```{r, echo=TRUE}
+ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = "dotted")
+```
+
+This is very difficult to read.  Lets make two fixes:
+
+1. Since our data is scattered everywhere, lets reorder our plot based off the difference in means between weeks.  
+2. Since our y labels are hard to read, lets create a vector that will allow us to show the label for every 7th value.  
+
+```{r}
+plotting$order = 1:nrow(plotting)
+plotting$names = factor(plotting$names, levels=unique(plotting$names[order(plotting$order)]), ordered=TRUE)
+
+plothelp = plotting$names[c(TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE)]
+```
+
+Now the plot.  
+
+```{r, echo=TRUE}
+ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  scale_x_discrete(breaks=plothelp,
+                      labels=plothelp)
+```
+

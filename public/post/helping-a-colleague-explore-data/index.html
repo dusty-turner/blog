@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Helping A Colleague Explore Data</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="Dusty Turner" />
+  <meta name="description" content="div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre." />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@dtdusty" />
+    <meta name="twitter:title" content="Helping A Colleague Explore Data" />
+    <meta name="twitter:description" content="div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre." />
+    <meta name="twitter:image" content="/img/avatar.jpg" />
+  
+
+
+
+
+<meta name="generator" content="Hugo 0.30.2" />
+
+
+<link rel="canonical" href="/post/helping-a-colleague-explore-data/" />
+<link rel="alternative" href="/index.xml" title="Dusty Turner" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo" />
+<meta name="msvalidate.01" content="84DDAAE7986A2E9D73062694A69D33A9" />
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Dusty Turner" />
+<meta name="msapplication-tooltip" content="Dusty Turner" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/dusty.png" alt="Avatar">
+  
+  <h2 class="title">Dusty Turner</h2>
+  
+  <p class="subtitle">~Becoming a Better Data Scientist~</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item  is-active"><a href="/">Home</a></li>
+      
+        <li class="menu-item "><a href="https://github.com/dusty-turner">Github</a></li>
+      
+        <li class="menu-item "><a href="/links/">Links</a></li>
+      
+        <li class="menu-item "><a href="/about/">About</a></li>
+      
+        <li class="menu-item "><a href="/turner-cv.pdf">CV</a></li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:dusty.s.turner@gmail.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/dusty-turner" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/dtdusty" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//www.facebook.com/dusty.turner" title="Facebook"><span class="icon icon-facebook"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/dusty-turner-34a148112" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Helping A Colleague Explore Data</h1>
+      <p class="post-meta">@Dusty Turner · Nov 19, 2017 · 14 min read</p>
+    </header>
+    <article class="post-content"><style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+pre, code { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.fl { color: #0000cf; } /* Float */
+code span.ch { color: #4e9a06; } /* Char */
+code span.st { color: #4e9a06; } /* String */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.ot { color: #8f5902; } /* Other */
+code span.al { color: #ef2929; } /* Alert */
+code span.fu { color: #000000; } /* Function */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #000000; } /* Constant */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #000000; } /* Variable */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.ex { } /* Extension */
+code span.at { color: #c4a000; } /* Attribute */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#exploratory-data-anlaysis">Exploratory Data Anlaysis</a></li>
+<li><a href="#statistical-analysis">Statistical Analysis</a></li>
+</ul>
+</div>
+
+<section id="introduction" class="level2">
+<h2>Introduction</h2>
+<p>A colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.</p>
+<section id="install-andor-load-necessary-packages" class="level3">
+<h3>Install and/or load necessary packages</h3>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;tidyverse&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</div>
+<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;readr&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;readr&quot;</span>)</div>
+<div class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;lubridate&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</div>
+<div class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;stringi&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;stringi&quot;</span>)</div></code></pre>
+</section>
+<section id="set-working-directory-if-necessary" class="level3">
+<h3>Set Working Directory If Necessary</h3>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># setwd(&quot;//filepath/of/your/csvfile&quot;)</span></div></code></pre>
+</section>
+<section id="read-in-data" class="level3">
+<h3>Read in data</h3>
+<p>We use <code>read_csv</code> from the <code>readr</code> package because it does a better job than the base <code>read.csv</code> command at recognizing data types from our csv file.</p>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">data =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data.csv&quot;</span>)</div></code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   `Date Time (GMT)` = col_character(),
+##   DotW = col_character(),
+##   Hosts = col_integer(),
+##   Users = col_integer(),
+##   `Users Per Host` = col_double(),
+##   weekno = col_integer(),
+##   desdate = col_double()
+## )</code></pre>
+<p>We notice that it read in our data column as a character string. We’ll have to do some work to fix that, but lets to some further exploration for now.</p>
+</section>
+</section>
+<section id="exploratory-data-anlaysis" class="level2">
+<h2>Exploratory Data Anlaysis</h2>
+<p>First, we will look at our data summary</p>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">summary</span>(data)</div></code></pre>
+<pre><code>##  Date Time (GMT)        DotW               Hosts          Users       Users Per Host       weekno         desdate     
+##  Length:7519        Length:7519        Min.   :  82   Min.   : 1042   Min.   : 1.078   Min.   :1.000   Min.   :42875  
+##  Class :character   Class :character   1st Qu.:1146   1st Qu.:18585   1st Qu.:14.327   1st Qu.:2.000   1st Qu.:42914  
+##  Mode  :character   Mode  :character   Median :1286   Median :21483   Median :16.421   Median :3.000   Median :42950  
+##                                        Mean   :1286   Mean   :21372   Mean   :16.799   Mean   :2.657   Mean   :42950  
+##                                        3rd Qu.:1423   3rd Qu.:24269   3rd Qu.:19.040   3rd Qu.:3.000   3rd Qu.:42986  
+##                                        Max.   :1921   Max.   :41216   Max.   :34.664   Max.   :3.000   Max.   :43028</code></pre>
+<p>This confirms that our date is in the wrong format. It appears everything else is fine.</p>
+<p>The structure command is also a valuable tool. This shows us how R interprets the data and if there are any hidden levels or format issues in which we are unaware.</p>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">str</span>(data)</div></code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    7519 obs. of  7 variables:
+##  $ Date Time (GMT): chr  &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; ...
+##  $ DotW           : chr  &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; ...
+##  $ Hosts          : int  1368 1355 1351 1344 1375 1411 1462 1402 1427 1436 ...
+##  $ Users          : int  27084 26674 26424 28796 29589 30998 32096 31137 31193 29795 ...
+##  $ Users Per Host : num  19.8 19.7 19.6 21.4 21.5 ...
+##  $ weekno         : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ desdate        : num  42875 42875 42875 42875 42875 ...
+##  - attr(*, &quot;spec&quot;)=List of 2
+##   ..$ cols   :List of 7
+##   .. ..$ Date Time (GMT): list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
+##   .. ..$ DotW           : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
+##   .. ..$ Hosts          : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ Users          : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ Users Per Host : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_double&quot; &quot;collector&quot;
+##   .. ..$ weekno         : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
+##   .. ..$ desdate        : list()
+##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_double&quot; &quot;collector&quot;
+##   ..$ default: list()
+##   .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_guess&quot; &quot;collector&quot;
+##   ..- attr(*, &quot;class&quot;)= chr &quot;col_spec&quot;</code></pre>
+<p>One issue we notice is there there areparenthesis <code>()</code> in the <code>Date Time (GMT)</code> column name. We will run into issues calling this column in the future because we will have to put the name in ‘single quotes’. To allow us to directly call the column name, we will rename this column, as well as several others for similar reasons.</p>
+<p>An ounce of prevention…</p>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">names</span>(data) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DateTimeGMT&quot;</span>, <span class="st">&quot;DotW&quot;</span>,<span class="st">&quot;Hosts&quot;</span>, <span class="st">&quot;Users&quot;</span>, <span class="st">&quot;UsersPerHost&quot;</span>, <span class="st">&quot;weekno&quot;</span>, <span class="st">&quot;desdate&quot;</span>)</div>
+<div class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">names</span>(data)</div></code></pre>
+<pre><code>## [1] &quot;DateTimeGMT&quot;  &quot;DotW&quot;         &quot;Hosts&quot;        &quot;Users&quot;        &quot;UsersPerHost&quot; &quot;weekno&quot;       &quot;desdate&quot;</code></pre>
+<p>Much better!</p>
+<section id="handle-the-date-column" class="level3">
+<h3>Handle the Date column</h3>
+<p>In order for R to read <code>DateTimeGMT</code> as a Date and not as a character string, we’ll use several commands from the <code>lubridate</code> package.</p>
+<p>It will be best if we translate our time into ‘POSIXct’.</p>
+<ul>
+<li><strong>POSIX</strong> time is the number of seconds that have elapsed since January 1, 1970.</li>
+<li><strong>ct</strong> stands for ‘calendar time’.</li>
+</ul>
+<p>This should give you insite as to how R is storing the information. Now we need to tell R the order of our characters.</p>
+<p>Here is a snipit of what it looks like.</p>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">data<span class="op">$</span>DateTimeGMT[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</div></code></pre>
+<pre><code>##  [1] &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; &quot;5/20/2017 3:36&quot; &quot;5/20/2017 4:07&quot;
+##  [7] &quot;5/20/2017 4:37&quot; &quot;5/20/2017 5:02&quot; &quot;5/20/2017 5:27&quot; &quot;5/20/2017 5:52&quot;</code></pre>
+<p>We must tell R where the months, days, years, hours, minutes, etc are located in the character vector we provide.</p>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1">data<span class="op">$</span>newdate =<span class="st"> </span><span class="kw">as.POSIXct</span>(data<span class="op">$</span>DateTimeGMT, <span class="st">&quot;%m/%d/%Y %H:%M&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>)</div>
+<div class="sourceLine" id="cb13-2" data-line-number="2">data<span class="op">$</span>newdate[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</div></code></pre>
+<pre><code>##  [1] &quot;2017-05-20 00:35:00 UTC&quot; &quot;2017-05-20 02:19:00 UTC&quot; &quot;2017-05-20 02:24:00 UTC&quot; &quot;2017-05-20 03:11:00 UTC&quot;
+##  [5] &quot;2017-05-20 03:36:00 UTC&quot; &quot;2017-05-20 04:07:00 UTC&quot; &quot;2017-05-20 04:37:00 UTC&quot; &quot;2017-05-20 05:02:00 UTC&quot;
+##  [9] &quot;2017-05-20 05:27:00 UTC&quot; &quot;2017-05-20 05:52:00 UTC&quot;</code></pre>
+<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">class</span>(data<span class="op">$</span>newdate)</div></code></pre>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<p>Nice - we can see how it is being stored and that the data time is correct.</p>
+</section>
+<section id="visualise" class="level3">
+<h3>Visualise</h3>
+<p>Lets take a first look at at our UsersPerHost over time.</p>
+<pre class="sourceCode r" id="cb17"><code class="sourceCode r"><div class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/first%20look-1.png" width="672" /></p>
+<p>There is clearly something going on here. Lets explore more deeply by creating a column for day of the week and month. We’ll plot the data based on these different levels.</p>
+<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1">data<span class="op">$</span>weekday =<span class="st"> </span><span class="kw">wday</span>(data<span class="op">$</span>newdate)</div>
+<div class="sourceLine" id="cb18-2" data-line-number="2">data<span class="op">$</span>month =<span class="st"> </span><span class="kw">month</span>(data<span class="op">$</span>newdate)</div></code></pre>
+<p>A good tool for seeing how data changes based on certain factors is by changing the colors based on a level of a specific factor.</p>
+</section>
+<section id="plot-it" class="level3">
+<h3>Plot it</h3>
+<p>Lets see how <code>UsersPerHost</code> changes based off of month.</p>
+<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> weekday)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/different%20colors-1.png" width="672" /></p>
+<p>Notice how our points are shaded by a fluid scale instead of having one color per day of the week. This is because R sees <code>weekday</code> as a continuous variable. Lets fix that by adding <code>as.factor(weekday)</code> to our <code>color</code> argument.</p>
+<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/different%20colors%20factor-1.png" width="672" /></p>
+<p>That looks better – and it appears that each level of <code>weekday</code> has an impact on <code>UsersPerHost</code>.</p>
+<p>Maybe it would be better to see this effect by month?</p>
+<pre class="sourceCode r" id="cb21"><code class="sourceCode r"><div class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>What’s Wrong? Our data points are all clumped together. That’s because we are faceting over each month (good), but our x axis contains the entire time scale over each facet (bad). We have to remove the month value from our x and maintain only the time element. We will do that by extracting the time from our <code>DateTimeGMT</code> column.</p>
+<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1">time =<span class="st"> </span><span class="kw">stri_sub</span>(data<span class="op">$</span>DateTimeGMT, <span class="dv">-5</span>,<span class="op">-</span><span class="dv">1</span>)</div>
+<div class="sourceLine" id="cb22-2" data-line-number="2">data<span class="op">$</span>time =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>,<span class="dv">0</span>, time)</div></code></pre>
+<p>Lets try the plot again using <code>time</code> as our x variable.</p>
+<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>There certainly appears to be a relationship.</p>
+</section>
+</section>
+<section id="statistical-analysis" class="level2">
+<h2>Statistical Analysis</h2>
+<p>Lets test this using a <code>pairwise.t.test</code></p>
+<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1">test =<span class="st"> </span><span class="kw">pairwise.t.test</span>(data<span class="op">$</span>UsersPerHost,<span class="kw">as.factor</span>(data<span class="op">$</span>weekday), <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</div></code></pre>
+<p>The null hypothesis is that the <code>UsersPerHost</code> are equal to each other across all months. Everywhere the P Values are &lt;.05, we reject the null hypothesis and determine that the <code>UsersPerHost</code> for that specific month to month combination are different.</p>
+<p>Lets make this information more conveyable. We’ll do that with a graphic with a little different test.</p>
+<p>The following code will execute an ANOVA (analysis of variance) and extract the Tukey comparisons. The Tukey results show us the estimated mean of the level and it provides a confidence interval of the true mean.</p>
+<pre class="sourceCode r" id="cb25"><code class="sourceCode r"><div class="sourceLine" id="cb25-1" data-line-number="1">results =<span class="st"> </span><span class="kw">aov</span>(UsersPerHost<span class="op">~</span><span class="kw">as.factor</span>(weekday), <span class="dt">data =</span> data)</div>
+<div class="sourceLine" id="cb25-2" data-line-number="2">tukey =<span class="st"> </span><span class="kw">TukeyHSD</span>(results)</div></code></pre>
+<p>Lets put this information in a datafame that we can plot using <code>ggplot</code>.</p>
+<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1">plotting =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">rownames</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>),</div>
+<div class="sourceLine" id="cb26-2" data-line-number="2">                      <span class="dt">diff =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">1</span>],</div>
+<div class="sourceLine" id="cb26-3" data-line-number="3">                      <span class="dt">ymin =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">2</span>],</div>
+<div class="sourceLine" id="cb26-4" data-line-number="4">                      <span class="dt">ymax =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">3</span>])</div>
+<div class="sourceLine" id="cb26-5" data-line-number="5">plotting</div></code></pre>
+<pre><code>##     names        diff        ymin         ymax
+## 2-1   2-1 -2.86319494 -3.21018235 -2.516207527
+## 3-1   3-1 -4.55973264 -4.91048577 -4.208979503
+## 4-1   4-1 -5.32234667 -5.67562184 -4.969071512
+## 5-1   5-1 -5.15195058 -5.50443012 -4.799471047
+## 6-1   6-1 -4.92126477 -5.27784546 -4.564684093
+## 7-1   7-1 -2.89897050 -3.24989374 -2.548047250
+## 3-2   3-2 -1.69653770 -2.05022084 -1.342854558
+## 4-2   4-2 -2.45915174 -2.81533616 -2.102967312
+## 5-2   5-2 -2.28875565 -2.64415096 -1.933360335
+## 6-2   6-2 -2.05806984 -2.41753303 -1.698606645
+## 7-2   7-2 -0.03577556 -0.38962741  0.318076287
+## 4-3   4-3 -0.76261404 -1.12246796 -0.402760118
+## 5-3   5-3 -0.59221794 -0.95129081 -0.233145076
+## 6-3   6-3 -0.36153214 -0.72463169  0.001567416
+## 7-3   7-3  1.66076214  1.30321686  2.018307421
+## 5-4   5-4  0.17039609 -0.19114077  0.531932957
+## 6-4   6-4  0.40108190  0.03554549  0.766618307
+## 7-4   7-4  2.42337618  2.06335645  2.783395909
+## 6-5   6-5  0.23068581 -0.13408172  0.595453332
+## 7-5   7-5  2.25298009  1.89374104  2.612219127
+## 7-6   7-6  2.02229428  1.65903039  2.385558162</code></pre>
+<section id="plot-tukey-comparisons" class="level3">
+<h3>Plot Tukey Comparisons</h3>
+<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb28-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We should draw two conclusions.</p>
+<ol type="1">
+<li>If the error bar overlaps <code>0</code>, we conclude the <code>UsersPerHost</code> are not different across that month pair.</li>
+<li>Every month pair whose error bar does not overlap is different from all other months.</li>
+</ol>
+</section>
+<section id="analysis-by-week" class="level3">
+<h3>Analysis by week</h3>
+<p>Lets plot the <code>UsersPerHost</code> by week.</p>
+<p>First, we must create a column for week. The code below identifies each week in the dataset and numbers them 1 through n.</p>
+<pre class="sourceCode r" id="cb29"><code class="sourceCode r"><div class="sourceLine" id="cb29-1" data-line-number="1">data<span class="op">$</span>week =<span class="st"> </span><span class="kw">trunc</span>((data<span class="op">$</span>newdate <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(data<span class="op">$</span>newdate))<span class="op">/</span><span class="kw">dweeks</span>(<span class="dv">1</span>))</div></code></pre>
+<p>Now for the plot by week.</p>
+<pre class="sourceCode r" id="cb30"><code class="sourceCode r"><div class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="co"># geom_boxplot() +</span></div>
+<div class="sourceLine" id="cb30-4" data-line-number="4"><span class="st">  </span><span class="co"># geom_smooth() +</span></div>
+<div class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(week))</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Much like the analysis above, lets see if there’s a differnece between any week pair.</p>
+<pre class="sourceCode r" id="cb31"><code class="sourceCode r"><div class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</div>
+<div class="sourceLine" id="cb31-2" data-line-number="2">test =<span class="st"> </span><span class="kw">pairwise.t.test</span>(data<span class="op">$</span>UsersPerHost,<span class="kw">as.factor</span>(data<span class="op">$</span>week), <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</div>
+<div class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">round</span>(test<span class="op">$</span>p.value[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)],<span class="dv">3</span>)</div></code></pre>
+<pre><code>##        0     1     2     3     4     5     6     7     8     9    10    11    12    13    14
+## 1  1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 2  1.000 0.604    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 3  1.000 1.000 1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 4  0.023 0.000 1.000 0.039    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 5  1.000 0.558 1.000 1.000 1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 6  0.000 0.000 0.000 0.000 0.002 0.000    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 7  1.000 1.000 0.074 1.000 0.000 0.064 0.000    NA    NA    NA    NA    NA    NA    NA    NA
+## 8  1.000 0.106 1.000 1.000 1.000 1.000 0.000 0.006    NA    NA    NA    NA    NA    NA    NA
+## 9  1.000 1.000 1.000 1.000 0.000 1.000 0.000 1.000 0.889    NA    NA    NA    NA    NA    NA
+## 10 1.000 0.909 1.000 1.000 1.000 1.000 0.000 0.151 1.000 1.000    NA    NA    NA    NA    NA
+## 11 1.000 0.179 1.000 1.000 1.000 1.000 0.000 0.014 1.000 1.000 1.000    NA    NA    NA    NA
+## 12 0.033 0.000 1.000 0.058 1.000 1.000 0.001 0.000 1.000 0.000 1.000 1.000    NA    NA    NA
+## 13 1.000 1.000 1.000 1.000 0.000 1.000 0.000 1.000 1.000 1.000 1.000 1.000 0.000    NA    NA
+## 14 0.000 0.300 0.000 0.000 0.000 0.000 0.000 0.028 0.000 0.000 0.000 0.000 0.000 0.000    NA
+## 15 0.595 1.000 0.011 0.364 0.000 0.009 0.000 1.000 0.001 1.000 0.026 0.002 0.000 1.000 0.098
+## 16 0.000 0.119 0.000 0.000 0.000 0.000 0.000 0.007 0.000 0.000 0.000 0.000 0.000 0.000 1.000
+## 17 1.000 1.000 0.185 1.000 0.000 0.160 0.000 1.000 0.016 1.000 0.360 0.037 0.000 1.000 0.004
+## 18 1.000 1.000 1.000 1.000 0.477 1.000 0.000 1.000 1.000 1.000 1.000 1.000 0.661 1.000 0.000
+## 19 1.000 1.000 1.000 1.000 0.000 1.000 0.000 1.000 0.264 1.000 1.000 0.465 0.000 1.000 0.003
+## 20 0.000 0.140 0.000 0.000 0.000 0.000 0.000 0.011 0.000 0.000 0.000 0.000 0.000 0.000 1.000
+## 21 0.012 1.000 0.000 0.007 0.000 0.000 0.000 1.000 0.000 0.678 0.000 0.000 0.000 0.454 1.000</code></pre>
+<p>We will explore the same ANOVA as before with Tukey results. This time, however, since there are 231 pairwise comparisons, I will only display a sample of 20 weeks that are different from each other.</p>
+<pre class="sourceCode r" id="cb33"><code class="sourceCode r"><div class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</div>
+<div class="sourceLine" id="cb33-2" data-line-number="2">results =<span class="st"> </span><span class="kw">aov</span>(UsersPerHost<span class="op">~</span><span class="kw">as.factor</span>(week), <span class="dt">data =</span> data)</div>
+<div class="sourceLine" id="cb33-3" data-line-number="3">tukey =<span class="st"> </span><span class="kw">TukeyHSD</span>(results)</div>
+<div class="sourceLine" id="cb33-4" data-line-number="4">helper =<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">round</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[<span class="kw">which</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[,<span class="dv">4</span>]<span class="op">&lt;</span>.<span class="dv">001</span>),],<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb33-5" data-line-number="5"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">20</span>) </div>
+<div class="sourceLine" id="cb33-6" data-line-number="6">helper <span class="op">%&gt;%</span><span class="st">  </span></div>
+<div class="sourceLine" id="cb33-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weekpair =</span> <span class="kw">rownames</span>(helper)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb33-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(diff)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;weekpair&quot;</span>, <span class="st">&quot;p adj&quot;</span>, <span class="st">&quot;diff&quot;</span>, <span class="st">&quot;lwr&quot;</span>, <span class="st">&quot;upr&quot;</span>)</div></code></pre>
+<pre><code>##    weekpair p adj   diff    lwr    upr
+## 1       6-2 0.000  1.734  0.885  2.582
+## 2      12-1 0.000  1.504  0.476  2.532
+## 3     20-19 0.001 -1.194 -2.130 -0.258
+## 4      16-9 0.000 -1.324 -2.162 -0.487
+## 5     16-13 0.000 -1.355 -2.191 -0.518
+## 6     20-13 0.000 -1.369 -2.240 -0.497
+## 7       8-6 0.000 -1.601 -2.437 -0.766
+## 8     15-12 0.000 -1.601 -2.439 -0.762
+## 9      16-3 0.000 -1.641 -2.484 -0.797
+## 10    14-10 0.000 -1.778 -2.666 -0.891
+## 11     20-8 0.000 -2.010 -2.882 -1.139
+## 12     18-6 0.000 -2.016 -3.121 -0.911
+## 13     19-6 0.000 -2.417 -3.319 -1.515
+## 14    14-12 0.000 -2.426 -3.266 -1.587
+## 15    16-12 0.000 -2.499 -3.337 -1.661
+## 16      7-6 0.000 -2.604 -3.460 -1.747
+## 17     21-6 0.000 -3.042 -3.970 -2.113
+## 18     14-6 0.000 -3.525 -4.364 -2.686
+## 19     16-6 0.000 -3.597 -4.435 -2.760
+## 20     20-6 0.000 -3.612 -4.484 -2.739</code></pre>
+<p>Lets tranform this information into a datafame that we can plot.</p>
+<pre class="sourceCode r" id="cb35"><code class="sourceCode r"><div class="sourceLine" id="cb35-1" data-line-number="1">tukeydata =<span class="st"> </span><span class="kw">as.data.frame</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>)</div>
+<div class="sourceLine" id="cb35-2" data-line-number="2">plotting =<span class="st"> </span>tukeydata <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">names =</span> <span class="kw">rownames</span>(tukeydata), <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(names, diff, ymin, ymax) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb35-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(diff)</div></code></pre>
+<p>Lets view a sample of 20 rows.</p>
+<pre class="sourceCode r" id="cb36"><code class="sourceCode r"><div class="sourceLine" id="cb36-1" data-line-number="1">plotting <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(diff)</div></code></pre>
+<pre><code>##    names         diff       ymin       ymax
+## 1   14-6 -3.524784266 -4.3640609 -2.6855076
+## 2   16-4 -2.541258461 -3.3976204 -1.6848965
+## 3   14-4 -2.468655542 -3.3266478 -1.6106633
+## 4   19-4 -1.361234468 -2.2807264 -0.4417425
+## 5  16-13 -1.354564696 -2.1910932 -0.5180362
+## 6  21-10 -1.295263680 -2.2673519 -0.3231754
+## 7   13-4 -1.186693765 -2.0403881 -0.3329995
+## 8  13-12 -1.144408076 -1.9798366 -0.3089795
+## 9   10-4 -0.690225112 -1.5924525  0.2120023
+## 10   1-0 -0.612459276 -1.6453612  0.4204426
+## 11 21-17 -0.519224163 -1.4445188  0.4060704
+## 12 15-13 -0.456166027 -1.2932482  0.3809162
+## 13 18-11 -0.389187995 -1.5088088  0.7304328
+## 14 18-10 -0.269381214 -1.4113572  0.8725947
+## 15  17-9 -0.249148528 -1.0818930  0.5835959
+## 16   7-1 -0.001094812 -1.0454399  1.0432503
+## 17  11-0  0.363719574 -0.4982329  1.2256720
+## 18  11-7  0.977273662  0.1016411  1.8529063
+## 19  12-7  1.505406304  0.6482054  2.3626072
+## 20   6-1  2.602725905  1.5752948  3.6301570</code></pre>
+</section>
+<section id="plots-of-pairwise-compaisons" class="level3">
+<h3>Plots of Pairwise Compaisons</h3>
+<pre class="sourceCode r" id="cb38"><code class="sourceCode r"><div class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>This is very difficult to read. Lets make two fixes:</p>
+<ol type="1">
+<li>Since our data is scattered everywhere, lets reorder our plot based off the difference in means between weeks.<br />
+</li>
+<li>Since our y labels are hard to read, lets create a vector that will allow us to show the label for every 7th value.</li>
+</ol>
+<pre class="sourceCode r" id="cb39"><code class="sourceCode r"><div class="sourceLine" id="cb39-1" data-line-number="1">plotting<span class="op">$</span>order =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(plotting)</div>
+<div class="sourceLine" id="cb39-2" data-line-number="2">plotting<span class="op">$</span>names =<span class="st"> </span><span class="kw">factor</span>(plotting<span class="op">$</span>names, <span class="dt">levels=</span><span class="kw">unique</span>(plotting<span class="op">$</span>names[<span class="kw">order</span>(plotting<span class="op">$</span>order)]), <span class="dt">ordered=</span><span class="ot">TRUE</span>)</div>
+<div class="sourceLine" id="cb39-3" data-line-number="3"></div>
+<div class="sourceLine" id="cb39-4" data-line-number="4">plothelp =<span class="st"> </span>plotting<span class="op">$</span>names[<span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>)]</div></code></pre>
+<p>Now the plot.</p>
+<pre class="sourceCode r" id="cb40"><code class="sourceCode r"><div class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb40-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb40-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb40-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span>plothelp,</div>
+<div class="sourceLine" id="cb40-7" data-line-number="7">                      <span class="dt">labels=</span>plothelp)</div></code></pre>
+<p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</section>
+</section>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/r"><span class="tag">R</span></a></li>
+        
+          <li><a href="/tags/datascience"><span class="tag">Datascience</span></a></li>
+        
+          <li><a href="/tags/ggplot2"><span class="tag">Ggplot2</span></a></li>
+        
+          <li><a href="/tags/lubridate"><span class="tag">Lubridate</span></a></li>
+        
+          <li><a href="/tags/dplyr"><span class="tag">Dplyr</span></a></li>
+        
+          <li><a href="/tags/tidyverse"><span class="tag">Tidyverse</span></a></li>
+        
+          <li><a href="/tags/beatnavy"><span class="tag">Beatnavy</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-109926409-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,348 @@
+\documentclass[11pt,]{article}
+\usepackage[sc, osf]{mathpazo}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+
+
+
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% Now begins the stuff that I added.
+% ----------------------------------
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\large\bf}
+\subsectionfont{\rmfamily\mdseries\normalsize\itshape}
+
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+
+% Make parskips rather than indent with lists.
+\usepackage{parskip}
+\usepackage{titlesec}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{4pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{4pt plus 2pt minus 2pt}
+
+% Use fontawesome. Note: you'll need TeXLive 2015. Update.
+\usepackage{fontawesome}
+
+% Fancyhdr, as I tend to do with these personal documents.
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{
+\cfoot{\scriptsize  Dusty Turner - Curriculum Vitae }}
+\rfoot{\scriptsize \thepage/{\hypersetup{linkcolor=black}\pageref{LastPage}}}
+
+% Always load hyperref last.
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+
+\hypersetup{unicode=true,
+            pdftitle={Dusty Turner:  Curriculum Vitae (Curriculum Vitae)},
+            pdfauthor={Dusty Turner},
+            pdfkeywords={academic CV, West Point, Army},
+            colorlinks=true,
+            linkcolor=blue,
+            citecolor=Blue,
+            urlcolor=blue,
+            breaklinks=true, bookmarks=true}
+\urlstyle{same}  % don't use monospace font for urls
+
+\begin{document}
+
+
+\centerline{\huge \bf Dusty Turner}
+
+\vspace{2 mm}
+
+\hrule
+
+\vspace{2 mm}
+
+\moveleft.5\hoffset\centerline{Instructor, United States Military Academy}
+\moveleft.5\hoffset\centerline{3128A Radiere Loop A? West Point, NY 10996}
+\moveleft.5\hoffset\centerline{ \faEnvelopeO \hspace{1 mm} \href{mailto:}{\tt \href{mailto:dusty.s.turner.mil@mail.mil}{\nolinkurl{dusty.s.turner.mil@mail.mil}}} \hspace{1 mm}  \faPhone \hspace{1 mm}  830-285-5067  \hspace{1 mm}     \faGlobe \hspace{1 mm} \href{http://www.github.com/dusty-turner}{\tt www.github.com/dusty-turner}   }
+
+\vspace{2 mm}
+
+\hrule
+
+
+\hypertarget{education}{%
+\section{Education}\label{education}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{M.S.}, Integrated Systems Engineering, \emph{The Ohio State
+  University} \hfill 2016
+\item
+  \textbf{Graduate Minor}, Applied Statistics, \emph{The Ohio State
+  University} \hfill 2016
+\item
+  \textbf{M.S.}, Engineering Management, \emph{Missouri University of
+  Science and Technology} \hfill 2012
+\item
+  \textbf{B.S.}, Operations Research, \emph{The United States Military
+  Academy} \hfill 2007
+\end{itemize}
+
+\hypertarget{academic-experience}{%
+\section{Academic Experience}\label{academic-experience}}
+
+\begin{itemize}
+\tightlist
+\item
+  Instructor, Department of Mathematical Sciences\\
+  \emph{United States Military Academy} \hfill 2016-Present
+\end{itemize}
+
+\hypertarget{courses-taught}{%
+\section{Courses Taught}\label{courses-taught}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{West Point}
+\item
+  \textbf{MA103} - Mathematical Modeling and Introduction to Calculus
+  \hfill 2016
+\item
+  \textbf{Course Director MA206x} - Advanced Probability and Statistics
+  Pilot Course \hfill 2017
+\end{itemize}
+
+\hypertarget{refereed-publications}{%
+\section{Refereed Publications}\label{refereed-publications}}
+
+\begin{itemize}
+\item
+  Thomas D, \textbf{Turner D}, Santoro C, Loreti S, Shah R, Salafia C,
+  Pietrobelli A, Raffaelli R. Can 3D derived placental measures obtained
+  from 2D ultrasounds predict pregnancy outcomes? \emph{Placenta} 2017.
+  Under Review
+\item
+  Jimmy A, \textbf{Turner D}, Thomas D, McDougall A, Halawani M,
+  Heymsfield S, Martin C, Scisco J, Salley J, Muth E, Hoover E. Bite
+  count rates in free-living individuals: New insights from a portable
+  sensor. \emph{BMC Nutrition} 2017. Under Review
+\end{itemize}
+
+\hypertarget{papers-for-resubmission}{%
+\section{Papers for Resubmission}\label{papers-for-resubmission}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Turner D}, Kuiper P, Hood K, Lindquist J. Sentiment Analysis
+  in Puerto Rico in the wake of Hurricane Maria. 2017.
+\end{itemize}
+
+\hypertarget{presentations}{%
+\section{Presentations}\label{presentations}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Turner, D} (2016). Data Scraping in R. Presentation at the
+  \emph{Military Operations Research Conference (MORS)}, West Point, NY.
+\end{itemize}
+
+\hypertarget{statistical-consulting-activity}{%
+\section{Statistical Consulting
+Activity}\label{statistical-consulting-activity}}
+
+\begin{itemize}
+\tightlist
+\item
+  Assistant Director, Center for Data Analysis and Statistics (CDAS)
+  \hfill 2016-2017
+\item
+  \textbf{Clients}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Director of Admissions: (in progress) Visualizing Minority Cadets by
+    Congressional District
+  \item
+    Army Athletics Department: (in progress) Identifying High Risk
+    Cadets.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{honor-societies}{%
+\section{Honor Societies}\label{honor-societies}}
+
+\begin{itemize}
+\tightlist
+\item
+  Pi-Mu-Epsilon \hfill 2016
+\item
+  Phi-Kappa-Phi \hfill 2016
+\end{itemize}
+
+\hypertarget{student-research}{%
+\section{Student Research}\label{student-research}}
+
+\begin{itemize}
+\tightlist
+\item
+  Co-Advisor, Honors Thesis (Current). Stockdale, John, Predicting
+  Physical Performance Success at West Point, The United States Military
+  Academy
+\item
+  Co-Advisor, Honors Thesis (Current). McDermott, Stephanie, A
+  Statistical Analysis of MA104 Performance, The United States Military
+  Academy
+\end{itemize}
+
+\hypertarget{student-development-service}{%
+\section{Student Development
+Service}\label{student-development-service}}
+
+\begin{itemize}
+\tightlist
+\item
+  Head Officer In Charge, Veritas Forum \hfill 2017-Present
+\item
+  Officer Representative, Officer Christian Fellowship (OCF) Club
+  \hfill 2016-Present
+\item
+  Cadet Team Advisor, Mathematical Contest in Modeling ICM /
+  \hfill 2016-Present \newline  Interdisciplinary Contest in Modeling
+\item
+  Sponsor for 25 Cadets, Fourth Class Sponsorship Program
+  \hfill 2016-Present
+\item
+  Academic Officer In Charge \hfill 2016-Present
+\end{itemize}
+
+\hypertarget{hosted-seminars}{%
+\section{Hosted Seminars}\label{hosted-seminars}}
+
+\begin{itemize}
+\tightlist
+\item
+  Jared Lander, \emph{R For Everything}, Center for Data Analysis
+  Speaker Series. September 2017
+\item
+  Emily Robinson, \emph{A/B Testing in the Wild}, Center for Data
+  Analysis Speaker Series. October 2017
+\end{itemize}
+
+\hypertarget{community-service}{%
+\section{Community Service}\label{community-service}}
+
+\begin{itemize}
+\tightlist
+\item
+  The Junior Military Counsel to the Superintendent \hfill 2016-Present
+\item
+  Assistant T Ball Coach \hfill 2016-Present
+\end{itemize}
+
+\hypertarget{selected-military-service}{%
+\section{Selected Military Service}\label{selected-military-service}}
+
+\begin{itemize}
+\tightlist
+\item
+  White Sands Missile Range, New Mexico \hfill 2012-2014
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Company Commander}, 40th Mobility Augmentation Company
+  \item
+    \textbf{Plans Officer}, 2nd Engineer Battalion\\
+  \end{itemize}
+\item
+  Schofield Barracks, Hawaii
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Chief of Operations}, 65th Engineer Battalion
+    \hfill 2008-2011
+  \item
+    \textbf{Executive Officer}, 34th Sapper Company
+  \item
+    \textbf{Platoon Leader}, 70th Geospatial Company
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{deployments}{%
+\section{Deployments}\label{deployments}}
+
+\begin{itemize}
+\tightlist
+\item
+  Operation Iraqi Freedom, Taji, Iraq \hfill 2008-2009
+\item
+  Operation Enduring Freedom, Ghazni, Afghanistan \hfill 2013
+\end{itemize}
+
+\hypertarget{selected-military-awards}{%
+\section{Selected Military Awards}\label{selected-military-awards}}
+
+\begin{itemize}
+\tightlist
+\item
+  Bronze Star
+\item
+  Purple Heart
+\item
+  Army Commendation Medal
+\item
+  Army Achievement Medal
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,132 @@
+---
+# title: My Curriculum Vitae
+# author: Dusty Turner
+# date: '2017-11-24'
+slug: my-curriculum-vitae
+categories:
+  - r
+  - rmd
+  - professional Army
+tags:
+  - r
+  - rmd
+  - professional
+  - Army
+
+
+# title: "Curriculum Vitae"
+# author: "Dusty Turner"
+# date: "November 6, 2017"
+# output: pdf_document
+# geometry: margin=1in
+# jobtitle: "Instructor, United States Military Academy"
+
+output: 
+  pdf_document:
+    latex_engine: pdflatex
+    template: C:/Users/Dusty.Turner/Desktop/R Work/Curriculum Vitae/svm-latex-cv.tex
+geometry: margin=1in
+
+title: "Curriculum Vitae"
+author: Dusty Turner
+
+jobtitle: "Instructor, United States Military Academy"
+address: "3128A Radiere Loop A? West Point, NY 10996"
+fontawesome: yes
+email: dusty.s.turner.mil@mail.mil
+# github: dusty-turner
+phone: "830-285-5067"
+web: www.github.com/dusty-turner
+updated: no
+
+keywords: academic CV, West Point, Army
+
+fontfamily: mathpazo
+fontfamilyoptions: sc, osf
+fontsize: 11pt
+linkcolor: blue
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Education
+
+* **M.S.**, Integrated Systems Engineering, *The Ohio State University* \hfill 2016
+* **Graduate Minor**, Applied Statistics, *The Ohio State University* \hfill 2016
+* **M.S.**, Engineering Management, *Missouri University of Science and Technology* \hfill 2012
+* **B.S.**, Operations Research, *The United States Military Academy* \hfill 2007
+
+# Academic Experience 
+
+* Instructor, Department of Mathematical Sciences  
+    *United States Military Academy* \hfill 2016-Present
+
+# Courses Taught 
+* **West Point**
+* **MA103** - Mathematical Modeling and Introduction to Calculus \hfill 2016
+* **Course Director MA206x** - Advanced Probability and Statistics Pilot Course \hfill 2017
+
+
+# Refereed Publications  
+* Thomas D, **Turner D**, Santoro C, Loreti S, Shah R, Salafia C, Pietrobelli A, Raffaelli R. Can 3D derived placental measures obtained from 2D ultrasounds predict pregnancy outcomes? *Placenta* 2017. Under Review
+
+* Jimmy A, **Turner D**, Thomas D, McDougall A, Halawani M, Heymsfield S, Martin C, Scisco J, Salley J, Muth E, Hoover E.  Bite count rates in free-living individuals: New insights from a portable sensor. *BMC Nutrition* 2017. Under Review
+
+# Papers for Resubmission
+* **Turner D**, Kuiper P, Hood K, Lindquist J.  Sentiment Analysis in Puerto Rico in the wake of Hurricane Maria. 2017. 
+    
+# Presentations
+* **Turner, D** (2016). Data Scraping in R. Presentation at the *Military Operations Research Conference (MORS)*, West Point, NY.
+
+# Statistical Consulting Activity
+* Assistant Director, Center for Data Analysis and Statistics (CDAS) \hfill 2016-2017
+* **Clients**
+    + Director of Admissions: (in progress) Visualizing Minority Cadets by Congressional District
+    + Army Athletics Department: (in progress) Identifying High Risk Cadets. 
+    
+# Honor Societies
+* Pi-Mu-Epsilon \hfill 2016
+* Phi-Kappa-Phi \hfill 2016
+
+# Student Research
+* Co-Advisor, Honors Thesis (Current). Stockdale, John, Predicting Physical Performance Success at West Point, The United States Military Academy
+* Co-Advisor, Honors Thesis (Current). McDermott, Stephanie, A Statistical Analysis of MA104 Performance, The United States Military Academy
+
+# Student Development Service
+* Head Officer In Charge, Veritas Forum \hfill 2017-Present
+* Officer Representative, Officer Christian Fellowship (OCF) Club \hfill 2016-Present
+* Cadet Team Advisor, Mathematical Contest in Modeling ICM / \hfill 2016-Present \newline 
+Interdisciplinary Contest in Modeling 
+* Sponsor for 25 Cadets, Fourth Class Sponsorship Program \hfill 2016-Present
+* Academic Officer In Charge \hfill 2016-Present
+
+# Hosted Seminars
+* Jared Lander, *R For Everything*, Center for Data Analysis Speaker Series.  September 2017
+* Emily Robinson, *A/B Testing in the Wild*, Center for Data Analysis Speaker Series.  October 2017
+
+# Community Service
+* The Junior Military Counsel to the Superintendent \hfill 2016-Present
+* Assistant T Ball Coach \hfill 2016-Present
+    
+# Selected Military Service
+* White Sands Missile Range, New Mexico \hfill 2012-2014
+  + **Company Commander**, 40th Mobility Augmentation Company 
+  + **Plans Officer**, 2nd Engineer Battalion  
+* Schofield Barracks, Hawaii
+  + **Chief of Operations**, 65th Engineer Battalion \hfill 2008-2011
+  + **Executive Officer**, 34th Sapper Company
+  + **Platoon Leader**, 70th Geospatial Company
+    
+# Deployments 
+* Operation Iraqi Freedom, Taji, Iraq \hfill 2008-2009 
+* Operation Enduring Freedom, Ghazni, Afghanistan \hfill 2013
+
+
+# Selected Military Awards
+* Bronze Star
+* Purple Heart
+* Army Commendation Medal
+* Army Achievement Medal

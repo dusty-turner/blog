@@ -1,0 +1,42 @@
+---
+title: Blog Introduction
+author: Dusty Turner
+date: '2017-11-17'
+slug: Blog-Introduction
+categories:
+  - r
+  - introduction
+  - beatnavy
+tags:
+  - r
+  - introduction
+  - beatnavy
+output: 
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+---
+
+
+<center> This is my first r markdown post </center>
+
+
+<center><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">When you’ve written the same code 3 times, write a function<br><br>When you’ve given the same in-person advice 3 times, write a blog post</p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/928447584712253440?ref_src=twsrc%5Etfw">November 9, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+
+
+<!-- `r ''````{r echo=FALSE} -->
+<!-- blogdown::shortcode('tweet', '928447584712253440') -->
+<!-- ``` -->
+
+
+
+
+
+
+

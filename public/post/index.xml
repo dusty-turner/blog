@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Dusty Turner</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Dusty Turner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Helping A Colleague Explore Data</title>
+      <link>/post/helping-a-colleague-explore-data/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/helping-a-colleague-explore-data/</guid>
+      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
+    </item>
+    
+    <item>
+      <title>Mathlete Fantasy Football Analysis</title>
+      <link>/post/mathlete-fantasy-football-analysis/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathlete-fantasy-football-analysis/</guid>
+      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,10 @@
+---
+title: Test Post
+author: Dusty Turner
+date: '2017-11-24'
+slug: test-post
+categories: []
+tags: []
+---
+
+my github link [GitHub](C:\Users\Dusty.Turner\Desktop\R Work\blogturner\turnernuo\content\post\2017-11-24-my-curriculum-vitae.pdf) well..asd
