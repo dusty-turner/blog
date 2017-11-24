@@ -36,8 +36,10 @@
       <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/blog-introduction/</guid>
-      <description>When you’ve written the same code 3 times, write a function
-When you’ve given the same in-person advice 3 times, write a blog post&amp;mdash; David Robinson (@drob) November 9, 2017</description>
+      <description>As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
+Creating this blog serves several purposes.
+It archives some things I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
+It helps me share what I’ve learned with the community that has been so helpful to me.</description>
     </item>
     
   </channel>
