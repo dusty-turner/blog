@@ -18,7 +18,7 @@
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
-      <description></description>
+      <description>knitr::include_app(&amp;quot;https://dustyturner.shinyapps.io/AdmissionsShiny/&amp;quot;, height = &amp;quot;600px&amp;quot;)# knitr::include_app(&amp;quot;https://yihui.shinyapps.io/miniUI/&amp;quot;, # height = &amp;quot;600px&amp;quot;)% --% --% ## only want cadets who were accepted --% ## change name of variable for ease of analysis --% ## Select columns of interest --% ## group to enable summaries --% ## group to enable summaries --% ## summaries total cadets -- here is where we need demographics data --% ## ungroup for filter --% ## filter the class year of interest --% --% ## Join with the state codes --% --% ## combine the NumericCode and District codes together --% --% --% --% --% --% --% --% --% --% --% --% --</description>
     </item>
     
     <item>
