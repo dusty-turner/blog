@@ -33,6 +33,15 @@ You are welcome to view my Instructor Bio.</description>
     </item>
     
     <item>
+      <title>Shiny Project</title>
+      <link>/post/shiny-project/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/shiny-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Helping A Colleague Explore Data</title>
       <link>/post/helping-a-colleague-explore-data/</link>
       <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
@@ -58,7 +67,7 @@ You are welcome to view my Instructor Bio.</description>
       <guid>/post/blog-introduction/</guid>
       <description>As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
 Creating this blog serves several purposes.
-It archives some things I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
+It archives some projects I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
 It helps me share what I’ve learned with the community that has been so helpful to me.</description>
     </item>
     

@@ -1,0 +1,21 @@
+---
+title: Shiny Project
+author: Dusty Turner
+date: '2017-11-24'
+slug: shiny-project
+categories:
+  - army math
+  - beatnavy
+  - datascience
+  - r
+  - rmd
+  - shiny
+tags:
+  - army math
+  - beatnavy
+  - datascience
+  - r
+  - rmd
+  - shiny
+---
+

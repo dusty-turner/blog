@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/datascience/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shiny Project</title>
+      <link>/post/shiny-project/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/shiny-project/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Helping A Colleague Explore Data</title>
@@ -29,7 +38,7 @@
       <guid>/post/blog-introduction/</guid>
       <description>As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
 Creating this blog serves several purposes.
-It archives some things I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
+It archives some projects I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
 It helps me share what I’ve learned with the community that has been so helpful to me.</description>
     </item>
     

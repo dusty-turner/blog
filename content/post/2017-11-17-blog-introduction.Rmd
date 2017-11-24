@@ -29,11 +29,11 @@ As my experience with statistics, computer science, and the all encompasing term
 
 Creating this blog serves several purposes. 
 
-1.  It archives some things I've created.
+1.  It archives some projects I've created.
 2.  It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.  
 3.  It helps me share what I've learned with the community that has been so helpful to me.  
 
-Thank you for visiting!
+During the proces of learning how `blogdown` works, I saw this timely tweet from [David Robinson](https://twitter.com/drob)
 
 <center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">When you’ve written the same code 3 times, write a function<br><br>When you’ve given the same in-person advice 3 times, write a blog post</p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/928447584712253440?ref_src=twsrc%5Etfw">November 9, 2017</a></blockquote>

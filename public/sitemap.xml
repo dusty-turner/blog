@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>/post/shiny-project/</loc>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/helping-a-colleague-explore-data/</loc>
     <lastmod>2017-11-19T00:00:00+00:00</lastmod>
   </url>
@@ -29,43 +34,43 @@
   
   <url>
     <loc>/tags/army-math/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/army-math/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/beatnavy/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/beatnavy/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/datascience/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/datascience/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -137,37 +142,49 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/rmd/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/rmd/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/shiny/</loc>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/shiny/</loc>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
