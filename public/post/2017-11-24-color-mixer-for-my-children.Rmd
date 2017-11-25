@@ -1,0 +1,17 @@
+---
+title: Color Mixer For My Children
+author: Dusty Turner
+date: '2017-11-24'
+slug: color-mixer-for-my-children
+categories:
+  - beatnavy
+  - rmd
+  - shiny
+  - kids
+tags:
+  - beatnavy
+  - rmd
+  - shiny
+  - kids
+---
+

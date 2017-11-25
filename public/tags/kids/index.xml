@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shiny on Dusty Turner</title>
-    <link>/categories/shiny/</link>
-    <description>Recent content in Shiny on Dusty Turner</description>
+    <title>Kids on Dusty Turner</title>
+    <link>/tags/kids/</link>
+    <description>Recent content in Kids on Dusty Turner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
     <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/shiny/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/kids/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>/post/color-mixer-for-my-children/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Shiny Project</title>
-      <link>/post/shiny-project/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/shiny-project/</guid>
-      <description>Taking A Look Across The Country</description>
     </item>
     
   </channel>
