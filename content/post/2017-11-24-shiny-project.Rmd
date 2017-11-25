@@ -18,9 +18,11 @@ tags:
   - rmd
   - shiny
 ---
+
+## Taking A Look Across The Country2 
+
 <center>
 
-## Taking A Look Across The Country2
 
 ```{r, echo=FALSE} 
 knitr::include_app("https://dustyturner.shinyapps.io/AdmissionsShiny/", height = "600px")
