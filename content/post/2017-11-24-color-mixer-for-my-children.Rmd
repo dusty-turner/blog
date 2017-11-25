@@ -15,6 +15,8 @@ tags:
   - kids
 ---
 
+Does this work?!
+
 ```{r, echo=FALSE}
 if("shiny" %in% rownames(installed.packages()) == FALSE) {install.packages("shiny")}
 if("plotrix" %in% rownames(installed.packages()) == FALSE) {install.packages("plotrix")}
