@@ -19,7 +19,7 @@ tags:
   - shiny
 ---
 
-## Taking A Look Across The Country2 
+## Taking A Look Across The Country
 
 <center>
 
