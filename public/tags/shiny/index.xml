@@ -18,7 +18,7 @@
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
-      <description>% --% --% ## only want cadets who were accepted --% ## change name of variable for ease of analysis --% ## Select columns of interest --% ## group to enable summaries --% ## group to enable summaries --% ## summaries total cadets -- here is where we need demographics data --% ## ungroup for filter --% ## filter the class year of interest --% --% ## Join with the state codes --% --% ## combine the NumericCode and District codes together --% --% --% --% --% --% --% --% --% --% --% --% --</description>
+      <description>Is this working!</description>
     </item>
     
   </channel>
