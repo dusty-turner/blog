@@ -20,7 +20,7 @@ tags:
 ---
 
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_app("https://dustyturner.shinyapps.io/AdmissionsShiny/", height = "600px")
 # knitr::include_app("https://yihui.shinyapps.io/miniUI/", 
 #   height = "600px")
