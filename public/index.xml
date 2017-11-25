@@ -38,7 +38,8 @@ You are welcome to view my Instructor Bio.</description>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/color-mixer-for-my-children/</guid>
-      <description></description>
+      <description>Does this work?!
+## Loading required package: xml2## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.Shiny applications not supported in static R Markdown documents</description>
     </item>
     
     <item>
