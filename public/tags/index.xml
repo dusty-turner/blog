@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Army Math</title>
       <link>/tags/army-math/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/army-math/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>Beatnavy</title>
       <link>/tags/beatnavy/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/beatnavy/</guid>
       <description></description>
@@ -33,7 +33,7 @@
     <item>
       <title>Datascience</title>
       <link>/tags/datascience/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/datascience/</guid>
       <description></description>
@@ -99,6 +99,15 @@
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/rmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scraping</title>
+      <link>/tags/scraping/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/scraping/</guid>
       <description></description>
     </item>
     

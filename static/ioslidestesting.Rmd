@@ -1,0 +1,41 @@
+---
+title: "ioslidestesting"
+author: "Dusty Turner"
+date: "November 27, 2017"
+output: ioslides_presentation
+# output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Welcome {.build}
+
+A Quote from the charter: <br><br>
+
+"WG 33 supports methodologically sound work that will **advance the community's analytic capabilities** for the complex and uncertain operating environments faced today.""
+
+## Today's Overview
+ 
+Digital Data Collection Techniques  
+
+* Traditional Collection
+* Google Docs
+* Data Scraping  
+* Super Data Scraping  
+
+
+## Acknowledgements {.build}
+
+> 1. <a href="http://www.usma.edu/math/_layouts/wpFacultyBios/DisplayBio.aspx?ID=ebdd74e5-07fe-4bd0-b30d-ff96f904ce6e&List=1ebd54dc-d44d-4834-8add-2da90afb21f5"> COL Joe Lindquist </a>  <br>
+  Academy Professor    <br>
+  Mentor <br>
+> 2. <a href="https://www.facebook.com/jill.finkbeinerturner"> Jill Turner </a>  
+  Wife    <br>
+  Biggest Fan   <br>
+
+
+## 'Old School' Web Scraping
+
+Lets look at some interesting <a href="http://www.pro-football-reference.com/teams/dal/coaches.htm">data</a>.

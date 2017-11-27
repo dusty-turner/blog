@@ -447,19 +447,19 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre><code>## # A tibble: 5 x 8
 ##                     Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck
 ##                    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt;
-## 1     The Big Gronkowski   For     112.3291 18.18217 130.02 68.62       0            
-## 2     Team Mauled Mentos   For     104.9683 33.32357 147.46 16.90       0            
-## 3     Team Guns N&#39; Rosas   For     104.7333 36.46998 159.86 18.00       0            
-## 4   Viking Joe Lindquist   For     102.6817 34.05725 149.60 14.00       1            
-## 5 &#39;R&#39;m Chair Quarterback   For     102.0100 34.89801 164.50 14.40       0</code></pre>
+## 1     Team Guns N&#39; Rosas   For     112.7433 24.83196 159.86 72.46       0            
+## 2     The Big Gronkowski   For     112.2950 17.37405 130.02 68.62       0            
+## 3 &#39;R&#39;m Chair Quarterback   For     111.4333 22.67566 164.50 83.82       0            
+## 4     Team Mauled Mentos   For     111.3483 20.12623 147.46 78.24       0            
+## 5     Calgary Stampeders   For     107.8083 30.09123 158.40 68.92       0</code></pre>
 <pre><code>## # A tibble: 5 x 8
 ##                   Team     Who AverageScore    STDEV    max   min Plunger PlungerLuck
 ##                  &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt;
-## 1    Las Vegas Radians Against     109.1909 29.05078 159.86 67.12                   0
-## 2      Epsilon Ballers Against     109.0455 21.36107 134.22 63.94                   1
-## 3   Team Guns N&#39; Rosas Against     104.5667 33.91750 144.60 15.40                   1
-## 4 Green Baye&#39;s Theorem Against     101.3600 33.27536 143.46  9.80                   0
-## 5     a^2+b^2= c^hawks Against     100.8917 34.62273 132.12  5.60                   0</code></pre>
+## 1     a^2+b^2= c^hawks Against     112.8983 21.57961 149.68 73.18                   0
+## 2   Team Guns N&#39; Rosas Against     110.1483 21.66394 144.60 66.12                   1
+## 3    Las Vegas Radians Against     109.4183 27.76968 159.86 67.12                   0
+## 4          Team Grymes Against     105.9117 30.53676 164.50 68.62                   0
+## 5 Green Baye&#39;s Theorem Against     105.5200 22.60504 143.46 59.72                   0</code></pre>
 </section>
 <section id="plotting-preparation" class="level3">
 <h3>Plotting Preparation</h3>
@@ -480,19 +480,19 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre><code>## # A tibble: 5 x 10
 ##                     Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
 ##                    &lt;ord&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     The Big Gronkowski   For     112.3291 18.18217 130.02 68.62       0                 0    16
-## 2     Team Mauled Mentos   For     104.9683 33.32357 147.46 16.90       0                 0    15
-## 3     Team Guns N&#39; Rosas   For     104.7333 36.46998 159.86 18.00       0                 0    14
-## 4   Viking Joe Lindquist   For     102.6817 34.05725 149.60 14.00       1                 0    13
-## 5 &#39;R&#39;m Chair Quarterback   For     102.0100 34.89801 164.50 14.40       0                 0    12</code></pre>
+## 1     Team Guns N&#39; Rosas   For     112.7433 24.83196 159.86 72.46       0                 0    16
+## 2     The Big Gronkowski   For     112.2950 17.37405 130.02 68.62       0                 0    15
+## 3 &#39;R&#39;m Chair Quarterback   For     111.4333 22.67566 164.50 83.82       0                 0    14
+## 4     Team Mauled Mentos   For     111.3483 20.12623 147.46 78.24       0                 0    13
+## 5     Calgary Stampeders   For     107.8083 30.09123 158.40 68.92       0                 0    12</code></pre>
 <pre><code>## # A tibble: 5 x 10
 ##                   Team     Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
 ##                  &lt;ord&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
-## 1    Las Vegas Radians Against     109.1909 29.05078 159.86 67.12                   0     0    32
-## 2      Epsilon Ballers Against     109.0455 21.36107 134.22 63.94                   1     0    31
-## 3   Team Guns N&#39; Rosas Against     104.5667 33.91750 144.60 15.40                   1     0    30
-## 4 Green Baye&#39;s Theorem Against     101.3600 33.27536 143.46  9.80                   0     0    29
-## 5     a^2+b^2= c^hawks Against     100.8917 34.62273 132.12  5.60                   0     0    28</code></pre>
+## 1     a^2+b^2= c^hawks Against     112.8983 21.57961 149.68 73.18                   0     0    32
+## 2   Team Guns N&#39; Rosas Against     110.1483 21.66394 144.60 66.12                   1     0    31
+## 3    Las Vegas Radians Against     109.4183 27.76968 159.86 67.12                   0     0    30
+## 4          Team Grymes Against     105.9117 30.53676 164.50 68.62                   0     0    29
+## 5 Green Baye&#39;s Theorem Against     105.5200 22.60504 143.46 59.72                   0     0    28</code></pre>
 </section>
 </section>
 <section id="results" class="level2">
@@ -614,22 +614,22 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre><code>## # A tibble: 16 x 11
 ##                      Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord  rank
 ##                     &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
-##  1            Team Grymes   For     78.37833 30.32260 139.72  5.60       2                 0     1    13
-##  2        Epsilon Ballers   For     85.59333 30.10556 116.36 10.90       1                 0     2    15
-##  3   Green Baye&#39;s Theorem   For     87.65167 23.23772 128.76 50.28       1                 0     3    14
-##  4       a^2+b^2= c^hawks   For     94.87833 17.26150 115.20 49.40       0                 0     4    11
-##  5   Team HotHanksHitters   For     95.09667 30.50886 143.46 15.40       0                 0     5     5
-##  6           Team LaPorte   For     95.36500 33.63934 136.46  9.80       1                 0     6     1
-##  7      Las Vegas Radians   For     95.75167 29.39986 141.22 28.30       1                 0     7     9
-##  8     Calgary Stampeders   For     97.16667 34.02525 158.40 27.28       0                 0     8     3
-##  9       Berry Berry Good   For     97.51091 24.49719 136.96 64.20       3                 0     9    12
-## 10      2-2-2 Mega-H-Ertz   For     98.85500 22.93571 138.18 53.66       0                 0    10    16
-## 11           Baby got Dak   For     99.76167 38.27830 147.56 12.50       1                 0    11     2
-## 12 &#39;R&#39;m Chair Quarterback   For    102.01000 34.89801 164.50 14.40       0                 0    12    10
-## 13   Viking Joe Lindquist   For    102.68167 34.05725 149.60 14.00       1                 0    13     7
-## 14     Team Guns N&#39; Rosas   For    104.73333 36.46998 159.86 18.00       0                 0    14     8
-## 15     Team Mauled Mentos   For    104.96833 33.32357 147.46 16.90       0                 0    15     4
-## 16     The Big Gronkowski   For    112.32909 18.18217 130.02 68.62       0                 0    16     6</code></pre>
+##  1            Team Grymes   For     90.38500 27.39583 149.68 65.54       2                 0     1    13
+##  2        Epsilon Ballers   For     92.01333 19.45961 116.36 56.00       1                 0     2    15
+##  3   Green Baye&#39;s Theorem   For     93.28500 21.56123 128.76 63.98       1                 0     3    14
+##  4       Berry Berry Good   For     94.21667 25.93243 136.96 57.98       4                 0     4    12
+##  5           Team LaPorte   For     99.52500 24.23613 136.46 59.72       1                 0     5     1
+##  6   Team HotHanksHitters   For    100.67833 18.97455 143.46 74.38       0                 0     6     5
+##  7       a^2+b^2= c^hawks   For    101.17000 12.45700 124.90 78.30       0                 0     7    11
+##  8      Las Vegas Radians   For    103.18167 21.26256 141.22 66.12       1                 0     8     9
+##  9      2-2-2 Mega-H-Ertz   For    104.83000 19.29419 138.18 73.18       0                 0     9    16
+## 10           Baby got Dak   For    106.24167 27.69699 147.56 60.78       1                 0    10     2
+## 11   Viking Joe Lindquist   For    107.35833 23.35394 149.60 63.94       1                 0    11     7
+## 12     Calgary Stampeders   For    107.80833 30.09123 158.40 68.92       0                 0    12     3
+## 13     Team Mauled Mentos   For    111.34833 20.12623 147.46 78.24       0                 0    13     4
+## 14 &#39;R&#39;m Chair Quarterback   For    111.43333 22.67566 164.50 83.82       0                 0    14    10
+## 15     The Big Gronkowski   For    112.29500 17.37405 130.02 68.62       0                 0    15     6
+## 16     Team Guns N&#39; Rosas   For    112.74333 24.83196 159.86 72.46       0                 0    16     8</code></pre>
 <p>Almost complete: Next lets add a column to keep track of each team’s ‘actual rank’ (according to points scored) as well as a measure of luck. This measure, though a simple calculation, is the the euclidian distance from how much (or how much less) a team is performing verses what they should expect given their current performance.</p>
 <pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1">fantasy =</div>
 <div class="sourceLine" id="cb24-2" data-line-number="2">fantasy <span class="op">%&gt;%</span></div>
