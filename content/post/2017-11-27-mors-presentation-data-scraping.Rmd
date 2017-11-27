@@ -16,4 +16,4 @@ tags:
 
 ---
  
- [thislink](https://dusty-turner.netlify.com/ioslidestesting.html)
+ [thislink](https://dusty-turner.netlify.com/ioslidestesting.html) does it work?
