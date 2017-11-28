@@ -455,10 +455,10 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre><code>## # A tibble: 5 x 8
 ##                     Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck
 ##                    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt;
-## 1     Team Guns N&#39; Rosas   For     112.7433 24.83196 159.86 72.46       0            
-## 2     The Big Gronkowski   For     112.2950 17.37405 130.02 68.62       0            
-## 3 &#39;R&#39;m Chair Quarterback   For     112.1833 23.36148 164.50 83.82       0            
-## 4     Team Mauled Mentos   For     111.7567 19.79230 147.46 78.24       0            
+## 1     Team Mauled Mentos   For     112.9733 19.35743 147.46 78.24       0            
+## 2     Team Guns N&#39; Rosas   For     112.7433 24.83196 159.86 72.46       0            
+## 3 &#39;R&#39;m Chair Quarterback   For     112.5000 23.72692 164.50 83.82       0            
+## 4     The Big Gronkowski   For     112.2950 17.37405 130.02 68.62       0            
 ## 5     Calgary Stampeders   For     107.8083 30.09123 158.40 68.92       0</code></pre>
 <pre><code>## # A tibble: 5 x 8
 ##                 Team     Who AverageScore    STDEV    max   min Plunger PlungerLuck
@@ -466,8 +466,8 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ## 1   a^2+b^2= c^hawks Against     112.8983 21.57961 149.68 73.18                   0
 ## 2 Team Guns N&#39; Rosas Against     110.1483 21.66394 144.60 66.12                   1
 ## 3  Las Vegas Radians Against     109.4183 27.76968 159.86 67.12                   0
-## 4        Team Grymes Against     105.9117 30.53676 164.50 68.62                   0
-## 5    Epsilon Ballers Against     105.7067 23.33606 134.22 63.94                   1</code></pre>
+## 4    Epsilon Ballers Against     106.7067 21.89527 134.22 63.94                   1
+## 5        Team Grymes Against     105.9117 30.53676 164.50 68.62                   0</code></pre>
 </section>
 <section id="plotting-preparation" class="level3">
 <h3>Plotting Preparation</h3>
@@ -488,10 +488,10 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre><code>## # A tibble: 5 x 10
 ##                     Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
 ##                    &lt;ord&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     Team Guns N&#39; Rosas   For     112.7433 24.83196 159.86 72.46       0                 0    16
-## 2     The Big Gronkowski   For     112.2950 17.37405 130.02 68.62       0                 0    15
-## 3 &#39;R&#39;m Chair Quarterback   For     112.1833 23.36148 164.50 83.82       0                 0    14
-## 4     Team Mauled Mentos   For     111.7567 19.79230 147.46 78.24       0                 0    13
+## 1     Team Mauled Mentos   For     112.9733 19.35743 147.46 78.24       0                 0    16
+## 2     Team Guns N&#39; Rosas   For     112.7433 24.83196 159.86 72.46       0                 0    15
+## 3 &#39;R&#39;m Chair Quarterback   For     112.5000 23.72692 164.50 83.82       0                 0    14
+## 4     The Big Gronkowski   For     112.2950 17.37405 130.02 68.62       0                 0    13
 ## 5     Calgary Stampeders   For     107.8083 30.09123 158.40 68.92       0                 0    12</code></pre>
 <pre><code>## # A tibble: 5 x 10
 ##                 Team     Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
@@ -499,8 +499,8 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ## 1   a^2+b^2= c^hawks Against     112.8983 21.57961 149.68 73.18                   0     0    32
 ## 2 Team Guns N&#39; Rosas Against     110.1483 21.66394 144.60 66.12                   1     0    31
 ## 3  Las Vegas Radians Against     109.4183 27.76968 159.86 67.12                   0     0    30
-## 4        Team Grymes Against     105.9117 30.53676 164.50 68.62                   0     0    29
-## 5    Epsilon Ballers Against     105.7067 23.33606 134.22 63.94                   1     0    28</code></pre>
+## 4    Epsilon Ballers Against     106.7067 21.89527 134.22 63.94                   1     0    29
+## 5        Team Grymes Against     105.9117 30.53676 164.50 68.62                   0     0    28</code></pre>
 </section>
 </section>
 <section id="results" class="level2">
@@ -600,20 +600,20 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ##                     &lt;chr&gt; &lt;int&gt;
 ##  1 &#39;R&#39;m Chair Quarterback    10
 ##  2      Las Vegas Radians     9
-##  3   Green Baye&#39;s Theorem    14
-##  4        Epsilon Ballers    15
+##  3   Green Baye&#39;s Theorem    15
+##  4        Epsilon Ballers    16
 ##  5     Team Guns N&#39; Rosas     8
-##  6      2-2-2 Mega-H-Ertz    16
-##  7       a^2+b^2= c^hawks    11
+##  6      2-2-2 Mega-H-Ertz    12
+##  7       a^2+b^2= c^hawks    13
 ##  8           Baby got Dak     2
 ##  9   Team HotHanksHitters     5
-## 10           Team LaPorte     1
+## 10           Team LaPorte     4
 ## 11   Viking Joe Lindquist     7
 ## 12     The Big Gronkowski     6
-## 13       Berry Berry Good    12
-## 14     Calgary Stampeders     3
-## 15     Team Mauled Mentos     4
-## 16            Team Grymes    13</code></pre>
+## 13       Berry Berry Good    14
+## 14     Calgary Stampeders     1
+## 15     Team Mauled Mentos     3
+## 16            Team Grymes    11</code></pre>
 <p>Lets join the data with our previous dataset.</p>
 <pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1">fantasy2 =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;For&quot;</span>) <span class="op">%&gt;%</span></div>
@@ -623,9 +623,9 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ##                    Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
 ##                   &lt;ord&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
 ##  1          Team Grymes   For     90.38500 27.39583 149.68 65.54       2                 0     1
-##  2      Epsilon Ballers   For     92.85500 19.48468 116.36 56.00       1                 0     2
+##  2      Epsilon Ballers   For     93.15500 19.59418 116.36 56.00       1                 0     2
 ##  3 Green Baye&#39;s Theorem   For     93.28500 21.56123 128.76 63.98       1                 0     3
-##  4     Berry Berry Good   For     95.13333 24.75507 136.96 64.20       3                 0     4
+##  4     Berry Berry Good   For     96.13333 23.86862 136.96 64.20       3                 0     4
 ##  5         Team LaPorte   For     99.65833 24.01079 136.46 61.32       2                 0     5
 ##  6 Team HotHanksHitters   For    100.67833 18.97455 143.46 74.38       0                 0     6
 ##  7     a^2+b^2= c^hawks   For    101.17000 12.45700 124.90 78.30       0                 0     7
@@ -676,7 +676,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb26-24" data-line-number="24">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
 <div class="sourceLine" id="cb26-25" data-line-number="25">))</div></code></pre>
 <div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Team Grymes","Epsilon Ballers","Green Baye's Theorem","Berry Berry Good","Team LaPorte","Team HotHanksHitters","a^2+b^2= c^hawks","Las Vegas Radians","2-2-2 Mega-H-Ertz","Baby got Dak","Viking Joe Lindquist","Calgary Stampeders","Team Mauled Mentos","'R'm Chair Quarterback","The Big Gronkowski","Team Guns N' Rosas"],[90,93,93,95,100,101,101,103,105,106,107,108,112,112,112,113],[149.68,116.36,128.76,136.96,136.46,143.46,124.9,141.22,138.18,147.56,149.6,158.4,147.46,164.5,130.02,159.86],[65.54,56,63.98,64.2,61.32,74.38,78.3,66.12,73.18,60.78,63.94,68.92,78.24,83.82,68.62,72.46],["2","1","1","3","2","0","0","1","0","1","1","0","0","0","0","0"],[164.5,134.22,143.46,129.3,118.12,141.22,149.68,159.86,139.72,158.4,147.46,136.48,129.78,154.98,136.5,144.6],[68.62,63.94,61.32,77.12,56,63.98,73.18,67.12,67.3,65.88,74.28,64.2,70.16,64.32,60.78,66.12],["0","1","1","0","1","2","0","0","0","0","0","2","2","0","2","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>Scored<\/th>\n      <th>Max<\/th>\n      <th>Min<\/th>\n      <th>Plunger<\/th>\n      <th>MaxFoe<\/th>\n      <th>MinFoe<\/th>\n      <th>PlungerFoe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":8},{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Team Grymes","Epsilon Ballers","Green Baye's Theorem","Berry Berry Good","Team LaPorte","Team HotHanksHitters","a^2+b^2= c^hawks","Las Vegas Radians","2-2-2 Mega-H-Ertz","Baby got Dak","Viking Joe Lindquist","Calgary Stampeders","The Big Gronkowski","'R'm Chair Quarterback","Team Guns N' Rosas","Team Mauled Mentos"],[90,93,93,96,100,101,101,103,105,106,107,108,112,112,113,113],[149.68,116.36,128.76,136.96,136.46,143.46,124.9,141.22,138.18,147.56,149.6,158.4,130.02,164.5,159.86,147.46],[65.54,56,63.98,64.2,61.32,74.38,78.3,66.12,73.18,60.78,63.94,68.92,68.62,83.82,72.46,78.24],["2","1","1","3","2","0","0","1","0","1","1","0","0","0","0","0"],[164.5,134.22,143.46,129.3,118.12,141.22,149.68,159.86,139.72,158.4,147.46,140.28,136.5,154.98,144.6,129.78],[68.62,63.94,61.32,77.12,56,63.98,73.18,67.12,67.3,65.88,74.28,64.2,60.78,64.32,66.12,70.16],["0","1","1","0","1","2","0","0","0","0","0","2","2","0","1","2"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>Scored<\/th>\n      <th>Max<\/th>\n      <th>Min<\/th>\n      <th>Plunger<\/th>\n      <th>MaxFoe<\/th>\n      <th>MinFoe<\/th>\n      <th>PlungerFoe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":8},{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 <p>Lastly, lets look at who just eeks out wins and who snatches defeat from the jaws of victory.</p>
 <pre class="sourceCode r" id="cb27"><code class="sourceCode r"><div class="sourceLine" id="cb27-1" data-line-number="1">start =<span class="st"> </span>fantasystart <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">delta =</span> awayscore<span class="op">-</span>homescore) <span class="op">%&gt;%</span></div>
@@ -704,7 +704,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb28-3" data-line-number="3">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
 <div class="sourceLine" id="cb28-4" data-line-number="4">))</div></code></pre>
 <div id="htmlwidget-2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["'R'm Chair Quarterback","Team Grymes","2-2-2 Mega-H-Ertz","Green Baye's Theorem","Team Guns N' Rosas","a^2+b^2= c^hawks","Baby got Dak","Berry Berry Good","Calgary Stampeders","Epsilon Ballers","Las Vegas Radians","Team HotHanksHitters","Team LaPorte","Team Mauled Mentos","The Big Gronkowski","Viking Joe Lindquist"],[27.14,8.92,35.64,25.44,4.88,0.26,13.32,4.56,0.46,0.66,5.54,9.82,8.3,4.82,0.6,17.22],[-5.76,-4.4,-0.96,-4.22,-17.44,-4.58,-8.1,-6.54,-20.24,-6.7,-37.36,-15.88,-11.98,-22.28,-13.88,-0.16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>SmallestWin<\/th>\n      <th>SmallestLoss<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":3},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["'R'm Chair Quarterback","Team Grymes","2-2-2 Mega-H-Ertz","Green Baye's Theorem","Team Guns N' Rosas","a^2+b^2= c^hawks","Baby got Dak","Berry Berry Good","Calgary Stampeders","Epsilon Ballers","Las Vegas Radians","Team HotHanksHitters","Team LaPorte","Team Mauled Mentos","The Big Gronkowski","Viking Joe Lindquist"],[27.14,8.92,35.64,25.44,4.88,0.26,13.32,4.56,0.46,0.66,5.54,9.82,8.3,4.82,0.6,17.22],[-5.76,-4.4,-0.96,-4.22,-17.44,-4.58,-22.7,-6.54,-20.24,-6.7,-37.36,-15.88,-11.98,-22.28,-13.88,-0.16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>SmallestWin<\/th>\n      <th>SmallestLoss<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":3},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </section>
 </article>
     <footer class="post-footer">

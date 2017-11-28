@@ -38,7 +38,7 @@ options(stringsAsFactors = FALSE)
 Lets see who really has fantasy football bragging rights and who is just lucky (or unlucky).
 
 During this analysis I will display most of my code.  While this doesn't provided the most pleasent visual experience, it will hopefully help the reader learn from my examples.  (And potentially provide feedback on how to improve my methods.)
-
+ 
 ### Libraries
 
 The libraries I will use for this analysis are the following:
