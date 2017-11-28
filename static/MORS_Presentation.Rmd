@@ -483,7 +483,6 @@ Sentament Analysis
 
 ```{r, echo=FALSE, warning=FALSE}
 library(ggplot2)
-setwd("//usmaedu/apollo/math/Userdirs/Turner/MORS Presentation")
 newlabel = c('05'="2005",'06'="2006",'07'="2007",'08'="2008",'09'="2009",'10'="2010",'11'="2011",'12'="2012",'13'="2013",'14'="2014",'15'="2015",'16'="2016")
 cnn = read.csv("andersoncooper.csv", header = TRUE)
 ```
