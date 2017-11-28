@@ -19,8 +19,8 @@ tags:
   - ESPN API
 output: 
   blogdown::html_page:
-    toc: true
-    toc_depth: 2
+    toc: FALSE
+    # toc_depth: 2
     # dev: "svg"
     # theme: lumen
     highlight: tango
