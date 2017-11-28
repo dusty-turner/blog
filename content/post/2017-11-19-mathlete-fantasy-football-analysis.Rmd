@@ -19,8 +19,8 @@ tags:
   - ESPN API
 output: 
   blogdown::html_page:
-    toc: FALSE
-    # toc_depth: 2
+    toc: TRUE
+    toc_depth: 2
     # dev: "svg"
     # theme: lumen
     highlight: tango
@@ -29,7 +29,7 @@ output:
 
 ---
 ```{r set-options, echo=FALSE, cache=FALSE}
-options(width = 120)
+options(width = 200)
 options(stringsAsFactors = FALSE)
 ```
 
@@ -48,6 +48,8 @@ library(tidyverse)
 library(stringr)
 library(httr)
 library(jsonlite)
+library(knitr)
+library(DT)
 ```
 
 ## Data Manipulation
@@ -90,7 +92,7 @@ games<-function(n)
 After writing my funtion, I'll run it:
 
 ```{r echo = TRUE}
-fantasy = games(
+fantasystart = games(
   c(
     this.content$leaguesettings$teams$`1`$scheduleItems$matchups,
     this.content$leaguesettings$teams$`2`$scheduleItems$matchups,
@@ -116,7 +118,7 @@ Lets look at the data.  It contains every game and result thoughtout the season.
 
 ```{r echo = TRUE}
 
-as.tibble(fantasy)
+as.tibble(fantasystart)
 
 ```
 
@@ -126,14 +128,14 @@ So far so good.  Now lets transform the data in 4 columns: Team Name, Score, Who
 
 ```{r echo = TRUE}
 fantasy = 
-fantasy %>%
+fantasystart %>%
 select(Away, awayscore, week) %>%
   mutate(Team = Away) %>%
   mutate(Score = awayscore) %>%
   mutate(Who = "For") %>%
   select(Team, Score, Who, week) %>%
   bind_rows(
-    fantasy %>%
+    fantasystart %>%
       select(Home, homescore, week) %>%
       mutate(Team = Home) %>%
       mutate(Score = homescore) %>%
@@ -141,7 +143,7 @@ select(Away, awayscore, week) %>%
       select(Team, Score, Who, week)
   ) %>%
   bind_rows(
-    fantasy %>%
+    fantasystart %>%
       select(Away, homescore, week) %>%
       mutate(Team = Away) %>%
       mutate(Score = homescore) %>%
@@ -149,7 +151,7 @@ select(Away, awayscore, week) %>%
       select(Team, Score, Who, week) 
    ) %>%
   bind_rows(
-    fantasy %>%
+    fantasystart %>%
       select(Home, awayscore, week) %>%
       mutate(Team = Home) %>%
       mutate(Score = awayscore) %>%
@@ -362,7 +364,7 @@ as.tibble(standing)
 Lets join the data with our previous dataset.  
 
 ```{r echo= TRUE, message=FALSE, warning=FALSE}
-fantasy = fantasy %>%
+fantasy2 = fantasy %>%
   filter(Who == "For") %>%
   left_join(standing, by = "Team")
 as.tibble(fantasy)
@@ -371,21 +373,21 @@ as.tibble(fantasy)
 Almost complete:  Next lets add a column to keep track of each team's 'actual rank' (according to points scored) as well as a measure of luck.  This measure, though a simple calculation, is the the euclidian distance from how much (or how much less) a team is performing verses what they should expect given their current performance.  
 
 ```{r echo=TRUE}
-fantasy =
-fantasy %>%
+fantasy2 =
+fantasy2 %>%
   mutate(actualrank = c(16:1)) %>%
   mutate(Luck = actualrank-rank)
 ```
 
 ```{r eval=FALSE, include=FALSE}
 library(scales)
-rescale(fantasy$Luck, to = c(-100,100))
+rescale(fantasy2$Luck, to = c(-100,100))
 ```
 
 Finally!  Lets plot the data and see how everyone is doing.
 
 ```{r echo=TRUE}
-ggplot(data = fantasy, aes(x = actualrank, y = rank)) +
+ggplot(data = fantasy2, aes(x = actualrank, y = rank)) +
   geom_point() +
   geom_text(aes(label = paste(Team,":" ,Luck), color = Luck), vjust =1.5, size=3) +
   scale_colour_gradient(low = "red", high = "black") +
@@ -394,4 +396,68 @@ ggplot(data = fantasy, aes(x = actualrank, y = rank)) +
   ylim(c(1,17)) + xlim(c(1,17)) +
   xlab("Points Scored Rank") + ylab("Actual Standings") + ggtitle("Are You Over-Performing or Under-Performing?") +
   labs(caption = "The Luck Index measures how much better (or worse) your team is doing than what you should expect.")
+```
+
+This is a way to sort the data to get another view of who is ranked up to their performance.
+
+```{r, echo = TRUE}
+fantasyfor = fantasy %>%
+  filter(Who == "For") %>%
+  mutate(MaxPointsScored = max, MinPointsScored = min, PlungersPlayedAgainst = PlungerLuck) %>%
+  select(Team, AverageScore, MaxPointsScored, MinPointsScored, Plunger)
+fantasyagainst = fantasy %>%
+  filter(Who == "Against")%>%
+  mutate(MaxPointsAgainst = max, MinPointsAgainst = min, PlungersPlayedAgainst = PlungerLuck) %>%
+  select(Team, MaxPointsAgainst, MinPointsAgainst, PlungersPlayedAgainst) 
+FantasyChartstart = fantasyfor %>%
+  left_join(fantasyagainst, by = "Team")
+
+FantasyChart = FantasyChartstart %>%
+  mutate(Scored = round(AverageScore),2) %>%
+  mutate(Max = MaxPointsScored) %>%
+  mutate(Min = MinPointsScored) %>%
+  mutate(MaxFoe = MaxPointsAgainst) %>%
+  mutate(MinFoe = MinPointsAgainst) %>%
+  mutate(PlungerFoe = PlungersPlayedAgainst)%>%
+  select(Team,Scored, Max,Min,Plunger,MaxFoe,MinFoe,PlungerFoe)
+
+# options(DT.options = list(pageLength = 16))
+datatable(FantasyChart, options = list(
+  columnDefs = list(list(className = 'dt-center', targets = 8)),
+  pageLength = 16
+))
+```
+
+Lastly, lets look at who just eeks out wins and who snatches defeat from the jaws of victory.
+
+```{r, echo =TRUE}
+start = fantasystart %>%
+  mutate(delta = awayscore-homescore) %>%
+  mutate(win = ifelse(delta>0, "Win", "Loss")) %>%
+  group_by(Away) %>%
+  mutate(margin = ifelse(win == "Win", min(delta[delta>0]),max(delta[delta<0]))) %>%
+  group_by(Away, win) %>%
+  summarise(Smallest = mean(margin)) %>%
+  ungroup() %>%
+  mutate(Away = ifelse(Away == "5 Guns N' Rosas", "Team Guns N' Rosas", Away)) %>%
+  mutate(Away = ifelse(Away == "3 Baye's Theorem", "Green Baye's Theorem", Away)) %>%
+  mutate(Away = ifelse(Away == "16 Grymes", "Team Grymes", Away)) 
+
+a = start %>%
+  filter(win == "Win") 
+b = start %>%
+  filter(win == "Loss") 
+
+MarginofVictory = left_join(a,b, by = "Away") %>%
+  mutate(SmallestWin = round(Smallest.x,2), SmallestLoss = round(Smallest.y,2), Team = Away) %>%
+  select(Team, SmallestWin, SmallestLoss)
+```
+
+And the Chart...
+
+```{r, echo=TRUE}
+datatable(MarginofVictory, options = list(
+  columnDefs = list(list(className = 'dt-center', targets = 3)),
+  pageLength = 16
+))
 ```
