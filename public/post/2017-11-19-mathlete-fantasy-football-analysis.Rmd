@@ -84,7 +84,7 @@ games<-function(n)
   hometeam1 = lapply(test2,"[",4)
   hometeam2 = lapply(test2,"[",6)
   
-  fhelper = data.frame(Away = paste(unlist(awayteam2), unlist(awayteam1)), Home = paste(unlist(hometeam2), unlist(hometeam1)), awayscore = unlist(scoreaway), homescore = unlist(scorehome), week = 1:13)
+  fhelper = data.frame(Away = paste(unlist(awayteam2), unlist(awayteam1)), Home = paste(unlist(hometeam2), unlist(hometeam1)), awayscore = unlist(scoreaway), homescore = unlist(scorehome), week = 1:16)
   return(fhelper)
 }
 ```
