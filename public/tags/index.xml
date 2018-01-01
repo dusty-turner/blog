@@ -31,9 +31,27 @@
     </item>
     
     <item>
+      <title>Books</title>
+      <link>/tags/books/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Children</title>
+      <link>/tags/children/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/children/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Datascience</title>
       <link>/tags/datascience/</link>
-      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/datascience/</guid>
       <description></description>
@@ -78,7 +96,7 @@
     <item>
       <title>Lubridate</title>
       <link>/tags/lubridate/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/lubridate/</guid>
       <description></description>
@@ -121,9 +139,18 @@
     </item>
     
     <item>
+      <title>Tidytext</title>
+      <link>/tags/tidytext/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidytext/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Tidyverse</title>
       <link>/tags/tidyverse/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/tidyverse/</guid>
       <description></description>

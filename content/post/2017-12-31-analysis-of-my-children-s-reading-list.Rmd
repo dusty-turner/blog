@@ -1,0 +1,33 @@
+---
+title: Analysis of my Children's Reading List
+author: Dusty Turner
+date: '2017-12-31'
+slug: analysis-of-my-children-s-reading-list
+categories:
+  - r
+  - datascience
+  - tidyverse
+  - lubridate
+  - children
+  - books
+  - tidytext
+tags:
+  - r
+  - datascience
+  - tidyverse
+  - lubridate
+  - children
+  - books
+  - tidytext
+---
+
+Over this Christmas break, my wife was inpired to keep track of the books we read to our kids.  Her goal is to amass 1000 books in 2018.  
+
+Ever on the lookout for cool data science projects, this peaked my interest.  
+
+What follows below is a growing look to provide insight to what we read our kids.  
+
+Lets start with some...
+
+####Exploratory Data Analysis
+

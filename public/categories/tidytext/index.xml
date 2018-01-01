@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tidytext on Dusty Turner</title>
+    <link>/categories/tidytext/</link>
+    <description>Recent content in Tidytext on Dusty Turner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Sun, 31 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/tidytext/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Analysis of my Children&#39;s Reading List</title>
+      <link>/post/analysis-of-my-children-s-reading-list/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/analysis-of-my-children-s-reading-list/</guid>
+      <description>Over this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018.
+Ever on the lookout for cool data science projects, this peaked my interest.
+What follows below is a growing look to provide insight to what we read our kids.
+Lets start with some…
+####Exploratory Data Analysis</description>
+    </item>
+    
+  </channel>
+</rss>
