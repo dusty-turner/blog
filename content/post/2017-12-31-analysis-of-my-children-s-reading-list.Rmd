@@ -35,7 +35,7 @@ What follows below is a growing look to provide insight to what we read our kids
 
 Lets start with some...
 
-##Exploratory Data Analysis
+## Exploratory Data Analysis
 
 ### Libraries
 
@@ -46,3 +46,88 @@ library(tidyverse)
 library(tidytext)
 ```
 
+Lets read in the data and get a feel for what information we have available:
+
+```{r, echo=TRUE}
+booksread = read_csv("books.csv")
+head(booksread)
+```
+
+
+<!-- books = booksread %>% -->
+<!--   select(Title, Author, Illustrator, Publisher, `Date Published`, `Year Published`, -->
+<!--          Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) %>% -->
+<!--   mutate(Author = ifelse(grepl("Bere", Author)==TRUE, "Berenstein", Author)) -->
+
+
+
+<!-- ggplot(data = books, aes(`Year Published`)) + -->
+<!--   geom_bar() -->
+
+<!-- ggplot(data = books, aes(`Number of Pages`)) + -->
+<!--   geom_histogram() -->
+
+<!-- ggplot(data = books, aes(Genre, fill = Genre)) + -->
+<!--   geom_bar() + -->
+<!--   ggtitle("Books By Genre") + ylab("Total Books") -->
+
+
+<!-- ## sentiment -->
+<!-- library(tidytext) -->
+
+<!-- text_df <- data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre) -->
+
+<!-- textcleaned = text_df %>% -->
+<!--   unnest_tokens(word, text) -->
+
+
+<!-- ##English Only -->
+<!-- cleanedarticle = anti_join(textcleaned,stop_words, by = "word") -->
+<!-- # dropwords = data.frame(word = as.character(c("https","trump"))) -->
+<!-- # cleanedarticle = anti_join(cleanedarticle,dropwords, by = "word") -->
+
+
+<!-- #### English -->
+<!-- nrc = get_sentiments("nrc") -->
+<!-- # nrc = nrc %>% -->
+<!-- #   filter(sentiment=="negative") %>% -->
+<!-- #   full_join(nrc%>% -->
+<!-- #               filter(sentiment=="positive")) -->
+<!-- # bing = get_sentiments("bing") -->
+<!-- # afinn = get_sentiments("afinn") -->
+<!-- # nrcspanish = read.csv("NRCSpanish.csv") -->
+
+<!-- # tweetsentimentbing <- cleanedarticle %>% -->
+<!-- #   inner_join(bing, by = "word") -->
+<!-- # tweetsentimentafinn <- cleanedarticle %>% -->
+<!-- #   inner_join(afinn, by = "word") -->
+<!-- tweetsentimentnrc <- cleanedarticle %>% -->
+<!--   inner_join(nrc, by = "word") -->
+<!-- # tweetsentimentnrcspanish <- textcleaned %>% -->
+<!-- #   inner_join(nrcspanish, by = c("word"="Spanish")) -->
+
+<!-- tweetsentimentnrc = tweetsentimentnrc %>% -->
+<!--   mutate(sent = ifelse(sentiment=="joy"|sentiment=="positive"|sentiment=="suprise"|sentiment=="trust","Positive Words", -->
+<!--                        ifelse(sentiment=="disgust"|sentiment=="fear"|sentiment=="negative"|sentiment=="sadness","Negative Words","Neutral Words"))) %>% -->
+<!--   mutate(sent = as.factor(sent)) -->
+
+
+<!--                        # ifelse(sentiment==c("disgust","fear","negative","sadness"),-1,0))) -->
+
+<!-- ggplot(data = tweetsentimentnrc, aes(sentiment, color = sentiment, fill = sentiment)) + -->
+<!--   geom_bar() + -->
+<!--   facet_wrap("book", scales = "free_y") + -->
+<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
+
+<!-- ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) + -->
+<!--   geom_bar() + -->
+<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
+
+<!-- sentbygenre = tweetsentimentnrc %>% -->
+<!--   mutate(sent2 = as.factor(sent)) %>% -->
+<!--   group_by(Genre) %>% -->
+<!--   count(sent2) -->
+
+<!-- ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) + -->
+<!--   geom_bar() + -->
+<!--   facet_wrap("Genre", scales = "free_y") -->

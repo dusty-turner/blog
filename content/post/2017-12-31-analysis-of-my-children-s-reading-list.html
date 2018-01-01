@@ -29,11 +29,100 @@ tags:
 <p>Ever on the lookout for cool data science projects, this peaked my interest.</p>
 <p>What follows below is a growing look to provide insight to what we read our kids.</p>
 <p>Lets start with some…</p>
-<p>##Exploratory Data Analysis</p>
+</section>
+<section id="exploratory-data-analysis" class="level2">
+<h2>Exploratory Data Analysis</h2>
 <section id="libraries" class="level3">
 <h3>Libraries</h3>
 <p>The libraries I will use for this analysis are the following:</p>
 <pre class="r"><code>library(tidyverse)
 library(tidytext)</code></pre>
+<p>Lets read in the data and get a feel for what information we have available:</p>
+<pre class="r"><code>booksread = read_csv(&quot;books.csv&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   `Year Published` = col_integer(),
+##   `Number of Pages` = col_integer(),
+##   ISBN = col_double(),
+##   Favorites = col_integer(),
+##   Rating = col_integer(),
+##   `Date Added` = col_time(format = &quot;&quot;),
+##   `Wish List` = col_integer()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<pre><code>## Warning: 2 parsing failures.
+## row # A tibble: 2 x 5 col     row        col   expected  actual        file expected   &lt;int&gt;      &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; actual 1     8 Date Added valid date 52:03.4 &#39;books.csv&#39; file 2    17 Date Added valid date 52:03.3 &#39;books.csv&#39;</code></pre>
+<pre class="r"><code>head(booksread)</code></pre>
+<pre><code>## # A tibble: 6 x 56
+##                           Title Subtitle Series Volume          Author `Author (Last, First)` Illustrator Narrator Translator                 Publisher `Date Published` `Year Published`
+##                           &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;                  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;                     &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt;
+## 1         And Then Comes Summer     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;     Tom Brenner           Brenner, Tom        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;          Candlewick Press         5/1/2017             2017
+## 2                     BE QUIET!     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt; Ryan T. Higgins       Higgins, Ryan T.        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;           Disney-Hyperion         4/4/2017             2017
+## 3                 Bus Ride, The     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  Marianne Dubuc        Dubuc, Marianne        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;        Kids Can Press Ltd         3/1/2015             2015
+## 4      Christmas in the Country     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  Cynthia Rylant        Rylant, Cynthia        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;            Blue Sky Press             &lt;NA&gt;             2002
+## 5              Estelle and Lucy     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      Anna Alter            Alter, Anna        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;             HarperCollins        3/20/2001             2001
+## 6 Little Blue Truck&#39;s Christmas     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  Alice Schertle        Schertle, Alice        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt; Houghton Mifflin Harcourt             &lt;NA&gt;             2014
+## # ... with 44 more variables: Genre &lt;chr&gt;, Edition &lt;chr&gt;, Editor &lt;chr&gt;, Summary &lt;chr&gt;, `Guided Reading Level` &lt;chr&gt;, `Lexile Measure` &lt;chr&gt;, `Grade Level Equivalent` &lt;chr&gt;, `Developmental Reading
+## #   Assessment` &lt;chr&gt;, `Interest Level` &lt;chr&gt;, `Word Count` &lt;chr&gt;, `Original Title` &lt;chr&gt;, `Number of Pages` &lt;int&gt;, Format &lt;chr&gt;, Dimensions &lt;chr&gt;, Weight &lt;chr&gt;, `List Price` &lt;chr&gt;, Language &lt;chr&gt;,
+## #   DDC &lt;chr&gt;, LCC &lt;chr&gt;, OCLC &lt;chr&gt;, ISBN &lt;dbl&gt;, Favorites &lt;int&gt;, Rating &lt;int&gt;, `Physical Location` &lt;chr&gt;, Status &lt;chr&gt;, `Date Started` &lt;chr&gt;, `Date Finished` &lt;chr&gt;, `Loaned To` &lt;chr&gt;, `Date
+## #   Loaned` &lt;chr&gt;, `Borrowed From` &lt;chr&gt;, `Date Borrowed` &lt;chr&gt;, Quantity &lt;chr&gt;, Condition &lt;chr&gt;, `Recommended By` &lt;chr&gt;, `Date Added` &lt;time&gt;, Tags &lt;chr&gt;, `Purchase Date` &lt;chr&gt;, `Purchase
+## #   Place` &lt;chr&gt;, `Purchase Price` &lt;chr&gt;, Notes &lt;chr&gt;, `Google VolumeID` &lt;chr&gt;, Category &lt;chr&gt;, `Wish List` &lt;int&gt;, `Uploaded Image URL` &lt;chr&gt;</code></pre>
+<!-- books = booksread %>% -->
+<!--   select(Title, Author, Illustrator, Publisher, `Date Published`, `Year Published`, -->
+<!--          Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) %>% -->
+<!--   mutate(Author = ifelse(grepl("Bere", Author)==TRUE, "Berenstein", Author)) -->
+<!-- ggplot(data = books, aes(`Year Published`)) + -->
+<!--   geom_bar() -->
+<!-- ggplot(data = books, aes(`Number of Pages`)) + -->
+<!--   geom_histogram() -->
+<!-- ggplot(data = books, aes(Genre, fill = Genre)) + -->
+<!--   geom_bar() + -->
+<!--   ggtitle("Books By Genre") + ylab("Total Books") -->
+<!-- ## sentiment -->
+<!-- library(tidytext) -->
+<!-- text_df <- data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre) -->
+<!-- textcleaned = text_df %>% -->
+<!--   unnest_tokens(word, text) -->
+<!-- ##English Only -->
+<!-- cleanedarticle = anti_join(textcleaned,stop_words, by = "word") -->
+<!-- # dropwords = data.frame(word = as.character(c("https","trump"))) -->
+<!-- # cleanedarticle = anti_join(cleanedarticle,dropwords, by = "word") -->
+<!-- #### English -->
+<!-- nrc = get_sentiments("nrc") -->
+<!-- # nrc = nrc %>% -->
+<!-- #   filter(sentiment=="negative") %>% -->
+<!-- #   full_join(nrc%>% -->
+<!-- #               filter(sentiment=="positive")) -->
+<!-- # bing = get_sentiments("bing") -->
+<!-- # afinn = get_sentiments("afinn") -->
+<!-- # nrcspanish = read.csv("NRCSpanish.csv") -->
+<!-- # tweetsentimentbing <- cleanedarticle %>% -->
+<!-- #   inner_join(bing, by = "word") -->
+<!-- # tweetsentimentafinn <- cleanedarticle %>% -->
+<!-- #   inner_join(afinn, by = "word") -->
+<!-- tweetsentimentnrc <- cleanedarticle %>% -->
+<!--   inner_join(nrc, by = "word") -->
+<!-- # tweetsentimentnrcspanish <- textcleaned %>% -->
+<!-- #   inner_join(nrcspanish, by = c("word"="Spanish")) -->
+<!-- tweetsentimentnrc = tweetsentimentnrc %>% -->
+<!--   mutate(sent = ifelse(sentiment=="joy"|sentiment=="positive"|sentiment=="suprise"|sentiment=="trust","Positive Words", -->
+<!--                        ifelse(sentiment=="disgust"|sentiment=="fear"|sentiment=="negative"|sentiment=="sadness","Negative Words","Neutral Words"))) %>% -->
+<!--   mutate(sent = as.factor(sent)) -->
+<!--                        # ifelse(sentiment==c("disgust","fear","negative","sadness"),-1,0))) -->
+<!-- ggplot(data = tweetsentimentnrc, aes(sentiment, color = sentiment, fill = sentiment)) + -->
+<!--   geom_bar() + -->
+<!--   facet_wrap("book", scales = "free_y") + -->
+<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
+<!-- ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) + -->
+<!--   geom_bar() + -->
+<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
+<!-- sentbygenre = tweetsentimentnrc %>% -->
+<!--   mutate(sent2 = as.factor(sent)) %>% -->
+<!--   group_by(Genre) %>% -->
+<!--   count(sent2) -->
+<!-- ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) + -->
+<!--   geom_bar() + -->
+<!--   facet_wrap("Genre", scales = "free_y") -->
 </section>
 </section>
