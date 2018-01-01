@@ -28,8 +28,7 @@
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/analysis-of-my-children-s-reading-list/</guid>
-      <description>IntroductionOver this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018. She downloaded ‘Bookbuddy’ on her Iphone and can scan the barcodes with the camera. Doing this, saves a lot of data about the books. After a quick export, we have a nice csv.
-Ever on the lookout for cool data science projects, this peaked my interest.</description>
+      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
     </item>
     
     <item>

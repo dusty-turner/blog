@@ -19,9 +19,78 @@ tags:
   - children
   - books
   - tidytext
+output: 
+  blogdown::html_page:
+    toc: TRUE
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
 ---
 
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+pre, code { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.fl { color: #0000cf; } /* Float */
+code span.ch { color: #4e9a06; } /* Char */
+code span.st { color: #4e9a06; } /* String */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.ot { color: #8f5902; } /* Other */
+code span.al { color: #ef2929; } /* Alert */
+code span.fu { color: #000000; } /* Function */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #000000; } /* Constant */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #000000; } /* Variable */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.ex { } /* Extension */
+code span.at { color: #c4a000; } /* Attribute */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+<li><a href="#text-analysis">Text Analysis</a></li>
+<li><a href="#further-analysis-to-follow-as-we-read-books-throughout-the-year.">Further analysis to follow as we read books throughout the year.</a></li>
+</ul>
+</div>
 
 <section id="introduction" class="level2">
 <h2>Introduction</h2>
@@ -35,78 +104,87 @@ tags:
 <section id="libraries" class="level3">
 <h3>Libraries</h3>
 <p>The libraries I will use for this analysis are the following:</p>
-<pre class="r"><code>library(tidyverse)
-library(tidytext)</code></pre>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</div>
+<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidytext)</div></code></pre>
 <p>Lets read in the data and get a feel for what information we have available. There are ‘ton’ of colums, many of them are nothing but <code>nas</code>, so I’ll eliminate those immediatly.</p>
-<pre class="r"><code>booksread = read_csv(&quot;books.csv&quot;)
-booksread = booksread %&gt;% 
-  select_if(function(x) any(!is.na(x)))
-summary(booksread)</code></pre>
-<pre><code>##     Title             Subtitle            Author          Author (Last, First)  Publisher         Date Published     Year Published    Genre             Summary          Number of Pages 
-##  Length:41          Length:41          Length:41          Length:41            Length:41          Length:41          Min.   :1978   Length:41          Length:41          Min.   : 20.00  
-##  Class :character   Class :character   Class :character   Class :character     Class :character   Class :character   1st Qu.:1997   Class :character   Class :character   1st Qu.: 32.00  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character     Mode  :character   Mode  :character   Median :2010   Mode  :character   Mode  :character   Median : 32.00  
-##                                                                                                                      Mean   :2004                                         Mean   : 36.47  
-##                                                                                                                      3rd Qu.:2013                                         3rd Qu.: 32.00  
-##                                                                                                                      Max.   :2017                                         Max.   :198.00  
-##                                                                                                                      NA&#39;s   :1                                            NA&#39;s   :3       
-##    Language              ISBN             Favorites     Rating     Status           Date Added       Google VolumeID      Wish List Uploaded Image URL
-##  Length:41          Min.   :6.800e+08   Min.   :0   Min.   :0   Length:41          Length:41         Length:41          Min.   :0   Length:41         
-##  Class :character   1st Qu.:9.780e+12   1st Qu.:0   1st Qu.:0   Class :character   Class1:hms        Class :character   1st Qu.:0   Class :character  
-##  Mode  :character   Median :9.780e+12   Median :0   Median :0   Mode  :character   Class2:difftime   Mode  :character   Median :0   Mode  :character  
-##                     Mean   :9.304e+12   Mean   :0   Mean   :0                      Mode  :numeric                       Mean   :0                     
-##                     3rd Qu.:9.781e+12   3rd Qu.:0   3rd Qu.:0                                                           3rd Qu.:0                     
-##                     Max.   :9.782e+12   Max.   :0   Max.   :0                                                           Max.   :0                     
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">booksread =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;books.csv&quot;</span>)</div>
+<div class="sourceLine" id="cb2-2" data-line-number="2">booksread =<span class="st"> </span>booksread <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">select_if</span>(<span class="cf">function</span>(x) <span class="kw">any</span>(<span class="op">!</span><span class="kw">is.na</span>(x)))</div>
+<div class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">summary</span>(booksread)</div></code></pre>
+<pre><code>##     Title             Subtitle            Author          Author (Last, First)  Publisher         Date Published     Year Published
+##  Length:41          Length:41          Length:41          Length:41            Length:41          Length:41          Min.   :1978  
+##  Class :character   Class :character   Class :character   Class :character     Class :character   Class :character   1st Qu.:1997  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character     Mode  :character   Mode  :character   Median :2010  
+##                                                                                                                      Mean   :2004  
+##                                                                                                                      3rd Qu.:2013  
+##                                                                                                                      Max.   :2017  
+##                                                                                                                      NA&#39;s   :1     
+##     Genre             Summary          Number of Pages    Language              ISBN             Favorites     Rating     Status         
+##  Length:41          Length:41          Min.   : 20.00   Length:41          Min.   :6.800e+08   Min.   :0   Min.   :0   Length:41         
+##  Class :character   Class :character   1st Qu.: 32.00   Class :character   1st Qu.:9.780e+12   1st Qu.:0   1st Qu.:0   Class :character  
+##  Mode  :character   Mode  :character   Median : 32.00   Mode  :character   Median :9.780e+12   Median :0   Median :0   Mode  :character  
+##                                        Mean   : 36.47                      Mean   :9.304e+12   Mean   :0   Mean   :0                     
+##                                        3rd Qu.: 32.00                      3rd Qu.:9.781e+12   3rd Qu.:0   3rd Qu.:0                     
+##                                        Max.   :198.00                      Max.   :9.782e+12   Max.   :0   Max.   :0                     
+##                                        NA&#39;s   :3                                                                                         
+##   Date Added       Google VolumeID      Wish List Uploaded Image URL
+##  Length:41         Length:41          Min.   :0   Length:41         
+##  Class1:hms        Class :character   1st Qu.:0   Class :character  
+##  Class2:difftime   Mode  :character   Median :0   Mode  :character  
+##  Mode  :numeric                       Mean   :0                     
+##                                       3rd Qu.:0                     
+##                                       Max.   :0                     
 ## </code></pre>
 <p>Some of the features are redundant, some are full of <code>0</code>s, and some are otherwise uninteresting, so I’ll select what is of value:</p>
-<pre class="r"><code>books = booksread %&gt;%
-  select(Title, Author, Publisher, `Date Published`, `Year Published`,
-         Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) </code></pre>
+<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><div class="sourceLine" id="cb4-1" data-line-number="1">books =<span class="st"> </span>booksread <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Title, Author, Publisher, <span class="st">`</span><span class="dt">Date Published</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Year Published</span><span class="st">`</span>,</div>
+<div class="sourceLine" id="cb4-3" data-line-number="3">         Genre, Summary, <span class="st">`</span><span class="dt">Number of Pages</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Date Added</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Google VolumeID</span><span class="st">`</span>) </div></code></pre>
 <p>Lets take a look at what Authors we typically select for our kids.</p>
-<pre class="r"><code>ggplot(data = books, aes(Author)) +
-  geom_bar() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Author)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author. Lets collapse them all into one Author</p>
-<pre class="r"><code>books = books %&gt;%
-  mutate(Author = ifelse(grepl(&quot;Bere&quot;, Author)==TRUE, &quot;Berenstein&quot;, Author))
-
-ggplot(data = books, aes(Author)) +
-  geom_bar() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<pre class="sourceCode r" id="cb6"><code class="sourceCode r"><div class="sourceLine" id="cb6-1" data-line-number="1">books =<span class="st"> </span>books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Author =</span> <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&quot;Bere&quot;</span>, Author)<span class="op">==</span><span class="ot">TRUE</span>, <span class="st">&quot;Berenstein&quot;</span>, Author))</div>
+<div class="sourceLine" id="cb6-3" data-line-number="3"></div>
+<div class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Author)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Nice!! - But wow, we read a lot of books about the Berenstien Bears. Lets take a look at the type of material that we are putting in our kids head.</p>
 <p>But first, we read a book written by ‘God’? Lets investigate.</p>
-<pre class="r"><code>books %&gt;%
-  filter(Author==&quot;God&quot;)</code></pre>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Author<span class="op">==</span><span class="st">&quot;God&quot;</span>)</div></code></pre>
 <pre><code>## # A tibble: 1 x 10
 ##               Title Author          Publisher `Date Published` `Year Published` Genre Summary `Number of Pages` `Date Added` `Google VolumeID`
 ##               &lt;chr&gt;  &lt;chr&gt;              &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;       &lt;time&gt;             &lt;chr&gt;
 ## 1 The Lord&#39;s prayer    God Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;                20     05:00:00              &lt;NA&gt;</code></pre>
 <p>Okay then.</p>
 <p>The next few charts depict the year the books were first published, the number of pages, the Genre of the books.</p>
-<pre class="r"><code>ggplot(data = books, aes(`Year Published`)) +
-  geom_bar() +
-  ggtitle(&quot;Books By Year&quot;) + ylab(&quot;Total Books&quot;)</code></pre>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Year Published</span><span class="st">`</span>)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data = books, aes(`Number of Pages`)) +
-  geom_histogram() +
-  ggtitle(&quot;Books By Number of Pages&quot;) + ylab(&quot;Total Books&quot;)</code></pre>
+<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><div class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Number of Pages</span><span class="st">`</span>)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Number of Pages&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
-<pre class="r"><code>ggplot(data = books, aes(Genre, fill = Genre)) +
-  geom_bar() +
-  ggtitle(&quot;Books By Genre&quot;) + ylab(&quot;Total Books&quot;)  +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Genre, <span class="dt">fill =</span> Genre)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Genre&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)  <span class="op">+</span></div>
+<div class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
 <p>What are these <code>NA</code>s?</p>
-<pre class="r"><code>books %&gt;%
-  filter(is.na(Genre))</code></pre>
+<pre class="sourceCode r" id="cb12"><code class="sourceCode r"><div class="sourceLine" id="cb12-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(Genre))</div></code></pre>
 <pre><code>## # A tibble: 3 x 10
-##                                                           Title       Author             Publisher `Date Published` `Year Published` Genre Summary `Number of Pages` `Date Added` `Google VolumeID`
-##                                                           &lt;chr&gt;        &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;       &lt;time&gt;             &lt;chr&gt;
-## 1                                         Paw Patrol Flashlight Phoenix Intl Phoenix International        9/20/2016             2016  &lt;NA&gt;    &lt;NA&gt;                NA     09:07:00      Na_3jwEACAAJ
-## 2 The Berenstain Bears and Too Much Birthday (Berenstain Bears)   Berenstein        Tandem Library        10/1/1999             1999  &lt;NA&gt;    &lt;NA&gt;                32     09:21:00              &lt;NA&gt;
-## 3                                             The Lord&#39;s prayer          God    Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;                20     05:00:00              &lt;NA&gt;</code></pre>
+##                                                           Title       Author             Publisher `Date Published` `Year Published` Genre Summary
+##                                                           &lt;chr&gt;        &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;
+## 1                                         Paw Patrol Flashlight Phoenix Intl Phoenix International        9/20/2016             2016  &lt;NA&gt;    &lt;NA&gt;
+## 2 The Berenstain Bears and Too Much Birthday (Berenstain Bears)   Berenstein        Tandem Library        10/1/1999             1999  &lt;NA&gt;    &lt;NA&gt;
+## 3                                             The Lord&#39;s prayer          God    Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;
+## # ... with 3 more variables: `Number of Pages` &lt;int&gt;, `Date Added` &lt;time&gt;, `Google VolumeID` &lt;chr&gt;</code></pre>
 </section>
 </section>
 <section id="text-analysis" class="level2">
@@ -114,32 +192,32 @@ ggplot(data = books, aes(Author)) +
 <p>Now that we’ve explored the dataset, lets see what information we can glean.</p>
 <p>I’d really like to know what type of words / sentiment we are reading our children – but until I can figure out a way to get the words from all the books, I’ll have to use the <code>Summary</code> provided by BookBuddy.<br />
 Here’s an example:</p>
-<pre class="r"><code>books %&gt;%
-  filter(Title==&quot;Mama Cat Has Three Kittens&quot;) %&gt;%
-  select(Summary)</code></pre>
+<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><div class="sourceLine" id="cb14-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Title<span class="op">==</span><span class="st">&quot;Mama Cat Has Three Kittens&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(Summary)</div></code></pre>
 <pre><code>## # A tibble: 1 x 1
-##                                                                                                                                                                                                    Summary
-##                                                                                                                                                                                                      &lt;chr&gt;
-## 1 Some kittens march to the beat of a different drummer.Mama Cat has three kittens, Fluffy, Skinny, and Boris. Where Mama Cat leads, Fluffy and Skinny follow. But what about Boris-- will he ever stop na</code></pre>
+##                                                                                                                                                  Summary
+##                                                                                                                                                    &lt;chr&gt;
+## 1 Some kittens march to the beat of a different drummer.Mama Cat has three kittens, Fluffy, Skinny, and Boris. Where Mama Cat leads, Fluffy and Skinny f</code></pre>
 <p>So, lets prepare the data. I’d like to bring along some information while I tokenize the summaries (Titles, Authors, and Genres). We’d also like to translate NRCs emotions into <code>Positive</code>, <code>Negative</code>, and <code>Neutral</code> classifications.</p>
-<pre class="r"><code>text_df = data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre, Author = books$Author)
-
-textcleaned = text_df %&gt;%
-  unnest_tokens(word, text)
-
-cleanedarticle = anti_join(textcleaned,stop_words, by = &quot;word&quot;)
-
-nrc = get_sentiments(&quot;nrc&quot;)
-
-tweetsentimentnrc = cleanedarticle %&gt;%
-  inner_join(nrc, by = &quot;word&quot;)
-
-tweetsentimentnrc = tweetsentimentnrc %&gt;%
-  mutate(sent = ifelse(sentiment==&quot;joy&quot;|sentiment==&quot;positive&quot;|sentiment==&quot;suprise&quot;|sentiment==&quot;trust&quot;,&quot;Positive Words&quot;,
-                       ifelse(sentiment==&quot;disgust&quot;|sentiment==&quot;fear&quot;|sentiment==&quot;negative&quot;|sentiment==&quot;sadness&quot;,&quot;Negative Words&quot;,&quot;Neutral Words&quot;))) %&gt;%
-  mutate(sent = as.factor(sent))
-
-tweetsentimentnrc</code></pre>
+<pre class="sourceCode r" id="cb16"><code class="sourceCode r"><div class="sourceLine" id="cb16-1" data-line-number="1">text_df =<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">line =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(books<span class="op">$</span>Summary), <span class="dt">text =</span> <span class="kw">as.character</span>(books<span class="op">$</span>Summary), <span class="dt">book =</span> books<span class="op">$</span>Title, <span class="dt">Genre =</span> books<span class="op">$</span>Genre, <span class="dt">Author =</span> books<span class="op">$</span>Author)</div>
+<div class="sourceLine" id="cb16-2" data-line-number="2"></div>
+<div class="sourceLine" id="cb16-3" data-line-number="3">textcleaned =<span class="st"> </span>text_df <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text)</div>
+<div class="sourceLine" id="cb16-5" data-line-number="5"></div>
+<div class="sourceLine" id="cb16-6" data-line-number="6">cleanedarticle =<span class="st"> </span><span class="kw">anti_join</span>(textcleaned,stop_words, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</div>
+<div class="sourceLine" id="cb16-7" data-line-number="7"></div>
+<div class="sourceLine" id="cb16-8" data-line-number="8">nrc =<span class="st"> </span><span class="kw">get_sentiments</span>(<span class="st">&quot;nrc&quot;</span>)</div>
+<div class="sourceLine" id="cb16-9" data-line-number="9"></div>
+<div class="sourceLine" id="cb16-10" data-line-number="10">tweetsentimentnrc =<span class="st"> </span>cleanedarticle <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb16-11" data-line-number="11"><span class="st">  </span><span class="kw">inner_join</span>(nrc, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</div>
+<div class="sourceLine" id="cb16-12" data-line-number="12"></div>
+<div class="sourceLine" id="cb16-13" data-line-number="13">tweetsentimentnrc =<span class="st"> </span>tweetsentimentnrc <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb16-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">ifelse</span>(sentiment<span class="op">==</span><span class="st">&quot;joy&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;positive&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;suprise&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;trust&quot;</span>,<span class="st">&quot;Positive Words&quot;</span>,</div>
+<div class="sourceLine" id="cb16-15" data-line-number="15">                       <span class="kw">ifelse</span>(sentiment<span class="op">==</span><span class="st">&quot;disgust&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;fear&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;negative&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;sadness&quot;</span>,<span class="st">&quot;Negative Words&quot;</span>,<span class="st">&quot;Neutral Words&quot;</span>))) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb16-16" data-line-number="16"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">as.factor</span>(sent))</div>
+<div class="sourceLine" id="cb16-17" data-line-number="17"></div>
+<div class="sourceLine" id="cb16-18" data-line-number="18">tweetsentimentnrc</div></code></pre>
 <pre><code>## # A tibble: 918 x 7
 ##     line                  book            Genre      Author         word    sentiment           sent
 ##    &lt;int&gt;                 &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;fctr&gt;
@@ -155,22 +233,22 @@ tweetsentimentnrc</code></pre>
 ## 10     1 And Then Comes Summer Juvenile Fiction Tom Brenner anticipation anticipation  Neutral Words
 ## # ... with 908 more rows</code></pre>
 <p>Lets look at the sentiment my children are receiving in their books (as told by the summaries)</p>
-<pre class="r"><code>ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
-  geom_bar() +
-  ggtitle(&quot;Type of Words my Children Listen in Books&quot;) + xlab(&quot;Sentiment&quot;) + ylab(&quot;Total Count&quot;)</code></pre>
+<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Maybe it would be more interesting to see which Authrors are providing which sentiments.</p>
-<pre class="r"><code>ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
-  geom_bar() +
-  facet_wrap(&quot;Author&quot;, scales = &quot;free_y&quot;) +
-  ggtitle(&quot;Type of Words my Children Listen in Books&quot;) + xlab(&quot;Sentiment&quot;) + ylab(&quot;Total Count&quot;)  +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Author&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)  <span class="op">+</span></div>
+<div class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>This chart is likely to spiril out of control as the number of books increases. We’ll have to filter this by author’s who have multiple books.</p>
 <p>Lastly, lets see if there’s a genre that has any sentiment sway. Of note, I find it funny that there is a ‘Bears’ genre.</p>
-<pre class="r"><code>ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) +
-  geom_bar() +
-  facet_wrap(&quot;Genre&quot;, scales = &quot;free_y&quot;)</code></pre>
+<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">fill =</span> sent)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Genre&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </section>
 <section id="further-analysis-to-follow-as-we-read-books-throughout-the-year." class="level2">

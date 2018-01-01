@@ -19,9 +19,17 @@ tags:
   - children
   - books
   - tidytext
+output: 
+  blogdown::html_page:
+    toc: TRUE
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
 ---
 ```{r set-options, echo=FALSE, cache=FALSE}
-options(width = 200)
+options(width = 150)
 options(stringsAsFactors = FALSE)
 ```
 
