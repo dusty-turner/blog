@@ -15,22 +15,16 @@
 
   
   <meta name="author" content="Dusty Turner" />
-  <meta name="description" content="IntroductionOver this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018.
-Ever on the lookout for cool data science projects, this peaked my interest.
-What follows below is a growing look to provide insight to what we read our kids.
-Lets start with some…
-Exploratory Data AnalysisLibrariesThe libraries I will use for this analysis are the following:" />
+  <meta name="description" content="IntroductionOver this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018. She downloaded ‘Bookbuddy’ on her Iphone and can scan the barcodes with the camera. Doing this, saves a lot of data about the books. After a quick export, we have a nice csv.
+Ever on the lookout for cool data science projects, this peaked my interest." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@dtdusty" />
     <meta name="twitter:title" content="Analysis of my Children&#39;s Reading List" />
-    <meta name="twitter:description" content="IntroductionOver this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018.
-Ever on the lookout for cool data science projects, this peaked my interest.
-What follows below is a growing look to provide insight to what we read our kids.
-Lets start with some…
-Exploratory Data AnalysisLibrariesThe libraries I will use for this analysis are the following:" />
+    <meta name="twitter:description" content="IntroductionOver this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018. She downloaded ‘Bookbuddy’ on her Iphone and can scan the barcodes with the camera. Doing this, saves a lot of data about the books. After a quick export, we have a nice csv.
+Ever on the lookout for cool data science projects, this peaked my interest." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -210,11 +204,11 @@ Lets start with some…
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Analysis of my Children&#39;s Reading List</h1>
-      <p class="post-meta">@Dusty Turner · Dec 31, 2017 · 3 min read</p>
+      <p class="post-meta">@Dusty Turner · Dec 31, 2017 · 7 min read</p>
     </header>
     <article class="post-content"><section id="introduction" class="level2">
 <h2>Introduction</h2>
-<p>Over this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018.</p>
+<p>Over this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018. She downloaded ‘Bookbuddy’ on her Iphone and can scan the barcodes with the camera. Doing this, saves a lot of data about the books. After a quick export, we have a nice csv.</p>
 <p>Ever on the lookout for cool data science projects, this peaked my interest.</p>
 <p>What follows below is a growing look to provide insight to what we read our kids.</p>
 <p>Lets start with some…</p>
@@ -226,94 +220,144 @@ Lets start with some…
 <p>The libraries I will use for this analysis are the following:</p>
 <pre class="r"><code>library(tidyverse)
 library(tidytext)</code></pre>
-<p>Lets read in the data and get a feel for what information we have available:</p>
-<pre class="r"><code>booksread = read_csv(&quot;books.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   `Year Published` = col_integer(),
-##   `Number of Pages` = col_integer(),
-##   ISBN = col_double(),
-##   Favorites = col_integer(),
-##   Rating = col_integer(),
-##   `Date Added` = col_time(format = &quot;&quot;),
-##   `Wish List` = col_integer()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre><code>## Warning: 2 parsing failures.
-## row # A tibble: 2 x 5 col     row        col   expected  actual        file expected   &lt;int&gt;      &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; actual 1     8 Date Added valid date 52:03.4 &#39;books.csv&#39; file 2    17 Date Added valid date 52:03.3 &#39;books.csv&#39;</code></pre>
-<pre class="r"><code>head(booksread)</code></pre>
-<pre><code>## # A tibble: 6 x 56
-##                           Title Subtitle Series Volume          Author `Author (Last, First)` Illustrator Narrator Translator                 Publisher `Date Published` `Year Published`
-##                           &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;                  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;                     &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt;
-## 1         And Then Comes Summer     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;     Tom Brenner           Brenner, Tom        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;          Candlewick Press         5/1/2017             2017
-## 2                     BE QUIET!     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt; Ryan T. Higgins       Higgins, Ryan T.        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;           Disney-Hyperion         4/4/2017             2017
-## 3                 Bus Ride, The     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  Marianne Dubuc        Dubuc, Marianne        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;        Kids Can Press Ltd         3/1/2015             2015
-## 4      Christmas in the Country     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  Cynthia Rylant        Rylant, Cynthia        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;            Blue Sky Press             &lt;NA&gt;             2002
-## 5              Estelle and Lucy     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      Anna Alter            Alter, Anna        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;             HarperCollins        3/20/2001             2001
-## 6 Little Blue Truck&#39;s Christmas     &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  Alice Schertle        Schertle, Alice        &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt; Houghton Mifflin Harcourt             &lt;NA&gt;             2014
-## # ... with 44 more variables: Genre &lt;chr&gt;, Edition &lt;chr&gt;, Editor &lt;chr&gt;, Summary &lt;chr&gt;, `Guided Reading Level` &lt;chr&gt;, `Lexile Measure` &lt;chr&gt;, `Grade Level Equivalent` &lt;chr&gt;, `Developmental Reading
-## #   Assessment` &lt;chr&gt;, `Interest Level` &lt;chr&gt;, `Word Count` &lt;chr&gt;, `Original Title` &lt;chr&gt;, `Number of Pages` &lt;int&gt;, Format &lt;chr&gt;, Dimensions &lt;chr&gt;, Weight &lt;chr&gt;, `List Price` &lt;chr&gt;, Language &lt;chr&gt;,
-## #   DDC &lt;chr&gt;, LCC &lt;chr&gt;, OCLC &lt;chr&gt;, ISBN &lt;dbl&gt;, Favorites &lt;int&gt;, Rating &lt;int&gt;, `Physical Location` &lt;chr&gt;, Status &lt;chr&gt;, `Date Started` &lt;chr&gt;, `Date Finished` &lt;chr&gt;, `Loaned To` &lt;chr&gt;, `Date
-## #   Loaned` &lt;chr&gt;, `Borrowed From` &lt;chr&gt;, `Date Borrowed` &lt;chr&gt;, Quantity &lt;chr&gt;, Condition &lt;chr&gt;, `Recommended By` &lt;chr&gt;, `Date Added` &lt;time&gt;, Tags &lt;chr&gt;, `Purchase Date` &lt;chr&gt;, `Purchase
-## #   Place` &lt;chr&gt;, `Purchase Price` &lt;chr&gt;, Notes &lt;chr&gt;, `Google VolumeID` &lt;chr&gt;, Category &lt;chr&gt;, `Wish List` &lt;int&gt;, `Uploaded Image URL` &lt;chr&gt;</code></pre>
-<!-- books = booksread %>% -->
-<!--   select(Title, Author, Illustrator, Publisher, `Date Published`, `Year Published`, -->
-<!--          Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) %>% -->
-<!--   mutate(Author = ifelse(grepl("Bere", Author)==TRUE, "Berenstein", Author)) -->
-<!-- ggplot(data = books, aes(`Year Published`)) + -->
-<!--   geom_bar() -->
-<!-- ggplot(data = books, aes(`Number of Pages`)) + -->
-<!--   geom_histogram() -->
-<!-- ggplot(data = books, aes(Genre, fill = Genre)) + -->
-<!--   geom_bar() + -->
-<!--   ggtitle("Books By Genre") + ylab("Total Books") -->
-<!-- ## sentiment -->
-<!-- library(tidytext) -->
-<!-- text_df <- data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre) -->
-<!-- textcleaned = text_df %>% -->
-<!--   unnest_tokens(word, text) -->
-<!-- ##English Only -->
-<!-- cleanedarticle = anti_join(textcleaned,stop_words, by = "word") -->
-<!-- # dropwords = data.frame(word = as.character(c("https","trump"))) -->
-<!-- # cleanedarticle = anti_join(cleanedarticle,dropwords, by = "word") -->
-<!-- #### English -->
-<!-- nrc = get_sentiments("nrc") -->
-<!-- # nrc = nrc %>% -->
-<!-- #   filter(sentiment=="negative") %>% -->
-<!-- #   full_join(nrc%>% -->
-<!-- #               filter(sentiment=="positive")) -->
-<!-- # bing = get_sentiments("bing") -->
-<!-- # afinn = get_sentiments("afinn") -->
-<!-- # nrcspanish = read.csv("NRCSpanish.csv") -->
-<!-- # tweetsentimentbing <- cleanedarticle %>% -->
-<!-- #   inner_join(bing, by = "word") -->
-<!-- # tweetsentimentafinn <- cleanedarticle %>% -->
-<!-- #   inner_join(afinn, by = "word") -->
-<!-- tweetsentimentnrc <- cleanedarticle %>% -->
-<!--   inner_join(nrc, by = "word") -->
-<!-- # tweetsentimentnrcspanish <- textcleaned %>% -->
-<!-- #   inner_join(nrcspanish, by = c("word"="Spanish")) -->
-<!-- tweetsentimentnrc = tweetsentimentnrc %>% -->
-<!--   mutate(sent = ifelse(sentiment=="joy"|sentiment=="positive"|sentiment=="suprise"|sentiment=="trust","Positive Words", -->
-<!--                        ifelse(sentiment=="disgust"|sentiment=="fear"|sentiment=="negative"|sentiment=="sadness","Negative Words","Neutral Words"))) %>% -->
-<!--   mutate(sent = as.factor(sent)) -->
-<!--                        # ifelse(sentiment==c("disgust","fear","negative","sadness"),-1,0))) -->
-<!-- ggplot(data = tweetsentimentnrc, aes(sentiment, color = sentiment, fill = sentiment)) + -->
-<!--   geom_bar() + -->
-<!--   facet_wrap("book", scales = "free_y") + -->
-<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
-<!-- ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) + -->
-<!--   geom_bar() + -->
-<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
-<!-- sentbygenre = tweetsentimentnrc %>% -->
-<!--   mutate(sent2 = as.factor(sent)) %>% -->
-<!--   group_by(Genre) %>% -->
-<!--   count(sent2) -->
-<!-- ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) + -->
-<!--   geom_bar() + -->
-<!--   facet_wrap("Genre", scales = "free_y") -->
+<p>Lets read in the data and get a feel for what information we have available. There are ‘ton’ of colums, many of them are nothing but <code>nas</code>, so I’ll eliminate those immediatly.</p>
+<pre class="r"><code>booksread = read_csv(&quot;books.csv&quot;)
+booksread = booksread %&gt;% 
+  select_if(function(x) any(!is.na(x)))
+summary(booksread)</code></pre>
+<pre><code>##     Title             Subtitle            Author          Author (Last, First)  Publisher         Date Published     Year Published    Genre             Summary          Number of Pages 
+##  Length:41          Length:41          Length:41          Length:41            Length:41          Length:41          Min.   :1978   Length:41          Length:41          Min.   : 20.00  
+##  Class :character   Class :character   Class :character   Class :character     Class :character   Class :character   1st Qu.:1997   Class :character   Class :character   1st Qu.: 32.00  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character     Mode  :character   Mode  :character   Median :2010   Mode  :character   Mode  :character   Median : 32.00  
+##                                                                                                                      Mean   :2004                                         Mean   : 36.47  
+##                                                                                                                      3rd Qu.:2013                                         3rd Qu.: 32.00  
+##                                                                                                                      Max.   :2017                                         Max.   :198.00  
+##                                                                                                                      NA&#39;s   :1                                            NA&#39;s   :3       
+##    Language              ISBN             Favorites     Rating     Status           Date Added       Google VolumeID      Wish List Uploaded Image URL
+##  Length:41          Min.   :6.800e+08   Min.   :0   Min.   :0   Length:41          Length:41         Length:41          Min.   :0   Length:41         
+##  Class :character   1st Qu.:9.780e+12   1st Qu.:0   1st Qu.:0   Class :character   Class1:hms        Class :character   1st Qu.:0   Class :character  
+##  Mode  :character   Median :9.780e+12   Median :0   Median :0   Mode  :character   Class2:difftime   Mode  :character   Median :0   Mode  :character  
+##                     Mean   :9.304e+12   Mean   :0   Mean   :0                      Mode  :numeric                       Mean   :0                     
+##                     3rd Qu.:9.781e+12   3rd Qu.:0   3rd Qu.:0                                                           3rd Qu.:0                     
+##                     Max.   :9.782e+12   Max.   :0   Max.   :0                                                           Max.   :0                     
+## </code></pre>
+<p>Some of the features are redundant, some are full of <code>0</code>s, and some are otherwise uninteresting, so I’ll select what is of value:</p>
+<pre class="r"><code>books = booksread %&gt;%
+  select(Title, Author, Publisher, `Date Published`, `Year Published`,
+         Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) </code></pre>
+<p>Lets take a look at what Authors we typically select for our kids.</p>
+<pre class="r"><code>ggplot(data = books, aes(Author)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author. Lets collapse them all into one Author</p>
+<pre class="r"><code>books = books %&gt;%
+  mutate(Author = ifelse(grepl(&quot;Bere&quot;, Author)==TRUE, &quot;Berenstein&quot;, Author))
+
+ggplot(data = books, aes(Author)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Nice!! - But wow, we read a lot of books about the Berenstien Bears. Lets take a look at the type of material that we are putting in our kids head.</p>
+<p>But first, we read a book written by ‘God’? Lets investigate.</p>
+<pre class="r"><code>books %&gt;%
+  filter(Author==&quot;God&quot;)</code></pre>
+<pre><code>## # A tibble: 1 x 10
+##               Title Author          Publisher `Date Published` `Year Published` Genre Summary `Number of Pages` `Date Added` `Google VolumeID`
+##               &lt;chr&gt;  &lt;chr&gt;              &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;       &lt;time&gt;             &lt;chr&gt;
+## 1 The Lord&#39;s prayer    God Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;                20     05:00:00              &lt;NA&gt;</code></pre>
+<p>Okay then.</p>
+<p>The next few charts depict the year the books were first published, the number of pages, the Genre of the books.</p>
+<pre class="r"><code>ggplot(data = books, aes(`Year Published`)) +
+  geom_bar() +
+  ggtitle(&quot;Books By Year&quot;) + ylab(&quot;Total Books&quot;)</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = books, aes(`Number of Pages`)) +
+  geom_histogram() +
+  ggtitle(&quot;Books By Number of Pages&quot;) + ylab(&quot;Total Books&quot;)</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = books, aes(Genre, fill = Genre)) +
+  geom_bar() +
+  ggtitle(&quot;Books By Genre&quot;) + ylab(&quot;Total Books&quot;)  +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<p>What are these <code>NA</code>s?</p>
+<pre class="r"><code>books %&gt;%
+  filter(is.na(Genre))</code></pre>
+<pre><code>## # A tibble: 3 x 10
+##                                                           Title       Author             Publisher `Date Published` `Year Published` Genre Summary `Number of Pages` `Date Added` `Google VolumeID`
+##                                                           &lt;chr&gt;        &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;       &lt;time&gt;             &lt;chr&gt;
+## 1                                         Paw Patrol Flashlight Phoenix Intl Phoenix International        9/20/2016             2016  &lt;NA&gt;    &lt;NA&gt;                NA     09:07:00      Na_3jwEACAAJ
+## 2 The Berenstain Bears and Too Much Birthday (Berenstain Bears)   Berenstein        Tandem Library        10/1/1999             1999  &lt;NA&gt;    &lt;NA&gt;                32     09:21:00              &lt;NA&gt;
+## 3                                             The Lord&#39;s prayer          God    Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;                20     05:00:00              &lt;NA&gt;</code></pre>
 </section>
+</section>
+<section id="text-analysis" class="level2">
+<h2>Text Analysis</h2>
+<p>Now that we’ve explored the dataset, lets see what information we can glean.</p>
+<p>I’d really like to know what type of words / sentiment we are reading our children – but until I can figure out a way to get the words from all the books, I’ll have to use the <code>Summary</code> provided by BookBuddy.<br />
+Here’s an example:</p>
+<pre class="r"><code>books %&gt;%
+  filter(Title==&quot;Mama Cat Has Three Kittens&quot;) %&gt;%
+  select(Summary)</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##                                                                                                                                                                                                    Summary
+##                                                                                                                                                                                                      &lt;chr&gt;
+## 1 Some kittens march to the beat of a different drummer.Mama Cat has three kittens, Fluffy, Skinny, and Boris. Where Mama Cat leads, Fluffy and Skinny follow. But what about Boris-- will he ever stop na</code></pre>
+<p>So, lets prepare the data. I’d like to bring along some information while I tokenize the summaries (Titles, Authors, and Genres). We’d also like to translate NRCs emotions into <code>Positive</code>, <code>Negative</code>, and <code>Neutral</code> classifications.</p>
+<pre class="r"><code>text_df = data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre, Author = books$Author)
+
+textcleaned = text_df %&gt;%
+  unnest_tokens(word, text)
+
+cleanedarticle = anti_join(textcleaned,stop_words, by = &quot;word&quot;)
+
+nrc = get_sentiments(&quot;nrc&quot;)
+
+tweetsentimentnrc = cleanedarticle %&gt;%
+  inner_join(nrc, by = &quot;word&quot;)
+
+tweetsentimentnrc = tweetsentimentnrc %&gt;%
+  mutate(sent = ifelse(sentiment==&quot;joy&quot;|sentiment==&quot;positive&quot;|sentiment==&quot;suprise&quot;|sentiment==&quot;trust&quot;,&quot;Positive Words&quot;,
+                       ifelse(sentiment==&quot;disgust&quot;|sentiment==&quot;fear&quot;|sentiment==&quot;negative&quot;|sentiment==&quot;sadness&quot;,&quot;Negative Words&quot;,&quot;Neutral Words&quot;))) %&gt;%
+  mutate(sent = as.factor(sent))
+
+tweetsentimentnrc</code></pre>
+<pre><code>## # A tibble: 918 x 7
+##     line                  book            Genre      Author         word    sentiment           sent
+##    &lt;int&gt;                 &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;fctr&gt;
+##  1     1 And Then Comes Summer Juvenile Fiction Tom Brenner       joyful          joy Positive Words
+##  2     1 And Then Comes Summer Juvenile Fiction Tom Brenner       joyful     positive Positive Words
+##  3     1 And Then Comes Summer Juvenile Fiction Tom Brenner       joyful        trust Positive Words
+##  4     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun anticipation  Neutral Words
+##  5     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun          joy Positive Words
+##  6     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun     positive Positive Words
+##  7     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun     surprise  Neutral Words
+##  8     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun        trust Positive Words
+##  9     1 And Then Comes Summer Juvenile Fiction Tom Brenner      tribute     positive Positive Words
+## 10     1 And Then Comes Summer Juvenile Fiction Tom Brenner anticipation anticipation  Neutral Words
+## # ... with 908 more rows</code></pre>
+<p>Lets look at the sentiment my children are receiving in their books (as told by the summaries)</p>
+<pre class="r"><code>ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
+  geom_bar() +
+  ggtitle(&quot;Type of Words my Children Listen in Books&quot;) + xlab(&quot;Sentiment&quot;) + ylab(&quot;Total Count&quot;)</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Maybe it would be more interesting to see which Authrors are providing which sentiments.</p>
+<pre class="r"><code>ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
+  geom_bar() +
+  facet_wrap(&quot;Author&quot;, scales = &quot;free_y&quot;) +
+  ggtitle(&quot;Type of Words my Children Listen in Books&quot;) + xlab(&quot;Sentiment&quot;) + ylab(&quot;Total Count&quot;)  +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>This chart is likely to spiril out of control as the number of books increases. We’ll have to filter this by author’s who have multiple books.</p>
+<p>Lastly, lets see if there’s a genre that has any sentiment sway. Of note, I find it funny that there is a ‘Bears’ genre.</p>
+<pre class="r"><code>ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) +
+  geom_bar() +
+  facet_wrap(&quot;Genre&quot;, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</section>
+<section id="further-analysis-to-follow-as-we-read-books-throughout-the-year." class="level2">
+<h2>Further analysis to follow as we read books throughout the year.</h2>
 </section>
 </article>
     <footer class="post-footer">

@@ -27,7 +27,7 @@ options(stringsAsFactors = FALSE)
 
 ## Introduction
 
-Over this Christmas break, my wife was inpired to keep track of the books we read to our kids.  Her goal is to amass 1000 books in 2018.  
+Over this Christmas break, my wife was inpired to keep track of the books we read to our kids.  Her goal is to amass 1000 books in 2018.  She downloaded 'Bookbuddy' on her Iphone and can scan the barcodes with the camera.  Doing this, saves a lot of data about the books.  After a quick export, we have a nice csv.  
 
 Ever on the lookout for cool data science projects, this peaked my interest.  
 
@@ -46,88 +46,140 @@ library(tidyverse)
 library(tidytext)
 ```
 
-Lets read in the data and get a feel for what information we have available:
+Lets read in the data and get a feel for what information we have available.  There are 'ton' of colums, many of them are nothing but `nas`, so I'll eliminate those immediatly.  
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 booksread = read_csv("books.csv")
-head(booksread)
+booksread = booksread %>% 
+  select_if(function(x) any(!is.na(x)))
+summary(booksread)
 ```
 
+Some of the features are redundant, some are full of `0`s, and some are otherwise uninteresting, so I'll select what is of value:
 
-<!-- books = booksread %>% -->
-<!--   select(Title, Author, Illustrator, Publisher, `Date Published`, `Year Published`, -->
-<!--          Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) %>% -->
-<!--   mutate(Author = ifelse(grepl("Bere", Author)==TRUE, "Berenstein", Author)) -->
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books = booksread %>%
+  select(Title, Author, Publisher, `Date Published`, `Year Published`,
+         Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) 
+```
+
+Lets take a look at what Authors we typically select for our kids.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+ggplot(data = books, aes(Author)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author.  Lets collapse them all into one Author
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books = books %>%
+  mutate(Author = ifelse(grepl("Bere", Author)==TRUE, "Berenstein", Author))
+
+ggplot(data = books, aes(Author)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Nice!! - But wow, we read a lot of books about the Berenstien Bears.  Lets take a look at the type of material that we are putting in our kids head.  
+
+But first, we read a book written by 'God'?  Lets investigate.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books %>%
+  filter(Author=="God")
+```
+
+Okay then.
+
+The next few charts depict the year the books were first published, the number of pages, the Genre of the books.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+ggplot(data = books, aes(`Year Published`)) +
+  geom_bar() +
+  ggtitle("Books By Year") + ylab("Total Books")
+
+ggplot(data = books, aes(`Number of Pages`)) +
+  geom_histogram() +
+  ggtitle("Books By Number of Pages") + ylab("Total Books")
+
+ggplot(data = books, aes(Genre, fill = Genre)) +
+  geom_bar() +
+  ggtitle("Books By Genre") + ylab("Total Books")  +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+What are these `NA`s?
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books %>%
+  filter(is.na(Genre))
+```
+
+## Text Analysis
+
+Now that we've explored the dataset, lets see what information we can glean.  
+
+I'd really like to know what type of words / sentiment we are reading our children -- but until I can figure out a way to get the words from all the books, I'll have to use the `Summary` provided by BookBuddy.  
+Here's an example:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books %>%
+  filter(Title=="Mama Cat Has Three Kittens") %>%
+  select(Summary)
+```
+
+So, lets prepare the data.  I'd like to bring along some information while I tokenize the summaries (Titles, Authors, and Genres).  We'd also like to translate NRCs emotions into `Positive`, `Negative`, and `Neutral` classifications.  
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+text_df = data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre, Author = books$Author)
+
+textcleaned = text_df %>%
+  unnest_tokens(word, text)
+
+cleanedarticle = anti_join(textcleaned,stop_words, by = "word")
+
+nrc = get_sentiments("nrc")
+
+tweetsentimentnrc = cleanedarticle %>%
+  inner_join(nrc, by = "word")
+
+tweetsentimentnrc = tweetsentimentnrc %>%
+  mutate(sent = ifelse(sentiment=="joy"|sentiment=="positive"|sentiment=="suprise"|sentiment=="trust","Positive Words",
+                       ifelse(sentiment=="disgust"|sentiment=="fear"|sentiment=="negative"|sentiment=="sadness","Negative Words","Neutral Words"))) %>%
+  mutate(sent = as.factor(sent))
+
+tweetsentimentnrc
+```
+
+Lets look at the sentiment my children are receiving in their books (as told by the summaries)
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
+  geom_bar() +
+  ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count")
+```
+
+Maybe it would be more interesting to see which Authrors are providing which sentiments.
 
 
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
+  geom_bar() +
+  facet_wrap("Author", scales = "free_y") +
+  ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count")  +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
-<!-- ggplot(data = books, aes(`Year Published`)) + -->
-<!--   geom_bar() -->
+This chart is likely to spiril out of control as the number of books increases.  We'll have to filter this by author's who have multiple books.  
 
-<!-- ggplot(data = books, aes(`Number of Pages`)) + -->
-<!--   geom_histogram() -->
+Lastly, lets see if there's a genre that has any sentiment sway.  Of note, I find it funny that there is a 'Bears' genre.  
 
-<!-- ggplot(data = books, aes(Genre, fill = Genre)) + -->
-<!--   geom_bar() + -->
-<!--   ggtitle("Books By Genre") + ylab("Total Books") -->
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) +
+  geom_bar() +
+  facet_wrap("Genre", scales = "free_y")
+```
 
-
-<!-- ## sentiment -->
-<!-- library(tidytext) -->
-
-<!-- text_df <- data_frame(line = 1:length(books$Summary), text = as.character(books$Summary), book = books$Title, Genre = books$Genre) -->
-
-<!-- textcleaned = text_df %>% -->
-<!--   unnest_tokens(word, text) -->
-
-
-<!-- ##English Only -->
-<!-- cleanedarticle = anti_join(textcleaned,stop_words, by = "word") -->
-<!-- # dropwords = data.frame(word = as.character(c("https","trump"))) -->
-<!-- # cleanedarticle = anti_join(cleanedarticle,dropwords, by = "word") -->
-
-
-<!-- #### English -->
-<!-- nrc = get_sentiments("nrc") -->
-<!-- # nrc = nrc %>% -->
-<!-- #   filter(sentiment=="negative") %>% -->
-<!-- #   full_join(nrc%>% -->
-<!-- #               filter(sentiment=="positive")) -->
-<!-- # bing = get_sentiments("bing") -->
-<!-- # afinn = get_sentiments("afinn") -->
-<!-- # nrcspanish = read.csv("NRCSpanish.csv") -->
-
-<!-- # tweetsentimentbing <- cleanedarticle %>% -->
-<!-- #   inner_join(bing, by = "word") -->
-<!-- # tweetsentimentafinn <- cleanedarticle %>% -->
-<!-- #   inner_join(afinn, by = "word") -->
-<!-- tweetsentimentnrc <- cleanedarticle %>% -->
-<!--   inner_join(nrc, by = "word") -->
-<!-- # tweetsentimentnrcspanish <- textcleaned %>% -->
-<!-- #   inner_join(nrcspanish, by = c("word"="Spanish")) -->
-
-<!-- tweetsentimentnrc = tweetsentimentnrc %>% -->
-<!--   mutate(sent = ifelse(sentiment=="joy"|sentiment=="positive"|sentiment=="suprise"|sentiment=="trust","Positive Words", -->
-<!--                        ifelse(sentiment=="disgust"|sentiment=="fear"|sentiment=="negative"|sentiment=="sadness","Negative Words","Neutral Words"))) %>% -->
-<!--   mutate(sent = as.factor(sent)) -->
-
-
-<!--                        # ifelse(sentiment==c("disgust","fear","negative","sadness"),-1,0))) -->
-
-<!-- ggplot(data = tweetsentimentnrc, aes(sentiment, color = sentiment, fill = sentiment)) + -->
-<!--   geom_bar() + -->
-<!--   facet_wrap("book", scales = "free_y") + -->
-<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
-
-<!-- ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) + -->
-<!--   geom_bar() + -->
-<!--   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count") -->
-
-<!-- sentbygenre = tweetsentimentnrc %>% -->
-<!--   mutate(sent2 = as.factor(sent)) %>% -->
-<!--   group_by(Genre) %>% -->
-<!--   count(sent2) -->
-
-<!-- ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) + -->
-<!--   geom_bar() + -->
-<!--   facet_wrap("Genre", scales = "free_y") -->
+## Further analysis to follow as we read books throughout the year.  
