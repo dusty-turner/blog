@@ -28,11 +28,12 @@
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/analysis-of-my-children-s-reading-list/</guid>
-      <description>Over this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018.
+      <description>IntroductionOver this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018.
 Ever on the lookout for cool data science projects, this peaked my interest.
 What follows below is a growing look to provide insight to what we read our kids.
 Lets start with some…
-####Exploratory Data Analysis</description>
+##Exploratory Data Analysis
+LibrariesThe libraries I will use for this analysis are the following:</description>
     </item>
     
     <item>

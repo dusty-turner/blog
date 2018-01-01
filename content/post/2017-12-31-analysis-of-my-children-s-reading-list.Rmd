@@ -20,6 +20,12 @@ tags:
   - books
   - tidytext
 ---
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 200)
+options(stringsAsFactors = FALSE)
+```
+
+## Introduction
 
 Over this Christmas break, my wife was inpired to keep track of the books we read to our kids.  Her goal is to amass 1000 books in 2018.  
 
@@ -29,5 +35,14 @@ What follows below is a growing look to provide insight to what we read our kids
 
 Lets start with some...
 
-####Exploratory Data Analysis
+##Exploratory Data Analysis
+
+### Libraries
+
+The libraries I will use for this analysis are the following:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+library(tidyverse)
+library(tidytext)
+```
 
