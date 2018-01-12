@@ -1,40 +1,10 @@
----
-title: Mathlete Fantasy Football Analysis
-author: Dusty Turner
-date: '2017-11-19'
-slug: mathlete-fantasy-football-analysis
-categories:
-  - fantasy football
-  - r
-  - rmd
-  - beatnavy
-  - army math
-  - ESPN API
-tags:
-  - fantasy football
-  - r
-  - rmd
-  - beatnavy
-  - army math
-  - ESPN API
-output: 
-  blogdown::html_page:
-    toc: TRUE
-    toc_depth: 2
-    # dev: "svg"
-    # theme: lumen
-    highlight: tango
-    # code_folding: show  #doesn't work yet with html_page
-
-
----
-
-<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
-<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<!-- BLOGDOWN-HEAD -->
+<script src="2017-11-19-mathlete-fantasy-football-analysis_files/htmlwidgets-0.9/htmlwidgets.js"></script>
+<script src="2017-11-19-mathlete-fantasy-football-analysis_files/jquery-1.12.4/jquery.min.js"></script>
+<script src="2017-11-19-mathlete-fantasy-football-analysis_files/datatables-binding-0.2/datatables.js"></script>
+<link href="2017-11-19-mathlete-fantasy-football-analysis_files/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="2017-11-19-mathlete-fantasy-football-analysis_files/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="2017-11-19-mathlete-fantasy-football-analysis_files/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
 <style type="text/css">
 div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -88,6 +58,7 @@ code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annot
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
+<!-- /BLOGDOWN-HEAD -->
 
 <div id="TOC">
 <ul>
@@ -98,13 +69,6 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 </ul>
 </div>
 
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Florida continues to stands with Puerto Rico &amp; will do everything possible to help the Puerto Rican families recovering from Hurricane Maria in our state. <a href="https://t.co/K4EiuAuOur">https://t.co/K4EiuAuOur</a>
-</p>&mdash; Rick Scott (@FLGovScott) <a href="https://twitter.com/FLGovScott/status/951876331343630336?ref_src=twsrc%5Etfw">
-January 12, 2018</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <section id="introduction" class="level2">
 <h2>Introduction</h2>
 <p>Lets see who really has fantasy football bragging rights and who is just lucky (or unlucky).</p>
@@ -363,7 +327,7 @@ January 12, 2018</a>
 <div class="sourceLine" id="cb18-21" data-line-number="21"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb18-22" data-line-number="22"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Is Your Team As Bad (or Good) As You Think It Is?&quot;</span>) <span class="op">+</span></div>
 <div class="sourceLine" id="cb18-23" data-line-number="23"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;Through Week 10&quot;</span>) </div></code></pre>
-<p><img src="/post/2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </section>
 <section id="analysis" class="level3">
 <h3>Analysis</h3>
@@ -480,7 +444,7 @@ January 12, 2018</a>
 <div class="sourceLine" id="cb25-7" data-line-number="7"><span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Points Scored Rank&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Actual Standings&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Are You Over-Performing or Under-Performing?&quot;</span>) <span class="op">+</span></div>
 <div class="sourceLine" id="cb25-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;The Luck Index measures how much better (or worse) your team is doing than what you should expect.&quot;</span>)</div></code></pre>
-<p><img src="/post/2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>This is a way to sort the data to get another view of who is ranked up to their performance.</p>
 <pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1">fantasyfor =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;For&quot;</span>) <span class="op">%&gt;%</span></div>
@@ -507,8 +471,8 @@ January 12, 2018</a>
 <div class="sourceLine" id="cb26-23" data-line-number="23">  <span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">className =</span> <span class="st">&#39;dt-center&#39;</span>, <span class="dt">targets =</span> <span class="dv">8</span>)),</div>
 <div class="sourceLine" id="cb26-24" data-line-number="24">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
 <div class="sourceLine" id="cb26-25" data-line-number="25">))</div></code></pre>
-<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Team Grymes","Green Baye's Theorem","Epsilon Ballers","Berry Berry Good","Team HotHanksHitters","Team LaPorte","2-2-2 Mega-H-Ertz","Baby got Dak","a^2+b^2= c^hawks","Las Vegas Radians","Viking Joe Lindquist","Calgary Stampeders","'R'm Chair Quarterback","The Big Gronkowski","Team Mauled Mentos","Team Guns N' Rosas"],[84,92,95,96,99,100,102,103,105,105,106,108,109,115,116,116],[149.68,128.76,128.38,136.96,143.46,136.46,138.18,147.56,144.24,141.22,149.6,158.4,164.5,147.54,147.46,163.42],[43.14,63.98,56,64.2,63.42,61.32,73.18,60.78,78.3,66.12,63.94,68.92,83.82,68.62,78.24,72.46],["5","1","1","4","0","2","0","1","0","1","1","0","0","0","0","0"],[164.5,143.46,134.22,129.3,141.22,150.64,139.72,158.4,149.68,159.86,147.46,163.42,154.98,136.5,129.78,144.6],[68.62,61.32,61.6,77.12,63.56,56,65.86,63.42,73.18,43.14,74.28,64.2,64.32,60.78,70.16,66.12],["0","1","3","0","3","1","0","0","0","1","0","2","0","2","2","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>Scored<\/th>\n      <th>Max<\/th>\n      <th>Min<\/th>\n      <th>Plunger<\/th>\n      <th>MaxFoe<\/th>\n      <th>MinFoe<\/th>\n      <th>PlungerFoe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":8},{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b51c24db3a6858ce6dab" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b51c24db3a6858ce6dab">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Team Grymes","Green Baye's Theorem","Epsilon Ballers","Berry Berry Good","Team HotHanksHitters","Team LaPorte","2-2-2 Mega-H-Ertz","Baby got Dak","a^2+b^2= c^hawks","Las Vegas Radians","Viking Joe Lindquist","Calgary Stampeders","'R'm Chair Quarterback","The Big Gronkowski","Team Mauled Mentos","Team Guns N' Rosas"],[84,92,95,96,99,100,102,103,105,105,106,108,109,115,116,116],[149.68,128.76,128.38,136.96,143.46,136.46,138.18,147.56,144.24,141.22,149.6,158.4,164.5,147.54,147.46,163.42],[43.14,63.98,56,64.2,63.42,61.32,73.18,60.78,78.3,66.12,63.94,68.92,83.82,68.62,78.24,72.46],["5","1","1","4","0","2","0","1","0","1","1","0","0","0","0","0"],[164.5,143.46,134.22,129.3,141.22,150.64,139.72,158.4,149.68,159.86,147.46,163.42,154.98,136.5,129.78,144.6],[68.62,61.32,61.6,77.12,63.56,56,65.86,63.42,73.18,43.14,74.28,64.2,64.32,60.78,70.16,66.12],["0","1","3","0","3","1","0","0","0","1","0","2","0","2","2","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>Scored<\/th>\n      <th>Max<\/th>\n      <th>Min<\/th>\n      <th>Plunger<\/th>\n      <th>MaxFoe<\/th>\n      <th>MinFoe<\/th>\n      <th>PlungerFoe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":8},{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 <p>Lastly, lets look at who just eeks out wins and who snatches defeat from the jaws of victory.</p>
 <pre class="sourceCode r" id="cb27"><code class="sourceCode r"><div class="sourceLine" id="cb27-1" data-line-number="1">start =<span class="st"> </span>fantasystart <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">delta =</span> awayscore<span class="op">-</span>homescore) <span class="op">%&gt;%</span></div>
@@ -535,6 +499,6 @@ January 12, 2018</a>
 <div class="sourceLine" id="cb28-2" data-line-number="2">  <span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">className =</span> <span class="st">&#39;dt-center&#39;</span>, <span class="dt">targets =</span> <span class="dv">3</span>)),</div>
 <div class="sourceLine" id="cb28-3" data-line-number="3">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
 <div class="sourceLine" id="cb28-4" data-line-number="4">))</div></code></pre>
-<div id="htmlwidget-2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["'R'm Chair Quarterback","Team Grymes","2-2-2 Mega-H-Ertz","Green Baye's Theorem","Team Guns N' Rosas","a^2+b^2= c^hawks","Baby got Dak","Berry Berry Good","Calgary Stampeders","Epsilon Ballers","Las Vegas Radians","Team HotHanksHitters","Team LaPorte","Team Mauled Mentos","The Big Gronkowski","Viking Joe Lindquist"],[27.14,8.38,35.64,25.44,4.88,0.26,13.32,3.06,0.46,0.66,5.54,9.82,5.86,4.82,0.6,17.22],[-5.76,-4.4,-0.96,-4.22,-17.44,-4.58,-18,-3.7,-20.24,-6.7,-4.48,-15.88,-11.98,-22.28,-13.88,-0.16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>SmallestWin<\/th>\n      <th>SmallestLoss<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":3},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cd2416edfcd96a226968" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cd2416edfcd96a226968">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["'R'm Chair Quarterback","Team Grymes","2-2-2 Mega-H-Ertz","Green Baye's Theorem","Team Guns N' Rosas","a^2+b^2= c^hawks","Baby got Dak","Berry Berry Good","Calgary Stampeders","Epsilon Ballers","Las Vegas Radians","Team HotHanksHitters","Team LaPorte","Team Mauled Mentos","The Big Gronkowski","Viking Joe Lindquist"],[27.14,8.38,35.64,25.44,4.88,0.26,13.32,3.06,0.46,0.66,5.54,9.82,5.86,4.82,0.6,17.22],[-5.76,-4.4,-0.96,-4.22,-17.44,-4.58,-18,-3.7,-20.24,-6.7,-4.48,-15.88,-11.98,-22.28,-13.88,-0.16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>SmallestWin<\/th>\n      <th>SmallestLoss<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":3},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </section>

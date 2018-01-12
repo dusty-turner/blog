@@ -33,9 +33,6 @@ options(width = 200)
 options(stringsAsFactors = FALSE)
 ```
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Florida continues to stands with Puerto Rico &amp; will do everything possible to help the Puerto Rican families recovering from Hurricane Maria in our state. <a href="https://t.co/K4EiuAuOur">https://t.co/K4EiuAuOur</a></p>&mdash; Rick Scott (@FLGovScott) <a href="https://twitter.com/FLGovScott/status/951876331343630336?ref_src=twsrc%5Etfw">January 12, 2018</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 ## Introduction  
 

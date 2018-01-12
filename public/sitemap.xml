@@ -53,19 +53,13 @@
   </url>
   
   <url>
-    <loc>/categories/army-math/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/army-math/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/beatnavy/</loc>
+    <loc>/categories/army-math/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -77,7 +71,7 @@
   </url>
   
   <url>
-    <loc>/categories/books/</loc>
+    <loc>/categories/beatnavy/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -89,13 +83,13 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/categories/books/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/children/</loc>
+    <loc>/categories/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -107,7 +101,7 @@
   </url>
   
   <url>
-    <loc>/categories/datascience/</loc>
+    <loc>/categories/children/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -119,13 +113,19 @@
   </url>
   
   <url>
-    <loc>/categories/dplyr/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <loc>/categories/datascience/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/dplyr/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/dplyr/</loc>
     <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -137,20 +137,14 @@
   </url>
   
   <url>
-    <loc>/categories/espn-api/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/espn-api/</loc>
     <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/fantasy-football/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <loc>/categories/espn-api/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -161,8 +155,8 @@
   </url>
   
   <url>
-    <loc>/categories/ggplot2/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <loc>/categories/fantasy-football/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -173,13 +167,19 @@
   </url>
   
   <url>
-    <loc>/categories/lubridate/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <loc>/categories/ggplot2/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/lubridate/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/lubridate/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -191,19 +191,13 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/r/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/rmd/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -215,8 +209,8 @@
   </url>
   
   <url>
-    <loc>/categories/scraping/</loc>
-    <lastmod>2017-11-27T00:00:00+00:00</lastmod>
+    <loc>/categories/rmd/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,13 +221,19 @@
   </url>
   
   <url>
-    <loc>/categories/shiny/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <loc>/categories/scraping/</loc>
+    <lastmod>2017-11-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/shiny/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/shiny/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -245,25 +245,25 @@
   </url>
   
   <url>
-    <loc>/categories/tidytext/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/tidytext/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/tidyverse/</loc>
+    <loc>/categories/tidytext/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/tidyverse/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/tidyverse/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
