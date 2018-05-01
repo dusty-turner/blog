@@ -1,0 +1,682 @@
+---
+title: "Putting the 'R' in USMA"
+author: "CPT Dusty Turner"
+date: "20 April 2018"
+output:
+  ioslides_presentation:
+    smaller: yes
+  slidy_presentation: default
+  beamer_presentation: default
+css: lessons.css
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+# remove.packages("Rcurl")
+# install.packages("RCurl")
+
+# library(markdown)
+# rpub
+# rpubsUpload("R_Conference_NYC", "R Conference NYC.rmd", id = NULL, properties = list(), 
+    # method = getOption("rpubs.upload.method", "auto"))
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+library(caret)
+library(GGally)
+options(scipen=999)
+data = read_csv("ma206data.csv")
+data = data %>% 
+  select(ma206,ma100,ma103,ma104,ma153,ma205,ma255,core_avg,cqpa,ccps,timeframe) %>%
+  mutate(timeframe = as.factor(timeframe)) %>%
+  filter(ma206 >0, core_avg>0, cqpa >0, ccps>0) %>%
+  mutate(rock = !is.na(ma100), 
+         # standardnonstem = is.na(ma100) & !is.na(ma103) & !is.na(ma104) & is.na(ma205),
+         standardnonstem =  !is.na(ma103) & !is.na(ma104) & is.na(ma205),
+         standardstem = !is.na(ma103) & !is.na(ma104) & !is.na(ma205),
+         stemvalidators = !is.na(ma103) & is.na(ma104) & !is.na(ma205) & is.na(ma153),
+         rocktostemno103 = !is.na(ma100) & is.na(ma103) & !is.na(ma104) & !is.na(ma205),
+         jedinonstem = !is.na(ma153) & is.na(ma255) & is.na(ma205),
+         jedistem = !is.na(ma153) & !is.na(ma255),
+         jedidropout = !is.na(ma153) & !is.na(ma205)) %>%
+  mutate(
+    modeling = rowMeans(.[,c(4,6)], na.rm = TRUE), ##103 and 153
+    svcal = rowMeans(.[,c(5,6)], na.rm = TRUE),  ##104 and 205
+    mvcal = rowMeans(.[,c(7,8)], na.rm = TRUE)) %>%  ##153 and 255
+  select(ma206,
+         core_avg,cqpa,ccps,
+         rock, modeling, svcal, standardnonstem, standardstem, stemvalidators, rocktostemno103, jedinonstem, jedistem, jedidropout) %>%
+  mutate(helper = standardnonstem+standardstem+stemvalidators+rocktostemno103+jedinonstem+jedistem+jedidropout) %>%
+  filter(helper==1) %>%
+  select(-helper)
+
+set.seed(206)
+centerscaleknnimpute = preProcess(data, method = c("knnImpute"), k = 5)
+datatransformed = predict(centerscaleknnimpute, data)
+
+set.seed(206)
+trainIndex <- createDataPartition(datatransformed$ma206, p = .75, 
+                                  list = FALSE, 
+                                  times = 1)
+dataTrain <- datatransformed[ trainIndex,]
+dataTest  <- datatransformed[-trainIndex,]
+
+fitControl <- trainControl(## 10-fold CV
+  method = "repeatedcv",
+  number = 10,
+  repeats = 10   ## repeated ten times
+  # preProcOptions = list(k=5)
+)
+
+fitControlrf <- trainControl(## 10-fold CV
+  method = "repeatedcv",
+  number = 2,
+  repeats = 2   ## repeated ten times
+  # preProcOptions = list(k=5)
+)
+
+#############
+## Design 1 Random forest
+#############
+set.seed(206)
+randforest <- train(ma206 ~ ., data = dataTrain, 
+                     method = "rf", 
+                     trControl = fitControlrf
+)
+# 
+# summary(randforest)
+# randforest$finalModel
+# randforest$results
+# randforest$resample
+# randforest$finalModel$importance 
+
+ma206predictedgbm = predict(randforest, dataTest)
+# postResample(pred = ma206predictedgbm, obs = dataTest$ma206)
+
+#############
+## Design 2 Ridge/Lasso
+#############
+set.seed(206)
+lasso <- train(ma206 ~ ., data = dataTrain, 
+                 method = "glmnet", 
+                 trControl = fitControl
+)
+
+# lasso
+# summary(lasso)
+# lasso$bestTune
+# lasso$results
+# lasso$finalModel$beta
+# str(lasso$finalModel)
+# varImp(lasso)
+# coefplot::coefplot(lasso$finalModel)
+
+ma206predictedglm = predict(lasso, dataTest)
+postResample(pred = ma206predictedglm, obs = dataTest$ma206)
+
+
+#############
+## Design 3 Linear Model via STEPAIC from MASS
+#############
+
+set.seed(206)
+lm1 <- train(ma206 ~ ., data = dataTrain, 
+             method = "lmStepAIC",
+             trControl = fitControl
+)
+
+# summary(lm1)
+# lm1$finalModel
+# summary(lm1$finalModel)
+# varImp(lm1$finalModel)
+# coefplot::coefplot(lm1$finalModel)
+
+ma206predictedlm = predict(lm1, dataTest)
+# postResample(pred = ma206predictedlm, obs = dataTest$ma206)
+
+#############
+## Predict New Data 3
+#############
+```
+
+<!-- ## -->
+
+<!-- <center> -->
+<!-- <img src="Gelman.jpg" alt="Drawing" style="width: 350px;"/> -->
+<!-- </center> -->
+
+<!-- ## -->
+<!-- <div style="margin-left:200px; margin-top:-50px"> -->
+<!-- <center> -->
+<!-- <img src="lander.jpg" alt="Drawing" style="width: 350px;"/> -->
+<!-- </center> -->
+
+##
+
+<center>
+<img src="run.jpg" alt="Drawing" style="width: 300px;margin-top:-50px;"/>
+</center>
+
+# Acknowledgements
+
+##
+<!-- <div style="margin-left:200px; margin-top:-50px"> -->
+<center>
+<img src="lander.jpg" alt="Drawing" style="width: 350px;"/>
+</center>
+
+## Encouragment from my boss
+
+"Good luck today.  Don't embarass us."
+
+## Purpose
+
+Provide a broad overview of how the United States Military Academy at West Point uses R to improve cadet performance
+
+- What is West Point?
+
+- Who are we?
+
+- How we use R?
+
+# What is West Point?
+
+## Overview of West Point
+
+* 4 Year Academy
+
+* 3 Pillars
+  + Academic
+  + Military
+  + Physical
+
+* Graduate
+  + Bachelors Degree
+  + Second Lieutenant in US Army
+
+##
+<center>
+<img src="wptrio.png" alt="Drawing" style="height: 600px;margin-top:-50px;margin-left:-150"/>
+</center>
+
+# Who are the faculty?
+
+<!-- - 77 Faculty Members -->
+
+<!-- - 30 Civilian (PhD) -->
+
+<!-- - 47 Military (PhD / MS) -->
+
+## 
+<div style="margin-top:200px">
+<center>
+<img src="mathletes.jpg" alt="Drawing" style="width: 800px;margin-top:-175px;margin-left:-150"/>
+</center>
+
+# Who am I? 
+
+##
+
+<center>
+<img src="wpengineerosumath1.png" alt="Drawing" style="width: 800px;margin-top:-45px;margin-left:-20px;"/>
+</center>
+
+##
+
+<center>
+<img src="wpengineerosumath2.png" alt="Drawing" style="width: 800px;margin-top:-45px;margin-left:-20px;"/>
+</center>
+##
+
+<center>
+<img src="wpengineerosumath3.png" alt="Drawing" style="width: 800px;margin-top:-45px;margin-left:-20px;"/>
+</center>
+
+##
+
+<center>
+<img src="wpengineerosumath4.png" alt="Drawing" style="width: 800px;margin-top:-45px;margin-left:-20px;"/>
+</center>
+
+
+
+# Straight Talk From The Frontline
+
+## 
+
+**"Being a data scientist is when you learn more and more about more and more, until you know nothing about everything" - Will Curkierski ** 
+
+Doing Data Science </br>
+Straight Talk from the Frontline </br>
+By Cathy O'Neil, Rachel Schutt
+
+# West Point R Heros
+
+##
+
+<center>
+<img src="rheros.png" alt="Drawing" style="width: 550px;;margin-top:-50px;"/>
+</center>
+
+And many more...
+
+##
+<center>
+<img src="giraffe.jpg" alt="Drawing" style="width: 350px;margin-top:-50px; "/>
+</center>
+
+# At the risk of selling myself short...
+
+##
+
+<center>
+<img src="impostercat.jpg" alt="Drawing" style="width: 600px;"/>
+</center>
+
+<!-- https://bloggerbyresearch.wordpress.com/2015/04/13/imposter-syndrome-the-cat-amongst-the-pengiuns/ -->
+
+<!-- ## -->
+
+<!-- <center> -->
+<!-- <img src="impostercomic.jpg" alt="Drawing" style="width: 350px;"/> -->
+<!-- </center> -->
+
+##
+
+<center>
+<img src="rheros.png" alt="Drawing" style="width: 550px;;margin-top:-50px;"/>
+</center>
+
+
+# Where does Army Math Fit in the Curriculum?
+##
+<center>
+<img src="curriculum.png" alt="Drawing" style="width: 750px;"/>
+</center>
+
+# R Fits in Army Math Here
+
+##
+<center>
+<img src="curriculum2.png" alt="Drawing" style="width: 750px;"/>
+</center>
+
+
+## How We Use R
+
+- Course Organization
+
+- STEM Outreach
+
+- Teaching Tool
+
+- Army Decision Making
+
+- Improving Education / Cadet Experience
+
+# Course Organization: </br> Course Syllabus 
+
+##
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+<!-- <iframe src="http://rpubs.com/dtdusty/MA256CG1802"></iframe> -->
+<iframe src="courseguide.html"></iframe>
+
+# STEM Outreach 
+
+## 
+
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+
+```{r, echo = FALSE}
+ knitr::include_app("https://bryanadams.shinyapps.io/Mobile_STEM/")
+```
+
+
+# Teaching Tool: </br> Mean / Median / Mode
+
+## 
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+
+```{r, echo = FALSE}
+ knitr::include_app("https://dustyturner.shinyapps.io/studentpopulationmap/")
+```
+
+# Teaching Tool: </br> Fantasy Baseball
+
+## 
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+
+```{r, echo = FALSE}
+ knitr::include_app("https://dustyturner.shinyapps.io/MA388FantasyBaseball/")
+```
+
+# Teaching Tool: </br> Central Limit Theorum 
+
+## 
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+
+```{r, echo = FALSE}
+ knitr::include_app("https://dustyturner.shinyapps.io/publish/")
+```
+
+
+# West Point Decision Making: </br> Admissions
+
+## 
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+
+```{r, echo = FALSE}
+ knitr::include_app("https://dustyturner.shinyapps.io/AdmissionsShiny/")
+```
+
+# Army Decision Making: </br> Operational Support
+
+## 
+<div style="margin-left:-50px; margin-top:-150px; width:875px;">
+
+```{r, echo = FALSE}
+ knitr::include_app("https://dustyturner.shinyapps.io/PuertoRico/")
+```
+
+# Improving Education </br> Cadet Experience
+
+## Problem Statement
+ 
+Do Students Learn Statistics Better in an Academically Homogeneous Classroom?
+
+##
+
+<center>
+<img src="emojismartsilly.png" alt="Drawing" style="width: 600px;"/>
+</center>
+
+##
+
+<center>
+<img src="emojismartsmart.png" alt="Drawing" style="width: 600px;"/>
+</center>
+
+##
+
+<center>
+<img src="emojisillysilly.png" alt="Drawing" style="width: 600px;"/>
+</center>
+
+
+# Collaborators
+
+##
+
+<center>
+<img src="chrisjim.jpg" alt="Drawing" style="width: 600px;"/>
+</center>
+
+## MA206: Introduction to Probability and Statistics
+
+Overview
+
+- 500 cadets a semester
+
+- 17 cadets per classroom
+
+- 11 Instructors
+
+## Experiment Development
+
+1) Develop model to predict performance
+
+2) Designate Control / Treatment Group
+
+3) Execute the semester / experiment
+
+4) Evaluate results
+
+# Model Development
+
+## Predict Cadet Performance in MA206
+
+<center>
+<img src="variables.png" alt="Drawing" style="width: 600px;"/>
+</center>
+
+## Model Building Process
+
+<center>
+<img src="caret.png" alt="Drawing" style="width: 600px;"/>
+</center>
+
+## Model Building Process
+
+- Pre Processing
+  - Center
+  - Scale
+  - KNN for 3 Observations
+
+- Design 
+  - Repeated Cross Validation
+  - 75/25 Split
+
+
+<!-- ## -->
+<!-- Linear Regression -->
+<!-- ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, results='hide'} -->
+<!-- set.seed(206) -->
+<!-- lm1 <- train(ma206 ~ ., data = dataTrain, -->
+<!--              method = "lmStepAIC", -->
+<!--              trControl = fitControl) -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- vi=varImp(lm1$finalModel) -->
+<!-- vi %>% -->
+<!--   mutate(factors = rownames(.)) %>% -->
+<!--   mutate(RelVarImp = Overall/max(Overall))  %>% -->
+<!--   select(factors,RelVarImp) %>% -->
+<!--   mutate(RelVarImp = round(RelVarImp,3)) %>% -->
+<!--   arrange(desc(RelVarImp)) -->
+<!-- ``` -->
+
+<!-- ## -->
+<!-- Lasso -->
+<!-- ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, results='hide'} -->
+<!-- set.seed(206) -->
+<!-- glmnet1 <- train(ma206 ~ ., data = dataTrain, -->
+<!--                  method = "glmnet", -->
+<!--                  trControl = fitControl) -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- vil=varImp(lasso$finalModel) -->
+<!-- vil %>% -->
+<!--   mutate(factors = rownames(.)) %>% -->
+<!--   mutate(RelVarImp = Overall/max(Overall))  %>% -->
+<!--   select(factors,RelVarImp) %>% -->
+<!--   mutate(RelVarImp = round(RelVarImp,3)) %>% -->
+<!--   arrange(desc(RelVarImp)) -->
+<!-- ``` -->
+
+<!-- ## -->
+<!-- Random Forest -->
+<!-- ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE, results='hide'} -->
+<!-- set.seed(206) -->
+<!-- randforest <- train(ma206 ~ ., data = dataTrain, -->
+<!--                method = "rf", -->
+<!--                trControl = fitControlrf) -->
+<!-- ``` -->
+<!-- ```{r eval=FALSE} -->
+<!-- set.seed(206) -->
+<!-- randforest <- train(ma206 ~ ., data = dataTrain, -->
+<!--                      method = "rf", -->
+<!--                      trControl = fitControl) -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- vir = randforest$finalModel$importance -->
+<!-- vir %>% -->
+<!--   as.data.frame() %>% -->
+<!--   mutate(factors = rownames(.)) %>% -->
+<!--   mutate(Overall = IncNodePurity) %>% -->
+<!--   mutate(RelVarImp = Overall/max(Overall))  %>% -->
+<!--   select(factors,RelVarImp) %>% -->
+<!--   mutate(RelVarImp = round(RelVarImp,3)) %>% -->
+<!--   arrange(desc(RelVarImp)) -->
+<!-- ``` -->
+
+##
+Linear Regression
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, results='hide'}
+set.seed(206)
+lm1 <- train(ma206 ~ ., data = dataTrain, 
+             method = "lmStepAIC",
+             trControl = fitControl)
+```
+LASSO
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, results='hide'}
+set.seed(206)
+lasso <- train(ma206 ~ ., data = dataTrain,
+              method = "glmnet",
+              trControl = fitControl)
+```
+Random Forest
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE, results='hide'}
+set.seed(206)
+randforest <- train(ma206 ~ ., data = dataTrain, 
+               method = "rf", 
+               trControl = fitControlrf)
+```
+```{r eval=FALSE}
+set.seed(206)
+randforest <- train(ma206 ~ ., data = dataTrain, 
+                     method = "rf", 
+                     trControl = fitControl)
+```
+
+##
+<center>
+<img src="modelresults.png" alt="Drawing" style="width: 850px;margin-left:-35px; "/>
+</center>
+
+## Ensemble
+<!-- # ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE} -->
+<!-- # library(readr) -->
+<!-- # library(kableExtra) -->
+<!-- # results.df = read_csv("modelresults.csv") -->
+<!-- # rownames(results.df) = c("Linear Model","Lasso","Random Forest","Ensemble") -->
+<!-- # kable(results.df, format = "html") %>% -->
+<!-- #   kable_styling(bootstrap_options = "striped", full_width = F) -->
+<!-- # ``` -->
+<!-- #  -->
+
+<center>
+<img src="Ensembleresults.jpg" alt="Drawing" style="width: 500px; "/>
+</center>
+
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE} -->
+<!-- library(readr) -->
+<!-- library(kableExtra) -->
+<!-- results.df = read_csv("modelresults.csv") -->
+<!-- rownames(results.df) = c("Linear Model","Lasso","Random Forest","Ensemble") -->
+<!-- kable(results.df) %>% -->
+<!--   kable_styling(bootstrap_options = "striped", full_width = F) -->
+<!-- ``` -->
+
+# Results
+
+##
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(readr)
+ggplotting = read_csv("nottherightwaytodoit.csv")
+ggplotting %>%
+  ggplot(aes(x=x,y=y)) +
+  geom_point(aes(color=as.factor(Ability))) +
+  # theme(legend.position="none") +
+  geom_smooth(method='lm', se = FALSE) +
+  labs(title = "Predicted Vs Actual Score in AY 18-01", x = "Predicted", y = "Actual") +
+  scale_color_discrete(name="",
+                       labels=c("Randomly Assigned", "Ability Grouped")) +
+  theme(legend.position="bottom")
+```
+
+
+## Control vs Treatment
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE, results='hide'}
+randomized = c(1,2)
+ability = c(2,3)
+```
+```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
+t.test(randomized,ability, mu = 0, alternative = "two.sided")
+```
+
+<center>
+<img src="meansd.jpg" alt="Drawing" style="width: 300px; "/>
+
+95% CI of difference in means: (-.010,.019)
+
+</center>
+```{r echo = FALSE, message=FALSE, warning=FALSE, include=TRUE, paged.print=FALSE}
+library(readr)
+fulldata = read_csv("nottherightwaytodoit2.csv")
+fulldatasums = read_csv("fulldatasums.csv")
+```
+
+```{r eval=FALSE, include=FALSE}
+t.test(fulldata$CourseAverage[fulldata$Ability==0],fulldata$CourseAverage[fulldata$Ability==1])
+```
+
+
+## Results
+```{r echo=FALSE}
+fulldata %>%
+  ggplot(aes(x=IfAllWereSectioned,y = CourseAverage, color = as.factor(Ability))) +
+  geom_point(position = position_jitterdodge(), alpha = .2) +
+  geom_point(data = fulldatasums, aes(x=IfAllWereSectioned,y=sectionedmean, color = as.factor(Ability)), position = position_dodge(width = .7), size = 5, inherit.aes = FALSE) +
+  # geom_errorbar(data = fulldatasums, aes(ymin=sectionedmean-sectionedsd, ymax=sectionedmean+sectionedsd, 
+  #                 colour=Ability), width=.5, size = 1.5, position = position_dodge(width = 0.4)) +
+  geom_errorbar(data = fulldatasums, aes(x=IfAllWereSectioned,y = NULL, ymax=sectionedmean+sectionedsd, ymin=sectionedmean-sectionedsd, 
+    colour=as.factor(Ability)), width=.5, size = 1.5, position = position_dodge(width = 0.7), inherit.aes = FALSE) +
+  scale_colour_discrete(name  ="Ability",
+                        breaks=c(0, 1),
+                        labels=c("Randomly Assigned", "Ability Grouped")) +
+  scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9),labels = c("Highest", "2","3","4","5","6","7","8","Lowest")) +
+  labs(title = "MA206: Probability and Statistics Performance By Ability Level", x = "Ability", y = "Performance") +
+  theme(legend.position="bottom")
+```
+
+
+## Pairwise Comparisons 
+```{r echo=FALSE}
+nextdf = data.frame(AbilityLevel = c("Ability Level 1","Ability Level 2","Ability Level 3","Ability Level 4","Ability Level 5","Ability Level 6","Ability Level 7","Ability Level 8","Ability Level 9"),
+                    Random = c(.903,.878,.869,.847,.836,.789,.762,.735,.767),
+                    NonRandom = c(.901,.872,.881,.842,.844,.771,.753,.706,.688),
+                    Significant = c("No","No","No","No","No","No","No","Yes","No"))
+```
+
+<center>
+<img src="randomvsnonrandom.jpg" alt="Drawing" style="width: 490px;margin-top:-25px; "/>
+</center>
+
+## How does Ability Group Relate to Future Grades?
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE, results='hide'}
+data = data.frame(predictedgrade=1,abilityindicator=1,FinalGrade=2)
+```
+```{r echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
+mod = lm(FinalGrade~predictedgrade+abilityindicator, data = data)
+summary(mod)
+```
+
+<center>
+<img src="predictivemodel.jpg" alt="Drawing" style="width: 500px; "/>
+</center>
+
+# Enough P Hacking
+
+##
+<center>
+<img src="goarmybeatnavy.jpg" alt="Drawing" style="width: 500px; "/>
+</center>
+

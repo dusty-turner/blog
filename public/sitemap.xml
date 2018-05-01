@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>/post/2018-ny-r-conference/</loc>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017-ncaa-college-bowl-pick-em/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
@@ -53,26 +58,30 @@
   </url>
   
   <url>
+    <loc>/post/conf/</loc>
+  </url>
+  
+  <url>
     <loc>/tags/army-math/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/army-math/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/beatnavy/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/beatnavy/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -90,7 +99,7 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -185,8 +194,20 @@
   </url>
   
   <url>
+    <loc>/tags/model-building/</loc>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/model-building/</loc>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -228,19 +249,19 @@
   
   <url>
     <loc>/tags/shiny/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/shiny/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

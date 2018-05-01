@@ -1,10 +1,43 @@
-<!-- BLOGDOWN-HEAD -->
-<script src="2017-11-19-mathlete-fantasy-football-analysis_files/htmlwidgets-0.9/htmlwidgets.js"></script>
-<script src="2017-11-19-mathlete-fantasy-football-analysis_files/jquery-1.12.4/jquery.min.js"></script>
-<script src="2017-11-19-mathlete-fantasy-football-analysis_files/datatables-binding-0.2/datatables.js"></script>
-<link href="2017-11-19-mathlete-fantasy-football-analysis_files/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="2017-11-19-mathlete-fantasy-football-analysis_files/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="2017-11-19-mathlete-fantasy-football-analysis_files/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+---
+title: Mathlete Fantasy Football Analysis
+author: Dusty Turner
+date: '2017-11-19'
+slug: mathlete-fantasy-football-analysis
+categories:
+  - fantasy football
+  - r
+  - rmd
+  - beatnavy
+  - army math
+  - ESPN API
+tags:
+  - fantasy football
+  - r
+  - rmd
+  - beatnavy
+  - army math
+  - ESPN API
+output: 
+  blogdown::html_page:
+    toc: TRUE
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+
+
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
 <style type="text/css">
 div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -58,7 +91,6 @@ code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annot
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
-<!-- /BLOGDOWN-HEAD -->
 
 <div id="TOC">
 <ul>
@@ -69,11 +101,11 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 </ul>
 </div>
 
-<section id="introduction" class="level2">
+<div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Lets see who really has fantasy football bragging rights and who is just lucky (or unlucky).</p>
 <p>During this analysis I will display most of my code. While this doesn’t provided the most pleasent visual experience, it will hopefully help the reader learn from my examples. (And potentially provide feedback on how to improve my methods.)</p>
-<section id="libraries" class="level3">
+<div id="libraries" class="section level3">
 <h3>Libraries</h3>
 <p>The libraries I will use for this analysis are the following:</p>
 <pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</div>
@@ -82,16 +114,16 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(jsonlite)</div>
 <div class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(knitr)</div>
 <div class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(DT)</div></code></pre>
-</section>
-</section>
-<section id="data-manipulation" class="level2">
+</div>
+</div>
+<div id="data-manipulation" class="section level2">
 <h2>Data Manipulation</h2>
 <p>It took me a while, but I finally figured out how to access the ESPN Fantasy Football API.</p>
 <pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">url =<span class="st"> &quot;http://games.espn.com/ffl/api/v2/leagueSettings?leagueId=1314476&amp;seasonId=2017&quot;</span></div>
 <div class="sourceLine" id="cb2-2" data-line-number="2">raw.result &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="dt">url =</span> url)</div>
 <div class="sourceLine" id="cb2-3" data-line-number="3">this.raw.content &lt;-<span class="st"> </span><span class="kw">rawToChar</span>(raw.result<span class="op">$</span>content)</div>
 <div class="sourceLine" id="cb2-4" data-line-number="4">this.content &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(this.raw.content)</div></code></pre>
-<section id="clean-and-parse" class="level3">
+<div id="clean-and-parse" class="section level3">
 <h3>Clean and Parse</h3>
 <p>The API attains the data in JSON format which can be difficult to work with. While I am proud about some of my parsing, it does leave much that can be improved. The experienced with R/JSON may look down on my methods… but they work.</p>
 <p>I’ll start by creating a function:</p>
@@ -136,21 +168,21 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <p>Lets look at the data. It contains every game and result thoughtout the season. This includes games that have not been played yet so we’ll have to account for that later.</p>
 <pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">as.tibble</span>(fantasystart)</div></code></pre>
 <pre><code>## # A tibble: 256 x 5
-##                      Away                   Home awayscore homescore  week
-##                     &lt;chr&gt;                  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
-##  1 &#39;R&#39;m Chair Quarterback        Epsilon Ballers    124.68     64.32     1
-##  2        5 Guns N&#39; Rosas &#39;R&#39;m Chair Quarterback    150.78    109.08     2
-##  3      2-2-2 Mega-H-Ertz &#39;R&#39;m Chair Quarterback    138.18     99.52     3
-##  4 &#39;R&#39;m Chair Quarterback      Las Vegas Radians     85.58    104.96     4
-##  5       3 Baye&#39;s Theorem &#39;R&#39;m Chair Quarterback     83.46    121.22     5
-##  6 &#39;R&#39;m Chair Quarterback           Baby got Dak    100.58     73.44     6
-##  7 &#39;R&#39;m Chair Quarterback       a^2+b^2= c^hawks    130.06     78.30     7
-##  8 &#39;R&#39;m Chair Quarterback           Team LaPorte     83.82     89.58     8
-##  9       Berry Berry Good &#39;R&#39;m Chair Quarterback     98.00     93.44     9
-## 10 &#39;R&#39;m Chair Quarterback     The Big Gronkowski     97.24    123.72    10
+##    Away                   Home                   awayscore homescore  week
+##    &lt;chr&gt;                  &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 &#39;R&#39;m Chair Quarterback Epsilon Ballers            125.       64.3     1
+##  2 5 Guns N&#39; Rosas        &#39;R&#39;m Chair Quarterback     151.      109.      2
+##  3 2-2-2 Mega-H-Ertz      &#39;R&#39;m Chair Quarterback     138.       99.5     3
+##  4 &#39;R&#39;m Chair Quarterback Las Vegas Radians           85.6     105.      4
+##  5 3 Baye&#39;s Theorem       &#39;R&#39;m Chair Quarterback      83.5     121.      5
+##  6 &#39;R&#39;m Chair Quarterback Baby got Dak               101.       73.4     6
+##  7 &#39;R&#39;m Chair Quarterback a^2+b^2= c^hawks           130.       78.3     7
+##  8 &#39;R&#39;m Chair Quarterback Team LaPorte                83.8      89.6     8
+##  9 Berry Berry Good       &#39;R&#39;m Chair Quarterback      98.0      93.4     9
+## 10 &#39;R&#39;m Chair Quarterback The Big Gronkowski          97.2     124.     10
 ## # ... with 246 more rows</code></pre>
-</section>
-<section id="transform" class="level3">
+</div>
+<div id="transform" class="section level3">
 <h3>Transform</h3>
 <p>So far so good. Now lets transform the data in 4 columns: Team Name, Score, Who Scored The Points, and the Week of the Matchup.</p>
 <pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1">fantasy =<span class="st"> </span></div>
@@ -213,21 +245,21 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb10-10" data-line-number="10"></div>
 <div class="sourceLine" id="cb10-11" data-line-number="11"><span class="kw">as.tibble</span>(fantasy)</div></code></pre>
 <pre><code>## # A tibble: 1,024 x 5
-##                      Team  Score   Who  week Plunger
-##                     &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;   &lt;dbl&gt;
-##  1 &#39;R&#39;m Chair Quarterback 124.68   For     1       0
-##  2        5 Guns N&#39; Rosas 150.78   For     2       0
-##  3      2-2-2 Mega-H-Ertz 138.18   For     3       0
-##  4 &#39;R&#39;m Chair Quarterback  85.58   For     4       0
-##  5       3 Baye&#39;s Theorem  83.46   For     5       0
-##  6 &#39;R&#39;m Chair Quarterback 100.58   For     6       0
-##  7 &#39;R&#39;m Chair Quarterback 130.06   For     7       0
-##  8 &#39;R&#39;m Chair Quarterback  83.82   For     8       0
-##  9       Berry Berry Good  98.00   For     9       0
-## 10 &#39;R&#39;m Chair Quarterback  97.24   For    10       0
+##    Team                   Score Who    week Plunger
+##    &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1 &#39;R&#39;m Chair Quarterback 125.  For       1      0.
+##  2 5 Guns N&#39; Rosas        151.  For       2      0.
+##  3 2-2-2 Mega-H-Ertz      138.  For       3      0.
+##  4 &#39;R&#39;m Chair Quarterback  85.6 For       4      0.
+##  5 3 Baye&#39;s Theorem        83.5 For       5      0.
+##  6 &#39;R&#39;m Chair Quarterback 101.  For       6      0.
+##  7 &#39;R&#39;m Chair Quarterback 130.  For       7      0.
+##  8 &#39;R&#39;m Chair Quarterback  83.8 For       8      0.
+##  9 Berry Berry Good        98.0 For       9      0.
+## 10 &#39;R&#39;m Chair Quarterback  97.2 For      10      0.
 ## # ... with 1,014 more rows</code></pre>
-</section>
-<section id="mutate" class="level3">
+</div>
+<div id="mutate" class="section level3">
 <h3>Mutate</h3>
 <p>Now lets mutate the data to get relevant descriptive statistics.</p>
 <pre class="sourceCode r" id="cb12"><code class="sourceCode r"><div class="sourceLine" id="cb12-1" data-line-number="1">fantasy =</div>
@@ -249,27 +281,27 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb12-17" data-line-number="17"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Who), AverageScore) </div></code></pre>
 <p>Lets look at the data again.</p>
 <pre><code>## # A tibble: 5 x 8
-##                     Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck
-##                    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt;
-## 1     Team Guns N&#39; Rosas   For     116.1875 27.29093 163.42 72.46       0            
-## 2     Team Mauled Mentos   For     116.0525 18.66805 147.46 78.24       0            
-## 3     The Big Gronkowski   For     114.5787 20.02738 147.54 68.62       0            
-## 4 &#39;R&#39;m Chair Quarterback   For     108.6825 22.78073 164.50 83.82       0            
-## 5     Calgary Stampeders   For     108.0075 27.41470 158.40 68.92       0</code></pre>
+##   Team                   Who   AverageScore STDEV   max   min Plunger PlungerLuck
+##   &lt;chr&gt;                  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+## 1 Team Guns N&#39; Rosas     For           116.  27.3  163.  72.5 0       &quot;&quot;         
+## 2 Team Mauled Mentos     For           116.  18.7  147.  78.2 0       &quot;&quot;         
+## 3 The Big Gronkowski     For           115.  20.0  148.  68.6 0       &quot;&quot;         
+## 4 &#39;R&#39;m Chair Quarterback For           109.  22.8  164.  83.8 0       &quot;&quot;         
+## 5 Calgary Stampeders     For           108.  27.4  158.  68.9 0       &quot;&quot;</code></pre>
 <pre><code>## # A tibble: 5 x 8
-##                     Team     Who AverageScore    STDEV    max   min Plunger PlungerLuck
-##                    &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt;
-## 1     Team Guns N&#39; Rosas Against     113.1988 20.93635 144.60 66.12                   1
-## 2       a^2+b^2= c^hawks Against     108.5662 21.87696 149.68 73.18                   0
-## 3            Team Grymes Against     107.9250 27.68882 164.50 68.62                   0
-## 4 &#39;R&#39;m Chair Quarterback Against     106.9338 30.10034 154.98 64.32                   0
-## 5   Green Baye&#39;s Theorem Against     104.1963 20.37422 143.46 61.32                   1</code></pre>
-</section>
-<section id="plotting-preparation" class="level3">
+##   Team                   Who     AverageScore STDEV   max   min Plunger PlungerLuck
+##   &lt;chr&gt;                  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+## 1 Team Guns N&#39; Rosas     Against         113.  20.9  145.  66.1 &quot;&quot;      1          
+## 2 a^2+b^2= c^hawks       Against         109.  21.9  150.  73.2 &quot;&quot;      0          
+## 3 Team Grymes            Against         108.  27.7  164.  68.6 &quot;&quot;      0          
+## 4 &#39;R&#39;m Chair Quarterback Against         107.  30.1  155.  64.3 &quot;&quot;      0          
+## 5 Green Baye&#39;s Theorem   Against         104.  20.4  143.  61.3 &quot;&quot;      1</code></pre>
+</div>
+<div id="plotting-preparation" class="section level3">
 <h3>Plotting Preparation</h3>
 <p>Getting even better. Now we have the descriptive statistics, we need to add a couple of columns to help with plotting the data.</p>
 <p>To do this, I will:</p>
-<ol type="1">
+<ol style="list-style-type: decimal">
 <li>Add a dummy variable <code>dummy</code> to help my plotting aesthetics.</li>
 <li>Add a dummy variable <code>ord</code> to help set the order of my facets.</li>
 <li>Set the order of my Teams so <code>ggplot</code> will facet them in the right order.</li>
@@ -282,26 +314,26 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb15-6" data-line-number="6">fantasy<span class="op">$</span>Team =<span class="st"> </span><span class="kw">factor</span>(fantasy<span class="op">$</span>Team, <span class="dt">levels=</span><span class="kw">unique</span>(fantasy<span class="op">$</span>Team[<span class="kw">order</span>(fantasy<span class="op">$</span>ord)]), <span class="dt">ordered=</span><span class="ot">TRUE</span>)</div></code></pre>
 <p>One last look at the data:</p>
 <pre><code>## # A tibble: 5 x 10
-##                     Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
-##                    &lt;ord&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     Team Guns N&#39; Rosas   For     116.1875 27.29093 163.42 72.46       0                 0    16
-## 2     Team Mauled Mentos   For     116.0525 18.66805 147.46 78.24       0                 0    15
-## 3     The Big Gronkowski   For     114.5787 20.02738 147.54 68.62       0                 0    14
-## 4 &#39;R&#39;m Chair Quarterback   For     108.6825 22.78073 164.50 83.82       0                 0    13
-## 5     Calgary Stampeders   For     108.0075 27.41470 158.40 68.92       0                 0    12</code></pre>
+##   Team                   Who   AverageScore STDEV   max   min Plunger PlungerLuck dummy   ord
+##   &lt;ord&gt;                  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+## 1 Team Guns N&#39; Rosas     For           116.  27.3  163.  72.5 0       &quot;&quot;             0.    16
+## 2 Team Mauled Mentos     For           116.  18.7  147.  78.2 0       &quot;&quot;             0.    15
+## 3 The Big Gronkowski     For           115.  20.0  148.  68.6 0       &quot;&quot;             0.    14
+## 4 &#39;R&#39;m Chair Quarterback For           109.  22.8  164.  83.8 0       &quot;&quot;             0.    13
+## 5 Calgary Stampeders     For           108.  27.4  158.  68.9 0       &quot;&quot;             0.    12</code></pre>
 <pre><code>## # A tibble: 5 x 10
-##                     Team     Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
-##                    &lt;ord&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
-## 1     Team Guns N&#39; Rosas Against     113.1988 20.93635 144.60 66.12                   1     0    32
-## 2       a^2+b^2= c^hawks Against     108.5662 21.87696 149.68 73.18                   0     0    31
-## 3            Team Grymes Against     107.9250 27.68882 164.50 68.62                   0     0    30
-## 4 &#39;R&#39;m Chair Quarterback Against     106.9338 30.10034 154.98 64.32                   0     0    29
-## 5   Green Baye&#39;s Theorem Against     104.1963 20.37422 143.46 61.32                   1     0    28</code></pre>
-</section>
-</section>
-<section id="results" class="level2">
+##   Team                   Who     AverageScore STDEV   max   min Plunger PlungerLuck dummy   ord
+##   &lt;ord&gt;                  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+## 1 Team Guns N&#39; Rosas     Against         113.  20.9  145.  66.1 &quot;&quot;      1              0.    32
+## 2 a^2+b^2= c^hawks       Against         109.  21.9  150.  73.2 &quot;&quot;      0              0.    31
+## 3 Team Grymes            Against         108.  27.7  164.  68.6 &quot;&quot;      0              0.    30
+## 4 &#39;R&#39;m Chair Quarterback Against         107.  30.1  155.  64.3 &quot;&quot;      0              0.    29
+## 5 Green Baye&#39;s Theorem   Against         104.  20.4  143.  61.3 &quot;&quot;      1              0.    28</code></pre>
+</div>
+</div>
+<div id="results" class="section level2">
 <h2>Results</h2>
-<section id="plot" class="level3">
+<div id="plot" class="section level3">
 <h3>Plot</h3>
 <p>Nice, now lets plot the data. It will be valuable to see how each team scores (dark values) verses how much they get scored against (light values). We’ll plot the max and min scores as well as a confidence interval at the true mean of their score.</p>
 <pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1">a=.<span class="dv">5</span></div>
@@ -327,12 +359,13 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb18-21" data-line-number="21"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb18-22" data-line-number="22"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Is Your Team As Bad (or Good) As You Think It Is?&quot;</span>) <span class="op">+</span></div>
 <div class="sourceLine" id="cb18-23" data-line-number="23"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;Through Week 10&quot;</span>) </div></code></pre>
-<p><img src="2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-</section>
-<section id="analysis" class="level3">
+<pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
+<p><img src="/post/2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="analysis" class="section level3">
 <h3>Analysis</h3>
 <p>If you’ll take a look at the chart, you can interpret the chart in the following way:</p>
-<ol type="1">
+<ol style="list-style-type: decimal">
 <li>Teams are sorted by average points scored per game.</li>
 <li>The unshaded colors note points your team has scored.</li>
 <li>The shaded colors note points that have been scored against you.</li>
@@ -342,163 +375,163 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <li>The red dots are the min points you scored in a week (or was scored against you if shaded).</li>
 </ol>
 <p>Key takeaways:</p>
-<ol type="1">
+<ol style="list-style-type: decimal">
 <li>Even the “best” teams do not score significantly more than the “worst” teams.</li>
 <li>Potentially, the good teams don’t necessarily score more, they just have less points scored against them.</li>
 <li>Teams with inconsistent scoring: Baby Got Dak, Guns N’ Rosas</li>
 <li>Teams with consistent scoring: Team Mauled Mentos, ‘R’m Chair Quarterback, a^2 + b^2 = c^Hawks</li>
 <li>Teams who are ranked higher have generally played teams who have won the plunger.</li>
 </ol>
-</section>
-</section>
-<section id="measures-of-luck" class="level2">
+</div>
+</div>
+<div id="measures-of-luck" class="section level2">
 <h2>Measures of Luck</h2>
 <p>Lets extract some more data from our JSON output to help us measure the ‘luck’ teams are experiencing. In the painful code below, we extract team names and their current playoff seeding.</p>
-<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1">standing =<span class="st"> </span><span class="kw">data.frame</span>(</div>
-<div class="sourceLine" id="cb19-2" data-line-number="2">  <span class="dt">Team =</span> <span class="kw">c</span>(<span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-3" data-line-number="3">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-4" data-line-number="4">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-5" data-line-number="5">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-6" data-line-number="6">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">5</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">5</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-7" data-line-number="7">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">6</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">6</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-8" data-line-number="8">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">7</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">7</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-9" data-line-number="9">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">8</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">8</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-10" data-line-number="10">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-11" data-line-number="11">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">10</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">10</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-12" data-line-number="12">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">11</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">11</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-13" data-line-number="13">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">12</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">12</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-14" data-line-number="14">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">13</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">13</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-15" data-line-number="15">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">14</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">14</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-16" data-line-number="16">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
-<div class="sourceLine" id="cb19-17" data-line-number="17">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">16</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">16</span><span class="st">`</span><span class="op">$</span>teamNickname)),</div>
-<div class="sourceLine" id="cb19-18" data-line-number="18">  </div>
-<div class="sourceLine" id="cb19-19" data-line-number="19">  <span class="dt">rank =</span> <span class="kw">c</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-20" data-line-number="20">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-21" data-line-number="21">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-22" data-line-number="22">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-23" data-line-number="23">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">5</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-24" data-line-number="24">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">6</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-25" data-line-number="25">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">7</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-26" data-line-number="26">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">8</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-27" data-line-number="27">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-28" data-line-number="28">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">10</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-29" data-line-number="29">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">11</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-30" data-line-number="30">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">12</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-31" data-line-number="31">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">13</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-32" data-line-number="32">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">14</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-33" data-line-number="33">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
-<div class="sourceLine" id="cb19-34" data-line-number="34">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">16</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding)</div>
-<div class="sourceLine" id="cb19-35" data-line-number="35">  )</div></code></pre>
+<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1">standing =<span class="st"> </span><span class="kw">data.frame</span>(</div>
+<div class="sourceLine" id="cb20-2" data-line-number="2">  <span class="dt">Team =</span> <span class="kw">c</span>(<span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-3" data-line-number="3">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-4" data-line-number="4">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-5" data-line-number="5">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-6" data-line-number="6">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">5</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">5</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-7" data-line-number="7">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">6</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">6</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-8" data-line-number="8">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">7</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">7</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-9" data-line-number="9">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">8</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">8</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-10" data-line-number="10">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-11" data-line-number="11">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">10</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">10</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-12" data-line-number="12">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">11</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">11</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-13" data-line-number="13">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">12</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">12</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-14" data-line-number="14">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">13</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">13</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-15" data-line-number="15">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">14</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">14</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-16" data-line-number="16">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">$</span>teamNickname),</div>
+<div class="sourceLine" id="cb20-17" data-line-number="17">           <span class="kw">paste</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">16</span><span class="st">`</span><span class="op">$</span>teamLocation, this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">16</span><span class="st">`</span><span class="op">$</span>teamNickname)),</div>
+<div class="sourceLine" id="cb20-18" data-line-number="18">  </div>
+<div class="sourceLine" id="cb20-19" data-line-number="19">  <span class="dt">rank =</span> <span class="kw">c</span>(this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-20" data-line-number="20">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-21" data-line-number="21">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-22" data-line-number="22">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-23" data-line-number="23">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">5</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-24" data-line-number="24">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">6</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-25" data-line-number="25">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">7</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-26" data-line-number="26">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">8</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-27" data-line-number="27">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">9</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-28" data-line-number="28">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">10</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-29" data-line-number="29">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">11</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-30" data-line-number="30">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">12</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-31" data-line-number="31">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">13</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-32" data-line-number="32">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">14</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-33" data-line-number="33">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding,</div>
+<div class="sourceLine" id="cb20-34" data-line-number="34">           this.content<span class="op">$</span>leaguesettings<span class="op">$</span>teams<span class="op">$</span><span class="st">`</span><span class="dt">16</span><span class="st">`</span><span class="op">$</span>record<span class="op">$</span>overallStanding)</div>
+<div class="sourceLine" id="cb20-35" data-line-number="35">  )</div></code></pre>
 <p>And to look at it:</p>
-<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">as.tibble</span>(standing)</div></code></pre>
+<pre class="sourceCode r" id="cb21"><code class="sourceCode r"><div class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">as.tibble</span>(standing)</div></code></pre>
 <pre><code>## # A tibble: 16 x 2
-##                      Team  rank
-##                     &lt;chr&gt; &lt;int&gt;
+##    Team                    rank
+##    &lt;chr&gt;                  &lt;int&gt;
 ##  1 &#39;R&#39;m Chair Quarterback    10
-##  2      Las Vegas Radians     8
-##  3   Green Baye&#39;s Theorem    11
-##  4        Epsilon Ballers    15
-##  5     Team Guns N&#39; Rosas     6
-##  6      2-2-2 Mega-H-Ertz    13
-##  7       a^2+b^2= c^hawks    14
-##  8           Baby got Dak     2
-##  9   Team HotHanksHitters     9
-## 10           Team LaPorte     4
-## 11   Viking Joe Lindquist     7
-## 12     The Big Gronkowski     5
-## 13       Berry Berry Good    16
-## 14     Calgary Stampeders     1
-## 15     Team Mauled Mentos     3
-## 16            Team Grymes    12</code></pre>
+##  2 Las Vegas Radians          8
+##  3 Green Baye&#39;s Theorem      11
+##  4 Epsilon Ballers           15
+##  5 Team Guns N&#39; Rosas         6
+##  6 2-2-2 Mega-H-Ertz         13
+##  7 a^2+b^2= c^hawks          14
+##  8 Baby got Dak               2
+##  9 Team HotHanksHitters       9
+## 10 Team LaPorte               4
+## 11 Viking Joe Lindquist       7
+## 12 The Big Gronkowski         5
+## 13 Berry Berry Good          16
+## 14 Calgary Stampeders         1
+## 15 Team Mauled Mentos         3
+## 16 Team Grymes               12</code></pre>
 <p>Lets join the data with our previous dataset.</p>
-<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1">fantasy2 =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;For&quot;</span>) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(standing, <span class="dt">by =</span> <span class="st">&quot;Team&quot;</span>)</div>
-<div class="sourceLine" id="cb22-4" data-line-number="4"><span class="kw">as.tibble</span>(fantasy)</div></code></pre>
+<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1">fantasy2 =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;For&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(standing, <span class="dt">by =</span> <span class="st">&quot;Team&quot;</span>)</div>
+<div class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">as.tibble</span>(fantasy)</div></code></pre>
 <pre><code>## # A tibble: 32 x 10
-##                    Team   Who AverageScore    STDEV    max   min Plunger PlungerLuck dummy   ord
-##                   &lt;ord&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
-##  1          Team Grymes   For     84.37750 27.68402 149.68 43.14       5                 0     1
-##  2 Green Baye&#39;s Theorem   For     91.80625 21.39543 128.76 63.98       1                 0     2
-##  3      Epsilon Ballers   For     95.27625 20.13308 128.38 56.00       1                 0     3
-##  4     Berry Berry Good   For     95.87500 22.66622 136.96 64.20       4                 0     4
-##  5 Team HotHanksHitters   For     99.00625 20.52529 143.46 63.42       0                 0     5
-##  6         Team LaPorte   For    100.18625 22.69090 136.46 61.32       2                 0     6
-##  7    2-2-2 Mega-H-Ertz   For    102.10375 17.63476 138.18 73.18       0                 0     7
-##  8         Baby got Dak   For    102.81250 25.14017 147.56 60.78       1                 0     8
-##  9     a^2+b^2= c^hawks   For    104.56500 15.85082 144.24 78.30       0                 0     9
-## 10    Las Vegas Radians   For    105.35500 20.17403 141.22 66.12       1                 0    10
+##    Team                 Who   AverageScore STDEV   max   min Plunger PlungerLuck dummy   ord
+##    &lt;ord&gt;                &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+##  1 Team Grymes          For           84.4  27.7  150.  43.1 5       &quot;&quot;             0.     1
+##  2 Green Baye&#39;s Theorem For           91.8  21.4  129.  64.0 1       &quot;&quot;             0.     2
+##  3 Epsilon Ballers      For           95.3  20.1  128.  56.0 1       &quot;&quot;             0.     3
+##  4 Berry Berry Good     For           95.9  22.7  137.  64.2 4       &quot;&quot;             0.     4
+##  5 Team HotHanksHitters For           99.0  20.5  143.  63.4 0       &quot;&quot;             0.     5
+##  6 Team LaPorte         For          100.   22.7  136.  61.3 2       &quot;&quot;             0.     6
+##  7 2-2-2 Mega-H-Ertz    For          102.   17.6  138.  73.2 0       &quot;&quot;             0.     7
+##  8 Baby got Dak         For          103.   25.1  148.  60.8 1       &quot;&quot;             0.     8
+##  9 a^2+b^2= c^hawks     For          105.   15.9  144.  78.3 0       &quot;&quot;             0.     9
+## 10 Las Vegas Radians    For          105.   20.2  141.  66.1 1       &quot;&quot;             0.    10
 ## # ... with 22 more rows</code></pre>
 <p>Almost complete: Next lets add a column to keep track of each team’s ‘actual rank’ (according to points scored) as well as a measure of luck. This measure, though a simple calculation, is the the euclidian distance from how much (or how much less) a team is performing verses what they should expect given their current performance.</p>
-<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1">fantasy2 =</div>
-<div class="sourceLine" id="cb24-2" data-line-number="2">fantasy2 <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">actualrank =</span> <span class="kw">c</span>(<span class="dv">16</span><span class="op">:</span><span class="dv">1</span>)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb24-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Luck =</span> actualrank<span class="op">-</span>rank)</div></code></pre>
+<pre class="sourceCode r" id="cb25"><code class="sourceCode r"><div class="sourceLine" id="cb25-1" data-line-number="1">fantasy2 =</div>
+<div class="sourceLine" id="cb25-2" data-line-number="2">fantasy2 <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">actualrank =</span> <span class="kw">c</span>(<span class="dv">16</span><span class="op">:</span><span class="dv">1</span>)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Luck =</span> actualrank<span class="op">-</span>rank)</div></code></pre>
 <p>Finally! Lets plot the data and see how everyone is doing.</p>
-<pre class="sourceCode r" id="cb25"><code class="sourceCode r"><div class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> fantasy2, <span class="kw">aes</span>(<span class="dt">x =</span> actualrank, <span class="dt">y =</span> rank)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste</span>(Team,<span class="st">&quot;:&quot;</span> ,Luck), <span class="dt">color =</span> Luck), <span class="dt">vjust =</span><span class="fl">1.5</span>, <span class="dt">size=</span><span class="dv">3</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">8</span>, <span class="dt">y =</span> <span class="dv">8</span>, <span class="dt">label =</span> <span class="st">&quot;Line of Luck&quot;</span>), <span class="dt">angle =</span> <span class="dv">35</span>, <span class="dt">nudge_y =</span> <span class="fl">.6</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">intercept =</span> <span class="dv">0</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-7" data-line-number="7"><span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Points Scored Rank&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Actual Standings&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Are You Over-Performing or Under-Performing?&quot;</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb25-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;The Luck Index measures how much better (or worse) your team is doing than what you should expect.&quot;</span>)</div></code></pre>
-<p><img src="2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> fantasy2, <span class="kw">aes</span>(<span class="dt">x =</span> actualrank, <span class="dt">y =</span> rank)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste</span>(Team,<span class="st">&quot;:&quot;</span> ,Luck), <span class="dt">color =</span> Luck), <span class="dt">vjust =</span><span class="fl">1.5</span>, <span class="dt">size=</span><span class="dv">3</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">8</span>, <span class="dt">y =</span> <span class="dv">8</span>, <span class="dt">label =</span> <span class="st">&quot;Line of Luck&quot;</span>), <span class="dt">angle =</span> <span class="dv">35</span>, <span class="dt">nudge_y =</span> <span class="fl">.6</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>, <span class="dt">intercept =</span> <span class="dv">0</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-7" data-line-number="7"><span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">17</span>)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-8" data-line-number="8"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Points Scored Rank&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Actual Standings&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Are You Over-Performing or Under-Performing?&quot;</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb26-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;The Luck Index measures how much better (or worse) your team is doing than what you should expect.&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-11-19-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>This is a way to sort the data to get another view of who is ranked up to their performance.</p>
-<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1">fantasyfor =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;For&quot;</span>) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MaxPointsScored =</span> max, <span class="dt">MinPointsScored =</span> min, <span class="dt">PlungersPlayedAgainst =</span> PlungerLuck) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(Team, AverageScore, MaxPointsScored, MinPointsScored, Plunger)</div>
-<div class="sourceLine" id="cb26-5" data-line-number="5">fantasyagainst =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;Against&quot;</span>)<span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MaxPointsAgainst =</span> max, <span class="dt">MinPointsAgainst =</span> min, <span class="dt">PlungersPlayedAgainst =</span> PlungerLuck) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(Team, MaxPointsAgainst, MinPointsAgainst, PlungersPlayedAgainst) </div>
-<div class="sourceLine" id="cb26-9" data-line-number="9">FantasyChartstart =<span class="st"> </span>fantasyfor <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-10" data-line-number="10"><span class="st">  </span><span class="kw">left_join</span>(fantasyagainst, <span class="dt">by =</span> <span class="st">&quot;Team&quot;</span>)</div>
-<div class="sourceLine" id="cb26-11" data-line-number="11"></div>
-<div class="sourceLine" id="cb26-12" data-line-number="12">FantasyChart =<span class="st"> </span>FantasyChartstart <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-13" data-line-number="13"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Scored =</span> <span class="kw">round</span>(AverageScore),<span class="dv">2</span>) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Max =</span> MaxPointsScored) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-15" data-line-number="15"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Min =</span> MinPointsScored) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-16" data-line-number="16"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MaxFoe =</span> MaxPointsAgainst) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-17" data-line-number="17"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MinFoe =</span> MinPointsAgainst) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-18" data-line-number="18"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PlungerFoe =</span> PlungersPlayedAgainst)<span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb26-19" data-line-number="19"><span class="st">  </span><span class="kw">select</span>(Team,Scored, Max,Min,Plunger,MaxFoe,MinFoe,PlungerFoe)</div>
-<div class="sourceLine" id="cb26-20" data-line-number="20"></div>
-<div class="sourceLine" id="cb26-21" data-line-number="21"><span class="co"># options(DT.options = list(pageLength = 16))</span></div>
-<div class="sourceLine" id="cb26-22" data-line-number="22"><span class="kw">datatable</span>(FantasyChart, <span class="dt">options =</span> <span class="kw">list</span>(</div>
-<div class="sourceLine" id="cb26-23" data-line-number="23">  <span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">className =</span> <span class="st">&#39;dt-center&#39;</span>, <span class="dt">targets =</span> <span class="dv">8</span>)),</div>
-<div class="sourceLine" id="cb26-24" data-line-number="24">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
-<div class="sourceLine" id="cb26-25" data-line-number="25">))</div></code></pre>
-<div id="htmlwidget-b51c24db3a6858ce6dab" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b51c24db3a6858ce6dab">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Team Grymes","Green Baye's Theorem","Epsilon Ballers","Berry Berry Good","Team HotHanksHitters","Team LaPorte","2-2-2 Mega-H-Ertz","Baby got Dak","a^2+b^2= c^hawks","Las Vegas Radians","Viking Joe Lindquist","Calgary Stampeders","'R'm Chair Quarterback","The Big Gronkowski","Team Mauled Mentos","Team Guns N' Rosas"],[84,92,95,96,99,100,102,103,105,105,106,108,109,115,116,116],[149.68,128.76,128.38,136.96,143.46,136.46,138.18,147.56,144.24,141.22,149.6,158.4,164.5,147.54,147.46,163.42],[43.14,63.98,56,64.2,63.42,61.32,73.18,60.78,78.3,66.12,63.94,68.92,83.82,68.62,78.24,72.46],["5","1","1","4","0","2","0","1","0","1","1","0","0","0","0","0"],[164.5,143.46,134.22,129.3,141.22,150.64,139.72,158.4,149.68,159.86,147.46,163.42,154.98,136.5,129.78,144.6],[68.62,61.32,61.6,77.12,63.56,56,65.86,63.42,73.18,43.14,74.28,64.2,64.32,60.78,70.16,66.12],["0","1","3","0","3","1","0","0","0","1","0","2","0","2","2","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>Scored<\/th>\n      <th>Max<\/th>\n      <th>Min<\/th>\n      <th>Plunger<\/th>\n      <th>MaxFoe<\/th>\n      <th>MinFoe<\/th>\n      <th>PlungerFoe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":8},{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<pre class="sourceCode r" id="cb27"><code class="sourceCode r"><div class="sourceLine" id="cb27-1" data-line-number="1">fantasyfor =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;For&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MaxPointsScored =</span> max, <span class="dt">MinPointsScored =</span> min, <span class="dt">PlungersPlayedAgainst =</span> PlungerLuck) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(Team, AverageScore, MaxPointsScored, MinPointsScored, Plunger)</div>
+<div class="sourceLine" id="cb27-5" data-line-number="5">fantasyagainst =<span class="st"> </span>fantasy <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(Who <span class="op">==</span><span class="st"> &quot;Against&quot;</span>)<span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MaxPointsAgainst =</span> max, <span class="dt">MinPointsAgainst =</span> min, <span class="dt">PlungersPlayedAgainst =</span> PlungerLuck) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(Team, MaxPointsAgainst, MinPointsAgainst, PlungersPlayedAgainst) </div>
+<div class="sourceLine" id="cb27-9" data-line-number="9">FantasyChartstart =<span class="st"> </span>fantasyfor <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-10" data-line-number="10"><span class="st">  </span><span class="kw">left_join</span>(fantasyagainst, <span class="dt">by =</span> <span class="st">&quot;Team&quot;</span>)</div>
+<div class="sourceLine" id="cb27-11" data-line-number="11"></div>
+<div class="sourceLine" id="cb27-12" data-line-number="12">FantasyChart =<span class="st"> </span>FantasyChartstart <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-13" data-line-number="13"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Scored =</span> <span class="kw">round</span>(AverageScore),<span class="dv">2</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Max =</span> MaxPointsScored) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-15" data-line-number="15"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Min =</span> MinPointsScored) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-16" data-line-number="16"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MaxFoe =</span> MaxPointsAgainst) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-17" data-line-number="17"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MinFoe =</span> MinPointsAgainst) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-18" data-line-number="18"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PlungerFoe =</span> PlungersPlayedAgainst)<span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb27-19" data-line-number="19"><span class="st">  </span><span class="kw">select</span>(Team,Scored, Max,Min,Plunger,MaxFoe,MinFoe,PlungerFoe)</div>
+<div class="sourceLine" id="cb27-20" data-line-number="20"></div>
+<div class="sourceLine" id="cb27-21" data-line-number="21"><span class="co"># options(DT.options = list(pageLength = 16))</span></div>
+<div class="sourceLine" id="cb27-22" data-line-number="22"><span class="kw">datatable</span>(FantasyChart, <span class="dt">options =</span> <span class="kw">list</span>(</div>
+<div class="sourceLine" id="cb27-23" data-line-number="23">  <span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">className =</span> <span class="st">&#39;dt-center&#39;</span>, <span class="dt">targets =</span> <span class="dv">8</span>)),</div>
+<div class="sourceLine" id="cb27-24" data-line-number="24">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
+<div class="sourceLine" id="cb27-25" data-line-number="25">))</div></code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Team Grymes","Green Baye's Theorem","Epsilon Ballers","Berry Berry Good","Team HotHanksHitters","Team LaPorte","2-2-2 Mega-H-Ertz","Baby got Dak","a^2+b^2= c^hawks","Las Vegas Radians","Viking Joe Lindquist","Calgary Stampeders","'R'm Chair Quarterback","The Big Gronkowski","Team Mauled Mentos","Team Guns N' Rosas"],[84,92,95,96,99,100,102,103,105,105,106,108,109,115,116,116],[149.68,128.76,128.38,136.96,143.46,136.46,138.18,147.56,144.24,141.22,149.6,158.4,164.5,147.54,147.46,163.42],[43.14,63.98,56,64.2,63.42,61.32,73.18,60.78,78.3,66.12,63.94,68.92,83.82,68.62,78.24,72.46],["5","1","1","4","0","2","0","1","0","1","1","0","0","0","0","0"],[164.5,143.46,134.22,129.3,141.22,150.64,139.72,158.4,149.68,159.86,147.46,163.42,154.98,136.5,129.78,144.6],[68.62,61.32,61.6,77.12,63.56,56,65.86,63.42,73.18,43.14,74.28,64.2,64.32,60.78,70.16,66.12],["0","1","3","0","3","1","0","0","0","1","0","2","0","2","2","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>Scored<\/th>\n      <th>Max<\/th>\n      <th>Min<\/th>\n      <th>Plunger<\/th>\n      <th>MaxFoe<\/th>\n      <th>MinFoe<\/th>\n      <th>PlungerFoe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":8},{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 <p>Lastly, lets look at who just eeks out wins and who snatches defeat from the jaws of victory.</p>
-<pre class="sourceCode r" id="cb27"><code class="sourceCode r"><div class="sourceLine" id="cb27-1" data-line-number="1">start =<span class="st"> </span>fantasystart <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">delta =</span> awayscore<span class="op">-</span>homescore) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">win =</span> <span class="kw">ifelse</span>(delta<span class="op">&gt;</span><span class="dv">0</span>, <span class="st">&quot;Win&quot;</span>, <span class="st">&quot;Loss&quot;</span>)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(Away) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">margin =</span> <span class="kw">ifelse</span>(win <span class="op">==</span><span class="st"> &quot;Win&quot;</span>, <span class="kw">min</span>(delta[delta<span class="op">&gt;</span><span class="dv">0</span>]),<span class="kw">max</span>(delta[delta<span class="op">&lt;</span><span class="dv">0</span>]))) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(Away, win) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-7" data-line-number="7"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Smallest =</span> <span class="kw">mean</span>(margin)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Away =</span> <span class="kw">ifelse</span>(Away <span class="op">==</span><span class="st"> &quot;5 Guns N&#39; Rosas&quot;</span>, <span class="st">&quot;Team Guns N&#39; Rosas&quot;</span>, Away)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Away =</span> <span class="kw">ifelse</span>(Away <span class="op">==</span><span class="st"> &quot;3 Baye&#39;s Theorem&quot;</span>, <span class="st">&quot;Green Baye&#39;s Theorem&quot;</span>, Away)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Away =</span> <span class="kw">ifelse</span>(Away <span class="op">==</span><span class="st"> &quot;16 Grymes&quot;</span>, <span class="st">&quot;Team Grymes&quot;</span>, Away)) </div>
-<div class="sourceLine" id="cb27-12" data-line-number="12"></div>
-<div class="sourceLine" id="cb27-13" data-line-number="13">a =<span class="st"> </span>start <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-14" data-line-number="14"><span class="st">  </span><span class="kw">filter</span>(win <span class="op">==</span><span class="st"> &quot;Win&quot;</span>) </div>
-<div class="sourceLine" id="cb27-15" data-line-number="15">b =<span class="st"> </span>start <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-16" data-line-number="16"><span class="st">  </span><span class="kw">filter</span>(win <span class="op">==</span><span class="st"> &quot;Loss&quot;</span>) </div>
-<div class="sourceLine" id="cb27-17" data-line-number="17"></div>
-<div class="sourceLine" id="cb27-18" data-line-number="18">MarginofVictory =<span class="st"> </span><span class="kw">left_join</span>(a,b, <span class="dt">by =</span> <span class="st">&quot;Away&quot;</span>) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-19" data-line-number="19"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SmallestWin =</span> <span class="kw">round</span>(Smallest.x,<span class="dv">2</span>), <span class="dt">SmallestLoss =</span> <span class="kw">round</span>(Smallest.y,<span class="dv">2</span>), <span class="dt">Team =</span> Away) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb27-20" data-line-number="20"><span class="st">  </span><span class="kw">select</span>(Team, SmallestWin, SmallestLoss)</div></code></pre>
+<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1">start =<span class="st"> </span>fantasystart <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">delta =</span> awayscore<span class="op">-</span>homescore) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">win =</span> <span class="kw">ifelse</span>(delta<span class="op">&gt;</span><span class="dv">0</span>, <span class="st">&quot;Win&quot;</span>, <span class="st">&quot;Loss&quot;</span>)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(Away) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">margin =</span> <span class="kw">ifelse</span>(win <span class="op">==</span><span class="st"> &quot;Win&quot;</span>, <span class="kw">min</span>(delta[delta<span class="op">&gt;</span><span class="dv">0</span>]),<span class="kw">max</span>(delta[delta<span class="op">&lt;</span><span class="dv">0</span>]))) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(Away, win) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-7" data-line-number="7"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Smallest =</span> <span class="kw">mean</span>(margin)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Away =</span> <span class="kw">ifelse</span>(Away <span class="op">==</span><span class="st"> &quot;5 Guns N&#39; Rosas&quot;</span>, <span class="st">&quot;Team Guns N&#39; Rosas&quot;</span>, Away)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Away =</span> <span class="kw">ifelse</span>(Away <span class="op">==</span><span class="st"> &quot;3 Baye&#39;s Theorem&quot;</span>, <span class="st">&quot;Green Baye&#39;s Theorem&quot;</span>, Away)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Away =</span> <span class="kw">ifelse</span>(Away <span class="op">==</span><span class="st"> &quot;16 Grymes&quot;</span>, <span class="st">&quot;Team Grymes&quot;</span>, Away)) </div>
+<div class="sourceLine" id="cb28-12" data-line-number="12"></div>
+<div class="sourceLine" id="cb28-13" data-line-number="13">a =<span class="st"> </span>start <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-14" data-line-number="14"><span class="st">  </span><span class="kw">filter</span>(win <span class="op">==</span><span class="st"> &quot;Win&quot;</span>) </div>
+<div class="sourceLine" id="cb28-15" data-line-number="15">b =<span class="st"> </span>start <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-16" data-line-number="16"><span class="st">  </span><span class="kw">filter</span>(win <span class="op">==</span><span class="st"> &quot;Loss&quot;</span>) </div>
+<div class="sourceLine" id="cb28-17" data-line-number="17"></div>
+<div class="sourceLine" id="cb28-18" data-line-number="18">MarginofVictory =<span class="st"> </span><span class="kw">left_join</span>(a,b, <span class="dt">by =</span> <span class="st">&quot;Away&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-19" data-line-number="19"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SmallestWin =</span> <span class="kw">round</span>(Smallest.x,<span class="dv">2</span>), <span class="dt">SmallestLoss =</span> <span class="kw">round</span>(Smallest.y,<span class="dv">2</span>), <span class="dt">Team =</span> Away) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb28-20" data-line-number="20"><span class="st">  </span><span class="kw">select</span>(Team, SmallestWin, SmallestLoss)</div></code></pre>
 <p>And the Chart…</p>
-<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">datatable</span>(MarginofVictory, <span class="dt">options =</span> <span class="kw">list</span>(</div>
-<div class="sourceLine" id="cb28-2" data-line-number="2">  <span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">className =</span> <span class="st">&#39;dt-center&#39;</span>, <span class="dt">targets =</span> <span class="dv">3</span>)),</div>
-<div class="sourceLine" id="cb28-3" data-line-number="3">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
-<div class="sourceLine" id="cb28-4" data-line-number="4">))</div></code></pre>
-<div id="htmlwidget-cd2416edfcd96a226968" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cd2416edfcd96a226968">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["'R'm Chair Quarterback","Team Grymes","2-2-2 Mega-H-Ertz","Green Baye's Theorem","Team Guns N' Rosas","a^2+b^2= c^hawks","Baby got Dak","Berry Berry Good","Calgary Stampeders","Epsilon Ballers","Las Vegas Radians","Team HotHanksHitters","Team LaPorte","Team Mauled Mentos","The Big Gronkowski","Viking Joe Lindquist"],[27.14,8.38,35.64,25.44,4.88,0.26,13.32,3.06,0.46,0.66,5.54,9.82,5.86,4.82,0.6,17.22],[-5.76,-4.4,-0.96,-4.22,-17.44,-4.58,-18,-3.7,-20.24,-6.7,-4.48,-15.88,-11.98,-22.28,-13.88,-0.16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>SmallestWin<\/th>\n      <th>SmallestLoss<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":3},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
-</section>
+<pre class="sourceCode r" id="cb29"><code class="sourceCode r"><div class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">datatable</span>(MarginofVictory, <span class="dt">options =</span> <span class="kw">list</span>(</div>
+<div class="sourceLine" id="cb29-2" data-line-number="2">  <span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">className =</span> <span class="st">&#39;dt-center&#39;</span>, <span class="dt">targets =</span> <span class="dv">3</span>)),</div>
+<div class="sourceLine" id="cb29-3" data-line-number="3">  <span class="dt">pageLength =</span> <span class="dv">16</span></div>
+<div class="sourceLine" id="cb29-4" data-line-number="4">))</div></code></pre>
+<div id="htmlwidget-2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["'R'm Chair Quarterback","Team Grymes","2-2-2 Mega-H-Ertz","Green Baye's Theorem","Team Guns N' Rosas","a^2+b^2= c^hawks","Baby got Dak","Berry Berry Good","Calgary Stampeders","Epsilon Ballers","Las Vegas Radians","Team HotHanksHitters","Team LaPorte","Team Mauled Mentos","The Big Gronkowski","Viking Joe Lindquist"],[27.14,8.38,35.64,25.44,4.88,0.26,13.32,3.06,0.46,0.66,5.54,9.82,5.86,4.82,0.6,17.22],[-5.76,-4.4,-0.96,-4.22,-17.44,-4.58,-18,-3.7,-20.24,-6.7,-4.48,-15.88,-11.98,-22.28,-13.88,-0.16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>SmallestWin<\/th>\n      <th>SmallestLoss<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":3},{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"pageLength":16,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,16,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
