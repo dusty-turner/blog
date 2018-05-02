@@ -21,9 +21,15 @@ My **[Slides](https://dusty-turner.netlify.com/RCNYC)** are available, and you c
 
 Oh, and I got to go for a little run before the conferece!
 
-![](/run.jpg)
+test1
 
-<!-- ```{r} -->
-<!-- knitr::include_graphics('/run.jpg') -->
-<!-- ``` -->
+<!-- ![](/run.JPG) -->
+
+test2 
+
+<!-- <img src="/run.png" alt="Upside-down sloths are so cute", width = "40%"> -->
+
+```{r}
+knitr::include_graphics("/run.PNG")
+```
 
