@@ -19,13 +19,11 @@ Was honored to speak at this years [2018 New York R Conference](https://www.rsta
 
 My **[Slides](https://dusty-turner.netlify.com/RCNYC)** are available, and you can contact me at [dusty.s.turner@gmail.com](mailto:dusty.s.turner@gmail.com)
 
-Oh, and I go to go for a little run before the conferece!
-
-Test
+Oh, and I got to go for a little run before the conferece!
 
 ![](/run.jpg)
 
-```{r}
-knitr::include_graphics('/run.jpg')
-```
+<!-- ```{r} -->
+<!-- knitr::include_graphics('/run.jpg') -->
+<!-- ``` -->
 
