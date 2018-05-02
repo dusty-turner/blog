@@ -15,4 +15,11 @@ categories:
 - model building
 ---
 
-**[RCNYC](https://dusty-turner.netlify.com/RCNYC)**
+Was honored to speak at this years [2018 New York R Conference](https://www.rstats.nyc/) hosted by [Lander Analytics](https://www.landeranalytics.com/) and [Work-Bench](https://www.work-bench.com/).  [Jared Lander](https://twitter.com/jaredlander) sure knows how to host a good party, I mean, conference.  
+
+My **[Slides](https://dusty-turner.netlify.com/RCNYC)** are available, and you can contact me at [dusty.s.turner@gmail.com](mailto:dusty.s.turner@gmail.com)
+
+Oh, and I go to go for a little run before the conferece!
+
+![](run.jpg)
+
