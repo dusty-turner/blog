@@ -22,7 +22,7 @@
 My Slides are available, and you can contact me at dusty.s.turner@gmail.com
 Oh, and I go to go for a little run before the conferece!
 Test
-[]{/run.jpg}</description>
+knitr::include_graphics(&amp;#39;/run.jpg&amp;#39;)</description>
     </item>
     
     <item>

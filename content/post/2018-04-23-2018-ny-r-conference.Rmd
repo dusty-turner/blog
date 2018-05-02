@@ -23,4 +23,9 @@ Oh, and I go to go for a little run before the conferece!
 
 Test
 
-![]{/run.jpg}
+![](/run.jpg)
+
+```{r}
+knitr::include_graphics('/run.jpg')
+```
+
