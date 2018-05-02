@@ -21,5 +21,4 @@ My **[Slides](https://dusty-turner.netlify.com/RCNYC)** are available, and you c
 
 Oh, and I go to go for a little run before the conferece!
 
-![](run.jpg)
-
+![]{/run.jpg}
