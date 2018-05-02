@@ -29,7 +29,7 @@ test2
 
 <!-- <img src="/run.png" alt="Upside-down sloths are so cute", width = "40%"> -->
 
-```{r echo=FALSE, fig.width=2}
+```{r echo=FALSE, fig.width=1}
 knitr::include_graphics("/run.PNG")
 ```
 
