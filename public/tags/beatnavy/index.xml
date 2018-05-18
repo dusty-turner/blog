@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 23 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/beatnavy/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tracking My Cadets Summer Plans</title>
+      <link>/post/tracking-my-cadets-summer-plans/</link>
+      <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tracking-my-cadets-summer-plans/</guid>
+      <description>Tracking my cadet’s summer plans with dplyr and ggplot
+</description>
+    </item>
     
     <item>
       <title>2018 NY R Conference</title>

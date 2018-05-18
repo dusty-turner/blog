@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>/post/tracking-my-cadets-summer-plans/</loc>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018-ny-r-conference/</loc>
     <lastmod>2018-04-23T00:00:00+00:00</lastmod>
   </url>
@@ -75,13 +80,13 @@
   
   <url>
     <loc>/tags/beatnavy/</loc>
-    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/beatnavy/</loc>
-    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -129,13 +134,13 @@
   
   <url>
     <loc>/tags/dplyr/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/dplyr/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -171,13 +176,13 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/ggplot2/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -207,7 +212,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

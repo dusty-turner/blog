@@ -8,7 +8,7 @@ categories:
   - datascience
   - ggplot2
   - lubridate
-  - dplyr
+  - dplyr 
   - tidyverse
   - beatnavy
 tags:
