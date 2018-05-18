@@ -16,7 +16,7 @@ tags:
 <!-- runtime: shiny -->
 Tracking my cadet's summer plans with `dplyr` and `ggplot` at the following <center>
 ```{r, echo=FALSE} 
-knitr::include_app("https://dustyturner.shinyapps.io/CadetSummerInteractive/", height = "600px")
+knitr::include_app("https://dustyturner.shinyapps.io/CadetSummerInteractive/", height = "1200px")
 ```
 </center>
 
