@@ -111,7 +111,8 @@ books %>%
   ggplot(aes(fct_reorder(Author,-n))) +
   geom_bar(aes(fill = log(n))) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  xlab("Author")
 ```
 
 Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author.  Lets collapse them all into one Author
@@ -253,7 +254,8 @@ tweetsentimentnrc %>%
   filter(n>15) %>%
 ggplot(aes(sent, fill = sent)) +
   geom_bar() +
-  facet_wrap("Genre", scales = "free_y")
+  facet_wrap("Genre", scales = "free_y") +
+  ggtitle("Sentiment by Genre") + xlab("Sentiment")
 ```
 
 ## Further analysis to follow as we read books throughout the year.  

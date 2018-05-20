@@ -1,5 +1,5 @@
 ---
-title: Tracking My Cadets Summer Plans
+title: Tracking My Cadet's Summer Plans
 author: Dusty Turner
 date: '2018-05-17'
 slug: tracking-my-cadets-summer-plans
