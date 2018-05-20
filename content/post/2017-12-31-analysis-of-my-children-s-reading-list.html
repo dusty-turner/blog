@@ -1,3 +1,34 @@
+---
+title: Analysis of my Children's Reading List
+author: Dusty Turner
+date: '2017-12-31'
+slug: analysis-of-my-children-s-reading-list
+categories:
+  - r
+  - datascience
+  - tidyverse
+  - lubridate
+  - children
+  - books
+  - tidytext
+tags:
+  - r
+  - datascience
+  - tidyverse
+  - lubridate
+  - children
+  - books
+  - tidytext
+output: 
+  blogdown::html_page:
+    toc: TRUE
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+---
+
 <style type="text/css">
 div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -151,7 +182,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre class="sourceCode r" id="cb8"><code class="sourceCode r"><div class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Author)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Oh man, that’s indecipherable. Lets only select the Authors where we’ve read at least 3 of their books.</p>
 <pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Author) <span class="op">%&gt;%</span></div>
@@ -162,7 +193,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">log</span>(n))) <span class="op">+</span></div>
 <div class="sourceLine" id="cb9-8" data-line-number="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb9-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author. Lets collapse them all into one Author</p>
 <pre class="sourceCode r" id="cb10"><code class="sourceCode r"><div class="sourceLine" id="cb10-1" data-line-number="1">books =<span class="st"> </span>books <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Author =</span> <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&quot;Bere&quot;</span>, Author)<span class="op">==</span><span class="ot">TRUE</span>, <span class="st">&quot;Berenstein&quot;</span>, Author))</div>
@@ -176,7 +207,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">log</span>(n))) <span class="op">+</span></div>
 <div class="sourceLine" id="cb10-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb10-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Nice!! - But wow, we read a lot of books about the Berenstien Bears. Lets take a look at the type of material that we are putting in our kids head.</p>
 <p>But first, we read a book written by ‘God’? Lets investigate.</p>
 <pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
@@ -191,11 +222,11 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(YearPublished)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="sourceCode r" id="cb14"><code class="sourceCode r"><div class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(NumberOfPages)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Number of Pages&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <p>There are a ton of odd Genre’s and I’ve eliminated several. Lets take a look at that:</p>
 <pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1">books =<span class="st"> </span>books <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Genre =</span> <span class="kw">ifelse</span>(Genre<span class="op">==</span><span class="st">&quot;Otters&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Beavers&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Cows&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Rabbits&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Animal tracks&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Horses&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Deer&quot;</span>,<span class="st">&quot;Animals&quot;</span>,Genre)) <span class="op">%&gt;%</span></div>
@@ -210,7 +241,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div class="sourceLine" id="cb15-11" data-line-number="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Genre&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)  <span class="op">+</span></div>
 <div class="sourceLine" id="cb15-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb15-13" data-line-number="13"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Notice, I filtered out some <code>NAs</code>. Lets take a look at what what are these <code>NA</code>s are?</p>
 <pre class="sourceCode r" id="cb16"><code class="sourceCode r"><div class="sourceLine" id="cb16-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(Genre))</div></code></pre>
@@ -280,7 +311,7 @@ Here’s an example:</p>
 <pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Maybe it would be more interesting to see which Authrors are providing which sentiments.</p>
 <pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1">tweetsentimentnrc <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Author) <span class="op">%&gt;%</span></div>
@@ -292,7 +323,7 @@ Here’s an example:</p>
 <div class="sourceLine" id="cb23-8" data-line-number="8"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Author&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></div>
 <div class="sourceLine" id="cb23-9" data-line-number="9"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)  <span class="op">+</span></div>
 <div class="sourceLine" id="cb23-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Lastly, lets see if there’s a genre that has any sentiment sway. Of note, I find it funny that there is a ‘Bears’ genre.</p>
 <pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1">tweetsentimentnrc <span class="op">%&gt;%</span></div>
 <div class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Genre) <span class="op">%&gt;%</span></div>
@@ -302,7 +333,7 @@ Here’s an example:</p>
 <div class="sourceLine" id="cb24-6" data-line-number="6"><span class="kw">ggplot</span>(<span class="kw">aes</span>(sent, <span class="dt">fill =</span> sent)) <span class="op">+</span></div>
 <div class="sourceLine" id="cb24-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
 <div class="sourceLine" id="cb24-8" data-line-number="8"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Genre&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</div></code></pre>
-<p><img src="2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="further-analysis-to-follow-as-we-read-books-throughout-the-year." class="section level2">
 <h2>Further analysis to follow as we read books throughout the year.</h2>

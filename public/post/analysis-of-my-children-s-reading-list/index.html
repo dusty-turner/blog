@@ -202,7 +202,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Analysis of my Children&#39;s Reading List</h1>
-      <p class="post-meta">@Dusty Turner · Dec 31, 2017 · 8 min read</p>
+      <p class="post-meta">@Dusty Turner · Dec 31, 2017 · 12 min read</p>
     </header>
     <article class="post-content"><style type="text/css">
 div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
@@ -267,168 +267,252 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 </ul>
 </div>
 
-<section id="introduction" class="level2">
+<div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Over this Christmas break, my wife was inpired to keep track of the books we read to our kids. Her goal is to amass 1000 books in 2018. She downloaded ‘Bookbuddy’ on her Iphone and can scan the barcodes with the camera. Doing this, saves a lot of data about the books. After a quick export, we have a nice csv.</p>
 <p>Ever on the lookout for cool data science projects, this peaked my interest.</p>
 <p>What follows below is a growing look to provide insight to what we read our kids.</p>
 <p>Lets start with some…</p>
-</section>
-<section id="exploratory-data-analysis" class="level2">
+</div>
+<div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
-<section id="libraries" class="level3">
+<div id="libraries" class="section level3">
 <h3>Libraries</h3>
 <p>The libraries I will use for this analysis are the following:</p>
 <pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</div>
-<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidytext)</div></code></pre>
-<p>Lets read in the data and get a feel for what information we have available. There are ‘ton’ of colums, many of them are nothing but <code>nas</code>, so I’ll eliminate those immediatly.</p>
-<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">booksread =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;books.csv&quot;</span>)</div>
-<div class="sourceLine" id="cb2-2" data-line-number="2">booksread =<span class="st"> </span>booksread <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">select_if</span>(<span class="cf">function</span>(x) <span class="kw">any</span>(<span class="op">!</span><span class="kw">is.na</span>(x)))</div>
-<div class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">summary</span>(booksread)</div></code></pre>
-<pre><code>##     Title             Subtitle            Author          Author (Last, First)  Publisher         Date Published     Year Published
-##  Length:41          Length:41          Length:41          Length:41            Length:41          Length:41          Min.   :1978  
-##  Class :character   Class :character   Class :character   Class :character     Class :character   Class :character   1st Qu.:1997  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character     Mode  :character   Mode  :character   Median :2010  
-##                                                                                                                      Mean   :2004  
-##                                                                                                                      3rd Qu.:2013  
-##                                                                                                                      Max.   :2017  
-##                                                                                                                      NA&#39;s   :1     
-##     Genre             Summary          Number of Pages    Language              ISBN             Favorites     Rating     Status         
-##  Length:41          Length:41          Min.   : 20.00   Length:41          Min.   :6.800e+08   Min.   :0   Min.   :0   Length:41         
-##  Class :character   Class :character   1st Qu.: 32.00   Class :character   1st Qu.:9.780e+12   1st Qu.:0   1st Qu.:0   Class :character  
-##  Mode  :character   Mode  :character   Median : 32.00   Mode  :character   Median :9.780e+12   Median :0   Median :0   Mode  :character  
-##                                        Mean   : 36.47                      Mean   :9.304e+12   Mean   :0   Mean   :0                     
-##                                        3rd Qu.: 32.00                      3rd Qu.:9.781e+12   3rd Qu.:0   3rd Qu.:0                     
-##                                        Max.   :198.00                      Max.   :9.782e+12   Max.   :0   Max.   :0                     
-##                                        NA&#39;s   :3                                                                                         
-##   Date Added       Google VolumeID      Wish List Uploaded Image URL
-##  Length:41         Length:41          Min.   :0   Length:41         
-##  Class1:hms        Class :character   1st Qu.:0   Class :character  
-##  Class2:difftime   Mode  :character   Median :0   Mode  :character  
-##  Mode  :numeric                       Mean   :0                     
-##                                       3rd Qu.:0                     
-##                                       Max.   :0                     
-## </code></pre>
+<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(lubridate)</div>
+<div class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(janitor)</div>
+<div class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(tidytext)</div></code></pre>
+<p>Lets read in the data and get a feel for what information we have available. Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together. Many of the column names have spaces which does not support data munging. I’ll use the <code>clean_names</code> command from the <code>janitor</code> package to clean this up. Lastly, you’ll not I used the <code>distinct</code> call because some of us scanned the same books. We do not want to account for them twice.</p>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">book1 =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;books.csv&quot;</span>) </div>
+<div class="sourceLine" id="cb2-2" data-line-number="2">book2 =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;BookBuddy.csv&quot;</span>)</div>
+<div class="sourceLine" id="cb2-3" data-line-number="3">book3 =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;BookBuddy2.csv&quot;</span>)</div>
+<div class="sourceLine" id="cb2-4" data-line-number="4">book4 =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;BookBuddy3.csv&quot;</span>)</div>
+<div class="sourceLine" id="cb2-5" data-line-number="5">booksread =</div>
+<div class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span>book1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(book2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(book3) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(book4)  <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw">clean_names</span>(<span class="dt">case =</span> <span class="st">&quot;upper_camel&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">    </span><span class="kw">distinct</span>()</div>
+<div class="sourceLine" id="cb2-9" data-line-number="9"></div>
+<div class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">head</span>(booksread)</div></code></pre>
+<pre><code>## # A tibble: 6 x 58
+##   Title   Subtitle Series Volume Author  AuthorLastFirst  Illustrator Narrator Translator Publisher  DatePublished YearPublished Genre Edition Editor
+##   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 And Th~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;   Tom Br~ Brenner, Tom     &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;       Candlewic~ 5/1/2017               2017 Juve~ &lt;NA&gt;    &lt;NA&gt;  
+## 2 BE QUI~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;   Ryan T~ Higgins, Ryan T. &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;       Disney-Hy~ 4/4/2017               2017 Juve~ &lt;NA&gt;    &lt;NA&gt;  
+## 3 Bus Ri~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;   Marian~ Dubuc, Marianne  &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;       Kids Can ~ 3/1/2015               2015 Juve~ &lt;NA&gt;    &lt;NA&gt;  
+## 4 Christ~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;   Cynthi~ Rylant, Cynthia  &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;       Blue Sky ~ &lt;NA&gt;                   2002 Juve~ &lt;NA&gt;    &lt;NA&gt;  
+## 5 Estell~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;   Anna A~ Alter, Anna      &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;       HarperCol~ 3/20/2001              2001 Juve~ &lt;NA&gt;    &lt;NA&gt;  
+## 6 Little~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;   Alice ~ Schertle, Alice  &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;       Houghton ~ &lt;NA&gt;                   2014 Juve~ &lt;NA&gt;    &lt;NA&gt;  
+## # ... with 43 more variables: Summary &lt;chr&gt;, GuidedReadingLevel &lt;chr&gt;, LexileMeasure &lt;chr&gt;, GradeLevelEquivalent &lt;chr&gt;,
+## #   DevelopmentalReadingAssessment &lt;chr&gt;, InterestLevel &lt;chr&gt;, WordCount &lt;chr&gt;, OriginalTitle &lt;chr&gt;, NumberOfPages &lt;int&gt;, Format &lt;chr&gt;,
+## #   Dimensions &lt;chr&gt;, Weight &lt;chr&gt;, ListPrice &lt;chr&gt;, Language &lt;chr&gt;, Ddc &lt;chr&gt;, Lcc &lt;chr&gt;, Oclc &lt;chr&gt;, Isbn &lt;dbl&gt;, Favorites &lt;int&gt;, Rating &lt;int&gt;,
+## #   PhysicalLocation &lt;chr&gt;, Status &lt;chr&gt;, DateStarted &lt;chr&gt;, DateFinished &lt;chr&gt;, LoanedTo &lt;chr&gt;, DateLoaned &lt;chr&gt;, BorrowedFrom &lt;chr&gt;,
+## #   DateBorrowed &lt;chr&gt;, Quantity &lt;chr&gt;, Condition &lt;chr&gt;, RecommendedBy &lt;chr&gt;, DateAdded &lt;time&gt;, Tags &lt;chr&gt;, PurchaseDate &lt;chr&gt;, PurchasePlace &lt;chr&gt;,
+## #   PurchasePrice &lt;chr&gt;, Notes &lt;chr&gt;, GoogleVolumeId &lt;chr&gt;, Category &lt;chr&gt;, WishList &lt;int&gt;, UploadedImageUrl &lt;chr&gt;, ReturnedFromBorrow &lt;int&gt;,
+## #   Activities &lt;chr&gt;</code></pre>
+<p>There are ‘ton’ of colums, many of them are nothing but <code>nas</code>, so I’ll eliminate those immediatly.</p>
+<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><div class="sourceLine" id="cb4-1" data-line-number="1">booksread =<span class="st"> </span>booksread <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">select_if</span>(<span class="cf">function</span>(x) <span class="kw">any</span>(<span class="op">!</span><span class="kw">is.na</span>(x)))</div>
+<div class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">summary</span>(booksread)</div></code></pre>
+<pre><code>##     Title             Subtitle            Author          AuthorLastFirst     Publisher         DatePublished      YearPublished     Genre          
+##  Length:503         Length:503         Length:503         Length:503         Length:503         Length:503         Min.   :1962   Length:503        
+##  Class :character   Class :character   Class :character   Class :character   Class :character   Class :character   1st Qu.:2001   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :2008   Mode  :character  
+##                                                                                                                    Mean   :2006                     
+##                                                                                                                    3rd Qu.:2013                     
+##                                                                                                                    Max.   :2017                     
+##                                                                                                                    NA&#39;s   :22                       
+##    Summary          NumberOfPages      Language              Isbn             Favorites     Rating     Status           DateAdded       
+##  Length:503         Min.   : 10.00   Length:503         Min.   :3.955e+08   Min.   :0   Min.   :0   Length:503         Length:503       
+##  Class :character   1st Qu.: 32.00   Class :character   1st Qu.:9.780e+12   1st Qu.:0   1st Qu.:0   Class :character   Class1:hms       
+##  Mode  :character   Median : 32.00   Mode  :character   Median :9.781e+12   Median :0   Median :0   Mode  :character   Class2:difftime  
+##                     Mean   : 41.51                      Mean   :9.642e+12   Mean   :0   Mean   :0                      Mode  :numeric   
+##                     3rd Qu.: 32.00                      3rd Qu.:9.781e+12   3rd Qu.:0   3rd Qu.:0                                       
+##                     Max.   :600.00                      Max.   :9.789e+12   Max.   :0   Max.   :0                                       
+##                     NA&#39;s   :63                          NA&#39;s   :9                                                                       
+##  GoogleVolumeId       Category            WishList UploadedImageUrl   ReturnedFromBorrow
+##  Length:503         Length:503         Min.   :0   Length:503         Min.   :0         
+##  Class :character   Class :character   1st Qu.:0   Class :character   1st Qu.:0         
+##  Mode  :character   Mode  :character   Median :0   Mode  :character   Median :0         
+##                                        Mean   :0                      Mean   :0         
+##                                        3rd Qu.:0                      3rd Qu.:0         
+##                                        Max.   :0                      Max.   :0         
+##                                                                       NA&#39;s   :41</code></pre>
 <p>Some of the features are redundant, some are full of <code>0</code>s, and some are otherwise uninteresting, so I’ll select what is of value:</p>
-<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><div class="sourceLine" id="cb4-1" data-line-number="1">books =<span class="st"> </span>booksread <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Title, Author, Publisher, <span class="st">`</span><span class="dt">Date Published</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Year Published</span><span class="st">`</span>,</div>
-<div class="sourceLine" id="cb4-3" data-line-number="3">         Genre, Summary, <span class="st">`</span><span class="dt">Number of Pages</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Date Added</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Google VolumeID</span><span class="st">`</span>) </div></code></pre>
+<pre class="sourceCode r" id="cb6"><code class="sourceCode r"><div class="sourceLine" id="cb6-1" data-line-number="1">books =<span class="st"> </span>booksread <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Title, Author, Publisher, DatePublished, YearPublished,</div>
+<div class="sourceLine" id="cb6-3" data-line-number="3">         Genre, Summary, NumberOfPages, DateAdded) </div>
+<div class="sourceLine" id="cb6-4" data-line-number="4"></div>
+<div class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">head</span>(books)</div></code></pre>
+<pre><code>## # A tibble: 6 x 9
+##   Title                         Author          Publisher                 DatePublished YearPublished Genre  Summary          NumberOfPages DateAdded
+##   &lt;chr&gt;                         &lt;chr&gt;           &lt;chr&gt;                     &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;                    &lt;int&gt; &lt;time&gt;   
+## 1 And Then Comes Summer         Tom Brenner     Candlewick Press          5/1/2017               2017 Juven~ A joyful, sun-d~            32 06:56    
+## 2 BE QUIET!                     Ryan T. Higgins Disney-Hyperion           4/4/2017               2017 Juven~ &quot;All Rupert the~            40 08:00    
+## 3 Bus Ride, The                 Marianne Dubuc  Kids Can Press Ltd        3/1/2015               2015 Juven~ This is the fir~            40 06:56    
+## 4 Christmas in the Country      Cynthia Rylant  Blue Sky Press            &lt;NA&gt;                   2002 Juven~ On the 20th ann~            32 06:56    
+## 5 Estelle and Lucy              Anna Alter      HarperCollins             3/20/2001              2001 Juven~ Sometimes it&#39;s ~            24 06:56    
+## 6 Little Blue Truck&#39;s Christmas Alice Schertle  Houghton Mifflin Harcourt &lt;NA&gt;                   2014 Juven~ It&#39;s the most w~            24 12:05</code></pre>
 <p>Lets take a look at what Authors we typically select for our kids.</p>
-<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Author)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author. Lets collapse them all into one Author</p>
-<pre class="sourceCode r" id="cb6"><code class="sourceCode r"><div class="sourceLine" id="cb6-1" data-line-number="1">books =<span class="st"> </span>books <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Author =</span> <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&quot;Bere&quot;</span>, Author)<span class="op">==</span><span class="ot">TRUE</span>, <span class="st">&quot;Berenstein&quot;</span>, Author))</div>
-<div class="sourceLine" id="cb6-3" data-line-number="3"></div>
-<div class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Author)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
+<pre class="sourceCode r" id="cb8"><code class="sourceCode r"><div class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Author)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Oh man, that’s indecipherable. Lets only select the Authors where we’ve read at least 3 of their books.</p>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Author) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">3</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">fct_reorder</span>(Author,<span class="op">-</span>n))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">log</span>(n))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb9-8" data-line-number="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb9-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author. Lets collapse them all into one Author</p>
+<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><div class="sourceLine" id="cb10-1" data-line-number="1">books =<span class="st"> </span>books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Author =</span> <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&quot;Bere&quot;</span>, Author)<span class="op">==</span><span class="ot">TRUE</span>, <span class="st">&quot;Berenstein&quot;</span>, Author))</div>
+<div class="sourceLine" id="cb10-3" data-line-number="3"></div>
+<div class="sourceLine" id="cb10-4" data-line-number="4">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span><span class="kw">group_by</span>(Author) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">3</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">fct_reorder</span>(Author,<span class="op">-</span>n))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">log</span>(n))) <span class="op">+</span></div>
+<div class="sourceLine" id="cb10-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb10-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Nice!! - But wow, we read a lot of books about the Berenstien Bears. Lets take a look at the type of material that we are putting in our kids head.</p>
 <p>But first, we read a book written by ‘God’? Lets investigate.</p>
-<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Author<span class="op">==</span><span class="st">&quot;God&quot;</span>)</div></code></pre>
-<pre><code>## # A tibble: 1 x 10
-##               Title Author          Publisher `Date Published` `Year Published` Genre Summary `Number of Pages` `Date Added` `Google VolumeID`
-##               &lt;chr&gt;  &lt;chr&gt;              &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;       &lt;time&gt;             &lt;chr&gt;
-## 1 The Lord&#39;s prayer    God Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;                20     05:00:00              &lt;NA&gt;</code></pre>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Author<span class="op">==</span><span class="st">&quot;God&quot;</span>)</div></code></pre>
+<pre><code>## # A tibble: 2 x 9
+##   Title             Author Publisher          DatePublished YearPublished Genre Summary NumberOfPages DateAdded
+##   &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;              &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt; &lt;chr&gt;           &lt;int&gt; &lt;time&gt;   
+## 1 The Lord&#39;s prayer God    Make Believe Ideas &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;               20 05:00    
+## 2 The Lord&#39;s prayer God    Make Believe Ideas &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;               20 05:00</code></pre>
 <p>Okay then.</p>
 <p>The next few charts depict the year the books were first published, the number of pages, the Genre of the books.</p>
-<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Year Published</span><span class="st">`</span>)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><div class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(<span class="st">`</span><span class="dt">Number of Pages</span><span class="st">`</span>)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Number of Pages&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
-<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(Genre, <span class="dt">fill =</span> Genre)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Genre&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)  <span class="op">+</span></div>
-<div class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
-<p>What are these <code>NA</code>s?</p>
-<pre class="sourceCode r" id="cb12"><code class="sourceCode r"><div class="sourceLine" id="cb12-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(Genre))</div></code></pre>
-<pre><code>## # A tibble: 3 x 10
-##                                                           Title       Author             Publisher `Date Published` `Year Published` Genre Summary
-##                                                           &lt;chr&gt;        &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;
-## 1                                         Paw Patrol Flashlight Phoenix Intl Phoenix International        9/20/2016             2016  &lt;NA&gt;    &lt;NA&gt;
-## 2 The Berenstain Bears and Too Much Birthday (Berenstain Bears)   Berenstein        Tandem Library        10/1/1999             1999  &lt;NA&gt;    &lt;NA&gt;
-## 3                                             The Lord&#39;s prayer          God    Make Believe Ideas             &lt;NA&gt;               NA  &lt;NA&gt;    &lt;NA&gt;
-## # ... with 3 more variables: `Number of Pages` &lt;int&gt;, `Date Added` &lt;time&gt;, `Google VolumeID` &lt;chr&gt;</code></pre>
-</section>
-</section>
-<section id="text-analysis" class="level2">
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(YearPublished)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><div class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> books, <span class="kw">aes</span>(NumberOfPages)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Number of Pages&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p>There are a ton of odd Genre’s and I’ve eliminated several. Lets take a look at that:</p>
+<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1">books =<span class="st"> </span>books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Genre =</span> <span class="kw">ifelse</span>(Genre<span class="op">==</span><span class="st">&quot;Otters&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Beavers&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Cows&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Rabbits&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Animal tracks&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Horses&quot;</span><span class="op">|</span>Genre<span class="op">==</span><span class="st">&quot;Deer&quot;</span>,<span class="st">&quot;Animals&quot;</span>,Genre)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Genre =</span> <span class="kw">ifelse</span>(Genre<span class="op">==</span><span class="st">&quot;Hair in Fiction&quot;</span>, <span class="st">&quot;Juvenile Fiction&quot;</span>, Genre))</div>
+<div class="sourceLine" id="cb15-4" data-line-number="4"></div>
+<div class="sourceLine" id="cb15-5" data-line-number="5">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb15-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(Genre) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb15-7" data-line-number="7"><span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb15-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(Genre)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb15-9" data-line-number="9"><span class="kw">ggplot</span>(<span class="kw">aes</span>(Genre, <span class="dt">fill =</span> Genre)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb15-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb15-11" data-line-number="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Books By Genre&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Books&quot;</span>)  <span class="op">+</span></div>
+<div class="sourceLine" id="cb15-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb15-13" data-line-number="13"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Notice, I filtered out some <code>NAs</code>. Lets take a look at what what are these <code>NA</code>s are?</p>
+<pre class="sourceCode r" id="cb16"><code class="sourceCode r"><div class="sourceLine" id="cb16-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(Genre))</div></code></pre>
+<pre><code>## # A tibble: 52 x 9
+##    Title                                                         Author  Publisher DatePublished YearPublished Genre Summary  NumberOfPages DateAdded
+##    &lt;chr&gt;                                                         &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt; &lt;chr&gt;            &lt;int&gt; &lt;time&gt;   
+##  1 Paw Patrol Flashlight                                         Phoeni~ Phoenix ~ 9/20/2016              2016 &lt;NA&gt;  &lt;NA&gt;                NA 09:07    
+##  2 The Berenstain Bears and Too Much Birthday (Berenstain Bears) Berens~ Tandem L~ 10/1/1999              1999 &lt;NA&gt;  &lt;NA&gt;                32 09:21    
+##  3 The Lord&#39;s prayer                                             God     Make Bel~ &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;                20 05:00    
+##  4 Hercules                                                      Disney  &lt;NA&gt;      &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;                NA 00:36    
+##  5 Me On The Map                                                 Joan S~ &lt;NA&gt;      &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;                NA 15:24    
+##  6 &quot;My \&quot;a\&quot; book (My first steps to reading)&quot;                   Jane B~ Childs W~ &lt;NA&gt;                   2001 &lt;NA&gt;  &lt;NA&gt;                29    NA    
+##  7 My “w” Book                                                   Jane B~ &lt;NA&gt;      &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;                NA 17:53    
+##  8 Oh, The Places You’ll Go!                                     Dr. Se~ &lt;NA&gt;      &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;                NA    NA    
+##  9 Peter Pan                                                     Walt D~ Disney P~ &lt;NA&gt;                   2007 &lt;NA&gt;  Storybo~            24 16:13    
+## 10 The Lion King                                                 Walt D~ &lt;NA&gt;      &lt;NA&gt;                     NA &lt;NA&gt;  &lt;NA&gt;                NA    NA    
+## # ... with 42 more rows</code></pre>
+</div>
+</div>
+<div id="text-analysis" class="section level2">
 <h2>Text Analysis</h2>
 <p>Now that we’ve explored the dataset, lets see what information we can glean.</p>
 <p>I’d really like to know what type of words / sentiment we are reading our children – but until I can figure out a way to get the words from all the books, I’ll have to use the <code>Summary</code> provided by BookBuddy.<br />
 Here’s an example:</p>
-<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><div class="sourceLine" id="cb14-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Title<span class="op">==</span><span class="st">&quot;Mama Cat Has Three Kittens&quot;</span>) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(Summary)</div></code></pre>
-<pre><code>## # A tibble: 1 x 1
-##                                                                                                                                                  Summary
-##                                                                                                                                                    &lt;chr&gt;
-## 1 Some kittens march to the beat of a different drummer.Mama Cat has three kittens, Fluffy, Skinny, and Boris. Where Mama Cat leads, Fluffy and Skinny f</code></pre>
+<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1">books <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Title<span class="op">==</span><span class="st">&quot;Mama Cat Has Three Kittens&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(Summary)</div></code></pre>
+<pre><code>## # A tibble: 2 x 1
+##   Summary                                                                                                                                            
+##   &lt;chr&gt;                                                                                                                                              
+## 1 Some kittens march to the beat of a different drummer.Mama Cat has three kittens, Fluffy, Skinny, and Boris. Where Mama Cat leads, Fluffy and Skin~
+## 2 Some kittens march to the beat of a different drummer.Mama Cat has three kittens, Fluffy, Skinny, and Boris. Where Mama Cat leads, Fluffy and Skin~</code></pre>
 <p>So, lets prepare the data. I’d like to bring along some information while I tokenize the summaries (Titles, Authors, and Genres). We’d also like to translate NRCs emotions into <code>Positive</code>, <code>Negative</code>, and <code>Neutral</code> classifications.</p>
-<pre class="sourceCode r" id="cb16"><code class="sourceCode r"><div class="sourceLine" id="cb16-1" data-line-number="1">text_df =<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">line =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(books<span class="op">$</span>Summary), <span class="dt">text =</span> <span class="kw">as.character</span>(books<span class="op">$</span>Summary), <span class="dt">book =</span> books<span class="op">$</span>Title, <span class="dt">Genre =</span> books<span class="op">$</span>Genre, <span class="dt">Author =</span> books<span class="op">$</span>Author)</div>
-<div class="sourceLine" id="cb16-2" data-line-number="2"></div>
-<div class="sourceLine" id="cb16-3" data-line-number="3">textcleaned =<span class="st"> </span>text_df <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text)</div>
-<div class="sourceLine" id="cb16-5" data-line-number="5"></div>
-<div class="sourceLine" id="cb16-6" data-line-number="6">cleanedarticle =<span class="st"> </span><span class="kw">anti_join</span>(textcleaned,stop_words, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</div>
-<div class="sourceLine" id="cb16-7" data-line-number="7"></div>
-<div class="sourceLine" id="cb16-8" data-line-number="8">nrc =<span class="st"> </span><span class="kw">get_sentiments</span>(<span class="st">&quot;nrc&quot;</span>)</div>
-<div class="sourceLine" id="cb16-9" data-line-number="9"></div>
-<div class="sourceLine" id="cb16-10" data-line-number="10">tweetsentimentnrc =<span class="st"> </span>cleanedarticle <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb16-11" data-line-number="11"><span class="st">  </span><span class="kw">inner_join</span>(nrc, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</div>
-<div class="sourceLine" id="cb16-12" data-line-number="12"></div>
-<div class="sourceLine" id="cb16-13" data-line-number="13">tweetsentimentnrc =<span class="st"> </span>tweetsentimentnrc <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb16-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">ifelse</span>(sentiment<span class="op">==</span><span class="st">&quot;joy&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;positive&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;suprise&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;trust&quot;</span>,<span class="st">&quot;Positive Words&quot;</span>,</div>
-<div class="sourceLine" id="cb16-15" data-line-number="15">                       <span class="kw">ifelse</span>(sentiment<span class="op">==</span><span class="st">&quot;disgust&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;fear&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;negative&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;sadness&quot;</span>,<span class="st">&quot;Negative Words&quot;</span>,<span class="st">&quot;Neutral Words&quot;</span>))) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb16-16" data-line-number="16"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">as.factor</span>(sent))</div>
-<div class="sourceLine" id="cb16-17" data-line-number="17"></div>
-<div class="sourceLine" id="cb16-18" data-line-number="18">tweetsentimentnrc</div></code></pre>
-<pre><code>## # A tibble: 918 x 7
-##     line                  book            Genre      Author         word    sentiment           sent
-##    &lt;int&gt;                 &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;fctr&gt;
-##  1     1 And Then Comes Summer Juvenile Fiction Tom Brenner       joyful          joy Positive Words
-##  2     1 And Then Comes Summer Juvenile Fiction Tom Brenner       joyful     positive Positive Words
-##  3     1 And Then Comes Summer Juvenile Fiction Tom Brenner       joyful        trust Positive Words
-##  4     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun anticipation  Neutral Words
-##  5     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun          joy Positive Words
-##  6     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun     positive Positive Words
-##  7     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun     surprise  Neutral Words
-##  8     1 And Then Comes Summer Juvenile Fiction Tom Brenner          sun        trust Positive Words
-##  9     1 And Then Comes Summer Juvenile Fiction Tom Brenner      tribute     positive Positive Words
-## 10     1 And Then Comes Summer Juvenile Fiction Tom Brenner anticipation anticipation  Neutral Words
-## # ... with 908 more rows</code></pre>
+<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1">text_df =<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">line =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(books<span class="op">$</span>Summary), <span class="dt">text =</span> <span class="kw">as.character</span>(books<span class="op">$</span>Summary), <span class="dt">book =</span> books<span class="op">$</span>Title, <span class="dt">Genre =</span> books<span class="op">$</span>Genre, <span class="dt">Author =</span> books<span class="op">$</span>Author)</div>
+<div class="sourceLine" id="cb20-2" data-line-number="2"></div>
+<div class="sourceLine" id="cb20-3" data-line-number="3">textcleaned =<span class="st"> </span>text_df <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text)</div>
+<div class="sourceLine" id="cb20-5" data-line-number="5"></div>
+<div class="sourceLine" id="cb20-6" data-line-number="6">cleanedarticle =<span class="st"> </span><span class="kw">anti_join</span>(textcleaned,stop_words, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</div>
+<div class="sourceLine" id="cb20-7" data-line-number="7"></div>
+<div class="sourceLine" id="cb20-8" data-line-number="8">nrc =<span class="st"> </span><span class="kw">get_sentiments</span>(<span class="st">&quot;nrc&quot;</span>)</div>
+<div class="sourceLine" id="cb20-9" data-line-number="9"></div>
+<div class="sourceLine" id="cb20-10" data-line-number="10">tweetsentimentnrc =<span class="st"> </span>cleanedarticle <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb20-11" data-line-number="11"><span class="st">  </span><span class="kw">inner_join</span>(nrc, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>)</div>
+<div class="sourceLine" id="cb20-12" data-line-number="12"></div>
+<div class="sourceLine" id="cb20-13" data-line-number="13">tweetsentimentnrc =<span class="st"> </span>tweetsentimentnrc <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb20-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">ifelse</span>(sentiment<span class="op">==</span><span class="st">&quot;joy&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;positive&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;suprise&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;trust&quot;</span>,<span class="st">&quot;Positive Words&quot;</span>,</div>
+<div class="sourceLine" id="cb20-15" data-line-number="15">                       <span class="kw">ifelse</span>(sentiment<span class="op">==</span><span class="st">&quot;disgust&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;fear&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;negative&quot;</span><span class="op">|</span>sentiment<span class="op">==</span><span class="st">&quot;sadness&quot;</span>,<span class="st">&quot;Negative Words&quot;</span>,<span class="st">&quot;Neutral Words&quot;</span>))) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb20-16" data-line-number="16"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">as.factor</span>(sent))</div>
+<div class="sourceLine" id="cb20-17" data-line-number="17"></div>
+<div class="sourceLine" id="cb20-18" data-line-number="18">tweetsentimentnrc</div></code></pre>
+<pre><code>## # A tibble: 9,929 x 7
+##     line book                  Genre            Author      word         sentiment    sent          
+##    &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;fct&gt;         
+##  1     1 And Then Comes Summer Juvenile Fiction Tom Brenner joyful       joy          Positive Words
+##  2     1 And Then Comes Summer Juvenile Fiction Tom Brenner joyful       positive     Positive Words
+##  3     1 And Then Comes Summer Juvenile Fiction Tom Brenner joyful       trust        Positive Words
+##  4     1 And Then Comes Summer Juvenile Fiction Tom Brenner sun          anticipation Neutral Words 
+##  5     1 And Then Comes Summer Juvenile Fiction Tom Brenner sun          joy          Positive Words
+##  6     1 And Then Comes Summer Juvenile Fiction Tom Brenner sun          positive     Positive Words
+##  7     1 And Then Comes Summer Juvenile Fiction Tom Brenner sun          surprise     Neutral Words 
+##  8     1 And Then Comes Summer Juvenile Fiction Tom Brenner sun          trust        Positive Words
+##  9     1 And Then Comes Summer Juvenile Fiction Tom Brenner tribute      positive     Positive Words
+## 10     1 And Then Comes Summer Juvenile Fiction Tom Brenner anticipation anticipation Neutral Words 
+## # ... with 9,919 more rows</code></pre>
 <p>Lets look at the sentiment my children are receiving in their books (as told by the summaries)</p>
-<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Maybe it would be more interesting to see which Authrors are providing which sentiments.</p>
-<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Author&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)  <span class="op">+</span></div>
-<div class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>This chart is likely to spiril out of control as the number of books increases. We’ll have to filter this by author’s who have multiple books.</p>
+<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1">tweetsentimentnrc <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Author) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">100</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb23-5" data-line-number="5"></div>
+<div class="sourceLine" id="cb23-6" data-line-number="6"><span class="kw">ggplot</span>(<span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-8" data-line-number="8"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Author&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-9" data-line-number="9"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)  <span class="op">+</span></div>
+<div class="sourceLine" id="cb23-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Lastly, lets see if there’s a genre that has any sentiment sway. Of note, I find it funny that there is a ‘Bears’ genre.</p>
-<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tweetsentimentnrc, <span class="kw">aes</span>(sent, <span class="dt">fill =</span> sent)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Genre&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</div></code></pre>
-<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-</section>
-<section id="further-analysis-to-follow-as-we-read-books-throughout-the-year." class="level2">
+<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1">tweetsentimentnrc <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Genre) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb24-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Genre)) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb24-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">15</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb24-6" data-line-number="6"><span class="kw">ggplot</span>(<span class="kw">aes</span>(sent, <span class="dt">fill =</span> sent)) <span class="op">+</span></div>
+<div class="sourceLine" id="cb24-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></div>
+<div class="sourceLine" id="cb24-8" data-line-number="8"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Genre&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</div></code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="further-analysis-to-follow-as-we-read-books-throughout-the-year." class="section level2">
 <h2>Further analysis to follow as we read books throughout the year.</h2>
-</section>
+</div>
 </article>
     <footer class="post-footer">
       
@@ -451,7 +535,7 @@ Here’s an example:</p>
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>138</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>140</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     

@@ -51,13 +51,31 @@ The libraries I will use for this analysis are the following:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 library(tidyverse)
+library(lubridate)
+library(janitor)
 library(tidytext)
 ```
 
-Lets read in the data and get a feel for what information we have available.  There are 'ton' of colums, many of them are nothing but `nas`, so I'll eliminate those immediatly.  
+Lets read in the data and get a feel for what information we have available.  Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together.  Many of the column names have spaces which does not support data munging.  I'll use the `clean_names` command from the `janitor` package to clean this up.  Lastly, you'll not I used the `distinct` call because some of us scanned the same books. We do not want to account for them twice.  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+book1 = read_csv("books.csv") 
+book2 = read_csv("BookBuddy.csv")
+book3 = read_csv("BookBuddy2.csv")
+book4 = read_csv("BookBuddy3.csv")
+booksread =
+  book1 %>% bind_rows(book2) %>% bind_rows(book3) %>% bind_rows(book4)  %>%
+  clean_names(case = "upper_camel") %>%
+    distinct()
+
+head(booksread)
+```
+
+
+
+There are 'ton' of colums, many of them are nothing but `nas`, so I'll eliminate those immediatly.  
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
-booksread = read_csv("books.csv")
 booksread = booksread %>% 
   select_if(function(x) any(!is.na(x)))
 summary(booksread)
@@ -67,16 +85,33 @@ Some of the features are redundant, some are full of `0`s, and some are otherwis
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 books = booksread %>%
-  select(Title, Author, Publisher, `Date Published`, `Year Published`,
-         Genre, Summary, `Number of Pages`, `Date Added`, `Google VolumeID`) 
+  select(Title, Author, Publisher, DatePublished, YearPublished,
+         Genre, Summary, NumberOfPages, DateAdded) 
+
+head(books)
 ```
 
 Lets take a look at what Authors we typically select for our kids.
+
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 ggplot(data = books, aes(Author)) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Oh man, that's indecipherable.  Lets only select the Authors where we've read at least 3 of their books.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books %>%
+  group_by(Author) %>%
+  add_tally() %>%
+  filter(n>3) %>%
+  ungroup() %>%
+  ggplot(aes(fct_reorder(Author,-n))) +
+  geom_bar(aes(fill = log(n))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "none")
 ```
 
 Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves the Berenstain Author.  Lets collapse them all into one Author
@@ -85,9 +120,15 @@ Clearly, we read a lot of Berenstain Bear books - but notice how Bookbuddy saves
 books = books %>%
   mutate(Author = ifelse(grepl("Bere", Author)==TRUE, "Berenstein", Author))
 
-ggplot(data = books, aes(Author)) +
-  geom_bar() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+books %>%
+  group_by(Author) %>%
+  add_tally() %>%
+  filter(n>3) %>%
+  ungroup() %>%
+  ggplot(aes(fct_reorder(Author,-n))) +
+  geom_bar(aes(fill = log(n))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "none")
 ```
 
 Nice!! - But wow, we read a lot of books about the Berenstien Bears.  Lets take a look at the type of material that we are putting in our kids head.  
@@ -104,21 +145,35 @@ Okay then.
 The next few charts depict the year the books were first published, the number of pages, the Genre of the books.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
-ggplot(data = books, aes(`Year Published`)) +
+ggplot(data = books, aes(YearPublished)) +
   geom_bar() +
   ggtitle("Books By Year") + ylab("Total Books")
 
-ggplot(data = books, aes(`Number of Pages`)) +
+ggplot(data = books, aes(NumberOfPages)) +
   geom_histogram() +
   ggtitle("Books By Number of Pages") + ylab("Total Books")
-
-ggplot(data = books, aes(Genre, fill = Genre)) +
-  geom_bar() +
-  ggtitle("Books By Genre") + ylab("Total Books")  +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-What are these `NA`s?
+
+There are a ton of odd Genre's and I've eliminated several.  Lets take a look at that:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
+books = books %>%
+  mutate(Genre = ifelse(Genre=="Otters"|Genre=="Beavers"|Genre=="Cows"|Genre=="Rabbits"|Genre=="Animal tracks"|Genre=="Horses"|Genre=="Deer","Animals",Genre)) %>%
+  mutate(Genre = ifelse(Genre=="Hair in Fiction", "Juvenile Fiction", Genre))
+
+books %>%
+  group_by(Genre) %>%
+  add_tally() %>%
+  filter(n>2, !is.na(Genre)) %>%
+ggplot(aes(Genre, fill = Genre)) +
+  geom_bar() +
+  ggtitle("Books By Genre") + ylab("Total Books")  +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "none")
+```
+
+Notice, I filtered out some `NAs`.  Lets take a look at what what are these `NA`s are?
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 books %>%
@@ -173,19 +228,30 @@ Maybe it would be more interesting to see which Authrors are providing which sen
 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
-ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
+
+tweetsentimentnrc %>%
+  group_by(Author) %>%
+  add_tally() %>%
+  filter(n>100) %>%
+
+ggplot(aes(sent, color = sentiment, fill = sentiment)) +
   geom_bar() +
   facet_wrap("Author", scales = "free_y") +
   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count")  +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-This chart is likely to spiril out of control as the number of books increases.  We'll have to filter this by author's who have multiple books.  
 
 Lastly, lets see if there's a genre that has any sentiment sway.  Of note, I find it funny that there is a 'Bears' genre.  
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
-ggplot(data = tweetsentimentnrc, aes(sent, fill = sent)) +
+
+tweetsentimentnrc %>%
+  group_by(Genre) %>%
+  add_tally() %>%
+  filter(!is.na(Genre)) %>%
+  filter(n>15) %>%
+ggplot(aes(sent, fill = sent)) +
   geom_bar() +
   facet_wrap("Genre", scales = "free_y")
 ```
