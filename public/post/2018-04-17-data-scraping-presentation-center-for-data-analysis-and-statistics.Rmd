@@ -13,4 +13,4 @@ tags:
   - beatnavy
 ---
 
-On 17 April 2018, I gave a tutorial to the Department of Mathematical Sciences at West Point and the Sports Analytics Club.  The Power Point presentation, R file, and R Markdown file are at my github page at this [link](https://github.com/dusty-turner/CDAS-Presentation-17-April-2018) 
+On 17 April 2018, I gave a tutorial to the Department of Mathematical Sciences at West Point and the Sports Analytics Club.  The Power Point presentation, R file, and R Markdown file are at my github page at this [link](https://github.com/dusty-turner/CDAS-Presentation-17-April-2018)  
