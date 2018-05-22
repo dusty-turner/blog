@@ -206,21 +206,21 @@ cleanedarticle = anti_join(textcleaned,stop_words, by = "word")
 
 nrc = get_sentiments("nrc")
 
-tweetsentimentnrc = cleanedarticle %>%
+booksentimentnrc = cleanedarticle %>%
   inner_join(nrc, by = "word")
 
-tweetsentimentnrc = tweetsentimentnrc %>%
+booksentimentnrc = booksentimentnrc %>%
   mutate(sent = ifelse(sentiment=="joy"|sentiment=="positive"|sentiment=="suprise"|sentiment=="trust","Positive Words",
                        ifelse(sentiment=="disgust"|sentiment=="fear"|sentiment=="negative"|sentiment=="sadness","Negative Words","Neutral Words"))) %>%
   mutate(sent = as.factor(sent))
 
-tweetsentimentnrc
+booksentimentnrc
 ```
 
 Lets look at the sentiment my children are receiving in their books (as told by the summaries)
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
-ggplot(data = tweetsentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
+ggplot(data = booksentimentnrc, aes(sent, color = sentiment, fill = sentiment)) +
   geom_bar() +
   ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count")
 ```
@@ -230,7 +230,7 @@ Maybe it would be more interesting to see which Authrors are providing which sen
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 
-tweetsentimentnrc %>%
+booksentimentnrc %>%
   group_by(Author) %>%
   add_tally() %>%
   filter(n>100) %>%
@@ -247,7 +247,7 @@ Lastly, lets see if there's a genre that has any sentiment sway.  Of note, I fin
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 
-tweetsentimentnrc %>%
+booksentimentnrc %>%
   group_by(Genre) %>%
   add_tally() %>%
   filter(!is.na(Genre)) %>%
