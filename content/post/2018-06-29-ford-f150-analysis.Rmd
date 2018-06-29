@@ -46,8 +46,6 @@ I will echo all the R code, messages, and warnings in this tutorial so you can s
 
 Most commands from this tutorial will be called from the tidyverse.  Thank you [Hadley Wickham](http://hadley.nz/)
  
-{r message=TRUE, warning=TRUE}
-
 ```{r echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 library(tidyverse)
 ```
