@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>2005 Ford F150 Exploratory Data Analysis 3</title>
+      <title>2 2005 Ford F150 Exploratory Data Analysis</title>
       <link>/post/ford-f150-analysis/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/ford-f150-analysis/</guid>
-      <description>In February 2006, my dad and I split the cost of a 2005 Ford F150. He probably paid the larger half, but I believe he (and I) have got our money’s worth out of it as I still drive it to this day. Since the purchase, I have tracked the gas milage every time I’ve filled up the tank. This tutorial uses this data set to highlight some functions in R to do the following:</description>
+      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
     </item>
     
     <item>

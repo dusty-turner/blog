@@ -1,5 +1,5 @@
 ---
-title: "2005 Ford F150 Exploratory Data Analysis 3" 
+title: "2 2005 Ford F150 Exploratory Data Analysis" 
 author: Dusty Turner
 date: '2018-06-29'
 slug: ford-f150-analysis
@@ -16,13 +16,13 @@ tags:
   - lubridate
   - forecast
 output: 
-blogdown::html_page:
-  toc: TRUE
-  toc_depth: 2
-  # dev: "svg"
-  # theme: lumen
-  highlight: tango
-  # code_folding: show  #doesn't work yet with html_page
+  blogdown::html_page:
+    toc: TRUE
+    toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
 ---
 
 ```{r set-options, echo=FALSE, cache=FALSE}
