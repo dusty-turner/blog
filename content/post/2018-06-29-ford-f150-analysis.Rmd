@@ -15,6 +15,14 @@ tags:
   - ggplot2
   - lubridate
   - forecast
+output: 
+blogdown::html_page:
+  toc: TRUE
+  toc_depth: 2
+  # dev: "svg"
+  # theme: lumen
+  highlight: tango
+  # code_folding: show  #doesn't work yet with html_page
 ---
 
 ```{r setup, include=FALSE}
