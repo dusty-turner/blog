@@ -1,5 +1,5 @@
 ---
-title: "2005 Ford F150 Exploratory Data Analysis 2" 
+title: "2005 Ford F150 Exploratory Data Analysis 3" 
 author: Dusty Turner
 date: '2018-06-29'
 slug: ford-f150-analysis
@@ -50,8 +50,10 @@ I will echo all the R code, messages, and warnings in this tutorial so you can s
 ## Tidyverse
 
 Most commands from this tutorial will be called from the tidyverse.  Thank you [Hadley Wickham](http://hadley.nz/)
+ 
+{r message=TRUE, warning=TRUE}
 
-```{r message=TRUE, warning=TRUE}
+```{r echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 library(tidyverse)
 ```
 
