@@ -1,5 +1,5 @@
 ---
-title: "2005 Ford F150 Exploratory Data Analysis" 
+title: "2005 Ford F150 Exploratory Data Analysis 2" 
 author: Dusty Turner
 date: '2018-06-29'
 slug: ford-f150-analysis
