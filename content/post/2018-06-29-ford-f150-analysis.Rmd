@@ -30,13 +30,13 @@ options(width = 150)
 options(stringsAsFactors = FALSE)
 ```
 
-# ```{r setup, include=FALSE}
-# knitr::opts_chunk$set(
-# 	echo = TRUE,
-# 	message = FALSE,
-# 	warning = FALSE
-# )
-# ```
+<!-- # ```{r setup, include=FALSE} -->
+<!-- # knitr::opts_chunk$set( -->
+<!-- # 	echo = TRUE, -->
+<!-- # 	message = FALSE, -->
+<!-- # 	warning = FALSE -->
+<!-- # ) -->
+<!-- # ``` -->
 
 In February 2006, my dad and I split the cost of a 2005 Ford F150.  He probably paid the larger half, but I believe he (and I) have got our money's worth out of it as I still drive it to this day.  Since the purchase, I have tracked the gas milage every time I've filled up the tank.  This tutorial uses this data set to highlight some functions in R to do the following:
 
