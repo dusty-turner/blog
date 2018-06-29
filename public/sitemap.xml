@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>/post/ford-f150-analysis/</loc>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/tracking-my-cadets-summer-plans/</loc>
     <lastmod>2018-05-17T00:00:00+00:00</lastmod>
   </url>
@@ -85,13 +90,13 @@
   
   <url>
     <loc>/tags/beatnavy/</loc>
-    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/beatnavy/</loc>
-    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -127,13 +132,13 @@
   
   <url>
     <loc>/tags/datascience/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/datascience/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -180,26 +185,38 @@
   </url>
   
   <url>
+    <loc>/tags/forecast/</loc>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/forecast/</loc>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/ggplot2/</loc>
-    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/lubridate/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/lubridate/</loc>
-    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -217,7 +234,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
