@@ -13,6 +13,14 @@ tags:
   - tidyverse
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
 ### A Little About Dates in R
 
 Before we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.

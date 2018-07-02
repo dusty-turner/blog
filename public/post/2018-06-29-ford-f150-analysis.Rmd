@@ -18,7 +18,7 @@ tags:
 output: 
   blogdown::html_page:
     toc: TRUE
-    toc_depth: 2
+    toc_depth: 1
     # dev: "svg"
     # theme: lumen
     highlight: tango

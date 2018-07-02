@@ -118,7 +118,7 @@ Base RFirst, base R can read a string of text and conver it to a date class. To
   
   <h2 class="title">Dusty Turner</h2>
   
-  <p class="subtitle">~Becoming a Better Data Scientist~</p>
+  <p class="subtitle">~A Little Fox, A Little Hedgehog~</p>
   <button class="menu-toggle" type="button">
     <span class="icon icon-menu"></span>
   </button>
@@ -240,11 +240,6 @@ Base RFirst, base R can read a string of text and conver it to a date class. To
 <h3>lubridate</h3>
 <p>A second and easier way to have R reconginze dates is to use the <code>lubridate</code> package in R. Thanks again <a href="http://hadley.nz/">Hadley</a></p>
 <pre class="r"><code>library(lubridate)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     date</code></pre>
 <p>Using <code>lubridate</code> also allows R to read character strings as dates. However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many mothods to recognzie your string. You simply provide it the order of your month, day, and year in <code>ymd</code> format or any combination thereof.</p>
 <pre class="r"><code>mdy(&quot;June 14, 2018&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
