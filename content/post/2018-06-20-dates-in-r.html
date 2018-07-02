@@ -12,15 +12,68 @@ tags:
   - lubridate
   - tidyverse
 output: 
-blogdown::html_page:
-  toc: TRUE
-  toc_depth: 1
-  # dev: "svg"
-  # theme: lumen
-  highlight: tango
-  # code_folding: show  #doesn't work yet with html_page
+  blogdown::html_page:
+    toc: TRUE
+    toc_depth: 1
+    # dev: "svg"
+    # theme: lumen
+    highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
 ---
 
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+pre, code { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.fl { color: #0000cf; } /* Float */
+code span.ch { color: #4e9a06; } /* Char */
+code span.st { color: #4e9a06; } /* String */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.ot { color: #8f5902; } /* Other */
+code span.al { color: #ef2929; } /* Alert */
+code span.fu { color: #000000; } /* Function */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #000000; } /* Constant */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #000000; } /* Variable */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.ex { } /* Extension */
+code span.at { color: #c4a000; } /* Attribute */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 <div id="a-little-about-dates-in-r" class="section level3">
@@ -33,64 +86,64 @@ blogdown::html_page:
 <div id="base-r" class="section level4">
 <h4>Base R</h4>
 <p>First, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect. Below are several examples. You can look at all the possible format and codes by running <code>?strptime</code> in your R console.</p>
-<pre class="r"><code>strptime(&quot;October 16, 1984&quot;, format = &quot;%B %e, %Y&quot;)</code></pre>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">strptime</span>(<span class="st">&quot;October 16, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%B %e, %Y&quot;</span>)</div></code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
-<pre class="r"><code>strptime(&quot;16 October, 1984&quot;, format = &quot;%e %B, %Y&quot;)</code></pre>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">strptime</span>(<span class="st">&quot;16 October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e %B, %Y&quot;</span>)</div></code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
-<pre class="r"><code>strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">strptime</span>(<span class="st">&quot;16-- October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e-- %B, %Y&quot;</span>)</div></code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
-<pre class="r"><code>class(strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;))</code></pre>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">strptime</span>(<span class="st">&quot;16-- October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e-- %B, %Y&quot;</span>))</div></code></pre>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
-<pre class="r"><code>birthday = strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1">birthday =<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;16-- October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e-- %B, %Y&quot;</span>)</div></code></pre>
 <p>As you can see, the <code>strptime</code> command recognizes your string as a <code>POSIXlt POSIXt</code> class.</p>
 </div>
 </div>
 <div id="lubridate" class="section level3">
 <h3>lubridate</h3>
 <p>A second and easier way to have R recognize dates is to use the <code>lubridate</code> package in R. Thanks again <a href="http://hadley.nz/">Hadley</a></p>
-<pre class="r"><code>library(lubridate)</code></pre>
+<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><div class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">library</span>(lubridate)</div></code></pre>
 <p>Using <code>lubridate</code> also allows R to read character strings as dates. However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many methods to recognize your string. You simply provide it the order of your month, day, and year in <code>ymd</code> format or any combination thereof.</p>
-<pre class="r"><code>mdy(&quot;June 14, 2018&quot;)</code></pre>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">mdy</span>(<span class="st">&quot;June 14, 2018&quot;</span>)</div></code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
-<pre class="r"><code>dmy(&quot;14 June, 2018&quot;)</code></pre>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">dmy</span>(<span class="st">&quot;14 June, 2018&quot;</span>)</div></code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
-<pre class="r"><code>dmy(&quot;14-- June, 2018&quot;)</code></pre>
+<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">dmy</span>(<span class="st">&quot;14-- June, 2018&quot;</span>)</div></code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
-<pre class="r"><code>class(dmy(&quot;14-- June, 2018&quot;))</code></pre>
+<pre class="sourceCode r" id="cb17"><code class="sourceCode r"><div class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">dmy</span>(<span class="st">&quot;14-- June, 2018&quot;</span>))</div></code></pre>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>You’ll notice that lubridate creates a <code>date</code> class. To change it into <code>POSIXlt POSIXt</code> format, wrap your text with the following code.</p>
-<pre class="r"><code>class(as.POSIXlt(mdy(&quot;June 14, 2018&quot;)))</code></pre>
+<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">as.POSIXlt</span>(<span class="kw">mdy</span>(<span class="st">&quot;June 14, 2018&quot;</span>)))</div></code></pre>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
 <p>We also need to ensure our date is the correct timezone. This would be more important if our date had a time included.</p>
-<pre class="r"><code>date = as.POSIXlt(dmy(&quot;14 June, 2018&quot;))
-date</code></pre>
+<pre class="sourceCode r" id="cb21"><code class="sourceCode r"><div class="sourceLine" id="cb21-1" data-line-number="1">date =<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">dmy</span>(<span class="st">&quot;14 June, 2018&quot;</span>))</div>
+<div class="sourceLine" id="cb21-2" data-line-number="2">date</div></code></pre>
 <pre><code>## [1] &quot;2018-06-14 UTC&quot;</code></pre>
-<pre class="r"><code>date = force_tz(date, tzone = &quot;America/New_York&quot;)
-date</code></pre>
+<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1">date =<span class="st"> </span><span class="kw">force_tz</span>(date, <span class="dt">tzone =</span> <span class="st">&quot;America/New_York&quot;</span>)</div>
+<div class="sourceLine" id="cb23-2" data-line-number="2">date</div></code></pre>
 <pre><code>## [1] &quot;2018-06-14 EDT&quot;</code></pre>
 <p>When a date vector is of class <code>as.POSIXlt</code>, all the information is stored as a list. You can also extract specific information from the list as well.</p>
-<pre class="r"><code>date</code></pre>
+<pre class="sourceCode r" id="cb25"><code class="sourceCode r"><div class="sourceLine" id="cb25-1" data-line-number="1">date</div></code></pre>
 <pre><code>## [1] &quot;2018-06-14 EDT&quot;</code></pre>
-<pre class="r"><code>unlist(date)</code></pre>
+<pre class="sourceCode r" id="cb27"><code class="sourceCode r"><div class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">unlist</span>(date)</div></code></pre>
 <pre><code>##      sec      min     hour     mday      mon     year     wday     yday 
 ##      &quot;0&quot;      &quot;0&quot;      &quot;0&quot;     &quot;14&quot;      &quot;5&quot;    &quot;118&quot;      &quot;4&quot;    &quot;164&quot; 
 ##    isdst     zone   gmtoff 
 ##      &quot;1&quot;    &quot;EDT&quot; &quot;-14400&quot;</code></pre>
-<pre class="r"><code>date$mon</code></pre>
+<pre class="sourceCode r" id="cb29"><code class="sourceCode r"><div class="sourceLine" id="cb29-1" data-line-number="1">date<span class="op">$</span>mon</div></code></pre>
 <pre><code>## [1] 5</code></pre>
-<pre class="r"><code>month(date)</code></pre>
+<pre class="sourceCode r" id="cb31"><code class="sourceCode r"><div class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">month</span>(date)</div></code></pre>
 <pre><code>## [1] 6</code></pre>
-<pre class="r"><code>date$year</code></pre>
+<pre class="sourceCode r" id="cb33"><code class="sourceCode r"><div class="sourceLine" id="cb33-1" data-line-number="1">date<span class="op">$</span>year</div></code></pre>
 <pre><code>## [1] 118</code></pre>
-<pre class="r"><code>year(date)</code></pre>
+<pre class="sourceCode r" id="cb35"><code class="sourceCode r"><div class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">year</span>(date)</div></code></pre>
 <pre><code>## [1] 2018</code></pre>
 <p>You can manipulate these date vectors as well.</p>
-<pre class="r"><code>date - birthday</code></pre>
+<pre class="sourceCode r" id="cb37"><code class="sourceCode r"><div class="sourceLine" id="cb37-1" data-line-number="1">date <span class="op">-</span><span class="st"> </span>birthday</div></code></pre>
 <pre><code>## Time difference of 12294 days</code></pre>
-<pre class="r"><code>birthday + hours(4)</code></pre>
+<pre class="sourceCode r" id="cb39"><code class="sourceCode r"><div class="sourceLine" id="cb39-1" data-line-number="1">birthday <span class="op">+</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">4</span>)</div></code></pre>
 <pre><code>## [1] &quot;1984-10-16 04:00:00 UTC&quot;</code></pre>
-<pre class="r"><code>birthday + days(4)</code></pre>
+<pre class="sourceCode r" id="cb41"><code class="sourceCode r"><div class="sourceLine" id="cb41-1" data-line-number="1">birthday <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">4</span>)</div></code></pre>
 <pre><code>## [1] &quot;1984-10-20 UTC&quot;</code></pre>
-<pre class="r"><code>date + years(4) + months(9)</code></pre>
+<pre class="sourceCode r" id="cb43"><code class="sourceCode r"><div class="sourceLine" id="cb43-1" data-line-number="1">date <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">9</span>)</div></code></pre>
 <pre><code>## [1] &quot;2023-03-14 EDT&quot;</code></pre>
 </div>

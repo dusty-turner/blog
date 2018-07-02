@@ -27,12 +27,7 @@
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/dates-in-r/</guid>
-      <description>A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
-There are 3 date/time classes are built in to R
-- Date
-- POSIXct
-- POSIXlt
-Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</description>
+      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
     </item>
     
     <item>
