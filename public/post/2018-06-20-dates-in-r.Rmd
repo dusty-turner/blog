@@ -34,7 +34,7 @@ class(strptime("16-- October, 1984", format = "%e-- %B, %Y"))
 birthday = strptime("16-- October, 1984", format = "%e-- %B, %Y")
 ```
 
-As you can see, the `strptime` command has R recognzie your string as a `POSIXlt POSIXt` class.
+As you can see, the `strptime` command recognzies your string as a `POSIXlt POSIXt` class.
 
 ### lubridate
 
