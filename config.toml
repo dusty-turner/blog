@@ -42,7 +42,8 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
 [params]
   author = "Dusty Turner"
   avatar = "/img/dusty.png"
-  seotitle = "Dusty Turner's R Data Science Blog"
+  seotitle = "A Little Fox, A Little Hedgehog"
+#  seotitle = "Dusty Turner's R Data Science Blog"
   subtitle = "~Becoming a Better Data Scientist~"
   description = "Sharing my experiences learning Data Science Through R"
   paginate = 10
