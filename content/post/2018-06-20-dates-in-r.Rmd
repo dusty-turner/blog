@@ -32,7 +32,7 @@ There are 3 date/time classes are built in to R
 
 #### Base R
 
-First, base R can read a string of text and conver it to a date class.  To help it read the date, you must tell R what date format your character string should expect.  Below are several examples.  You can look at all the possible format and codes by running `?strptime` in your R console.  
+First, base R can read a string of text and convert it to a date class.  To help it read the date, you must tell R what date format your character string should expect.  Below are several examples.  You can look at all the possible format and codes by running `?strptime` in your R console.  
 
 ```{r}
 strptime("October 16, 1984", format = "%B %e, %Y")
@@ -42,17 +42,17 @@ class(strptime("16-- October, 1984", format = "%e-- %B, %Y"))
 birthday = strptime("16-- October, 1984", format = "%e-- %B, %Y")
 ```
 
-As you can see, the `strptime` command recognzies your string as a `POSIXlt POSIXt` class.
+As you can see, the `strptime` command recognizes your string as a `POSIXlt POSIXt` class.
 
 ### lubridate
 
-A second and easier way to have R reconginze dates is to use the `lubridate` package in R.  Thanks again [Hadley](http://hadley.nz/)
+A second and easier way to have R recognize dates is to use the `lubridate` package in R.  Thanks again [Hadley](http://hadley.nz/)
 
 ```{r}
 library(lubridate)
 ```
 
-Using `lubridate` also allows R to read character strings as dates.  However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many mothods to recognzie your string.  You simply provide it the order of your month, day, and year in `ymd` format or any combination thereof.  
+Using `lubridate` also allows R to read character strings as dates.  However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many methods to recognize your string.  You simply provide it the order of your month, day, and year in `ymd` format or any combination thereof.  
 
 ```{r}
 mdy("June 14, 2018")
@@ -61,7 +61,7 @@ dmy("14-- June, 2018")
 class(dmy("14-- June, 2018"))
 ```
 
-You'll notice that lubridate creats a `date` class.  To change it into `POSIXlt POSIXt` format, wrap your text with the following code.
+You'll notice that lubridate creates a `date` class.  To change it into `POSIXlt POSIXt` format, wrap your text with the following code.
 
 ```{r}
 class(as.POSIXlt(mdy("June 14, 2018")))

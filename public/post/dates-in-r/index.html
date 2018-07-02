@@ -20,7 +20,7 @@ There are 3 date/time classes are built in to R
 - Date
 - POSIXct
 - POSIXlt
-Base RFirst, base R can read a string of text and conver it to a date class. To help it read the date, you must tell R what date format your character string should expect." />
+Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect." />
 
   
   
@@ -32,7 +32,7 @@ There are 3 date/time classes are built in to R
 - Date
 - POSIXct
 - POSIXlt
-Base RFirst, base R can read a string of text and conver it to a date class. To help it read the date, you must tell R what date format your character string should expect." />
+Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -223,7 +223,7 @@ Base RFirst, base R can read a string of text and conver it to a date class. To
 - POSIXlt</p>
 <div id="base-r" class="section level4">
 <h4>Base R</h4>
-<p>First, base R can read a string of text and conver it to a date class. To help it read the date, you must tell R what date format your character string should expect. Below are several examples. You can look at all the possible format and codes by running <code>?strptime</code> in your R console.</p>
+<p>First, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect. Below are several examples. You can look at all the possible format and codes by running <code>?strptime</code> in your R console.</p>
 <pre class="r"><code>strptime(&quot;October 16, 1984&quot;, format = &quot;%B %e, %Y&quot;)</code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
 <pre class="r"><code>strptime(&quot;16 October, 1984&quot;, format = &quot;%e %B, %Y&quot;)</code></pre>
@@ -233,14 +233,14 @@ Base RFirst, base R can read a string of text and conver it to a date class. To
 <pre class="r"><code>class(strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;))</code></pre>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
 <pre class="r"><code>birthday = strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
-<p>As you can see, the <code>strptime</code> command recognzies your string as a <code>POSIXlt POSIXt</code> class.</p>
+<p>As you can see, the <code>strptime</code> command recognizes your string as a <code>POSIXlt POSIXt</code> class.</p>
 </div>
 </div>
 <div id="lubridate" class="section level3">
 <h3>lubridate</h3>
-<p>A second and easier way to have R reconginze dates is to use the <code>lubridate</code> package in R. Thanks again <a href="http://hadley.nz/">Hadley</a></p>
+<p>A second and easier way to have R recognize dates is to use the <code>lubridate</code> package in R. Thanks again <a href="http://hadley.nz/">Hadley</a></p>
 <pre class="r"><code>library(lubridate)</code></pre>
-<p>Using <code>lubridate</code> also allows R to read character strings as dates. However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many mothods to recognzie your string. You simply provide it the order of your month, day, and year in <code>ymd</code> format or any combination thereof.</p>
+<p>Using <code>lubridate</code> also allows R to read character strings as dates. However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many methods to recognize your string. You simply provide it the order of your month, day, and year in <code>ymd</code> format or any combination thereof.</p>
 <pre class="r"><code>mdy(&quot;June 14, 2018&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
 <pre class="r"><code>dmy(&quot;14 June, 2018&quot;)</code></pre>
@@ -249,7 +249,7 @@ Base RFirst, base R can read a string of text and conver it to a date class. To
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
 <pre class="r"><code>class(dmy(&quot;14-- June, 2018&quot;))</code></pre>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
-<p>You’ll notice that lubridate creats a <code>date</code> class. To change it into <code>POSIXlt POSIXt</code> format, wrap your text with the following code.</p>
+<p>You’ll notice that lubridate creates a <code>date</code> class. To change it into <code>POSIXlt POSIXt</code> format, wrap your text with the following code.</p>
 <pre class="r"><code>class(as.POSIXlt(mdy(&quot;June 14, 2018&quot;)))</code></pre>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
 <p>We also need to ensure our date is the correct timezone. This would be more important if our date had a time included.</p>

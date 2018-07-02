@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In February 2006, my dad and I split the cost of a 2005 Ford F150.  He probably paid the larger half, but I believe he (and I) have got our money's worth out of it as I still drive it to this day.  Since the purchase, I have tracked the gas milage every time I've filled up the tank.  This tutorial uses this data set to highlight some functions in R to do the following:
+In February 2006, my dad and I split the cost of a 2005 Ford F150.  He probably paid the larger half, but I believe he (and I) have got our money's worth out of it as I still drive it to this day.  Since the purchase, I have tracked the gas mileage every time I've filled up the tank.  This tutorial uses this data set to highlight some functions in R to do the following:
 
 - Exploratory Data Analysis
 - Explore Dates in R
@@ -57,7 +57,7 @@ library(lubridate)
 
 ### Exploratory Data Analysis
 
-Now, lets look at the dataset
+Now, lets look at the data-set
 
 We will use the following functions:
 
@@ -78,7 +78,7 @@ head(truck)
 
 Below the names of each column, r is telling us the data type.  We can already tell we will need to change some characters to dates and others to numeric.  
 
-Its a good practice to ensure all the names of your data are in the same format.  Lets use the `janitor` package and the `clean_names` function.  This ensures that the names are unique, consistant, have no non alpha-numeric characters, and transform spaces into underscores.  
+Its a good practice to ensure all the names of your data are in the same format.  Lets use the `janitor` package and the `clean_names` function.  This ensures that the names are unique, consistent, have no non alpha-numeric characters, and transform spaces into underscores.  
 
 ```{r}
 truck =
@@ -95,7 +95,7 @@ library(skimr)
 skim(truck)
 ```
 
-This is more informative.  The `skim` function shows us the total number of observations and variables, missingness, despcriptive statistics, and a general distribution of the data.
+This is more informative.  The `skim` function shows us the total number of observations and variables, missingness, descriptive statistics, and a general distribution of the data.
 
 #### Filter NAs
 
@@ -152,7 +152,7 @@ truck %>%
   print(n = 20)
 ```
 
-View My Travel By Fillup
+View My Travel By Fill-up
 
 ```{r}
 truck %>%
@@ -196,7 +196,7 @@ summary(lin.mod)
 
 As you can see, the more miles I drove on a tank, the more miles per gallon I should expect.  For every extra mile I drive on a tank of gas, I should expect to receive about ~.01 more miles per gallon.  
 
-Also, for every mile I've driven total on my car, I should expect to receive ~.00001 miles per gallon less.  My layman's interpretation of this is tha tas my truck gets older, it gets worse gas mileage on average.  
+Also, for every mile I've driven total on my car, I should expect to receive ~.00001 miles per gallon less.  My layman's interpretation of this is that as my truck gets older, it gets worse gas mileage on average.  
 
 For completeness's sake, we should look at the residuals to assess our assumptions for linear regression:
 
@@ -245,7 +245,7 @@ tstruck
 
 What you may notice is that I didn't fill up my pick up every month.  This will cause an issue when it comes to time series analysis because I need an observation for every month.  I need to add a `0` for every month that is missing.  Here is how I will accomplish this task.
 
-First, I'll create a tibble of months from when we purchased the pick up until now. I'll extract out the month and year just like my origional dataset.  
+First, I'll create a tibble of months from when we purchased the pick up until now. I'll extract out the month and year just like my original data-set.  
 
 ```{r}
 startday = mdy("2-2-2006")
@@ -256,7 +256,7 @@ helper = tibble(date = startday + months(0:149)) %>%
 helper
 ```
 
-Next, I'll do a `full_join` of the helper tibble I created with my origional data.  
+Next, I'll do a `full_join` of the helper tibble I created with my original data.  
 
 ```{r}
 expanded = full_join(helper, tstruck)
@@ -286,7 +286,7 @@ class(truckts)
 
 #### Stationary
 
-One of the assumptions that I must make is that my time series is stationary.  The Dicky-Fuller (ADF) test (from the `tsries` package), tests the null hypothesis that the data is non-stationary.  The alternative hypothesis is that the data is staitonary.
+One of the assumptions that I must make is that my time series is stationary.  The Dicky-Fuller (ADF) test (from the `tsries` package), tests the null hypothesis that the data is non-stationary.  The alternative hypothesis is that the data is stationary.
 
 ```{r}
 library(tseries)
@@ -304,7 +304,7 @@ truckts %>%
   autoplot()
 ```
 
-You can see below that there is a season aspect and trent component aspect that fluctuates over time.
+You can see below that there is a season aspect and trend component aspect that fluctuates over time.
 
 Because of this, we'll use the Holt-Winters method to capture seasonality.  
 
