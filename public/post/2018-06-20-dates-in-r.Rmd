@@ -11,6 +11,14 @@ tags:
   - beatnavy
   - lubridate
   - tidyverse
+output: 
+blogdown::html_page:
+  toc: TRUE
+  toc_depth: 1
+  # dev: "svg"
+  # theme: lumen
+  highlight: tango
+  # code_folding: show  #doesn't work yet with html_page
 ---
 
 ```{r setup, include=FALSE}
