@@ -17,8 +17,8 @@ tags:
   - forecast
 output: 
   blogdown::html_page:
-    toc: TRUE
-    toc_depth: 1
+    # toc: TRUE
+    # toc_depth: 1
     # dev: "svg"
     # theme: lumen
     highlight: tango
@@ -32,6 +32,8 @@ knitr::opts_chunk$set(
 	warning = FALSE
 )
 ```
+
+Here goes nothing. 
 
 In February 2006, my dad and I split the cost of a 2005 Ford F150.  He probably paid the larger half, but I believe he (and I) have got our money's worth out of it as I still drive it to this day.  Since the purchase, I have tracked the gas mileage every time I've filled up the tank.  This tutorial uses this data set to highlight some functions in R to do the following:
 
