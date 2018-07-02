@@ -42,91 +42,20 @@ In February 2006, my dad and I split the cost of a 2005 Ford F150.  He probably 
 
 I will echo all the R code, messages, and warnings in this tutorial so you can see what output to expect if you do similar analysis on your own data. 
 
-## Tidyverse
+#### Tidyverse
 
 Most commands from this tutorial will be called from the tidyverse.  Thank you [Hadley Wickham](http://hadley.nz/)
+
+Many of the munging is made possible through the `lubridate` package.  To support this analysis, I wrote a post about it [here](https://dusty-turner.netlify.com/post/dates-in-r/)
  
 ```{r echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 library(tidyverse)
-```
-
-## A Little About Dates in R
-
-Before we launch into analysisng the data, we should go over a few important facts about dates in R.
-
-There are 3 date/time classes are built in to R  
-- Date   
-- POSIXct   
-- POSIXlt   
-
-### Base R
-
-First, base R can read a string of text and conver it to a date class.  To help it read the date, you must tell R what date format your character string should expect.  Below are several examples.  You can look at all the possible format and codes by running `?strptime` in your R console.  
-
-```{r}
-strptime("October 16, 1984", format = "%B %e, %Y")
-strptime("16 October, 1984", format = "%e %B, %Y")
-strptime("16-- October, 1984", format = "%e-- %B, %Y")
-class(strptime("16-- October, 1984", format = "%e-- %B, %Y"))
-birthday = strptime("16-- October, 1984", format = "%e-- %B, %Y")
-```
-
-As you can see, the `strptime` command has R recognzie your string as a `POSIXlt POSIXt` class.
-
-## lubridate
-
-A second and easier way to have R reconginze dates is to use the `lubridate` package in R.  Thanks again [Hadley](http://hadley.nz/)
-
-```{r}
 library(lubridate)
 ```
 
-Using `lubridate` also allows R to read character strings as dates.  However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many mothods to recognzie your string.  You simply provide it the order of your month, day, and year in `ymd` format or any combination thereof.  
-
-```{r}
-mdy("June 14, 2018")
-dmy("14 June, 2018")
-dmy("14-- June, 2018")
-class(dmy("14-- June, 2018"))
-```
-
-You'll notice that lubridate creats a `date` class.  To change it into `POSIXlt POSIXt` format, wrap your text with the following code.
-
-```{r}
-class(as.POSIXlt(mdy("June 14, 2018")))
-```
-
-We also need to ensure our date is the correct timezone.  This would be more important if our date had a time included. 
-
-```{r}
-date = as.POSIXlt(dmy("14 June, 2018"))
-date
-date = force_tz(date, tzone = "America/New_York")
-date
-```
-
-When a date vector is of class `as.POSIXlt`, all the information is stored as a list.  You can also extract specific information from the list as well.
-
-```{r}
-date
-unlist(date)
-date$mon
-month(date)
-date$year
-year(date)
-```
-
-You can manipulate these date vectors as well.
-
-```{r}
-date - birthday
-birthday + hours(4)
-birthday + days(4)
-date + years(4) + months(9)
-```
 
 
-## Exploratory Data Analysis
+### Exploratory Data Analysis
 
 Now, lets look at the dataset
 
@@ -135,13 +64,13 @@ We will use the following functions:
 - `head` 
 - `skim` function from the `skimr` package
 
-### Read in Data
+#### Read in Data
 
 ```{r}
 truck = read_csv("FordF150.csv")
 ```
 
-### Explore
+#### Explore
 
 ```{r}
 head(truck)
@@ -159,7 +88,7 @@ janitor::clean_names(case = "snake")
 truck
 ```
 
-### Lets explor the data from the `skimr` package.
+#### Lets explor the data from the `skimr` package.
 
 ```{r}
 library(skimr)
@@ -168,7 +97,7 @@ skim(truck)
 
 This is more informative.  The `skim` function shows us the total number of observations and variables, missingness, despcriptive statistics, and a general distribution of the data.
 
-### Filter NAs
+#### Filter NAs
 
 There are a couple of `NA`s in the data.  They happen to all be in the same row so we can handle them with the following command
 
@@ -179,7 +108,7 @@ truck
 ```
 
 
-### Transform Variable Types
+#### Transform Variable Types
 
 Based off what we've observed, we need to do the following things:  
 - R currently reads the dates as character vectors. We'll need to `mutate` them so R reads them correctly.  
@@ -196,7 +125,7 @@ truck = truck %>%
 truck
 ```
 
-### Lets look at some descriptive statistics
+#### Lets look at some descriptive statistics
 
 Largest Fill Up
 
@@ -255,12 +184,12 @@ truck %>%
 ggplotly(plot)
 ```
 
-## Linear Model
+### Linear Model
 
 We might also find it interesting to determine what factors impact the miles per gallon.  This skips the iterative model building process, but its interesting to see what two factors have the most impact.
 
 ```{r}
-options(scipen = 999) ## to remove scientific notation
+options(scipen = 999) ### to remove scientific notation
 lin.mod = lm(mpg~tank_miles+total_miles,data = truck)
 summary(lin.mod)
 ```
@@ -280,7 +209,7 @@ qqPlot(lin.mod, distribution = "norm")
 As you can see from our residual plots, we're pretty happy about heteroscedasticity and normality, but not so much linearity.  Lets apply a transformation to the data. 
 
 ```{r}
-options(scipen = 999) ## to remove scientific notation
+options(scipen = 999) ### to remove scientific notation
 lin.mod = lm(mpg~poly(tank_miles,2)+total_miles,data = truck)
 summary(lin.mod)
 residualPlots(lin.mod)
@@ -289,7 +218,7 @@ qqPlot(lin.mod)
 As you can see, our linearity assumption is now satisfied, however, our since the transformation uses orthogonal polynomials, we lose a little interpretability.  We could us the raw data, however, our predictor loses significance.  
 
 
-## Time Series
+### Time Series
 
 Since the miles per gallon data was taken on my truck over time, lets to some time series analysis.  First, we need to get the data in the correct format.  
 
@@ -355,7 +284,7 @@ truckts
 class(truckts)
 ```
 
-### Stationary
+#### Stationary
 
 One of the assumptions that I must make is that my time series is stationary.  The Dicky-Fuller (ADF) test (from the `tsries` package), tests the null hypothesis that the data is non-stationary.  The alternative hypothesis is that the data is staitonary.
 

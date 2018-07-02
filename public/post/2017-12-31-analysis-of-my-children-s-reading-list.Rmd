@@ -35,7 +35,7 @@ options(stringsAsFactors = FALSE)
 
 ## Introduction
 
-Over this Christmas break, my wife was inpired to keep track of the books we read to our kids.  Her goal is to amass 1000 books in 2018.  She downloaded 'Bookbuddy' on her Iphone and can scan the barcodes with the camera.  Doing this, saves a lot of data about the books.  After a quick export, we have a nice csv.  
+Over this Christmas break, my wife was inpired to keep track of the books we read to our kids.  Her goal is to amass 1000 books in 2018.  She downloaded 'Bookbuddy' on her Iphone and can scan the barcodes with the camera.  Doing this saves a lot of data about the books.  After a quick export, we have a nice csv.  
 
 Ever on the lookout for cool data science projects, this peaked my interest.  
 
