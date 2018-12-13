@@ -46,7 +46,7 @@ seotitle = "A Little Fox, A Little Hedgehog"
 #  seotitle = "Dusty Turner's R Data Science Blog"
 subtitle = "~A Little Fox, A Little Hedgehog~"
 #  subtitle = "~Becoming a Better Data Scientist Everyday~"
-description = "Sharing my experiences learning Data Science Through R"
+description = "Sharing my experiences learning Data Science through R"
 paginate = 10
 
 # Choose your social networks
