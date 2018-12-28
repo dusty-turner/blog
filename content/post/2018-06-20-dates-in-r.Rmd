@@ -1,5 +1,5 @@
 ---
-title: Dates In R
+title: Working with Dates in R
 author: Dusty Turner
 date: '2018-06-20'
 slug: dates-in-r
@@ -30,6 +30,7 @@ knitr::opts_chunk$set(
 ```
 
 ### A Little About Dates in R
+
 
 Before we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
 
