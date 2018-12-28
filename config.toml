@@ -42,7 +42,7 @@ url = "/CV.pdf"
 [params]
 author = "Dusty Turner"
 avatar = "/img/dusty.png"
-seotitle = "A Little Fox, A Little Hedgehog"
+seotitle = "A Little Fox, A Little Hedgehog, and lightly edited"
 #  seotitle = "Dusty Turner's R Data Science Blog"
 subtitle = "~A Little Fox, A Little Hedgehog~"
 #  subtitle = "~Becoming a Better Data Scientist Everyday~"
