@@ -1,0 +1,41 @@
+---
+title: 2018 NCAA College Bowl Pick 'em
+author: Dusty Turner
+date: '2018-12-27'
+slug: 2018-ncaa-college-bowl-pick-em
+categories:
+  - army math
+  - beatnavy
+  - ESPN API
+  - shiny
+  - ggplot2
+tags:
+  - army math
+  - beatnavy
+  - ESPN API
+  - shiny
+  - ggplot2
+---
+
+## Bowl Season!
+
+The new and improved version of my NCAA College Bowl Pick'em Shiny App is available below.  
+
+Incorporated this year are a few (transparent) things.
+
+1. Bowl selections automatically lock once they start.
+
+2. Bowl results automatically update once they are complete.
+
+3. Multiple scoring techniques (weighted by confidence and raw).
+
+4. Analysis of everyone's picks.
+
+Enjoy!
+
+<center>
+```{r, echo=FALSE} 
+knitr::include_app("https://dustyturner.shinyapps.io/bowlseason2018/", height = "600px")
+```
+</center>
+ 

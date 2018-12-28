@@ -7,10 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 23 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/army-math/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2018 NCAA College Bowl Pick &#39;em</title>
+      <link>/post/2018-ncaa-college-bowl-pick-em/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-ncaa-college-bowl-pick-em/</guid>
+      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
+Incorporated this year are a few (transparent) things.
+Bowl selections automatically lock once they start.
+Bowl results automatically update once they are complete.
+Multiple scoring techniques (weighted by confidence and raw).
+Analysis of everyone’s picks.
+Enjoy!
+</description>
+    </item>
     
     <item>
       <title>2018 NY R Conference Presentation</title>
@@ -20,6 +36,8 @@
       <guid>/post/2018-ny-r-conference/</guid>
       <description>Was honored to speak at this years 2018 New York R Conference hosted by Lander Analytics and Work-Bench. Jared Lander sure knows how to host a good party, I mean, conference.
 My Slides are available, and you can contact me at dusty.s.turner@gmail.com
+Here is the youtube link to the video:
+
 Oh, and I got to go for a little run before the conferece!</description>
     </item>
     
