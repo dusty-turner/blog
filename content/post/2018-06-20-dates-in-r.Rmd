@@ -13,8 +13,8 @@ tags:
   - tidyverse
 output: 
   blogdown::html_page:
-    toc: TRUE
-    toc_depth: 1
+    # toc: TRUE
+    # toc_depth: 1
     # dev: "svg"
     # theme: lumen
     highlight: tango
