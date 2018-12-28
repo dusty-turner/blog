@@ -108,7 +108,7 @@
   
   <h2 class="title">Dusty Turner</h2>
   
-  <p class="subtitle">~A Little Fox, A Little Hedgehog~</p>
+  <p class="subtitle">~A Little Fox, A Little Hedgehog, and lightly edited~</p>
   <button class="menu-toggle" type="button">
     <span class="icon icon-menu"></span>
   </button>
@@ -202,7 +202,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Analysis of my Children&#39;s Reading List</h1>
-      <p class="post-meta">@Dusty Turner · Dec 27, 2018 · 922 min read</p>
+      <p class="post-meta">@Dusty Turner · Dec 27, 2018 · 925 min read</p>
     </header>
     <article class="post-content"><script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
 <script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
@@ -262,8 +262,8 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Over Christmas 2017, my wife <a href="https://www.instagram.com/jillturner117/">Jill</a> resolved that our family (to include babysitters) would read our children over 1000 books in 2018. More specifically, 29 December 2017 - 28 December 2018.</p>
-<p>A goal like this takes dedication, love, and of course, a Data Sciency approach.</p>
+<p>Over Christmas 2017, my wife <a href="https://www.instagram.com/jillturner117/">Jill</a> resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.</p>
+<p>A goal like this takes dedication, love, and of course, a Data Science-y approach.</p>
 <p>Special thanks to Ally, Zia, and <a href="https://itunes.apple.com/us/app/bookbuddy-pro-library-manager/id395149950?mt=8">Bookbuddy</a> for help in accomplishing this goal!</p>
 <p>Since I use this page as a way to log my ideas and teach others (and future me) how I did this, I’ll include the code.</p>
 </div>
@@ -832,7 +832,7 @@ Nathanael Kuipers, Mattia Zamboni
 <div id="book-genres" class="section level3">
 <h3>Book Genres</h3>
 <p>What types of books do we read our kids?</p>
-<p>It appears a pretty interesting array of Genres. And some uniquely named ones if you search around.</p>
+<p>It appears a pretty interesting array of genres. And some uniquely named ones if you search around.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">booksread <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Genre)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Genre) <span class="op">%&gt;%</span>
@@ -1257,15 +1257,19 @@ Positive Words
 </tr>
 </tbody>
 </table>
+</div>
+<div id="total-sentiment" class="section level3">
+<h3>Total Sentiment</h3>
 <p>Lets look at the sentiment my children are receiving in their books (as told by the summaries)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> nrcbooks, <span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words in my Children&#39;s Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)</code></pre></div>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>It looks like, as far as the summaries indicate, that our kids are hearing positive words.</p>
 </div>
 <div id="sentiment-by-authors" class="section level3">
 <h3>Sentiment By Authors</h3>
-<p>Lets see which Authors provide more sentiment.</p>
+<p>Lets see which authors provide more sentiment.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrcbooks <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">case_when</span>(sent <span class="op">==</span><span class="st"> &quot;Positive Words&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
                           sent <span class="op">==</span><span class="st"> &quot;Neutral Words&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,
@@ -1275,30 +1279,530 @@ Positive Words
 <span class="st">  </span><span class="kw">datatable</span>()</code></pre></div>
 <div id="htmlwidget-4" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550","551","552","553","554","555","556","557","558","559","560","561","562","563","564","565","566","567","568","569","570","571","572","573","574","575","576","577","578","579","580","581","582","583","584","585","586","587","588","589","590","591","592","593","594","595","596","597","598","599","600","601","602","603"],["Adam Rubin","Aesop","Agnes Green","Alan Baker","Alice Schertle","Alison A. Jeffries","Alison Inches, Dave Aikins","Alison Inches, Don Freeman","Allison Lassieur","Alma Flor Ada","Alyssa Satin Capucilli","Amanda Ellery","Ame Dyckman","Amy Hest","Amy Krouse Rosenthal","André Dahan","Andrea Posner-Sanchez","Andrew Cangelose","Andrew Clements","Angela Johnson","Ani Rucki","Anita Lobel","Ann Bonwill","Ann Jonas","Ann M. Hassett","Ann M. Hassett, John Hassett","Anna Alter","Anna Dewdney","Anna Jane Hays, Valeria Petrone","Anna Milbourne","Annabel Blackledge","Anne F. Rockwell","Anne Hunter","Anni Axworthy","Annie Cobb","Annika Dunklee","Antoinette Portis","Apple Jordan","Arlene Alda","Arnold Lobel","Arthur Dorros","Arthur Levine, Katie Kath","Ashlyn Anstee","Asia Citro","Aubrey Davis","Audrey Penn","Avner Katz","B. G. Hennessy","B. Hennessy, Simms Taback","Babette Cole","Barbara Bottner","Barbara G. Hennessy","Barbara M. Joosse","Barbara McClintock","Beatrice Alemagna","Benjamin Chaud","Benji Davies","Berenstein","Beth Davies","Beth Ferry","Bethan Woollvin","Betsy Everitt","Beverly Donofrio","Bill Gillham","Bill Martin, Michael Sampson","Bill Thomson","Bob Barner","Bob Dylan","Bob Shea","Bobbi Katz","Brenda Z. Guiberson","Brendan Wenzel","Brian Anderson","Brian Floca","Brian Lies","Brian Moses","Brita Granström","Bruce Degen","Byron Barton","C_line Claire","Calliope Glass","Candace Fleming","Candlewick Press","Caralyn Buehner","Cari Meister","Carl R. Sams, Jean Stoick","Carmen Agra Deedy","Carol Foskett Cordsen","Carole Gerber","Carole Lexa Schaefer","Caroline Crowe","Catherine Anholt","Catherine Saunders","Cathleen Schurr","Cathryn Falwell","Cathryn P. Sill","Cece Bell","Charlotte Voake","Chris Barton","Chris Conover","Chris Riddell","Chris Van Dusen","Christian Trimmer","Christianne C. Jones","Christie Matheson","Christine Anderson","Christine Pulliam, Patricia Daniels","Christine Ricci","Christy Webster","Claire Freedman","Claire Garralon","Claude Clément","Clive Gifford","Crescent Dragonwagon","Crockett Johnson","Curtis Manley","Cynthia Rylant","D. B. Johnson","Daisy Alberto","Daisy Meadows","Dan Andreasen","Dan Krall","Daniel Lipkowitz","Danielle Bersma, Marjoke Visscher","Danielle Denega, Norman Bridwell","Danielle Marcotte","David Cutts","David Domeniconi","David Ezra Stein","David Fair","David LaRochelle","David Lyon","David M. Schwartz","David Shannon","David Soman","Dawn Apperley","Dawn Bentley","Dayle Ann Dodds","Deb Lund","Debbie Harter, Fred (VOC) Penner","Debi Gliori","Deborah Diesen","Deborah Fajerman","Deborah Hodge","Deborah Lock, Lorrie Mack","Debra Barracca, Sal Barracca","Denise Fleming","Derek Anderson","Diane deGroat","Dick Gackenbach","Disney","Disney Book Group","Disney Book Group, Lisa Ann Marsoli","DK Publishing","Dominique Falda","Donald B. Johnson","Donald Robertson","Donna W. Earnhardt","Doreen Cronin","Doris Gayzagian, Doris K. Gayzagian","Douglas Florian","Dr. Seuss","Dr. Seuss, Theo LeSieg","Drew Daywalt","Earlene Long","Eden Ross Lipson","Eileen Spinelli","Elena Favilli, Francesca Cavallo","Elisha Cooper","Elizabeth Alexander","Elizabeth Ficocelli","Elizabeth Koda-Callan","Elizabeth Schaefer","Elle D. Risco, Steven Savitsky, Eric Weiner","Ellie Bethel","Emily C. Dawson","Emily Jenkins","Emily Sollinger","Eric Battut","Eric Blair, Jacob Grimm, Wilhelm Grimm","Eric Carle","Eric Hill","Eric Litwin","Erik Brooks","Erin K. Stein","Eryk Casemiro, Kate Boutilier","Etta Kaner","Eve Bunting","Ewa Lipniacka","Ezra Jack Keats","F. Isabel Campoy","Fiona Watt","Fran Hodgkins","Fran Manushkin","Frank Asch","Frank Asch, Devin Asch","Frank Berrios","Frank W. Dormer","G. Brian Karas","Gail Gibbons","Gail Hartman","Gene Barretta","Gene Zion","George Ella Lyon","George Ella Lyon, Benn Lyon","George Elliott","George M. Cohan","Gertrude Chandler Warner","Gianna Marino","Gilles Bachelet","Golden Books","Grace Lin","Grace Maccarone","Greg Pizzoli","Guido van Genechten","H. A. Rey","H. A. Rey, Anna Grossnickle Hines","Hannah Dolan","Hannah E. Harrison","Hans Christian Andersen","Harriet Ziefert","Harry Horse","Hazel Hutchins","Hazel Maskell","Heiderose Fischer-Nagel, Andreas Fischer-Nagel","Helen Frost","Helen L. Wilbur","Helen Lester","Helen Murray","Helme Heine","Holly Hobbie","Holly Keller","Ian Falconer","Ian Whybrow","Illugi Jökulsson","Irene Livingston","Ivan Gantschev","Iza Trapani","J. Elkins","Jackie Hopkins","Jacky Davis","Jacqueline Karas","Jaimie Hope","James Bruchac","James Dean","James Dean &amp; Kimberly Dean","James Dean, Kimberly Dean","James Horvath","James Marshall","James Mayhew","Jamie Harper","Jamie Lee Curtis","Jan Brett","Jan Dale Koutsky","Jan Ormerod","Jane Cabrera","Jane O'Connor","Jane O'Connor, Robin Preiss Glasser","Jane Yolen","Janell Cannon","Janet Buell","Janette Sebring Lowrey","Jared Chapman","Jason Chapman","Jean-Luc Fromental","Jean Chandler","Jean Craighead George","Jean Little, Maggie De Vries","Jean Marzollo","Jeff Brown","Jennifer Evans Kramer","Jennifer L. Holm","Jennifer Liberts","Jennifer Liberts Weinberg","Jennifer Liberts, Jennifer Weinberg","Jennifer Weinberg","Jennifer Yerkes","Jenny Koralek, Patricia MacCarthy","Jeremy Tankard","Jerrie Oughton","Jerry Seinfeld","Jessixa Bagley","Jillian Harker","Jim Arnosky","Joanna Cole","Joanne Fitzgerald","John Patrick Green","Jon Agee","Jonathan Allen","Jonathan Emmett","Jonathan London","Jory John","Josephine Haskell Aldridge","Judi Barrett","Judith Caseley","Judy Schachner","Jules Feiffer","Julia Donaldson","Julia March","Julianna Margulies, Paul Margulies","Julie Andrews, Emma Walton Hamilton","Julie Falatko","Julie Mammano","Juliet Clare Bell","Jutta Langreuter","Karen Gray Ruelle","Karen Katz","Karen Wallace","Kasia Dudziuk","Kate Banks","Kate Feiffer","Kate Hosford","Katharine Holabird, Barbara Slade","Katharine Lee Bates","Katherine Emmons","Kathi Appelt","Kathleen Weidner Zoehfeld","Kathryn Lasky, Marylin Hafner","Kathryn Osebold Galbraith","Katie Marsico","Keiko Kasza","Keith Baker","Keith Faulkner","Kelly Bennett, Noah Z. Jones","Kelly Collier","Ken Kimura","Kes Gray","Kevin Henkes","Kevin Lewis","Kiki Thorpe","Kim Lewis","Kim Norman","Kirsten Larsen","Kirsten Larsen, Chris Gifford","Kiyomi Konagaya","Kristen L. Depken","Kristi Yamaguchi","Kristy Dempsey","Kurt Cyrus","Kyo Maclear","Laura Joffe Numeroff","Laura Joffe Numeroff, Felicia Bond","Laura Numeroff","Laura Purdie Salas","Lauren Thompson","Laurence Anholt","Laurie Halse Anderson","Lena Anderson","Leo Dillon","Leo Lionni","Lesley Harker","Leslie Helakoski","Leslie McGuirk","Leslie Valdes","Lily Toy Hong","Linda Ashman","Linda Bailey","Linda Booth Sweeney","Linda Jennings","Linda Leopold Strauss","Lindan Johnson","Lindsay Barrett George","Lisa Ann Marsoli","Lisa M. B. Simons","Lisa Manzione","Lisa Matsumoto","Lisa Stock","Livingstone Crouse","Lois Ehlert","Lois G. Grambling","Lola M. Schaefer","Lori Haskins Houran","Louis Thomas","Louise Borden","Lucine Kasbarian","Lucy Cousins","Luke Reynolds","Luli Gray","Lydia Dabcovich","Lynda Graham-Barber","Lynette Evans, Victoria Cochrane","Lynn Curlee","Lynn Downey","Lynn Plourde","Lynne Cherry","Lynne Jonell","M. Christina Butler","Mac Barnett","Maira Kalman","Manya Stojic","Marc Brown","Marc Tolon Brown","Marcus Pfister","Margaret Allum","Margaret Mahy","Margaret Read MacDonald","Margaret S. Campilonga","Margaret Wise Brown","Margarita Engle, Rafael López","Margery Facklam","Mari C. Schuh","Mariam Gates","Marianne Berkes","Marianne Dubuc","Maribeth Boelts, Lauren Castillo","Marie-Louise Gay","Marie Hall Ets","Marilyn Singer","Marion Dane Bauer","Mark Greenwood","Martha T. Ottersley","Martin Jenkins","Mary Logue","Mary McKenna Siddals","Mary Newell DePalma","Mary Packard","Mary Tillworth","Maryann Cocca-Leffler","Matt Christopher","Matt de la Pena","Matt de la Peña","Matt Doeden","Matty Long","Maurice Sendak","Megan E. Bryant","Megan H. Rothrock","Melinda Hardin","Melissa Lagonegro","Melissa Stewart","Mercer Mayer","Mia Hamm","Michael Dahl","Michael Foreman","Michael Slack","Michaela Morgan","Mike Austin","Mike Wu","Minh Lê","Mini Grey","Miriam Aroner","Mo Willems","Molly Bang","Monique De Varennes","Monique Z. Stephens","Nan Gregory","Nancy Dickman","Nancy Raines Day","Nancy Van Laan","Natasha Wing","Nathan Clement","Nathanael Kuipers, Mattia Zamboni","Nevin Martell","Nick Bruel","Nickelodeon Publishing","Nicola Davies","Nicole Nadeau, Claude Lapierre","Nina Crews","Nina Laden","Norman Bridwell","Nosy Crow (Publisher)","Olivier Dunrea","Paeony Lewis","Pamela Hickman","Pat Posner","Pat Thomson","Patricia Hegarty, Britta Teckentrup","Patricia Hubbell","Patricia Lee Gauch","Patricia MacLachlan","Patricia Polacco","Paul Brett Johnson","Paul Fleischman","Paul Galdone","Paul Giganti","Peggy Kahn, Care Bears","Peggy Perry Anderson","Pelé","Penny Dale","Peter Brown","Peter Harris","Phyllis Alsdurf","Pippa Goodhart","Polly Dunbar","Rachel Bright","Random House","Random House, Krista Pohlmeyer","Rebecca E. Hirsch","Rebecca Emberley","Rebecca Whitford","Ree Drummond","Richard Courtney","Richard Scarry","Richard Scarry, Huck Scarry","Richard Scrimger","Richard Whelan","Rob Lloyd Jones","Rob Scotton","Robert Barry","Robert Louis Stevenson","Robert Maass","Robert N. Munsch, Michael Martchenko, Sarah Dann","Roberta Baker","Robyn Eversole","Rod Clement","Rosemary Wells","Rosie Hore, Rosie Dickins","Russell Punter","Ruth Brown","Ruth Galloway","Ruth Heller","Ruth Krauss","Ryan T. Higgins","Sallie Wolf","Samantha Brooke","Sandra Boynton","Sandra Markle","Sangmi Ko","Sara Anderson","Sara Swan Miller","Sarah Adams","Sarah Ferguson","Sarah Willson","Scholastic","Sean Kenney","Sebastian Loth","Selina Alko","Shana Corey","Shannon Knudsen","Shari Halpern","Sheila Hamanaka","Sheila Sweeny Higginson","Sheila Sweeny Higginson, Kent Redeker","Shel Silverstein","Sherri Duskey Rinker","Shirley Mozelle","Sneed B. Collard","Sonali Fry","Sonia Black","Sonia Sander","Sonia Sander, Scholastic Inc","Sonia Sander, Silje Swendsen","Sophia Grace Brownlee, Rosie McClelland","Stephen Krensky","Stephen Savage","Steve Martin","Steve Metzger","Steven Kroll","Sudipta Bardhan-Quallen","Surya Sajnani","Susan Amerikaner","Susan Lurie","Suzanne Del Rizzo","Suzanne Slade","Suzanne Tate","Tad Hills","Tadgh Bentley","TBD","Tedd Arnold","Teresa Heapy","Tess Weaver","Theresa Howell","Thomas Taylor","Thyra Heder","Tim Egan","Tim Jessell","Timothy L. Biel, Quality Productions, John Bonnett Wexo","Tish Rabe","Tom Brenner","Tom Glazer","Tom Sullivan","Tomie De Paola","Tomie dePaola","Tony Mitton","Tony Mitton, Guy Parker-Rees","Tonya Bolden","Tracey West","translated from the Norse by Sir George Webbe Dasent, illustrated by Tomie de Paola","Tricia Gardella","Trisha Speed Shaskan","Trudy Harris","Tyler Benson","Valeri Gorbachev","Valerie Bodden","Valerie Coulman","Victoria Kann","Victoria Kann, Elizabeth Kann","Victoria Perla","Victoria Taylor","Vivian French","W. Awdry","Walt Disney","Wanda Gág","Warren Elsmore","Watty Piper","Wayne W. Dyer, Kristina Tracy","Wendy Henrichs","William Bee","William Bramhall","written and illustrated by James Rumford","written by Judi Barrett, drawn by Ron Barrett","Ying Chang Compestine","Ylleya Fields","Yoko Maruyama"],[0.482758620689655,0,0.75,1,0.63265306122449,1,1,0.166666666666667,-0.411764705882353,0,0.757575757575758,0.6,0.619047619047619,0.583333333333333,0.892857142857143,0.181818181818182,0.285714285714286,0.666666666666667,0.6,0.469387755102041,1,-0.142857142857143,0.777777777777778,0.333333333333333,0.2,0.333333333333333,0.166666666666667,0.488372093023256,0.666666666666667,0.6,1,0.454545454545455,0.375,0.833333333333333,0.5,0.6,1,0.311475409836066,0.214285714285714,0.272727272727273,1,0.454545454545455,0.428571428571429,0.444444444444444,0.67741935483871,1,-0.5,0.230769230769231,1,-0.230769230769231,0.333333333333333,0.818181818181818,0.695652173913043,0.885714285714286,0.428571428571429,0,0.368421052631579,0.456500488758553,0.692307692307692,0.333333333333333,-0.230769230769231,-0.153846153846154,-0.142857142857143,1,1,-0.692307692307692,0.351351351351351,0.5,0.846153846153846,0,0.666666666666667,1,0.368421052631579,0.230769230769231,1,-0.6,0.04,0.0769230769230769,0.9,0.636363636363636,0.866666666666667,0.333333333333333,0.0666666666666667,0.487179487179487,0.733333333333333,0.142857142857143,0.505882352941176,0.67741935483871,0.586206896551724,0.2,0.583333333333333,0.714285714285714,1,0.75,0.659574468085106,0,0.655172413793103,0.555555555555556,0.416666666666667,0.540983606557377,0.692307692307692,0.2,0.857142857142857,-0.5,0.6,0.833333333333333,0.5,0.407407407407407,0.310344827586207,-0.142857142857143,0.235294117647059,0.294117647058824,1,0.764705882352941,0.91304347826087,0.674418604651163,0.586776859504132,1,0.36,0.333333333333333,0.222222222222222,0.545454545454545,0.846153846153846,1,0.333333333333333,0.25,1,0.777777777777778,0.294117647058824,0.684210526315789,-0.428571428571429,1,1,0,0.172413793103448,0.25,0.5,0.75,-0.25,-0.6,0.523809523809524,0.352112676056338,0.75,0.534883720930233,0.789473684210526,0.3,0.454545454545455,0.294117647058824,0.555555555555556,0.454545454545455,1,0.230769230769231,1,0.9,0.8,1,1,0.645569620253165,0.287878787878788,0.704918032786885,1,0.488095238095238,0.428571428571429,0.566037735849057,0.6,0.333333333333333,0.333333333333333,0.357142857142857,0.619047619047619,0.666666666666667,0.5625,0.733333333333333,0.538461538461538,0.8,1,-0.5,0.164556962025316,0.806451612903226,0.2,-0.333333333333333,0.1,0.454545454545455,-0.384615384615385,-1,1,0.428571428571429,1,0.391304347826087,0.739130434782609,1,0.0909090909090909,1,0.793103448275862,1,0.540983606557377,0.0526315789473684,0.6,0.666666666666667,0.533333333333333,0.777777777777778,0.25,0.5,0.179487179487179,0.5,1,0.384615384615385,0.8125,0,0.789473684210526,0.647058823529412,0.466666666666667,-0.217391304347826,0.647058823529412,0.659574468085106,1,0,0.555555555555556,0.531914893617021,-0.0588235294117647,-0.428571428571429,0.857142857142857,0.357142857142857,0.15,0.2,0.5,0.846153846153846,1,0.176470588235294,0.909090909090909,0.28,0.538461538461538,-0.0434782608695652,0.444444444444444,0.0769230769230769,0,1,-0.142857142857143,0.510204081632653,0.853658536585366,0.5,1,0.714285714285714,1,1,0.659574468085106,0.84,0,0.851851851851852,0.761904761904762,0.647058823529412,0.62962962962963,0.636363636363636,0.351351351351351,1,1,0.807228915662651,0.718918918918919,0.166666666666667,1,0.68,0.5,0.8,-0.0588235294117647,0,0.75,0.5,0.636363636363636,-0.272727272727273,1,0.5,0.428571428571429,0.565217391304348,1,1,1,1,0.407407407407407,0.714285714285714,0.114754098360656,0.454545454545455,0,0.533333333333333,0.384615384615385,0.379310344827586,0.5,1,0.705882352941177,0.133333333333333,0.567567567567568,-0.0769230769230769,0.481481481481481,0.333333333333333,0.5,0.304347826086957,0.565217391304348,0,0.2,0.381443298969072,0.448275862068966,0.545454545454545,0.482758620689655,0.409090909090909,0.185185185185185,-0.428571428571429,0.230769230769231,0.473684210526316,0.866666666666667,0.58974358974359,0.806451612903226,0.3,0.666666666666667,0.733333333333333,1,0.714285714285714,0.285714285714286,0.142857142857143,0.909090909090909,0.533333333333333,0.473684210526316,0.733333333333333,0.535714285714286,0.84,-0.294117647058824,-0.666666666666667,0.454545454545455,0.111111111111111,0.818181818181818,0.0476190476190476,0.571428571428571,0.428571428571429,1,0.157894736842105,1,1,0.441860465116279,0.666666666666667,0.5,0.333333333333333,0.5,0.142857142857143,-1,-0.333333333333333,0.578947368421053,0,0.377049180327869,0.5,0.411764705882353,-0.2,0.473684210526316,-0.272727272727273,0.517241379310345,0.333333333333333,0.5,0.444444444444444,0.333333333333333,0.351351351351351,0,0.0526315789473684,0.4,0.4,-0.142857142857143,0.652173913043478,0.142857142857143,1,0.257142857142857,-0.2,0.923076923076923,0.948717948717949,0.702127659574468,1,0.5,0.529411764705882,0.254901960784314,0.6,-0.3,0.906976744186046,0.692307692307692,0.12,0.6,0.413333333333333,0.6,0.444444444444444,0.333333333333333,0.5,0.534883720930233,-0.0666666666666667,0,0.772727272727273,0.2,0.473684210526316,0.67741935483871,1,1,1,1,-0.485714285714286,0.319148936170213,0.5,0.285714285714286,1,1,0.846153846153846,0.636363636363636,0.51219512195122,0.882352941176471,0.663157894736842,1,0.866666666666667,0.777777777777778,0.714285714285714,0.333333333333333,0.333333333333333,0.80952380952381,0.142857142857143,0.739130434782609,0.739130434782609,0.882352941176471,0.6,-0.25,0.882352941176471,0.777777777777778,-0.285714285714286,0.707317073170732,0.333333333333333,0.466666666666667,0.75,-0.2,0.450980392156863,0.428571428571429,0.333333333333333,-0.0769230769230769,-1,-0.36,0.818181818181818,0.769230769230769,0.297297297297297,1,0,0.490196078431373,0.333333333333333,0.288888888888889,0.3,0.575757575757576,1,1,0.818181818181818,0.818181818181818,0.666666666666667,0.307692307692308,0.384615384615385,0.916666666666667,0.6,0.0909090909090909,0.720930232558139,0.490196078431373,0.933333333333333,1,0.625,0.111111111111111,0.866666666666667,0.9,0.565217391304348,0.619047619047619,0.333333333333333,-0.304347826086957,0.777777777777778,0.666666666666667,1,0.411764705882353,0.538461538461538,0.5,1,0.333333333333333,0.666666666666667,-1,0,0.354838709677419,0.393939393939394,0.419354838709677,-0.28,1,0.571428571428571,0.461538461538462,0.263157894736842,0.882352941176471,1,1,0.741935483870968,0.928571428571429,0.777777777777778,0.857142857142857,0.641025641025641,0,0.444444444444444,0.555555555555556,1,-0.269230769230769,0.8,1,0.428571428571429,0.684210526315789,0.230769230769231,0.142857142857143,0.666666666666667,0.481481481481481,0.411764705882353,1,0.333333333333333,-0.142857142857143,1,1,0.882352941176471,0.263157894736842,0.333333333333333,0.3125,0.277777777777778,0.454545454545455,0.473684210526316,1,-0.0526315789473684,1,1,0.692307692307692,1,1,0.833333333333333,1,1,0.636363636363636,0.75,0.529411764705882,0,0.347826086956522,0.904761904761905,-0.555555555555556,0.75,0.411764705882353,0,0.454545454545455,0.555555555555556,0.142857142857143,0.875,0.4,0.107142857142857,0.45,-0.333333333333333,0.5,0.652173913043478,0.875,0.5,0.4,0,0.142857142857143,1,0.619047619047619,0.777777777777778,0.583333333333333,0.662650602409639,-0.0697674418604651,0.4,0.684210526315789,0.411764705882353,0.463414634146341,null,-0.666666666666667,0.8,0.636363636363636,0.428571428571429,1,0.5,0.451612903225806,0.51219512195122,0.482758620689655,1,0.878787878787879,-0.111111111111111,1,0.666666666666667,0.6,0.6,0.477707006369427,0.0434782608695652,1,0.542857142857143,0.506849315068493,0.2,0.4,1,0.733333333333333,0.666666666666667,1,0.272727272727273,0.822784810126582,1,0.789473684210526,0.736842105263158,0.333333333333333,0.285714285714286,0.777777777777778,0.0476190476190476,1,0.92,0.466666666666667],[81,13,81,4,65,6,6,17,23,2,43,6,30,25,73,24,36,17,29,58,8,11,10,16,57,16,14,61,9,6,4,14,20,15,15,22,6,76,35,12,6,26,39,46,41,6,6,18,24,18,8,14,54,46,60,65,50,1405,16,26,34,34,13,13,15,15,44,61,13,6,16,32,23,18,31,13,29,17,54,45,19,31,39,48,16,17,104,47,36,12,30,9,19,27,60,27,41,12,36,75,33,70,18,12,78,15,27,69,37,28,41,21,9,23,30,53,157,10,38,14,26,28,31,13,7,18,1,35,51,25,23,1,29,10,33,8,5,46,11,5,24,86,20,50,22,27,26,22,13,13,3,37,14,24,12,14,4,87,165,79,7,217,34,135,12,31,53,40,26,58,41,19,56,20,17,10,195,39,20,3,28,16,15,2,1,7,20,63,33,20,15,3,39,5,85,29,19,21,88,67,10,4,51,4,15,15,39,12,24,22,19,27,21,127,14,5,11,61,46,9,16,40,52,7,16,18,7,45,24,66,14,24,51,18,14,28,8,68,52,11,23,8,5,13,241,33,37,36,54,58,37,30,144,9,31,93,253,62,14,31,6,14,20,7,20,5,36,16,1,11,52,28,14,23,2,22,32,9,83,13,37,33,17,31,31,6,38,43,44,13,34,55,25,116,28,3,19,145,41,32,71,54,38,10,19,26,37,46,42,124,34,24,8,9,21,56,52,40,23,17,73,39,22,6,13,19,35,50,36,9,12,27,11,7,59,15,27,37,11,16,2,3,58,12,74,30,21,19,51,18,37,33,22,26,6,45,22,27,21,11,18,29,17,1,50,6,31,56,63,15,4,21,61,8,27,62,66,32,6,95,13,24,21,6,58,16,11,60,89,31,75,5,32,28,5,42,54,74,29,9,5,48,13,116,25,137,12,19,25,8,18,29,25,7,34,31,26,17,10,40,15,20,62,4,23,10,6,77,75,215,35,6,30,31,38,52,7,20,73,17,64,54,38,7,18,14,11,16,33,13,30,5,69,54,63,35,7,20,10,19,27,31,27,33,28,48,18,9,62,32,4,3,43,16,2,19,44,45,38,33,31,17,30,57,20,1,4,42,34,51,16,47,22,21,32,5,62,62,44,17,46,18,10,6,99,21,11,30,10,2,2,42,21,17,44,44,40,28,3,25,31,16,17,9,6,16,11,1,17,40,25,6,64,24,15,17,26,17,31,12,8,43,29,75,59,9,28,28,21,22,25,53,8,12,37,32,30,102,51,28,23,24,98,2,6,27,44,61,3,18,87,49,74,3,43,45,9,15,6,6,209,31,4,41,305,7,12,7,22,20,1,27,101,30,26,48,4,19,23,26,4,31,21]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Author<\/th>\n      <th>NetSentiment<\/th>\n      <th>TotalSent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p>Maybe it would be more interesting to see which Authrors are providing which sentiments.</p>
+<p>Lets take a look visually.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrcbooks <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Author) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">100</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">160</span>) <span class="op">%&gt;%</span>
 <span class="kw">ggplot</span>(<span class="kw">aes</span>(sent, <span class="dt">color =</span> sentiment, <span class="dt">fill =</span> sentiment)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Author&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)  <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Type of Words my Children Listen to in Books&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot; &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total Count&quot;</span>)  <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<!-- Lastly, lets see if there's a genre that has any sentiment sway.  Of note, I find it funny that there is a 'Bears' genre.   -->
-<!-- ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE} -->
-<!-- booksentimentnrc %>% -->
-<!--   group_by(Genre) %>% -->
-<!--   add_tally() %>% -->
-<!--   filter(!is.na(Genre)) %>% -->
-<!--   filter(n>15) %>% -->
-<!-- ggplot(aes(sent, fill = sent)) + -->
-<!--   geom_bar() + -->
-<!--   facet_wrap("Genre", scales = "free_y") + -->
-<!--   ggtitle("Sentiment by Genre") + xlab("Sentiment") -->
-<!-- ``` -->
-<!-- ## Further analysis to follow as we read books throughout the year.   -->
+</div>
+<div id="sentiment-by-genre" class="section level3">
+<h3>Sentiment by Genre</h3>
+<p>Lets see if there’s a genre that has any sentiment sway. Of note, I find it funny that there is a ‘Bears’ genre.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrcbooks <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Genre) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">add_tally</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Genre)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">100</span>) <span class="op">%&gt;%</span>
+<span class="kw">ggplot</span>(<span class="kw">aes</span>(sent, <span class="dt">fill =</span> sent)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;Genre&quot;</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Sentiment by Genre&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Sentiment&quot;</span>)</code></pre></div>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="happiest-and-saddest-book" class="section level3">
+<h3>Happiest and Saddest Book</h3>
+<p>My wife remembers being in tears in a couple of books she read our kids. I’ll filter for ‘sad’ words to make this determination.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrcbooks <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sentiment <span class="op">==</span><span class="st"> &quot;sadness&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(book, Author) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">5</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+book
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Snap!
+</td>
+<td style="text-align:left;">
+Hazel Hutchins
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Have You Seen My New Blue Socks?
+</td>
+<td style="text-align:left;">
+Eve Bunting
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Day the Crayons Came Home
+</td>
+<td style="text-align:left;">
+Drew Daywalt
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Legend of the Poinsettia
+</td>
+<td style="text-align:left;">
+Tomie De Paola
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Night Pirates
+</td>
+<td style="text-align:left;">
+Peter Harris
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A Fine Dessert
+</td>
+<td style="text-align:left;">
+Emily Jenkins
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Black Cat &amp; White Cat
+</td>
+<td style="text-align:left;">
+Claire Garralon
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Boo Hoo Bird
+</td>
+<td style="text-align:left;">
+Jeremy Tankard
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Butterfly Tree
+</td>
+<td style="text-align:left;">
+Sandra Markle
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hedgehog, Pig, and the Sweet Little Friend
+</td>
+<td style="text-align:left;">
+Lena Anderson
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Snowflakes Fall
+</td>
+<td style="text-align:left;">
+Patricia MacLachlan
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<p>Thought it doesn’t show up here, “Big Cat, Little Cat” is a very sad book (according to my wife).</p>
+<p>Lets see if we can find it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrcbooks <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Cat&quot;</span>,book)<span class="op">==</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sentiment <span class="op">==</span><span class="st"> &quot;sadness&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(book, Author) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+book
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Black Cat &amp; White Cat
+</td>
+<td style="text-align:left;">
+Claire Garralon
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hero Cat
+</td>
+<td style="text-align:left;">
+Eileen Spinelli
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drat that Fat Cat!
+</td>
+<td style="text-align:left;">
+Pat Thomson
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KokoCat, Inside and Out
+</td>
+<td style="text-align:left;">
+Lynda Graham-Barber
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pete the Cat and His Magic Sunglasses
+</td>
+<td style="text-align:left;">
+James Dean, Kimberly Dean
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pete the Cat and the Bad Banana
+</td>
+<td style="text-align:left;">
+James Dean
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Big Cat, Little Cat
+</td>
+<td style="text-align:left;">
+Elisha Cooper
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fat Cat
+</td>
+<td style="text-align:left;">
+Margaret Read MacDonald
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gracie the Lighthouse Cat
+</td>
+<td style="text-align:left;">
+Ruth Brown
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+King of the Cats
+</td>
+<td style="text-align:left;">
+Paul Galdone
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Millions of Cats
+</td>
+<td style="text-align:left;">
+Wanda Gág
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pete the Cat Saves Christmas
+</td>
+<td style="text-align:left;">
+Eric Litwin
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Scaredy-Cat, Splat!
+</td>
+<td style="text-align:left;">
+Rob Scotton
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Cat Who Walked Across France
+</td>
+<td style="text-align:left;">
+Kate Banks
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Pig Is in the Pantry, the Cat Is on the Shelf
+</td>
+<td style="text-align:left;">
+Shirley Mozelle
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+<p>There it is, 7th on the list. Thought it doesn’t register as being all that sad, it reduced my wife to tears… then again as she told me the story.</p>
+<p>Spoiler alert, the Black Cat dies in the end.</p>
+<p>Here, maybe you’ll cry too.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">booksread <span class="op">%&gt;%</span>
+<span class="kw">filter</span>(Title<span class="op">==</span><span class="st">&quot;Big Cat, Little Cat&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Summary)</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   Summary                                                                                                                                             
+##   &lt;chr&gt;                                                                                                                                               
+## 1 There was a cat who lived alone.Until the daya new cat came . . . And so a story of friendship begins, following two cats through their days, month~</code></pre>
+<p>How about happy books? I’ll define this as positive words.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nrcbooks <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sent =</span> <span class="kw">case_when</span>(sent <span class="op">==</span><span class="st"> &quot;Positive Words&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+                          sent <span class="op">==</span><span class="st"> &quot;Neutral Words&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,
+                          sent <span class="op">==</span><span class="st"> &quot;Negative Words&quot;</span> <span class="op">~</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(book, Author) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">80</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+book
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+The Day the Crayons Came Home
+</td>
+<td style="text-align:left;">
+Drew Daywalt
+</td>
+<td style="text-align:right;">
+135
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Templeton Gets His Wish
+</td>
+<td style="text-align:left;">
+Greg Pizzoli
+</td>
+<td style="text-align:right;">
+117
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fraidyzoo
+</td>
+<td style="text-align:left;">
+Thyra Heder
+</td>
+<td style="text-align:right;">
+98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KokoCat, Inside and Out
+</td>
+<td style="text-align:left;">
+Lynda Graham-Barber
+</td>
+<td style="text-align:right;">
+95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bloom
+</td>
+<td style="text-align:left;">
+Doreen Cronin
+</td>
+<td style="text-align:right;">
+92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fireboat
+</td>
+<td style="text-align:left;">
+Maira Kalman
+</td>
+<td style="text-align:right;">
+89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Being Frank
+</td>
+<td style="text-align:left;">
+Donna W. Earnhardt
+</td>
+<td style="text-align:right;">
+87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Legend of the Poinsettia
+</td>
+<td style="text-align:left;">
+Tomie De Paola
+</td>
+<td style="text-align:right;">
+87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Boo Hoo Bird
+</td>
+<td style="text-align:left;">
+Jeremy Tankard
+</td>
+<td style="text-align:right;">
+83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A Fine Dessert
+</td>
+<td style="text-align:left;">
+Emily Jenkins
+</td>
+<td style="text-align:right;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+The Pajama Zoo Parade
+</td>
+<td style="text-align:left;">
+Agnes Green
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>

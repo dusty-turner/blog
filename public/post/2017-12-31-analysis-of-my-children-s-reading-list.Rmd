@@ -35,9 +35,9 @@ options(stringsAsFactors = FALSE)
 
 ## Introduction
 
-Over Christmas 2017, my wife [Jill](https://www.instagram.com/jillturner117/) resolved that our family (to include babysitters) would read our children over 1000 books in 2018.  More specifically, 29 December 2017 - 28 December 2018.
+Over Christmas 2017, my wife [Jill](https://www.instagram.com/jillturner117/) resolved that our family (to include babysitters) would read our children over 1000 new books in 2018.  More specifically, 29 December 2017 - 28 December 2018.
 
-A goal like this takes dedication, love, and of course, a Data Sciency approach.  
+A goal like this takes dedication, love, and of course, a Data Science-y approach.  
 
 Special thanks to Ally, Zia, and [Bookbuddy](https://itunes.apple.com/us/app/bookbuddy-pro-library-manager/id395149950?mt=8) for help in accomplishing this goal!
 
@@ -244,7 +244,7 @@ booksread %>%
 
 What types of books do we read our kids?
 
-It appears a pretty interesting array of Genres.  And some uniquely named ones if you search around.
+It appears a pretty interesting array of genres.  And some uniquely named ones if you search around.
 
 ```{r}
 booksread %>%
@@ -310,6 +310,8 @@ nrcbooks %>%
   kable()
 ```
 
+### Total Sentiment
+
 Lets look at the sentiment my children are receiving in their books (as told by the summaries)
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
@@ -318,9 +320,11 @@ ggplot(data = nrcbooks, aes(sent, color = sentiment, fill = sentiment)) +
   ggtitle("Type of Words in my Children's Books") + xlab("Sentiment") + ylab("Total Count")
 ```
 
+It looks like, as far as the summaries indicate, that our kids are hearing positive words.  
+
 ### Sentiment By Authors
 
-Lets see which Authors provide more sentiment.
+Lets see which authors provide more sentiment.
 
 ```{r}
 nrcbooks %>%
@@ -332,35 +336,91 @@ nrcbooks %>%
   datatable()
 ```
 
-
-Maybe it would be more interesting to see which Authrors are providing which sentiments.
+Lets take a look visually.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 nrcbooks %>%
   group_by(Author) %>%
   add_tally() %>%
-  filter(n>100) %>%
+  filter(n>160) %>%
 ggplot(aes(sent, color = sentiment, fill = sentiment)) +
   geom_bar() +
   facet_wrap("Author", scales = "free_y") +
-  ggtitle("Type of Words my Children Listen in Books") + xlab("Sentiment") + ylab("Total Count")  +
+  ggtitle("Type of Words my Children Listen to in Books") + xlab(" ") + ylab("Total Count")  +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+### Sentiment by Genre
 
-<!-- Lastly, lets see if there's a genre that has any sentiment sway.  Of note, I find it funny that there is a 'Bears' genre.   -->
+Lets see if there's a genre that has any sentiment sway.  Of note, I find it funny that there is a 'Bears' genre.
 
-<!-- ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE} -->
+```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 
-<!-- booksentimentnrc %>% -->
-<!--   group_by(Genre) %>% -->
-<!--   add_tally() %>% -->
-<!--   filter(!is.na(Genre)) %>% -->
-<!--   filter(n>15) %>% -->
-<!-- ggplot(aes(sent, fill = sent)) + -->
-<!--   geom_bar() + -->
-<!--   facet_wrap("Genre", scales = "free_y") + -->
-<!--   ggtitle("Sentiment by Genre") + xlab("Sentiment") -->
-<!-- ``` -->
+nrcbooks %>%
+  group_by(Genre) %>%
+  add_tally() %>%
+  filter(!is.na(Genre)) %>%
+  filter(n>100) %>%
+ggplot(aes(sent, fill = sent)) +
+  geom_bar() +
+  facet_wrap("Genre", scales = "free_y") +
+  ggtitle("Sentiment by Genre") + xlab("Sentiment")
+```
 
-<!-- ## Further analysis to follow as we read books throughout the year.   -->
+### Happiest and Saddest Book
+
+My wife remembers being in tears in a couple of books she read our kids.  I'll filter for 'sad' words to make this determination.  
+
+```{r}
+nrcbooks %>%
+  filter(sentiment == "sadness") %>%
+  group_by(book, Author) %>% 
+  summarise(n = n()) %>%
+  filter(n>5) %>%
+  arrange(desc(n)) %>%
+  kable()
+```
+
+
+Thought it doesn't show up here, "Big Cat, Little Cat" is a very sad book (according to my wife).  
+
+Lets see if we can find it.
+
+```{r}
+nrcbooks %>%
+  filter(grepl("Cat",book)==TRUE) %>%
+  filter(sentiment == "sadness") %>%
+  group_by(book, Author) %>% 
+  summarise(n = n()) %>%
+  filter(n>1) %>%
+  arrange(desc(n)) %>%
+  kable()
+```
+
+There it is, 7th on the list.  Thought it doesn't register as being all that sad, it reduced my wife to tears... then again as she told me the story.  
+
+Spoiler alert, the Black Cat dies in the end.
+
+Here, maybe you'll cry too.
+
+```{r}
+booksread %>%
+filter(Title=="Big Cat, Little Cat") %>%
+  select(Summary)
+```
+
+
+How about happy books?  I'll define this as positive words.
+
+```{r}
+nrcbooks %>%
+  mutate(sent = case_when(sent == "Positive Words" ~ 1,
+                          sent == "Neutral Words" ~ 0,
+                          sent == "Negative Words" ~ -1)) %>%
+  group_by(book, Author) %>% 
+  summarise(n = n()) %>%
+  filter(n>80) %>%
+  arrange(desc(n)) %>%
+  kable()
+
+```
