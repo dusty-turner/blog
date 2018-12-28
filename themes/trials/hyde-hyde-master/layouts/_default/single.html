@@ -1,0 +1,14 @@
+{{ define "header" -}}
+    {{ partial "header.html" . }}
+{{- end -}}
+
+{{ define "content" -}}
+    {{ partial "content_single.html" . }}
+{{- end -}}
+
+{{ define "footer" -}}
+    <div class="footer content">
+        {{- partial "highlight.html" . -}}
+        {{- partial "commenting.html" . -}}
+    </div>
+{{- end -}}
