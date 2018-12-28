@@ -18,7 +18,10 @@
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/analysis-of-my-children-s-reading-list/</guid>
-      <description>div.sourceCode { overflow-x: auto; }table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {margin: 0; padding: 0; vertical-align: baseline; border: none; }table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }td.sourceCode { padding-left: 5px; }pre, code { background-color: #f8f8f8; }code  span.kw { color: #204a87; font-weight: bold; } /* Keyword */code  span.</description>
+      <description>IntroductionOver Christmas 2017, my wife Jill resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.
+A goal like this takes dedication, love, and of course, a Data Science-y approach.
+Special thanks to Ally, Zia, and Bookbuddy for help in accomplishing this goal!
+Also, special thanks to [@drob](https://twitter.com/drob) and [@juliasilge](https://twitter.</description>
     </item>
     
     <item>
@@ -64,7 +67,8 @@
       <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/helping-a-colleague-explore-data/</guid>
-      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
+      <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
+Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)if (!require(&amp;quot;readr&amp;quot;)) install.packages(&amp;quot;readr&amp;quot;)if (!require(&amp;quot;lubridate&amp;quot;)) install.packages(&amp;quot;lubridate&amp;quot;)if (!require(&amp;quot;stringi&amp;quot;)) install.packages(&amp;quot;stringi&amp;quot;)Set Working Directory If Necessary# setwd(&amp;quot;//filepath/of/your/csvfile&amp;quot;)Read in dataWe use read_csv from the readr package because it does a better job than the base read.</description>
     </item>
     
     <item>

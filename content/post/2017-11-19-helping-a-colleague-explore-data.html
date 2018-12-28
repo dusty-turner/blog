@@ -19,96 +19,36 @@ tags:
   - dplyr
   - tidyverse
   - beatnavy
-output: 
-  blogdown::html_page:
-    toc: true
-    toc_depth: 2
+# output: 
+  # blogdown::html_page:
+    # toc: true
+    # toc_depth: 2
     # dev: "svg"
     # theme: lumen
-    highlight: tango
+    # highlight: tango
     # code_folding: show  #doesn't work yet with html_page
 ---
 
-<style type="text/css">
-div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; }
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource div.sourceLine, .numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em; }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
-pre, code { background-color: #f8f8f8; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; color: initial; }
-}
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.fl { color: #0000cf; } /* Float */
-code span.ch { color: #4e9a06; } /* Char */
-code span.st { color: #4e9a06; } /* String */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.ot { color: #8f5902; } /* Other */
-code span.al { color: #ef2929; } /* Alert */
-code span.fu { color: #000000; } /* Function */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code span.cn { color: #000000; } /* Constant */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.im { } /* Import */
-code span.va { color: #000000; } /* Variable */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.ex { } /* Extension */
-code span.at { color: #c4a000; } /* Attribute */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
-<div id="TOC">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#exploratory-data-anlaysis">Exploratory Data Anlaysis</a></li>
-<li><a href="#statistical-analysis">Statistical Analysis</a></li>
-</ul>
-</div>
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>A colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.</p>
 <div id="install-andor-load-necessary-packages" class="section level3">
 <h3>Install and/or load necessary packages</h3>
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;tidyverse&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</div>
-<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;readr&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;readr&quot;</span>)</div>
-<div class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;lubridate&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</div>
-<div class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;stringi&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;stringi&quot;</span>)</div></code></pre>
+<pre class="r"><code>if (!require(&quot;tidyverse&quot;)) install.packages(&quot;tidyverse&quot;)
+if (!require(&quot;readr&quot;)) install.packages(&quot;readr&quot;)
+if (!require(&quot;lubridate&quot;)) install.packages(&quot;lubridate&quot;)
+if (!require(&quot;stringi&quot;)) install.packages(&quot;stringi&quot;)</code></pre>
 </div>
 <div id="set-working-directory-if-necessary" class="section level3">
 <h3>Set Working Directory If Necessary</h3>
-<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># setwd(&quot;//filepath/of/your/csvfile&quot;)</span></div></code></pre>
+<pre class="r"><code># setwd(&quot;//filepath/of/your/csvfile&quot;)</code></pre>
 </div>
 <div id="read-in-data" class="section level3">
 <h3>Read in data</h3>
 <p>We use <code>read_csv</code> from the <code>readr</code> package because it does a better job than the base <code>read.csv</code> command at recognizing data types from our csv file.</p>
-<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">data =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data.csv&quot;</span>)</div></code></pre>
+<pre class="r"><code>data = read_csv(&quot;data.csv&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   `Date Time (GMT)` = col_character(),
@@ -125,7 +65,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div id="exploratory-data-anlaysis" class="section level2">
 <h2>Exploratory Data Anlaysis</h2>
 <p>First, we will look at our data summary</p>
-<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">summary</span>(data)</div></code></pre>
+<pre class="r"><code>summary(data)</code></pre>
 <pre><code>##  Date Time (GMT)        DotW               Hosts          Users       Users Per Host       weekno         desdate     
 ##  Length:7519        Length:7519        Min.   :  82   Min.   : 1042   Min.   : 1.078   Min.   :1.000   Min.   :42875  
 ##  Class :character   Class :character   1st Qu.:1146   1st Qu.:18585   1st Qu.:14.327   1st Qu.:2.000   1st Qu.:42914  
@@ -135,7 +75,7 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ##                                        Max.   :1921   Max.   :41216   Max.   :34.664   Max.   :3.000   Max.   :43028</code></pre>
 <p>This confirms that our date is in the wrong format. It appears everything else is fine.</p>
 <p>The structure command is also a valuable tool. This shows us how R interprets the data and if there are any hidden levels or format issues in which we are unaware.</p>
-<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">str</span>(data)</div></code></pre>
+<pre class="r"><code>str(data)</code></pre>
 <pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    7519 obs. of  7 variables:
 ##  $ Date Time (GMT): chr  &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; ...
 ##  $ DotW           : chr  &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; ...
@@ -165,8 +105,8 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ##   ..- attr(*, &quot;class&quot;)= chr &quot;col_spec&quot;</code></pre>
 <p>One issue we notice is there there areparenthesis <code>()</code> in the <code>Date Time (GMT)</code> column name. We will run into issues calling this column in the future because we will have to put the name in ‘single quotes’. To allow us to directly call the column name, we will rename this column, as well as several others for similar reasons.</p>
 <p>An ounce of prevention…</p>
-<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">names</span>(data) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DateTimeGMT&quot;</span>, <span class="st">&quot;DotW&quot;</span>,<span class="st">&quot;Hosts&quot;</span>, <span class="st">&quot;Users&quot;</span>, <span class="st">&quot;UsersPerHost&quot;</span>, <span class="st">&quot;weekno&quot;</span>, <span class="st">&quot;desdate&quot;</span>)</div>
-<div class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">names</span>(data)</div></code></pre>
+<pre class="r"><code>names(data) = c(&quot;DateTimeGMT&quot;, &quot;DotW&quot;,&quot;Hosts&quot;, &quot;Users&quot;, &quot;UsersPerHost&quot;, &quot;weekno&quot;, &quot;desdate&quot;)
+names(data)</code></pre>
 <pre><code>## [1] &quot;DateTimeGMT&quot;  &quot;DotW&quot;         &quot;Hosts&quot;        &quot;Users&quot;        &quot;UsersPerHost&quot; &quot;weekno&quot;       &quot;desdate&quot;</code></pre>
 <p>Much better!</p>
 <div id="handle-the-date-column" class="section level3">
@@ -179,53 +119,53 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 </ul>
 <p>This should give you insite as to how R is storing the information. Now we need to tell R the order of our characters.</p>
 <p>Here is a snipit of what it looks like.</p>
-<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">data<span class="op">$</span>DateTimeGMT[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</div></code></pre>
+<pre class="r"><code>data$DateTimeGMT[1:10]</code></pre>
 <pre><code>##  [1] &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; &quot;5/20/2017 3:36&quot; &quot;5/20/2017 4:07&quot;
 ##  [7] &quot;5/20/2017 4:37&quot; &quot;5/20/2017 5:02&quot; &quot;5/20/2017 5:27&quot; &quot;5/20/2017 5:52&quot;</code></pre>
 <p>We must tell R where the months, days, years, hours, minutes, etc are located in the character vector we provide.</p>
-<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1">data<span class="op">$</span>newdate =<span class="st"> </span><span class="kw">as.POSIXct</span>(data<span class="op">$</span>DateTimeGMT, <span class="st">&quot;%m/%d/%Y %H:%M&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;UTC&quot;</span>)</div>
-<div class="sourceLine" id="cb13-2" data-line-number="2">data<span class="op">$</span>newdate[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</div></code></pre>
+<pre class="r"><code>data$newdate = as.POSIXct(data$DateTimeGMT, &quot;%m/%d/%Y %H:%M&quot;, tz = &quot;UTC&quot;)
+data$newdate[1:10]</code></pre>
 <pre><code>##  [1] &quot;2017-05-20 00:35:00 UTC&quot; &quot;2017-05-20 02:19:00 UTC&quot; &quot;2017-05-20 02:24:00 UTC&quot; &quot;2017-05-20 03:11:00 UTC&quot;
 ##  [5] &quot;2017-05-20 03:36:00 UTC&quot; &quot;2017-05-20 04:07:00 UTC&quot; &quot;2017-05-20 04:37:00 UTC&quot; &quot;2017-05-20 05:02:00 UTC&quot;
 ##  [9] &quot;2017-05-20 05:27:00 UTC&quot; &quot;2017-05-20 05:52:00 UTC&quot;</code></pre>
-<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">class</span>(data<span class="op">$</span>newdate)</div></code></pre>
+<pre class="r"><code>class(data$newdate)</code></pre>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>Nice - we can see how it is being stored and that the data time is correct.</p>
 </div>
 <div id="visualise" class="section level3">
 <h3>Visualise</h3>
 <p>Lets take a first look at at our UsersPerHost over time.</p>
-<pre class="sourceCode r" id="cb17"><code class="sourceCode r"><div class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost)) +
+  geom_point()</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/first%20look-1.png" width="672" /></p>
 <p>There is clearly something going on here. Lets explore more deeply by creating a column for day of the week and month. We’ll plot the data based on these different levels.</p>
-<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1">data<span class="op">$</span>weekday =<span class="st"> </span><span class="kw">wday</span>(data<span class="op">$</span>newdate)</div>
-<div class="sourceLine" id="cb18-2" data-line-number="2">data<span class="op">$</span>month =<span class="st"> </span><span class="kw">month</span>(data<span class="op">$</span>newdate)</div></code></pre>
+<pre class="r"><code>data$weekday = wday(data$newdate)
+data$month = month(data$newdate)</code></pre>
 <p>A good tool for seeing how data changes based on certain factors is by changing the colors based on a level of a specific factor.</p>
 </div>
 <div id="plot-it" class="section level3">
 <h3>Plot it</h3>
 <p>Lets see how <code>UsersPerHost</code> changes based off of month.</p>
-<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> weekday)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost, color = weekday)) +
+  geom_point()</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/different%20colors-1.png" width="672" /></p>
 <p>Notice how our points are shaded by a fluid scale instead of having one color per day of the week. This is because R sees <code>weekday</code> as a continuous variable. Lets fix that by adding <code>as.factor(weekday)</code> to our <code>color</code> argument.</p>
-<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
-<div class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</div></code></pre>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point()</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/different%20colors%20factor-1.png" width="672" /></p>
 <p>That looks better – and it appears that each level of <code>weekday</code> has an impact on <code>UsersPerHost</code>.</p>
 <p>Maybe it would be better to see this effect by month?</p>
-<pre class="sourceCode r" id="cb21"><code class="sourceCode r"><div class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>newdate, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
-<div class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</div></code></pre>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  facet_wrap(~month)</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>What’s Wrong? Our data points are all clumped together. That’s because we are faceting over each month (good), but our x axis contains the entire time scale over each facet (bad). We have to remove the month value from our x and maintain only the time element. We will do that by extracting the time from our <code>DateTimeGMT</code> column.</p>
-<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1">time =<span class="st"> </span><span class="kw">stri_sub</span>(data<span class="op">$</span>DateTimeGMT, <span class="dv">-5</span>,<span class="op">-</span><span class="dv">1</span>)</div>
-<div class="sourceLine" id="cb22-2" data-line-number="2">data<span class="op">$</span>time =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>,<span class="dv">0</span>, time)</div></code></pre>
+<pre class="r"><code>time = stri_sub(data$DateTimeGMT, -5,-1)
+data$time = gsub(&quot; &quot;,0, time)</code></pre>
 <p>Lets try the plot again using <code>time</code> as our x variable.</p>
-<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
-<div class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</div></code></pre>
+<pre class="r"><code>ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  facet_wrap(~month)</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>There certainly appears to be a relationship.</p>
 </div>
@@ -233,18 +173,18 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <div id="statistical-analysis" class="section level2">
 <h2>Statistical Analysis</h2>
 <p>Lets test this using a <code>pairwise.t.test</code></p>
-<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1">test =<span class="st"> </span><span class="kw">pairwise.t.test</span>(data<span class="op">$</span>UsersPerHost,<span class="kw">as.factor</span>(data<span class="op">$</span>weekday), <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</div></code></pre>
+<pre class="r"><code>test = pairwise.t.test(data$UsersPerHost,as.factor(data$weekday), p.adjust.method = &quot;bonferroni&quot;)</code></pre>
 <p>The null hypothesis is that the <code>UsersPerHost</code> are equal to each other across all months. Everywhere the P Values are &lt;.05, we reject the null hypothesis and determine that the <code>UsersPerHost</code> for that specific month to month combination are different.</p>
 <p>Lets make this information more conveyable. We’ll do that with a graphic with a little different test.</p>
 <p>The following code will execute an ANOVA (analysis of variance) and extract the Tukey comparisons. The Tukey results show us the estimated mean of the level and it provides a confidence interval of the true mean.</p>
-<pre class="sourceCode r" id="cb25"><code class="sourceCode r"><div class="sourceLine" id="cb25-1" data-line-number="1">results =<span class="st"> </span><span class="kw">aov</span>(UsersPerHost<span class="op">~</span><span class="kw">as.factor</span>(weekday), <span class="dt">data =</span> data)</div>
-<div class="sourceLine" id="cb25-2" data-line-number="2">tukey =<span class="st"> </span><span class="kw">TukeyHSD</span>(results)</div></code></pre>
+<pre class="r"><code>results = aov(UsersPerHost~as.factor(weekday), data = data)
+tukey = TukeyHSD(results)</code></pre>
 <p>Lets put this information in a datafame that we can plot using <code>ggplot</code>.</p>
-<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1">plotting =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">rownames</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>),</div>
-<div class="sourceLine" id="cb26-2" data-line-number="2">                      <span class="dt">diff =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">1</span>],</div>
-<div class="sourceLine" id="cb26-3" data-line-number="3">                      <span class="dt">ymin =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">2</span>],</div>
-<div class="sourceLine" id="cb26-4" data-line-number="4">                      <span class="dt">ymax =</span> tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(weekday)</span><span class="st">`</span>[,<span class="dv">3</span>])</div>
-<div class="sourceLine" id="cb26-5" data-line-number="5">plotting</div></code></pre>
+<pre class="r"><code>plotting = data.frame(names = rownames(tukey$`as.factor(weekday)`),
+                      diff = tukey$`as.factor(weekday)`[,1],
+                      ymin = tukey$`as.factor(weekday)`[,2],
+                      ymax = tukey$`as.factor(weekday)`[,3])
+plotting</code></pre>
 <pre><code>##     names        diff        ymin         ymax
 ## 2-1   2-1 -2.86319494 -3.21018235 -2.516207527
 ## 3-1   3-1 -4.55973264 -4.91048577 -4.208979503
@@ -269,11 +209,11 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ## 7-6   7-6  2.02229428  1.65903039  2.385558162</code></pre>
 <div id="plot-tukey-comparisons" class="section level3">
 <h3>Plot Tukey Comparisons</h3>
-<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb28-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>)</div></code></pre>
+<pre class="r"><code>ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;)</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>We should draw two conclusions.</p>
 <ol style="list-style-type: decimal">
@@ -285,18 +225,18 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 <h3>Analysis by week</h3>
 <p>Lets plot the <code>UsersPerHost</code> by week.</p>
 <p>First, we must create a column for week. The code below identifies each week in the dataset and numbers them 1 through n.</p>
-<pre class="sourceCode r" id="cb29"><code class="sourceCode r"><div class="sourceLine" id="cb29-1" data-line-number="1">data<span class="op">$</span>week =<span class="st"> </span><span class="kw">trunc</span>((data<span class="op">$</span>newdate <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(data<span class="op">$</span>newdate))<span class="op">/</span><span class="kw">dweeks</span>(<span class="dv">1</span>))</div></code></pre>
+<pre class="r"><code>data$week = trunc((data$newdate - min(data$newdate))/dweeks(1))</code></pre>
 <p>Now for the plot by week.</p>
-<pre class="sourceCode r" id="cb30"><code class="sourceCode r"><div class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y =</span> UsersPerHost, <span class="dt">color =</span> <span class="kw">as.factor</span>(weekday))) <span class="op">+</span></div>
-<div class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="co"># geom_boxplot() +</span></div>
-<div class="sourceLine" id="cb30-4" data-line-number="4"><span class="st">  </span><span class="co"># geom_smooth() +</span></div>
-<div class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">as.factor</span>(week))</div></code></pre>
+<pre class="r"><code>ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  # geom_boxplot() +
+  # geom_smooth() +
+  facet_wrap(~as.factor(week))</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Much like the analysis above, lets see if there’s a differnece between any week pair.</p>
-<pre class="sourceCode r" id="cb31"><code class="sourceCode r"><div class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</div>
-<div class="sourceLine" id="cb31-2" data-line-number="2">test =<span class="st"> </span><span class="kw">pairwise.t.test</span>(data<span class="op">$</span>UsersPerHost,<span class="kw">as.factor</span>(data<span class="op">$</span>week), <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</div>
-<div class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">round</span>(test<span class="op">$</span>p.value[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)],<span class="dv">3</span>)</div></code></pre>
+<pre class="r"><code>options(scipen=999)
+test = pairwise.t.test(data$UsersPerHost,as.factor(data$week), p.adjust.method = &quot;bonferroni&quot;)
+round(test$p.value[,c(1:15)],3)</code></pre>
 <pre><code>##        0     1     2     3     4     5     6     7     8     9    10    11    12    13    14
 ## 1  1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
 ## 2  1.000 0.604    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
@@ -320,75 +260,75 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 ## 20 0.000 0.140 0.000 0.000 0.000 0.000 0.000 0.011 0.000 0.000 0.000 0.000 0.000 0.000 1.000
 ## 21 0.012 1.000 0.000 0.007 0.000 0.000 0.000 1.000 0.000 0.678 0.000 0.000 0.000 0.454 1.000</code></pre>
 <p>We will explore the same ANOVA as before with Tukey results. This time, however, since there are 231 pairwise comparisons, I will only display a sample of 20 weeks that are different from each other.</p>
-<pre class="sourceCode r" id="cb33"><code class="sourceCode r"><div class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</div>
-<div class="sourceLine" id="cb33-2" data-line-number="2">results =<span class="st"> </span><span class="kw">aov</span>(UsersPerHost<span class="op">~</span><span class="kw">as.factor</span>(week), <span class="dt">data =</span> data)</div>
-<div class="sourceLine" id="cb33-3" data-line-number="3">tukey =<span class="st"> </span><span class="kw">TukeyHSD</span>(results)</div>
-<div class="sourceLine" id="cb33-4" data-line-number="4">helper =<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">round</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[<span class="kw">which</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>[,<span class="dv">4</span>]<span class="op">&lt;</span>.<span class="dv">001</span>),],<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb33-5" data-line-number="5"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">20</span>) </div>
-<div class="sourceLine" id="cb33-6" data-line-number="6">helper <span class="op">%&gt;%</span><span class="st">  </span></div>
-<div class="sourceLine" id="cb33-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weekpair =</span> <span class="kw">rownames</span>(helper)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb33-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(diff)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;weekpair&quot;</span>, <span class="st">&quot;p adj&quot;</span>, <span class="st">&quot;diff&quot;</span>, <span class="st">&quot;lwr&quot;</span>, <span class="st">&quot;upr&quot;</span>)</div></code></pre>
+<pre class="r"><code>options(scipen=999)
+results = aov(UsersPerHost~as.factor(week), data = data)
+tukey = TukeyHSD(results)
+helper = as.data.frame(round(tukey$`as.factor(week)`[which(tukey$`as.factor(week)`[,4]&lt;.001),],3)) %&gt;% 
+  sample_n(20) 
+helper %&gt;%  
+  mutate(weekpair = rownames(helper)) %&gt;%
+  arrange(desc(diff)) %&gt;%
+  select(&quot;weekpair&quot;, &quot;p adj&quot;, &quot;diff&quot;, &quot;lwr&quot;, &quot;upr&quot;)</code></pre>
 <pre><code>##    weekpair p adj   diff    lwr    upr
-## 1       6-1 0.000  2.603  1.575  3.630
-## 2       6-0 0.000  1.990  1.148  2.833
-## 3       6-2 0.000  1.734  0.885  2.582
-## 4       4-1 0.000  1.547  0.504  2.589
-## 5      12-6 0.001 -1.098 -1.935 -0.262
-## 6     17-12 0.000 -1.424 -2.257 -0.591
-## 7      14-0 0.000 -1.535 -2.380 -0.689
-## 8       7-4 0.000 -1.548 -2.423 -0.673
-## 9      20-0 0.000 -1.621 -2.500 -0.742
-## 10     16-3 0.000 -1.641 -2.484 -0.797
-## 11    14-10 0.000 -1.778 -2.666 -0.891
-## 12     14-2 0.000 -1.791 -2.643 -0.939
-## 13    16-10 0.000 -1.851 -2.737 -0.965
-## 14     20-8 0.000 -2.010 -2.882 -1.139
-## 15     13-6 0.000 -2.243 -3.078 -1.408
-## 16    14-12 0.000 -2.426 -3.266 -1.587
-## 17     14-4 0.000 -2.469 -3.327 -1.611
-## 18     17-6 0.000 -2.522 -3.355 -1.690
-## 19     15-6 0.000 -2.699 -3.537 -1.861
-## 20     21-6 0.000 -3.042 -3.970 -2.113</code></pre>
+## 1       6-1     0  2.603  1.575  3.630
+## 2       6-2     0  1.734  0.885  2.582
+## 3     18-16     0  1.582  0.476  2.688
+## 4      12-1     0  1.504  0.476  2.532
+## 5      14-9     0 -1.252 -2.091 -0.412
+## 6      21-2     0 -1.308 -2.248 -0.369
+## 7      15-4     0 -1.643 -2.500 -0.786
+## 8      14-5     0 -1.792 -2.635 -0.949
+## 9      16-2     0 -1.864 -2.714 -1.014
+## 10     16-5     0 -1.865 -2.706 -1.023
+## 11     20-2     0 -1.878 -2.762 -0.994
+## 12    16-11     0 -1.971 -2.828 -1.114
+## 13     21-4     0 -1.985 -2.931 -1.040
+## 14    20-11     0 -1.985 -2.876 -1.094
+## 15     20-8     0 -2.010 -2.882 -1.139
+## 16     18-6     0 -2.016 -3.121 -0.911
+## 17     19-6     0 -2.417 -3.319 -1.515
+## 18     17-6     0 -2.522 -3.355 -1.690
+## 19     14-6     0 -3.525 -4.364 -2.686
+## 20     16-6     0 -3.597 -4.435 -2.760</code></pre>
 <p>Lets tranform this information into a datafame that we can plot.</p>
-<pre class="sourceCode r" id="cb35"><code class="sourceCode r"><div class="sourceLine" id="cb35-1" data-line-number="1">tukeydata =<span class="st"> </span><span class="kw">as.data.frame</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">as.factor(week)</span><span class="st">`</span>)</div>
-<div class="sourceLine" id="cb35-2" data-line-number="2">plotting =<span class="st"> </span>tukeydata <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">names =</span> <span class="kw">rownames</span>(tukeydata), <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(names, diff, ymin, ymax) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb35-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(diff)</div></code></pre>
+<pre class="r"><code>tukeydata = as.data.frame(tukey$`as.factor(week)`)
+plotting = tukeydata %&gt;%
+  mutate(names = rownames(tukeydata), ymin = lwr, ymax = upr) %&gt;%
+  select(names, diff, ymin, ymax) %&gt;%
+  arrange(diff)</code></pre>
 <p>Lets view a sample of 20 rows.</p>
-<pre class="sourceCode r" id="cb36"><code class="sourceCode r"><div class="sourceLine" id="cb36-1" data-line-number="1">plotting <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(diff)</div></code></pre>
-<pre><code>##    names       diff       ymin       ymax
-## 1   19-6 -2.4173632 -3.3194164 -1.5153099
-## 2   16-5 -1.8648487 -2.7063225 -1.0233748
-## 3   20-3 -1.6547168 -2.5324117 -0.7770218
-## 4   16-3 -1.6405460 -2.4837145 -0.7973775
-## 5  19-12 -1.3189488 -2.2215076 -0.4163900
-## 6  20-19 -1.1941948 -2.1300723 -0.2583173
-## 7   16-7 -0.9935665 -1.8518394 -0.1352936
-## 8   15-2 -0.9654601 -1.8161965 -0.1147236
-## 9   19-0 -0.4270966 -1.3353761  0.4811829
-## 10  15-9 -0.4257437 -1.2639066  0.4124192
-## 11 17-15  0.1765952 -0.6583548  1.0115451
-## 12 18-13  0.2270874 -0.8769455  1.3311204
-## 13   8-0  0.3890618 -0.4530801  1.2312038
-## 14 21-14  0.4831668 -0.4480111  1.4143446
-## 15 18-17  0.5066583 -0.5957589  1.6090755
-## 16 18-15  0.6832535 -0.4232624  1.7897693
-## 17 19-14  1.1074211  0.2022988  2.0125434
-## 18  12-9  1.1748304  0.3383190  2.0113418
-## 19 19-16  1.1800240  0.2764470  2.0836010
-## 20 18-16  1.5816521  0.4755551  2.6877492</code></pre>
+<pre class="r"><code>plotting %&gt;%
+  sample_n(20) %&gt;%
+  arrange(diff)</code></pre>
+<pre><code>##    names        diff        ymin        ymax
+## 1   15-6 -2.69898852 -3.53715144 -1.86082559
+## 2   19-6 -2.41736319 -3.31941644 -1.51530994
+## 3  20-10 -1.86520417 -2.78412499 -0.94628336
+## 4  20-18 -1.59582296 -2.72845967 -0.46318624
+## 5   17-4 -1.46626463 -2.31786824 -0.61466102
+## 6   21-2 -1.30808908 -2.24765345 -0.36852470
+## 7   17-8 -0.92118857 -1.75338790 -0.08898924
+## 8  18-11 -0.38918799 -1.50880877  0.73043278
+## 9   18-2 -0.28220661 -1.39662786  0.83221463
+## 10  13-9  0.03042234 -0.80446001  0.86530468
+## 11  17-1  0.08033255 -0.94447914  1.10514424
+## 12   8-2  0.13232365 -0.71571340  0.98036071
+## 13   2-0  0.25673819 -0.59844952  1.11192590
+## 14 19-15  0.28162532 -0.62246437  1.18571502
+## 15 18-17  0.50665830 -0.59575886  1.60907546
+## 16  18-1  0.58699086 -0.66898485  1.84296656
+## 17   3-1  0.64588469 -0.38608307  1.67785245
+## 18 12-10  0.64793942 -0.23702449  1.53290334
+## 19   4-0  0.93413791  0.07281567  1.79546014
+## 20   6-4  1.05612872  0.20137473  1.91088272</code></pre>
 </div>
 <div id="plots-of-pairwise-compaisons" class="section level3">
 <h3>Plots of Pairwise Compaisons</h3>
-<pre class="sourceCode r" id="cb38"><code class="sourceCode r"><div class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>)</div></code></pre>
+<pre class="r"><code>ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;)</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>This is very difficult to read. Lets make two fixes:</p>
 <ol style="list-style-type: decimal">
@@ -396,18 +336,18 @@ code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Infor
 </li>
 <li>Since our y labels are hard to read, lets create a vector that will allow us to show the label for every 7th value.</li>
 </ol>
-<pre class="sourceCode r" id="cb39"><code class="sourceCode r"><div class="sourceLine" id="cb39-1" data-line-number="1">plotting<span class="op">$</span>order =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(plotting)</div>
-<div class="sourceLine" id="cb39-2" data-line-number="2">plotting<span class="op">$</span>names =<span class="st"> </span><span class="kw">factor</span>(plotting<span class="op">$</span>names, <span class="dt">levels=</span><span class="kw">unique</span>(plotting<span class="op">$</span>names[<span class="kw">order</span>(plotting<span class="op">$</span>order)]), <span class="dt">ordered=</span><span class="ot">TRUE</span>)</div>
-<div class="sourceLine" id="cb39-3" data-line-number="3"></div>
-<div class="sourceLine" id="cb39-4" data-line-number="4">plothelp =<span class="st"> </span>plotting<span class="op">$</span>names[<span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>)]</div></code></pre>
+<pre class="r"><code>plotting$order = 1:nrow(plotting)
+plotting$names = factor(plotting$names, levels=unique(plotting$names[order(plotting$order)]), ordered=TRUE)
+
+plothelp = plotting$names[c(TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE)]</code></pre>
 <p>Now the plot.</p>
-<pre class="sourceCode r" id="cb40"><code class="sourceCode r"><div class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> plotting, <span class="kw">aes</span>(<span class="dt">x =</span> names, <span class="dt">y =</span> diff, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax)) <span class="op">+</span></div>
-<div class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb40-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></div>
-<div class="sourceLine" id="cb40-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></div>
-<div class="sourceLine" id="cb40-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span>plothelp,</div>
-<div class="sourceLine" id="cb40-7" data-line-number="7">                      <span class="dt">labels=</span>plothelp)</div></code></pre>
+<pre class="r"><code>ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;) +
+  scale_x_discrete(breaks=plothelp,
+                      labels=plothelp)</code></pre>
 <p><img src="/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 </div>

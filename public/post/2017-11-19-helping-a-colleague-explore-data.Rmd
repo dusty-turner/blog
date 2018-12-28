@@ -19,13 +19,13 @@ tags:
   - dplyr
   - tidyverse
   - beatnavy
-output: 
-  blogdown::html_page:
-    toc: true
-    toc_depth: 2
+# output: 
+  # blogdown::html_page:
+    # toc: true
+    # toc_depth: 2
     # dev: "svg"
     # theme: lumen
-    highlight: tango
+    # highlight: tango
     # code_folding: show  #doesn't work yet with html_page
 ---
 ```{r set-options, echo=FALSE, cache=FALSE}
