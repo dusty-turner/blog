@@ -1,5 +1,5 @@
 ---
-title: Shiny Project
+title: "Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity"
 author: Dusty Turner
 date: '2017-11-24'
 slug: shiny-project
