@@ -26,4 +26,5 @@ knitr::include_graphics("/run.PNG")
 ```
 
 
-[![Video](https://www.youtube.com/watch?v=Npk-cfQVqKo)
+<!-- [![Video](http://img.youtube.com/vi/-pdYK9Xg8Jw/0.jpg)](http://www.youtube.com/watch?v=-pdYK9Xg8Jw) -->
+[![Video](https://img.youtube.com/vi/Npk-cfQVqKo/0.jpg)](https://www.youtube.com/watch?v=Npk-cfQVqKo)
