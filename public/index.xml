@@ -66,7 +66,12 @@ I met @jaredlander at the 2017 MIT Sloan Sports Analytics Conference. He gave a 
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/dates-in-r/</guid>
-      <description>div.sourceCode { overflow-x: auto; }table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {margin: 0; padding: 0; vertical-align: baseline; border: none; }table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }td.sourceCode { padding-left: 5px; }pre, code { background-color: #f8f8f8; }code  span.kw { color: #204a87; font-weight: bold; } /* Keyword */code  span.dt { color: #204a87; } /* DataType */code  span.</description>
+      <description>A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
+There are 3 date/time classes are built in to R
+- Date
+- POSIXct
+- POSIXlt
+Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</description>
     </item>
     
     <item>

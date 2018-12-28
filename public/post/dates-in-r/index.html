@@ -15,14 +15,24 @@
 
   
   <meta name="author" content="Dusty Turner" />
-  <meta name="description" content="div.sourceCode { overflow-x: auto; }table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {margin: 0; padding: 0; vertical-align: baseline; border: none; }table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }td.sourceCode { padding-left: 5px; }pre, code { background-color: #f8f8f8; }code  span.kw { color: #204a87; font-weight: bold; } /* Keyword */code  span.dt { color: #204a87; } /* DataType */code  span." />
+  <meta name="description" content="A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
+There are 3 date/time classes are built in to R
+- Date
+- POSIXct
+- POSIXlt
+Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@dtdusty" />
     <meta name="twitter:title" content="Dates In R" />
-    <meta name="twitter:description" content="div.sourceCode { overflow-x: auto; }table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {margin: 0; padding: 0; vertical-align: baseline; border: none; }table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }td.sourceCode { padding-left: 5px; }pre, code { background-color: #f8f8f8; }code  span.kw { color: #204a87; font-weight: bold; } /* Keyword */code  span.dt { color: #204a87; } /* DataType */code  span." />
+    <meta name="twitter:description" content="A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
+There are 3 date/time classes are built in to R
+- Date
+- POSIXct
+- POSIXlt
+Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -202,48 +212,9 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Dates In R</h1>
-      <p class="post-meta">@Dusty Turner · Jun 20, 2018 · 4 min read</p>
+      <p class="post-meta">@Dusty Turner · Jun 20, 2018 · 3 min read</p>
     </header>
-    <article class="post-content"><style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-</style>
-
-
-<div id="a-little-about-dates-in-r" class="section level3">
+    <article class="post-content"><div id="a-little-about-dates-in-r" class="section level3">
 <h3>A Little About Dates in R</h3>
 <p>Before we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.</p>
 <p>There are 3 date/time classes are built in to R<br />
@@ -253,65 +224,65 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <div id="base-r" class="section level4">
 <h4>Base R</h4>
 <p>First, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect. Below are several examples. You can look at all the possible format and codes by running <code>?strptime</code> in your R console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strptime</span>(<span class="st">&quot;October 16, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%B %e, %Y&quot;</span>)</code></pre></div>
+<pre class="r"><code>strptime(&quot;October 16, 1984&quot;, format = &quot;%B %e, %Y&quot;)</code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strptime</span>(<span class="st">&quot;16 October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e %B, %Y&quot;</span>)</code></pre></div>
+<pre class="r"><code>strptime(&quot;16 October, 1984&quot;, format = &quot;%e %B, %Y&quot;)</code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strptime</span>(<span class="st">&quot;16-- October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e-- %B, %Y&quot;</span>)</code></pre></div>
+<pre class="r"><code>strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
 <pre><code>## [1] &quot;1984-10-16 EDT&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">strptime</span>(<span class="st">&quot;16-- October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e-- %B, %Y&quot;</span>))</code></pre></div>
+<pre class="r"><code>class(strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;))</code></pre>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">birthday =<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;16-- October, 1984&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%e-- %B, %Y&quot;</span>)</code></pre></div>
+<pre class="r"><code>birthday = strptime(&quot;16-- October, 1984&quot;, format = &quot;%e-- %B, %Y&quot;)</code></pre>
 <p>As you can see, the <code>strptime</code> command recognizes your string as a <code>POSIXlt POSIXt</code> class.</p>
 </div>
 </div>
 <div id="lubridate" class="section level3">
 <h3>lubridate</h3>
 <p>A second and easier way to have R recognize dates is to use the <code>lubridate</code> package in R. Thanks again <a href="http://hadley.nz/">Hadley</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)</code></pre></div>
+<pre class="r"><code>library(lubridate)</code></pre>
 <p>Using <code>lubridate</code> also allows R to read character strings as dates. However, instead of having to tell R the exact format of your string (which can be difficult), lubridate tries many methods to recognize your string. You simply provide it the order of your month, day, and year in <code>ymd</code> format or any combination thereof.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mdy</span>(<span class="st">&quot;June 14, 2018&quot;</span>)</code></pre></div>
+<pre class="r"><code>mdy(&quot;June 14, 2018&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dmy</span>(<span class="st">&quot;14 June, 2018&quot;</span>)</code></pre></div>
+<pre class="r"><code>dmy(&quot;14 June, 2018&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dmy</span>(<span class="st">&quot;14-- June, 2018&quot;</span>)</code></pre></div>
+<pre class="r"><code>dmy(&quot;14-- June, 2018&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-06-14&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">dmy</span>(<span class="st">&quot;14-- June, 2018&quot;</span>))</code></pre></div>
+<pre class="r"><code>class(dmy(&quot;14-- June, 2018&quot;))</code></pre>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>You’ll notice that lubridate creates a <code>date</code> class. To change it into <code>POSIXlt POSIXt</code> format, wrap your text with the following code.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">as.POSIXlt</span>(<span class="kw">mdy</span>(<span class="st">&quot;June 14, 2018&quot;</span>)))</code></pre></div>
+<pre class="r"><code>class(as.POSIXlt(mdy(&quot;June 14, 2018&quot;)))</code></pre>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
 <p>We also need to ensure our date is the correct timezone. This would be more important if our date had a time included.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date =<span class="st"> </span><span class="kw">as.POSIXlt</span>(<span class="kw">dmy</span>(<span class="st">&quot;14 June, 2018&quot;</span>))
-date</code></pre></div>
+<pre class="r"><code>date = as.POSIXlt(dmy(&quot;14 June, 2018&quot;))
+date</code></pre>
 <pre><code>## [1] &quot;2018-06-14 UTC&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date =<span class="st"> </span><span class="kw">force_tz</span>(date, <span class="dt">tzone =</span> <span class="st">&quot;America/New_York&quot;</span>)
-date</code></pre></div>
+<pre class="r"><code>date = force_tz(date, tzone = &quot;America/New_York&quot;)
+date</code></pre>
 <pre><code>## [1] &quot;2018-06-14 EDT&quot;</code></pre>
 <p>When a date vector is of class <code>as.POSIXlt</code>, all the information is stored as a list. You can also extract specific information from the list as well.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date</code></pre></div>
+<pre class="r"><code>date</code></pre>
 <pre><code>## [1] &quot;2018-06-14 EDT&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unlist</span>(date)</code></pre></div>
+<pre class="r"><code>unlist(date)</code></pre>
 <pre><code>##      sec      min     hour     mday      mon     year     wday     yday 
 ##      &quot;0&quot;      &quot;0&quot;      &quot;0&quot;     &quot;14&quot;      &quot;5&quot;    &quot;118&quot;      &quot;4&quot;    &quot;164&quot; 
 ##    isdst     zone   gmtoff 
 ##      &quot;1&quot;    &quot;EDT&quot; &quot;-14400&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date<span class="op">$</span>mon</code></pre></div>
+<pre class="r"><code>date$mon</code></pre>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">month</span>(date)</code></pre></div>
+<pre class="r"><code>month(date)</code></pre>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date<span class="op">$</span>year</code></pre></div>
+<pre class="r"><code>date$year</code></pre>
 <pre><code>## [1] 118</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">year</span>(date)</code></pre></div>
+<pre class="r"><code>year(date)</code></pre>
 <pre><code>## [1] 2018</code></pre>
 <p>You can manipulate these date vectors as well.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date <span class="op">-</span><span class="st"> </span>birthday</code></pre></div>
+<pre class="r"><code>date - birthday</code></pre>
 <pre><code>## Time difference of 12294 days</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">birthday <span class="op">+</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">4</span>)</code></pre></div>
+<pre class="r"><code>birthday + hours(4)</code></pre>
 <pre><code>## [1] &quot;1984-10-16 04:00:00 UTC&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">birthday <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">4</span>)</code></pre></div>
+<pre class="r"><code>birthday + days(4)</code></pre>
 <pre><code>## [1] &quot;1984-10-20 UTC&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">date <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">9</span>)</code></pre></div>
+<pre class="r"><code>date + years(4) + months(9)</code></pre>
 <pre><code>## [1] &quot;2023-03-14 EDT&quot;</code></pre>
 </div>
 </article>
