@@ -41,7 +41,7 @@ A goal like this takes dedication, love, and of course, a Data Science-y approac
 
 Special thanks to Ally, Zia, and [Bookbuddy](https://itunes.apple.com/us/app/bookbuddy-pro-library-manager/id395149950?mt=8) for help in accomplishing this goal!
 
-Also, special thanks to [@drob](https://twitter.com/drob) and [@juliasilge](https://twitter.com/juliasilge) who privde the `tidytext` package and the entire R community I rely on to do this analysis.  
+Also, special thanks to [drob](https://twitter.com/drob) and [juliasilge](https://twitter.com/juliasilge) who privde the `tidytext` package and the entire R community I rely on to do this analysis.  
 
 Since I use this page as a way to log my ideas and teach others (and future me) how I did this, I'll include the code.  
 
