@@ -43,6 +43,15 @@ I met @jaredlander at the 2017 MIT Sloan Sports Analytics Conference. He gave a 
     </item>
     
     <item>
+      <title>Analysis of my Children&#39;s Reading List</title>
+      <link>/post/analysis-of-my-children-s-reading-list/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/analysis-of-my-children-s-reading-list/</guid>
+      <description>div.sourceCode { overflow-x: auto; }table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {margin: 0; padding: 0; vertical-align: baseline; border: none; }table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }td.sourceCode { padding-left: 5px; }pre, code { background-color: #f8f8f8; }code  span.kw { color: #204a87; font-weight: bold; } /* Keyword */code  span.</description>
+    </item>
+    
+    <item>
       <title>2005 Ford F150 Exploratory Data Analysis</title>
       <link>/post/ford-f150-analysis/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
@@ -97,15 +106,6 @@ Oh, and I got to go for a little run before the conferece!</description>
       <guid>/post/2017-ncaa-college-bowl-pick-em/</guid>
       <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
 </description>
-    </item>
-    
-    <item>
-      <title>Analysis of my Children&#39;s Reading List</title>
-      <link>/post/analysis-of-my-children-s-reading-list/</link>
-      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/analysis-of-my-children-s-reading-list/</guid>
-      <description>div.sourceCode { overflow-x: auto; }table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {margin: 0; padding: 0; vertical-align: baseline; border: none; }table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }td.sourceCode { padding-left: 5px; }pre, code { background-color: #f8f8f8; }code  span.kw { color: #204a87; font-weight: bold; } /* Keyword */code  span.</description>
     </item>
     
     <item>
