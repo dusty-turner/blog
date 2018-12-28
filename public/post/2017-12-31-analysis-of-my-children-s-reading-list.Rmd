@@ -63,7 +63,7 @@ library(DT)
 
 ### Read in Data
 
-Lets read in the data and get a feel for what information we have available.  Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together.  We have the data in many different spreadsheets to I'll have to read them all in seperatly.  I had to change some of the columns to character to make joining these dataframes go more smooth later on.
+Lets read in the data and get a feel for what information we have available.  Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together.  We have the data in many different spreadsheets to I'll have to read them all in separately.  I had to change some of the columns to character to make joining these dataframes go more smooth later on.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 options(stringsAsFactors = TRUE)
@@ -95,7 +95,7 @@ Now that we've read it in, I need to do a few things to support future analysis.
 
 3. I need to convert the `DatePublished` and `DateAdded` to characters (don't worry, I'll bring it back later.)
 
-4. It seemed like every Bearenstien Bear book had a little bit different Author.  Lets clean that up a little too.  
+4. It seemed like every Berenstain Bear book had a little bit different Author.  Lets clean that up a little too.  
 
 5. There were some `DateAdded` dates that do not exist.  For a while, when one of our babysitters was saving the data, this information was not being saved.  We assigned the book the most recent data from when we caught the error (as seen in the last line below).  This is not a reasonable assumption, but its the best we can do.  
 
@@ -163,7 +163,7 @@ booksread %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-I'm a big fan of the Berenstein Bears, Dr. Seuss, and Pete The Cat (James Dean), but not so much Fancy Nancy (Thanks Jane O'Connor)....
+I'm a big fan of the Berenstain Bears, Dr. Seuss, and Pete The Cat (James Dean), but not so much Fancy Nancy (Thanks Jane O'Connor)....
 
 ### Timeline
 
@@ -181,11 +181,11 @@ booksread %>%
 
 There are a few things to note from the data above.
 
-1.  We were more vigalent at scanning books as we read them at the beginning -- vs scanning them all at once at the end.
+1.  We were more vigilant at scanning books as we read them at the beginning -- vs scanning them all at once at the end.
 
 2.  We had a couple droughts of book reading -- in particular August was a slow period.  
 
-3.  The big jump in December was a data collection error mentioned above.  These were likey spread across the previous 3 months.  
+3.  The big jump in December was a data collection error mentioned above.  These were likely spread across the previous 3 months.  
 
 ```{r}
 booksread %>%
@@ -218,7 +218,7 @@ ggplot(data = booksread, aes(YearPublished)) +
   labs(title = "Books By Year", y = "Total Books", x = "Year Published")
 ```
 
-It appears we've read some classics... as well as some of the more 'pop culture' childrens books.
+It appears we've read some classics... as well as some of the more 'pop culture' children's books.
 
 ### Length of Books
 

@@ -109,7 +109,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="read-in-data" class="section level3">
 <h3>Read in Data</h3>
-<p>Lets read in the data and get a feel for what information we have available. Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together. We have the data in many different spreadsheets to I’ll have to read them all in seperatly. I had to change some of the columns to character to make joining these dataframes go more smooth later on.</p>
+<p>Lets read in the data and get a feel for what information we have available. Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together. We have the data in many different spreadsheets to I’ll have to read them all in separately. I had to change some of the columns to character to make joining these dataframes go more smooth later on.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
 book =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;BookBuddy.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ISBN =</span> <span class="kw">as.numeric</span>(ISBN))
 book1 =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;BookBuddy (1).csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ISBN =</span> <span class="kw">as.numeric</span>(ISBN)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">OCLC =</span> <span class="kw">as.character</span>(OCLC)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">Date Published</span><span class="st">`</span> =<span class="st"> </span><span class="kw">mdy</span>(<span class="st">`</span><span class="dt">Date Published</span><span class="st">`</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">Date Added</span><span class="st">`</span> =<span class="st"> </span><span class="kw">as.character</span>(<span class="st">`</span><span class="dt">Date Added</span><span class="st">`</span>))
@@ -135,7 +135,7 @@ book15 =<span class="st"> </span><span class="kw">read_csv</span>(<span class="s
 <li><p>Many of the column names have spaces which does not support data munging. I’ll use the <code>clean_names</code> command from the <code>janitor</code> package to clean this up.</p></li>
 <li><p>I have a lot of duplicate books. I’ll keep only the rows that have distinct Title and Author. I used the <code>distinct</code> command because some of us scanned the same books. We do not want to account for them twice.</p></li>
 <li><p>I need to convert the <code>DatePublished</code> and <code>DateAdded</code> to characters (don’t worry, I’ll bring it back later.)</p></li>
-<li><p>It seemed like every Bearenstien Bear book had a little bit different Author. Lets clean that up a little too.</p></li>
+<li><p>It seemed like every Berenstain Bear book had a little bit different Author. Lets clean that up a little too.</p></li>
 <li><p>There were some <code>DateAdded</code> dates that do not exist. For a while, when one of our babysitters was saving the data, this information was not being saved. We assigned the book the most recent data from when we caught the error (as seen in the last line below). This is not a reasonable assumption, but its the best we can do.</p></li>
 <li><p>Lastly, I’ll only use the following columns: <code>Title</code>, <code>Author</code>, <code>Publisher</code>, <code>YearPublished</code>, <code>Genre</code>, <code>Summary</code>, <code>DateAdded</code>, <code>DatePublished</code>, and <code>GoogleVolumeId</code>. The rest of the columns contain blank information.</p></li>
 </ol>
@@ -282,7 +282,7 @@ Rosemary Wells
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Most Read Authors&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Authors&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Number of Books&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>I’m a big fan of the Berenstein Bears, Dr. Seuss, and Pete The Cat (James Dean), but not so much Fancy Nancy (Thanks Jane O’Connor)….</p>
+<p>I’m a big fan of the Berenstain Bears, Dr. Seuss, and Pete The Cat (James Dean), but not so much Fancy Nancy (Thanks Jane O’Connor)….</p>
 </div>
 <div id="timeline" class="section level3">
 <h3>Timeline</h3>
@@ -298,9 +298,9 @@ Rosemary Wells
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>There are a few things to note from the data above.</p>
 <ol style="list-style-type: decimal">
-<li><p>We were more vigalent at scanning books as we read them at the beginning – vs scanning them all at once at the end.</p></li>
+<li><p>We were more vigilant at scanning books as we read them at the beginning – vs scanning them all at once at the end.</p></li>
 <li><p>We had a couple droughts of book reading – in particular August was a slow period.</p></li>
-<li><p>The big jump in December was a data collection error mentioned above. These were likey spread across the previous 3 months.</p></li>
+<li><p>The big jump in December was a data collection error mentioned above. These were likely spread across the previous 3 months.</p></li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">booksread <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">month =</span> <span class="kw">month</span>(DateAdded)) <span class="op">%&gt;%</span>
@@ -456,7 +456,7 @@ God
 <span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Books By Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Total Books&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Year Published&quot;</span>)</code></pre></div>
 <p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>It appears we’ve read some classics… as well as some of the more ‘pop culture’ childrens books.</p>
+<p>It appears we’ve read some classics… as well as some of the more ‘pop culture’ children’s books.</p>
 </div>
 <div id="length-of-books" class="section level3">
 <h3>Length of Books</h3>
