@@ -7,10 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 23 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/model-building/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2018 Joint Statistical Meeting Presentation</title>
+      <link>/post/2018-joint-statistical-meeting-presentation/</link>
+      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-joint-statistical-meeting-presentation/</guid>
+      <description>I was honored to present some collaborative work between my friend Jim Pleuss and I at the 2018 Joint Statistical Meetings
+The question we attemped to answer is: Do students who are grouped with others of like ability perform better?
+Short answer: Not really.
+Full details are included in my presentations repository on my Github here
+The poster is located here
+Went for a good run in Vancouv-R. #rstats #JSM2018 @MeetVancouver pic.</description>
+    </item>
     
     <item>
       <title>2018 NY R Conference Presentation</title>

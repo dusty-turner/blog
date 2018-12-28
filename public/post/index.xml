@@ -41,7 +41,21 @@ Bowl selections automatically lock once they start.
     </item>
     
     <item>
-      <title>2005 Ford F150 Exploratory Data Analysis</title>
+      <title>2018 Joint Statistical Meeting Presentation</title>
+      <link>/post/2018-joint-statistical-meeting-presentation/</link>
+      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-joint-statistical-meeting-presentation/</guid>
+      <description>I was honored to present some collaborative work between my friend Jim Pleuss and I at the 2018 Joint Statistical Meetings
+The question we attemped to answer is: Do students who are grouped with others of like ability perform better?
+Short answer: Not really.
+Full details are included in my presentations repository on my Github here
+The poster is located here
+Went for a good run in Vancouv-R. #rstats #JSM2018 @MeetVancouver pic.</description>
+    </item>
+    
+    <item>
+      <title>2005 Ford F150 Gas Milage Analysis</title>
       <link>/post/ford-f150-analysis/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
