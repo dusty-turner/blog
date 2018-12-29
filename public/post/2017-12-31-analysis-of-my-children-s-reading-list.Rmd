@@ -41,7 +41,7 @@ A goal like this takes dedication, love, and of course, a Data Science-y approac
 
 Special thanks to Ally, Zia, and [Bookbuddy](https://itunes.apple.com/us/app/bookbuddy-pro-library-manager/id395149950?mt=8) for help in accomplishing this goal!
 
-Also, special thanks to [drob](https://twitter.com/drob) and [juliasilge](https://twitter.com/juliasilge) who privde the `tidytext` package and the entire R community I rely on to do this analysis.  
+Also, special thanks to [drob](https://twitter.com/drob) and [juliasilge](https://twitter.com/juliasilge) who privde the `tidytext` package and the entire R open-source community I rely on to do this analysis.  
 
 Since I use this page as a way to log my ideas and teach others (and future me) how I did this, I'll include the code.  
 
@@ -399,11 +399,11 @@ nrcbooks %>%
   kable()
 ```
 
-There it is, 7th on the list.  Thought it doesn't register as being all that sad, it reduced my wife to tears... then again as she told me the story.  
+There it is, 7th on the list.  Thought it doesn't register as being all that sad, it reduced my wife to tears... and again as she told me the story.  
 
-Spoiler alert, the Black Cat dies in the end.
+Spoiler alert, the Black Cat dies in the end.  
 
-Here, maybe you'll cry too.
+Here's the summary, maybe you'll cry too.
 
 ```{r}
 booksread %>%
@@ -411,6 +411,9 @@ filter(Title=="Big Cat, Little Cat") %>%
   select(Summary)
 ```
 
+And if you are a glutton for punishment, you can listen to it read here:  
+
+[![Video](https://img.youtube.com/vi/RUopy9-lz_w/0.jpg)](https://www.youtube.com/watch?v=RUopy9-lz_w)
 
 How about happy books?  I'll define this as positive words.
 
