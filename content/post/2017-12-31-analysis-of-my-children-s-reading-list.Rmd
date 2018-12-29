@@ -53,7 +53,7 @@ The libraries I will use for this analysis are the following:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 library(tidyverse)
-library(lubridate)
+library(lubridate) 
 library(janitor)
 library(stringr)
 library(tidytext)
