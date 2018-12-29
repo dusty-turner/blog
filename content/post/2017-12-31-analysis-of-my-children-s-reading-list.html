@@ -65,7 +65,7 @@ library(DT)</code></pre>
 </div>
 <div id="read-in-data" class="section level3">
 <h3>Read in Data</h3>
-<p>Lets read in the data and get a feel for what information we have available. Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together. We have the data in many different spreadsheets to I’ll have to read them all in separately. I had to change some of the columns to character to make joining these dataframes go more smooth later on.</p>
+<p>Lets read in the data and get a feel for what information we have. Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together. We have the data in many different spreadsheets to I’ll have to read them all in separately. I had to change some of the columns to character to make joining these dataframes go more smooth later on.</p>
 <pre class="r"><code>options(stringsAsFactors = TRUE)
 book = read_csv(&quot;BookBuddy.csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN))
 book1 = read_csv(&quot;BookBuddy (1).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))

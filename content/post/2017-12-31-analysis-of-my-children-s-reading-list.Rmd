@@ -65,7 +65,7 @@ library(DT)
 
 ### Read in Data
 
-Lets read in the data and get a feel for what information we have available.  Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together.  We have the data in many different spreadsheets to I'll have to read them all in separately.  I had to change some of the columns to character to make joining these dataframes go more smooth later on.
+Lets read in the data and get a feel for what information we have.  Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together.  We have the data in many different spreadsheets to I'll have to read them all in separately.  I had to change some of the columns to character to make joining these dataframes go more smooth later on.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 options(stringsAsFactors = TRUE)
@@ -271,9 +271,9 @@ booksread %>%
   select(Summary)
 ```
 
-### Preparation
+### Preparation 
 
-So, lets prepare the data.  I'd like to bring along some information while I tokenize the summaries (Titles, Authors, and Genres).  
+So, lets prepare the data.  I'd like to bring along some information while I tokenize the summaries (Titles, Authors, and Genres).
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, show = FALSE}
 text_df = data_frame(line = 1:length(booksread$Summary), text = as.character(booksread$Summary), book = booksread$Title, Genre = booksread$Genre, Author = booksread$Author)

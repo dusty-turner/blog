@@ -1,0 +1,20 @@
+---
+title: Mathlete Fantasy Football Analysis 2018
+author: Dusty Turner
+date: '2018-11-22'
+slug: mathlete-fantasy-football-analysis-2018
+categories:
+  - army math
+  - beatnavy
+  - ESPN API
+  - fantasy football
+tags:
+  - army math
+  - beatnavy
+  - ESPN API
+  - fantasy football
+---
+
+## Introduction
+
+For the last two years I've had the honor of being the commisioner for the West Point Department of Mathematical Sciences's Fantasy Football League.  This year we had 20 managers se we had to split our department into two leagues.  I hosted one using ESPN and a colleague hosted on in Yahoo. 
