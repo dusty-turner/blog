@@ -1,7 +1,8 @@
 ---
-title: 'Fantasy Football: Navigating the ESPN and Yahoo! APIs'
+title: Fantasy Football - Navigating the ESPN and Yahoo! APIs
 author: Dusty Turner
 date: '2018-12-29'
+slug: ESPN-YAHOO-API-Navigation
 categories:
   - army math
   - beatnavy
@@ -14,14 +15,13 @@ tags:
   - ESPN API
   - fantasy football
   - YAHOO API
-slug: ESPN-YAHOO-API-Navigation
 ---
 
 ## Introduction
 
-For the last two years I've had the honor of being the commisioner for the West Point Department of Mathematical Sciences's Fantasy Football League.  This year we had 20 managers so we had to split our department into two leagues.  I hosted one using ESPN and a colleague hosted on in Yahoo. 
+For the last two years I've had the honor of being the commissioner for the West Point Department of Mathematical Science's Fantasy Football League.  This year we had 20 managers so we had to split our department into two leagues.  I hosted one using ESPN and a colleague hosted on in Yahoo. 
 
-In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league's information.  I'll join the two leauges and identify the top scoring teams each week and conduct some other comparitive analysis.  
+In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league's information.  I'll join the two leagues and identify the top scoring teams each week and conduct some other comparative analysis.  
 
 I'll also use this post as both a tutorial of how to download your league information. 
 
@@ -59,7 +59,7 @@ Next, build the url:
 url = paste0(baseurl, leagueID, season)
 ```
 
-Then, download the data.  The API will download your informaiton in JSON format.  You'll need to convert it to a format you can work with in R.
+Then, download the data.  The API will download your information in JSON format.  You'll need to convert it to a format you can work with in R.
 
 ```{r}
 ESPNGet <- GET(url = url)
@@ -161,7 +161,7 @@ save(yahoo_token,file="yahoo_token.Rdata")
 
 ```
 
-Full disclaimer here.  I have yet to figure out how to access this saved code.  I have been recreating a passcode everytime I run this.  I would love it if someone could show me how to do this.
+Full disclaimer here.  I have yet to figure out how to access this saved code.  I have been recreating a passcode every time I run this.  I would love it if someone could show me how to do this.
 
 The next step is to determine your `game key`.  You need this `game key` to tell Yahoo what type of information you will request later on.  If this doesn't make sense, go with me now and hopefully it will later.  
 

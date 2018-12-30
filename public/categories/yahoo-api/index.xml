@@ -13,13 +13,23 @@
     
     
     <item>
-      <title>Fantasy Football: Navigating the ESPN and Yahoo! APIs</title>
+      <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
       <link>/post/espn-yahoo-api-navigation/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/espn-yahoo-api-navigation/</guid>
-      <description>IntroductionFor the last two years I’ve had the honor of being the commisioner for the West Point Department of Mathematical Sciences’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
+      <description>IntroductionFor the last two years I’ve had the honor of being the commissioner for the West Point Department of Mathematical Science’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
 In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information.</description>
+    </item>
+    
+    <item>
+      <title>Mathlete Fantasy Football Analysis</title>
+      <link>/post/mathlete-fantasy-football-analysis2018/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathlete-fantasy-football-analysis2018/</guid>
+      <description>IntroductionLibrariesReviewESPNIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.</description>
     </item>
     
   </channel>

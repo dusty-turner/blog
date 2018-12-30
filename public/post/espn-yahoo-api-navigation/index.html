@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>Fantasy Football: Navigating the ESPN and Yahoo! APIs</title>
+  <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
 
   
   
@@ -15,15 +15,15 @@
 
   
   <meta name="author" content="Dusty Turner" />
-  <meta name="description" content="IntroductionFor the last two years I’ve had the honor of being the commisioner for the West Point Department of Mathematical Sciences’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
+  <meta name="description" content="IntroductionFor the last two years I’ve had the honor of being the commissioner for the West Point Department of Mathematical Science’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
 In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@dtdusty" />
-    <meta name="twitter:title" content="Fantasy Football: Navigating the ESPN and Yahoo! APIs" />
-    <meta name="twitter:description" content="IntroductionFor the last two years I’ve had the honor of being the commisioner for the West Point Department of Mathematical Sciences’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
+    <meta name="twitter:title" content="Fantasy Football - Navigating the ESPN and Yahoo! APIs" />
+    <meta name="twitter:description" content="IntroductionFor the last two years I’ve had the honor of being the commissioner for the West Point Department of Mathematical Science’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
 In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
@@ -72,7 +72,9 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
 <link rel="stylesheet" href="/css/bundle.css" />
-
+<link rel="stylesheet" href="/css/atelier-cave-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
   
   <!--[if lt IE 9]>
@@ -203,7 +205,7 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">Fantasy Football: Navigating the ESPN and Yahoo! APIs</h1>
+      <h1 class="post-title">Fantasy Football - Navigating the ESPN and Yahoo! APIs</h1>
       <p class="post-meta">@Dusty Turner · Dec 29, 2018 · 8 min read</p>
     </header>
     <article class="post-content"><script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
@@ -219,8 +221,8 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>For the last two years I’ve had the honor of being the commisioner for the West Point Department of Mathematical Sciences’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.</p>
-<p>In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information. I’ll join the two leauges and identify the top scoring teams each week and conduct some other comparitive analysis.</p>
+<p>For the last two years I’ve had the honor of being the commissioner for the West Point Department of Mathematical Science’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.</p>
+<p>In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information. I’ll join the two leagues and identify the top scoring teams each week and conduct some other comparative analysis.</p>
 <p>I’ll also use this post as both a tutorial of how to download your league information.</p>
 <p>I am very interested in feedback to improve this process. Shoot me a note or leave a comment below.</p>
 <div id="libraries" class="section level3">
@@ -244,7 +246,7 @@ leagueID = &quot;1314476&quot;
 season = &quot;&amp;seasonId=2018&quot;</code></pre>
 <p>Next, build the url:</p>
 <pre class="r"><code>url = paste0(baseurl, leagueID, season)</code></pre>
-<p>Then, download the data. The API will download your informaiton in JSON format. You’ll need to convert it to a format you can work with in R.</p>
+<p>Then, download the data. The API will download your information in JSON format. You’ll need to convert it to a format you can work with in R.</p>
 <pre class="r"><code>ESPNGet &lt;- GET(url = url)
 ESPNRaw &lt;- rawToChar(ESPNGet$content)
 ESPNFromJSON &lt;- fromJSON(ESPNRaw)</code></pre>
@@ -316,7 +318,7 @@ passcode = &quot;xxxxxxx&quot;
 
 yahoo_token &lt;- httr::oauth2.0_access_token(yahoo,myapp,code=passcode)
 save(yahoo_token,file=&quot;yahoo_token.Rdata&quot;)</code></pre>
-<p>Full disclaimer here. I have yet to figure out how to access this saved code. I have been recreating a passcode everytime I run this. I would love it if someone could show me how to do this.</p>
+<p>Full disclaimer here. I have yet to figure out how to access this saved code. I have been recreating a passcode every time I run this. I would love it if someone could show me how to do this.</p>
 <p>The next step is to determine your <code>game key</code>. You need this <code>game key</code> to tell Yahoo what type of information you will request later on. If this doesn’t make sense, go with me now and hopefully it will later.</p>
 <pre class="r"><code>standings_page &lt;- GET(&quot;https://fantasysports.yahooapis.com/fantasy/v2/game/nfl&quot;,
                       add_headers(Authorization=paste0(&quot;Bearer &quot;, yahoo_token$access_token)))

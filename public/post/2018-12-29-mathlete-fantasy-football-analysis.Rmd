@@ -1,0 +1,46 @@
+---
+title: Mathlete Fantasy Football Analysis
+author: Dusty Turner
+date: '2018-12-29'
+slug: mathlete-fantasy-football-analysis2018
+categories:
+  - army math
+  - beatnavy
+  - ESPN API
+  - YAHOO API
+tags:
+  - army math
+  - beatnavy
+  - ESPN API
+  - YAHOO API
+output:
+  blogdown::html_page:
+    toc: TRUE
+    # theme: lumen
+    # highlight: tango
+---
+
+## Introduction
+
+In my previous [post](https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/), I worked through how to get your league information from the ESPN and YAHOO APIs.  
+
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season.  As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers.  This, of course, is too many for one league so we split the teams across two leagues.  I managed an ESPN league, and a colleague managed a yahoo league.  
+
+This post will pick up where last post left off and do some analysis between the two leagues.
+
+### Libraries
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(DT)
+```
+
+## Review
+
+### ESPN
+
+```{r}
+yahoodf = read_csv("yahoodf.csv")
+espndf = read_csv("espndf.csv")
+```
+

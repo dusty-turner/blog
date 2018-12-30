@@ -13,13 +13,23 @@
     
     
     <item>
-      <title>Fantasy Football: Navigating the ESPN and Yahoo! APIs</title>
+      <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
       <link>/post/espn-yahoo-api-navigation/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/espn-yahoo-api-navigation/</guid>
-      <description>IntroductionFor the last two years I’ve had the honor of being the commisioner for the West Point Department of Mathematical Sciences’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
+      <description>IntroductionFor the last two years I’ve had the honor of being the commissioner for the West Point Department of Mathematical Science’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
 In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information.</description>
+    </item>
+    
+    <item>
+      <title>Mathlete Fantasy Football Analysis</title>
+      <link>/post/mathlete-fantasy-football-analysis2018/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mathlete-fantasy-football-analysis2018/</guid>
+      <description>IntroductionLibrariesReviewESPNIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.</description>
     </item>
     
     <item>
@@ -99,7 +109,9 @@ Oh, and I got to go for a little run before the conferece!</description>
       <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/mathlete-fantasy-football-analysis/</guid>
-      <description>div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }.sourceCode { overflow: visible; }code.sourceCode { white-space: pre; }@media print {code.sourceCode { white-space: pre-wrap; }div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }}pre.numberSource div.sourceLine, .numberSource a.sourceLine{ position: relative; }pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before{ content: attr(data-line-number);position: absolute; left: -5em; text-align: right; vertical-align: baseline;border: none; pointer-events: all;-webkit-touch-callout: none; -webkit-user-select: none;-khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;padding: 0 4px; width: 4em; }pre.</description>
+      <description>IntroductionLets see who really has fantasy football bragging rights and who is just lucky (or unlucky).
+During this analysis I will display most of my code. While this doesn’t provided the most pleasent visual experience, it will hopefully help the reader learn from my examples. (And potentially provide feedback on how to improve my methods.)
+LibrariesThe libraries I will use for this analysis are the following:</description>
     </item>
     
     <item>

@@ -48,6 +48,12 @@ subtitle = "~Data Science: Lightly Edited~"
 #  subtitle = "~Becoming a Better Data Scientist Everyday~"
 description = "Sharing my experiences learning Data Science through R"
 paginate = 10
+highlightjsVersion = "9.11.0"
+highlightjsCDN = "//cdn.bootcss.com"
+highlightjsLang = ["r", "yaml"]
+highlightjsTheme = "github"
+MathJaxCDN = "//cdn.bootcss.com"
+MathJaxVersion = "2.7.1"
 
 # Choose your social networks
 email = "dusty.s.turner@gmail.com"

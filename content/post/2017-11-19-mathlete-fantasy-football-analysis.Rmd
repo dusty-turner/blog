@@ -17,13 +17,13 @@ tags:
   - beatnavy
   - army math
   - ESPN API
-output: 
-  blogdown::html_page:
-    toc: TRUE
-    toc_depth: 2
+# output:
+  # blogdown::html_page:
+    # toc: TRUE
+    # toc_depth: 2
     # dev: "svg"
     # theme: lumen
-    highlight: tango
+    # highlight: tango
     # code_folding: show  #doesn't work yet with html_page
 
 
@@ -70,24 +70,43 @@ The API attains the data in JSON format which can be difficult to work with.  Wh
 
 I'll start by creating a function:
 
+**Note - I made a change recently.  Apparently ESPN has changed their API.  You can see the new code and the old code (commented out) below.  Thanks so much to Jeffrey Sumner below for the solution!**
+
 ```{r echo=TRUE}
 games<-function(n)
 {
-  #home and away team scores
-  scoreaway = lapply(n, "[",c(2))
-  scorehome = lapply(n, "[",c(9))
-  #who the away team is
-  test = lapply(n, "[[",3)
-  awayteam1 = lapply(test,"[",4)
-  awayteam2 = lapply(test,"[",6)
-  #who the home team is
-  test2 = lapply(n, "[[",12)
-  hometeam1 = lapply(test2,"[",4)
-  hometeam2 = lapply(test2,"[",6)
-  
-  fhelper = data.frame(Away = paste(unlist(awayteam2), unlist(awayteam1)), Home = paste(unlist(hometeam2), unlist(hometeam1)), awayscore = unlist(scoreaway), homescore = unlist(scorehome), week = 1:16)
-  return(fhelper)
+#home and away team scores
+scoreaway = lapply(n, "[",c("awayTeamScores"))
+scorehome = lapply(n, "[",c("homeTeamScores"))
+#who the away team is
+test = lapply(n, "[[",4)
+awayteam2 = lapply(test,"[",c("teamLocation"))
+awayteam1 = lapply(test,"[",c("teamNickname"))
+#who the home team is
+test2 = lapply(n, "[[",6)
+hometeam2 = lapply(test2,"[",c("teamLocation"))
+hometeam1 = lapply(test2,"[",c("teamNickname"))
+
+fhelper = data.frame(Away = paste(unlist(awayteam2), unlist(awayteam1)), Home = paste(unlist(hometeam2), unlist(hometeam1)), awayscore = unlist(scoreaway), homescore = unlist(scorehome), week = 1:16)
+return(fhelper)
 }
+# games<-function(n)
+# {
+#   #home and away team scores
+#   scoreaway = lapply(n, "[",c(2))
+#   scorehome = lapply(n, "[",c(9))
+#   #who the away team is
+#   test = lapply(n, "[[",3)
+#   awayteam1 = lapply(test,"[",4)
+#   awayteam2 = lapply(test,"[",6)
+#   #who the home team is
+#   test2 = lapply(n, "[[",12)
+#   hometeam1 = lapply(test2,"[",4)
+#   hometeam2 = lapply(test2,"[",6)
+#   
+#   fhelper = data.frame(Away = paste(unlist(awayteam2), unlist(awayteam1)), Home = paste(unlist(hometeam2), unlist(hometeam1)), awayscore = unlist(scoreaway), homescore = unlist(scorehome), week = 1:16)
+#   return(fhelper)
+# }
 ```
 
 After writing my funtion, I'll run it:
