@@ -34,7 +34,7 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
 <meta name="generator" content="Hugo 0.30.2" />
 
 
-<link rel="canonical" href="/post/mathlete-fantasy-football-analysis-2018/" />
+<link rel="canonical" href="/post/espn-yahoo-api-navigation/" />
 <link rel="alternative" href="/index.xml" title="Dusty Turner" type="application/atom+xml" />
 
 
@@ -204,7 +204,7 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Fantasy Football: Navigating the ESPN and Yahoo! APIs</h1>
-      <p class="post-meta">@Dusty Turner · Nov 22, 2018 · 8 min read</p>
+      <p class="post-meta">@Dusty Turner · Dec 29, 2018 · 8 min read</p>
     </header>
     <article class="post-content"><script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
 <script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
@@ -220,7 +220,7 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>For the last two years I’ve had the honor of being the commisioner for the West Point Department of Mathematical Sciences’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.</p>
-<p>In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information. I’ll join the two leauges and identify the top scoring team’s each week and conduct some other comparitive analysis.</p>
+<p>In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information. I’ll join the two leauges and identify the top scoring teams each week and conduct some other comparitive analysis.</p>
 <p>I’ll also use this post as both a tutorial of how to download your league information.</p>
 <p>I am very interested in feedback to improve this process. Shoot me a note or leave a comment below.</p>
 <div id="libraries" class="section level3">
@@ -299,8 +299,8 @@ espndf %&gt;% datatable()</code></pre>
 <p>Next, you’ll need to make a handshake with your API and create a token.</p>
 <pre class="r"><code>options(&quot;httr_oob_default&quot; = T)
 
-cKey     &lt;- &quot;dj0yJmk9Y0tQM2FzaHlzSzVhJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTFl&quot;
-cSecret  &lt;- &quot;0964a81f9cb139fb0608a69d928cc7cfdc4fd713&quot;
+cKey     &lt;- &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;
+cSecret  &lt;- &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;
 
 yahoo &lt;- httr::oauth_endpoint(authorize = &quot;https://api.login.yahoo.com/oauth2/request_auth&quot;
                               , access = &quot;https://api.login.yahoo.com/oauth2/get_token&quot;
@@ -312,7 +312,7 @@ myapp &lt;- httr::oauth_app(&quot;yahoo&quot;, key=cKey, secret = cSecret,redire
 <pre class="r"><code>httr::BROWSE(httr::oauth2.0_authorize_url(yahoo, myapp, scope=&quot;fspt-r&quot;
                                           , redirect_uri = myapp$redirect_uri))
 
-passcode = &quot;4qa4cpy&quot;
+passcode = &quot;xxxxxxx&quot;
 
 yahoo_token &lt;- httr::oauth2.0_access_token(yahoo,myapp,code=passcode)
 save(yahoo_token,file=&quot;yahoo_token.Rdata&quot;)</code></pre>

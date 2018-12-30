@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Army Math</title>
       <link>/tags/army-math/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/army-math/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>Beatnavy</title>
       <link>/tags/beatnavy/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/beatnavy/</guid>
       <description></description>
@@ -69,7 +69,7 @@
     <item>
       <title>Espn Api</title>
       <link>/tags/espn-api/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/espn-api/</guid>
       <description></description>
@@ -78,7 +78,7 @@
     <item>
       <title>Fantasy Football</title>
       <link>/tags/fantasy-football/</link>
-      <pubDate>Thu, 22 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/fantasy-football/</guid>
       <description></description>
@@ -171,6 +171,15 @@
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yahoo Api</title>
+      <link>/tags/yahoo-api/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/yahoo-api/</guid>
       <description></description>
     </item>
     
