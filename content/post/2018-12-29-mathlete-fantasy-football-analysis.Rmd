@@ -20,7 +20,7 @@ output:
     # highlight: tango
 ---
 
-## Introduction 2
+## Introduction
 
 In my previous [post](https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/), I worked through how to get your league information from the ESPN and YAHOO APIs.  
 
