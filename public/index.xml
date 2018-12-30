@@ -58,7 +58,7 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/mathlete-fantasy-football-analysis2018/</guid>
-      <description>IntroductionLibrariesReviewESPNIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+      <description>Introduction 2LibrariesReviewESPNIntroduction 2In my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
 The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.</description>
     </item>
     
