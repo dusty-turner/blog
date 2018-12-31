@@ -33,7 +33,7 @@ options(width = 150)
 options(stringsAsFactors = FALSE)
 ```
 
-## Introduction 2
+## Introduction
 
 Over Christmas 2017, my wife, [Jill](https://www.instagram.com/jillturner117/), resolved that our family (to include babysitters) would read our children over 1000 new books in 2018.  More specifically, 29 December 2017 - 28 December 2018.
 
