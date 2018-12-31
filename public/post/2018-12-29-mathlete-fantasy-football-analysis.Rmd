@@ -52,7 +52,7 @@ Every week, we hand out prizes for the highest overall point total and lowest.
 
 ### Highest Weekly Point Total
 
-The prizes for the highest points across both leagues is the honor of posessing the "Mug of my Mug" for the week.  Yes, as you can see below, it is a mug with a picture of my face.  The extra great thing about this mug, as you may be able to see, is I took it concussed with a fractured face.  I earned my concussion and facial fracture in a softball colision.  Yes, I was out...
+The prizes for the highest points across both leagues is the honor of posessing the "Mug of my Mug" for the week.  Yes, as you can see below, it is a mug with a picture of my face.  The extra great thing about this mug, as you may be able to see, is I took it concussed with a fractured face.  I earned my concussion and facial fracture in a softball colision.  Yes, I was called out...
 
 ```{r echo=FALSE, fig.width=1}
 knitr::include_graphics("/mug.PNG")
