@@ -55,8 +55,62 @@ Every week, we hand out prizes for the highest overall point total and lowest.
 The prizes for the highest points across both leagues is the honor of posessing the "Mug of my Mug" for the week.  Yes, as you can see below, it is a mug with a picture of my face.  The extra great thing about this mug, as you may be able to see, is I took it concussed with a fractured face.  I earned my concussion and facial fracture in a softball colision.  Yes, I was called out...
 
 ```{r echo=FALSE, fig.width=1}
-knitr::include_graphics("/mug.PNG")
+knitr::include_graphics("/mug.JPG")
+```
+
+So who are the weekly highest scorers?  Lets build the dataframe to determine this.
+
+The dataframe below determines who wins each game each week.
+
+```{r}
+gamewinnerdf = ffdata %>%
+  group_by(week) %>%
+  mutate(Winner = ifelse(TeamA>TeamB,PointsA,PointsB)) %>%
+  mutate(Loser = ifelse(TeamA>TeamB,PointsB,PointsA)) %>%
+  mutate(Delta = pmax(PointsA,PointsB)-pmin(PointsA,PointsB)) %>%
+  arrange(week)
+gamewinnerdf %>% datatable()
+```
+
+This next chunk of code helps us view each team instead of each game.
+
+```{r}
+oneteameachrow = 
+bind_rows(
+gamewinnerdf %>%
+  select(TeamA,TeamB,PointsA, week, league) %>%
+  rename(Team1 = TeamA,Team2 = TeamB,Score = PointsA),
+gamewinnerdf %>%
+  select(TeamB,TeamA,PointsB, week, league) %>%
+  rename(Team1 = TeamB,Team2 = TeamA,Score = PointsB)) 
+
+oneteameachrow %>% datatable()
+```
+
+Now, who wins the mug each week?
+
+```{r}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(1,Score) %>%
+  arrange(week) %>% as.data.frame()
+```
+
+### Lowest Weekly Point Total
+
+In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.
+
+```{r echo=FALSE, fig.width=1}
+knitr::include_graphics("/plunger.JPG")
 ```
 
 
+```{r}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(-1,Score) %>%
+  arrange(week) %>% as.data.frame()
+```
 
+### Who played the most plungers/mugs
+### Every team every week
