@@ -1769,6 +1769,19 @@ Agnes Green
 </tr>
 </tbody>
 </table>
+<p>In the chart below, you can see that there appears to be a relationship between longer books and more positive sentiment.</p>
+<pre class="r"><code>nrcbooks %&gt;%
+  mutate(sent = case_when(sent == &quot;Positive Words&quot; ~ 1,
+                          sent == &quot;Neutral Words&quot; ~ 0,
+                          sent == &quot;Negative Words&quot; ~ -1)) %&gt;%
+  group_by(book) %&gt;%
+  summarise(NetSentiment = sum(sent)/sum(abs(sent)), TotalSent = n()) %&gt;%
+  left_join(booksread, by = c(&quot;book&quot;=&quot;Title&quot;)) %&gt;%
+  ggplot(aes(x = NumberOfPages, y = NetSentiment)) +
+  geom_point() +
+  labs(title = &quot;Sentiment By Page Length&quot;, x = &quot;Number of Pages&quot;, y = &quot;Net Sentiment&quot;)</code></pre>
+<pre><code>## Warning: Removed 26 rows containing missing values (geom_point).</code></pre>
+<p><img src="/post/2017-12-31-analysis-of-my-children-s-reading-list_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 </div>
 </div>
 </article>
@@ -1821,7 +1834,7 @@ Agnes Green
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 Dusty Turner</p>
+  <p>© 2017-2019 Dusty Turner</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>

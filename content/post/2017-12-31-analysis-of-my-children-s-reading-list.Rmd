@@ -429,3 +429,19 @@ nrcbooks %>%
   kable()
 
 ```
+
+In the chart below, you can see that there appears to be a relationship between longer books and more positive sentiment.
+
+```{r}
+nrcbooks %>%
+  mutate(sent = case_when(sent == "Positive Words" ~ 1,
+                          sent == "Neutral Words" ~ 0,
+                          sent == "Negative Words" ~ -1)) %>%
+  group_by(book) %>%
+  summarise(NetSentiment = sum(sent)/sum(abs(sent)), TotalSent = n()) %>%
+  left_join(booksread, by = c("book"="Title")) %>%
+  ggplot(aes(x = NumberOfPages, y = NetSentiment)) +
+  geom_point() +
+  labs(title = "Sentiment By Page Length", x = "Number of Pages", y = "Net Sentiment")
+```
+
