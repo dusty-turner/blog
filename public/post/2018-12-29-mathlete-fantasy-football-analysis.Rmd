@@ -92,7 +92,8 @@ Now, who wins the mug each week?
 ```{r}
 oneteameachrow %>%
   group_by(week) %>%
-  top_n(1,Score) %>%
+  top_n(1,Score) %>% 
+  select(Team1, Score, week, league) %>%
   arrange(week) %>% as.data.frame()
 ```
 
@@ -109,8 +110,22 @@ knitr::include_graphics("/plunger.JPG")
 oneteameachrow %>%
   group_by(week) %>%
   top_n(-1,Score) %>%
+  select(Team1, Score, week, league) %>%
   arrange(week) %>% as.data.frame()
 ```
 
+## Who is good, and who is lucky?
+
+One of the more frustrating things in fantasy football is to score a ton of points, only to play the team who scores the most in your league.  Lets look at some measures of luck.
+
 ### Who played the most plungers/mugs
+
+```{r}
+oneteameachrow %>%
+  group_by(week) %>%
+  top_n(-1,Score) %>%
+  group_by()
+```
+
+
 ### Every team every week
