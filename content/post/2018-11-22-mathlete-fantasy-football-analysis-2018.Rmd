@@ -86,7 +86,7 @@ Next, we'll loop through the JSON file to extract the information each week.
 
 ```{r}
 for (j in 1:10) {
-  for (i in 1:14) {
+  for (i in 1:16) {
     vec = c(
       ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$awayTeam$teamLocation,
       ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$awayTeam$teamNickname,
