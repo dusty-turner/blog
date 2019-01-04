@@ -41,25 +41,28 @@ output:
 <li><a href="#lowest-weekly-point-total">Lowest Weekly Point Total</a></li>
 </ul></li>
 <li><a href="#who-is-good-and-who-is-lucky">Who is good, and who is lucky?</a><ul>
-<li><a href="#who-played-the-most-plungersmugs">Who played the most plungers/mugs</a></li>
-<li><a href="#every-team-every-week">Every team every week</a></li>
+<li><a href="#who-played-the-most-mugs">Who played the most mugs?</a></li>
+<li><a href="#who-played-the-most-plungers">Who played the most plungers?</a></li>
+<li><a href="#overall-points-scored-vs-winning-percentage">Overall Points Scored vs Winning Percentage</a><ul>
+<li><a href="#winning-percentage-vs-every-team-every-week">Winning Percentage vs Every Team Every Week</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </div>
 
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
 <p>In my previous <a href="https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/">post</a>, I worked through how to get your league information from the ESPN and YAHOO APIs.</p>
 <p>The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues. I managed an ESPN league, and a colleague managed a yahoo league.</p>
 <p>This post will pick up where last post left off and do some analysis between the two leagues.</p>
-<div id="libraries" class="section level3">
-<h3>Libraries</h3>
+<div id="libraries" class="section level2">
+<h2>Libraries</h2>
 <pre class="r"><code>library(tidyverse)
 library(DT)</code></pre>
 </div>
 </div>
-<div id="the-data" class="section level2">
-<h2>The Data</h2>
+<div id="the-data" class="section level1">
+<h1>The Data</h1>
 <p>Let me read in the saved data from both leagues, join them together, and display it in an interactive format.</p>
 <pre class="r"><code>ffdata = read_csv(&quot;espndf.csv&quot;) %&gt;%
   rbind(
@@ -68,11 +71,11 @@ ffdata %&gt;% datatable()</code></pre>
 <div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157"],["Raw_and Savage","Team_Shank a Potamus","Team_Shank a Potamus","2-2-2_Mega-H-Ertz","Team_Shank a Potamus","'R'm Chair_Quarterback","Team_Shank a Potamus","Green_Baye's Theorem","Team_Shank a Potamus","Gosset's_T-Down","Viking Joe_Lindquist","Team_Shank a Potamus","Team_Shank a Potamus","Team_Shank a Potamus","Team_Shank a Potamus","Team_Shank a Potamus","Viking Joe_Lindquist","'R'm Chair_Quarterback","Epsilon_Ballers","Team_Guns N' Rosas","'R'm Chair_Quarterback","Gosset's_T-Down","'R'm Chair_Quarterback","Las Vegas_Radians","Raw_and Savage","Green_Baye's Theorem","'R'm Chair_Quarterback","'R'm Chair_Quarterback","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Raw_and Savage","Gosset's_T-Down","Raw_and Savage","Raw_and Savage","Green_Baye's Theorem","Raw_and Savage","Epsilon_Ballers","Raw_and Savage","Viking Joe_Lindquist","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Viking Joe_Lindquist","Viking Joe_Lindquist","Green_Baye's Theorem","Epsilon_Ballers","Las Vegas_Radians","Gosset's_T-Down","Las Vegas_Radians","Las Vegas_Radians","Las Vegas_Radians","Las Vegas_Radians","Team_Guns N' Rosas","Gosset's_T-Down","2-2-2_Mega-H-Ertz","2-2-2_Mega-H-Ertz","Green_Baye's Theorem","Team_Guns N' Rosas","Viking Joe_Lindquist","Green_Baye's Theorem","Gosset's_T-Down","Epsilon_Ballers","Green_Baye's Theorem","Green_Baye's Theorem","Team_Guns N' Rosas","Epsilon_Ballers","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Epsilon_Ballers","Team_Guns N' Rosas","Team_Guns N' Rosas","Team_Guns N' Rosas","2-2-2_Mega-H-Ertz","Team_Guns N' Rosas","Team_Guns N' Rosas","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Gosset's_T-Down","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Gosset's_T-Down","Brady for President","Lights Kamara Action","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Bama","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Stampeders","Baller's Ballers","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Baller's Ballers","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Last Manning Standin","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Bama","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos","Bama","Brady for President","Lights Kamara Action","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Mauled Mentos","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Bama","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","General Puddin Pants","Stampeders","Brady for President","Yo_soy_Fiesta!","Bama","General Puddin Pants","Brady for President","Yo_soy_Fiesta!","Bama","Stampeders","Brady for President","Yo_soy_Fiesta!","Lights Kamara Action","Mauled Mentos"],["Team_Shank a Potamus","Gosset's_T-Down","Viking Joe_Lindquist","Team_Shank a Potamus","Epsilon_Ballers","Team_Shank a Potamus","Team_Guns N' Rosas","Team_Shank a Potamus","Raw_and Savage","Team_Shank a Potamus","Team_Shank a Potamus","2-2-2_Mega-H-Ertz","Las Vegas_Radians","Las Vegas_Radians","Green_Baye's Theorem","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Green_Baye's Theorem","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Las Vegas_Radians","'R'm Chair_Quarterback","2-2-2_Mega-H-Ertz","'R'm Chair_Quarterback","'R'm Chair_Quarterback","'R'm Chair_Quarterback","Epsilon_Ballers","Team_Guns N' Rosas","Gosset's_T-Down","Epsilon_Ballers","Team_Guns N' Rosas","Raw_and Savage","Viking Joe_Lindquist","2-2-2_Mega-H-Ertz","Raw_and Savage","Las Vegas_Radians","Raw_and Savage","Gosset's_T-Down","Raw_and Savage","Raw_and Savage","Raw_and Savage","Raw_and Savage","Raw_and Savage","Las Vegas_Radians","Las Vegas_Radians","Team_Guns N' Rosas","Las Vegas_Radians","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Green_Baye's Theorem","Epsilon_Ballers","Las Vegas_Radians","Las Vegas_Radians","Las Vegas_Radians","Green_Baye's Theorem","Epsilon_Ballers","Green_Baye's Theorem","Green_Baye's Theorem","Team_Guns N' Rosas","Green_Baye's Theorem","Green_Baye's Theorem","2-2-2_Mega-H-Ertz","Epsilon_Ballers","Epsilon_Ballers","Gosset's_T-Down","Epsilon_Ballers","Epsilon_Ballers","Team_Guns N' Rosas","Epsilon_Ballers","Viking Joe_Lindquist","Gosset's_T-Down","Team_Guns N' Rosas","2-2-2_Mega-H-Ertz","Gosset's_T-Down","Gosset's_T-Down","2-2-2_Mega-H-Ertz","2-2-2_Mega-H-Ertz","Viking Joe_Lindquist","Gosset's_T-Down","Viking Joe_Lindquist","Yo_soy_Fiesta!","Last Manning Standin","Baller's Ballers","Stampeders","The Big Gronkowski","Lights Kamara Action","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","Mauled Mentos","Lights Kamara Action","Last Manning Standin","Baller's Ballers","The Big Gronkowski","Bama","Mauled Mentos","The Big Gronkowski","Last Manning Standin","Baller's Ballers","General Puddin Pants","Bama","Mauled Mentos","Last Manning Standin","The Big Gronkowski","Stampeders","General Puddin Pants","Bama","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","General Puddin Pants","Bama","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","General Puddin Pants","The Big Gronkowski","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","General Puddin Pants","Yo_soy_Fiesta!","Last Manning Standin","Baller's Ballers","Stampeders","The Big Gronkowski","Lights Kamara Action","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Stampeders","Mauled Mentos","Lights Kamara Action","Last Manning Standin","Baller's Ballers","The Big Gronkowski","Bama","Mauled Mentos","The Big Gronkowski","Last Manning Standin","Baller's Ballers","Lights Kamara Action","Mauled Mentos","Baller's Ballers","Stampeders","Mauled Mentos","Lights Kamara Action","General Puddin Pants","Baller's Ballers","Baller's Ballers","Bama","General Puddin Pants","Stampeders"],[112.24,119.3,104.24,147.18,77.94,124.06,81.84,140.96,97.56,131.66,109.4,110.58,94.04,93.92,115.6,115.22,116.68,108.3,103.9,110.84,101.7,135.52,106.9,147.66,83.96,98.92,107.32,74.48,147.2,64.26,94.44,107.56,81.42,72.98,111.38,119.06,111.68,109.48,106.62,101.68,98.5,65.8,83.54,119.86,120.18,77.92,112.06,131.4,135.86,86.3,112.78,100.74,95.22,176.94,141.84,110.5,115.08,118.7,133,145.26,97.9,105.1,136.06,112.64,128.86,82.58,68.8,163.32,79,133.3,125.4,138.92,108.34,115.96,126.26,114.04,98.5,150.9,93.9,152.7,101.24,139.36,141.84,124.34,100.22,155.8,170.28,79.88,123.68,122.54,137.06,111.22,105.18,123.88,87.42,133.96,127.16,87.38,121.18,127.06,142.72,143.1,129.52,86.6,114.46,124.38,117.16,135.68,96,107.28,112.12,142.3,116.38,142.26,120.84,145.02,92.08,89.3,96.12,156.56,182.18,108.4,102.04,102.78,87.16,127.5,152.2,182.12,96.54,113.34,143.82,97.24,147.18,130.48,86.3,156.1,149.28,137.72,61.96,112.88,161.8,96.94,99.88,118.4,91.24,120.28,114.08,103.02,75.68,116.82,76.5,92.08,87.26,146.22,128,116.94,123.08],[130.66,142.74,73.68,130.88,128.98,91.52,101.2,117.46,67.56,99.82,121.28,95.34,104.92,90.26,123.32,99.74,119.04,90.84,110.44,82.54,116.84,124.54,96.6,117.34,113.62,165.22,126.78,94,136.38,103.5,118.9,94,87.88,146.52,117.2,149.78,99.64,159.42,114.68,135.26,105.04,105.58,124.28,112.28,116.26,122.9,152.66,107.48,92.94,129.86,111.96,106.42,83.48,79.78,84.3,103.56,119.8,91.94,120.08,147.88,90.36,75.64,146.9,99.7,154.48,87.22,86.8,112.22,132.78,96.2,130.02,86.58,65.92,122.82,106.84,115.32,140.42,148.4,128.12,138.4,116.1,116.46,108.06,124.28,89.24,91.74,91.54,98,112.74,102.26,108.2,111.14,98.54,107.56,81.34,127.38,124.52,127.52,94.7,135,91.32,117.3,102.98,96.62,81.58,97.3,125.78,154.44,119.1,73.42,127.44,80.86,162.7,73.54,128.04,89.76,125.1,107.96,107.32,129.94,106.46,47.46,162.74,120.36,119.2,129.22,93.2,85.22,114.8,123.26,145.42,125.48,88.4,107.82,105.44,119.34,80.84,98.28,108.46,111.82,100.72,129.9,71.8,103.14,69.78,86.64,126.5,106.8,114.92,89.44,91.16,101.08,135.82,117.46,98.48,63.14,98.86],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,1,2,3,4,5,7,8,9,10,11,12,13,14,15,2,3,4,5,6,7,8,11,12,13,14,15,16,1,2,3,4,6,8,10,11,12,15,16,3,4,5,7,9,12,13,14,16,1,6,7,9,10,14,6,8,11,15,16,1,2,9,10,5,13,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,14,14,14,14,15,15,15,15,16,16,16,16],["espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","espn","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo","yahoo"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>TeamA<\/th>\n      <th>TeamB<\/th>\n      <th>PointsA<\/th>\n      <th>PointsB<\/th>\n      <th>week<\/th>\n      <th>league<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="awards" class="section level2">
-<h2>Awards</h2>
+<div id="awards" class="section level1">
+<h1>Awards</h1>
 <p>Every week, we hand out prizes for the highest overall point total and lowest.</p>
-<div id="highest-weekly-point-total" class="section level3">
-<h3>Highest Weekly Point Total</h3>
+<div id="highest-weekly-point-total" class="section level2">
+<h2>Highest Weekly Point Total</h2>
 <p>The prizes for the highest points across both leagues is the honor of posessing the “Mug of my Mug” for the week. Yes, as you can see below, it is a mug with a picture of my face. The extra great thing about this mug, as you may be able to see, is I took it concussed with a fractured face. I earned my concussion and facial fracture in a softball colision. Yes, I was called out…</p>
 <p><img src="/mug.JPG" /><!-- --></p>
 <p>So who are the weekly highest scorers? Lets build the dataframe to determine this.</p>
@@ -123,8 +126,8 @@ oneteameachrow %&gt;% datatable()</code></pre>
 ## 15       Baller&#39;s Ballers 135.82   15  yahoo
 ## 16      2-2-2_Mega-H-Ertz 176.94   16   espn</code></pre>
 </div>
-<div id="lowest-weekly-point-total" class="section level3">
-<h3>Lowest Weekly Point Total</h3>
+<div id="lowest-weekly-point-total" class="section level2">
+<h2>Lowest Weekly Point Total</h2>
 <p>In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.</p>
 <p><img src="/plunger.JPG" /><!-- --></p>
 <pre class="r"><code>oneteameachrow %&gt;%
@@ -151,36 +154,154 @@ oneteameachrow %&gt;% datatable()</code></pre>
 ## 16   General Puddin Pants 63.14   16  yahoo</code></pre>
 </div>
 </div>
-<div id="who-is-good-and-who-is-lucky" class="section level2">
-<h2>Who is good, and who is lucky?</h2>
+<div id="who-is-good-and-who-is-lucky" class="section level1">
+<h1>Who is good, and who is lucky?</h1>
 <p>One of the more frustrating things in fantasy football is to score a ton of points, only to play the team who scores the most in your league. Lets look at some measures of luck.</p>
-<div id="who-played-the-most-plungersmugs" class="section level3">
-<h3>Who played the most plungers/mugs</h3>
+<div id="who-played-the-most-mugs" class="section level2">
+<h2>Who played the most mugs?</h2>
 <pre class="r"><code>oneteameachrow %&gt;%
   group_by(week) %&gt;%
   top_n(-1,Score) %&gt;%
-  group_by()</code></pre>
-<pre><code>## # A tibble: 16 x 5
-##    Team1                  Team2                  Score  week league
-##    &lt;chr&gt;                  &lt;chr&gt;                  &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; 
-##  1 Mauled Mentos          Last Manning Standin    79.9     2 yahoo 
-##  2 Raw_and Savage         Viking Joe_Lindquist    81.4     4 espn  
-##  3 Raw_and Savage         2-2-2_Mega-H-Ertz       73.0     5 espn  
-##  4 Lights Kamara Action   Stampeders              89.3     8 yahoo 
-##  5 Raw_and Savage         &#39;R&#39;m Chair_Quarterback  84.0    10 espn  
-##  6 General Puddin Pants   Stampeders              86.3    11 yahoo 
-##  7 General Puddin Pants   Baller&#39;s Ballers        62.0    12 yahoo 
-##  8 &#39;R&#39;m Chair_Quarterback Epsilon_Ballers         64.3    15 espn  
-##  9 The Big Gronkowski     General Puddin Pants    89.2     1 yahoo 
-## 10 Viking Joe_Lindquist   Team_Shank a Potamus    73.7     3 espn  
-## 11 Last Manning Standin   Baller&#39;s Ballers        73.4     6 yahoo 
-## 12 Bama                   Mauled Mentos           73.5     7 yahoo 
-## 13 Last Manning Standin   Yo_soy_Fiesta!          47.5     9 yahoo 
-## 14 Baller&#39;s Ballers       Stampeders              69.8    13 yahoo 
-## 15 2-2-2_Mega-H-Ertz      Green_Baye&#39;s Theorem    75.6    14 espn  
-## 16 General Puddin Pants   Lights Kamara Action    63.1    16 yahoo</code></pre>
+  group_by(Team2) %&gt;%
+  summarise(LostAgainstTheMug = n()) %&gt;%
+  arrange(desc(LostAgainstTheMug))</code></pre>
+<pre><code>## # A tibble: 13 x 2
+##    Team2                  LostAgainstTheMug
+##    &lt;chr&gt;                              &lt;int&gt;
+##  1 Stampeders                             3
+##  2 Baller&#39;s Ballers                       2
+##  3 &#39;R&#39;m Chair_Quarterback                 1
+##  4 2-2-2_Mega-H-Ertz                      1
+##  5 Epsilon_Ballers                        1
+##  6 General Puddin Pants                   1
+##  7 Green_Baye&#39;s Theorem                   1
+##  8 Last Manning Standin                   1
+##  9 Lights Kamara Action                   1
+## 10 Mauled Mentos                          1
+## 11 Team_Shank a Potamus                   1
+## 12 Viking Joe_Lindquist                   1
+## 13 Yo_soy_Fiesta!                         1</code></pre>
+<p>Those poor stampeders just couldn’t catch a break!</p>
 </div>
-<div id="every-team-every-week" class="section level3">
-<h3>Every team every week</h3>
+<div id="who-played-the-most-plungers" class="section level2">
+<h2>Who played the most plungers?</h2>
+<pre class="r"><code>oneteameachrow %&gt;%
+  group_by(week) %&gt;%
+  top_n(1,Score) %&gt;%
+  group_by(Team2) %&gt;%
+  summarise(BeatTheWeakling = n()) %&gt;%
+  arrange(desc(BeatTheWeakling))</code></pre>
+<pre><code>## # A tibble: 11 x 2
+##    Team2                BeatTheWeakling
+##    &lt;chr&gt;                          &lt;int&gt;
+##  1 The Big Gronkowski                 3
+##  2 Baller&#39;s Ballers                   2
+##  3 Gosset&#39;s_T-Down                    2
+##  4 Green_Baye&#39;s Theorem               2
+##  5 Bama                               1
+##  6 Epsilon_Ballers                    1
+##  7 Las Vegas_Radians                  1
+##  8 Lights Kamara Action               1
+##  9 Mauled Mentos                      1
+## 10 Raw_and Savage                     1
+## 11 Stampeders                         1</code></pre>
+<p>Man, I wish I could catch some luck. Good work Big Gronkowski for beating down the little guys…</p>
+</div>
+<div id="overall-points-scored-vs-winning-percentage" class="section level2">
+<h2>Overall Points Scored vs Winning Percentage</h2>
+<p>First, who had the highest winning percentage?</p>
+<pre class="r"><code>winpercent = gamewinnerdf %&gt;%
+  mutate(win = ifelse(PointsA&gt;PointsB,TeamA,TeamB)) %&gt;%
+  group_by(win,league) %&gt;%
+  summarise(wins = n(), losses = 16-n(), winpercent = wins/16) %&gt;%
+  arrange(desc(winpercent))
+winpercent</code></pre>
+<pre><code>## # A tibble: 20 x 5
+## # Groups:   win [20]
+##    win                    league  wins losses winpercent
+##    &lt;chr&gt;                  &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Brady for President    yahoo     12      4      0.75 
+##  2 Epsilon_Ballers        espn      11      5      0.688
+##  3 Gosset&#39;s_T-Down        espn      11      5      0.688
+##  4 General Puddin Pants   yahoo     10      6      0.625
+##  5 Yo_soy_Fiesta!         yahoo     10      6      0.625
+##  6 2-2-2_Mega-H-Ertz      espn       9      7      0.562
+##  7 Baller&#39;s Ballers       yahoo      9      7      0.562
+##  8 Green_Baye&#39;s Theorem   espn       9      7      0.562
+##  9 Las Vegas_Radians      espn       9      7      0.562
+## 10 &#39;R&#39;m Chair_Quarterback espn       8      8      0.5  
+## 11 Stampeders             yahoo      8      8      0.5  
+## 12 Team_Guns N&#39; Rosas     espn       8      8      0.5  
+## 13 Bama                   yahoo      7      9      0.438
+## 14 Lights Kamara Action   yahoo      7      9      0.438
+## 15 Mauled Mentos          yahoo      7      9      0.438
+## 16 Team_Shank a Potamus   espn       7      9      0.438
+## 17 Raw_and Savage         espn       6     10      0.375
+## 18 The Big Gronkowski     yahoo      5     11      0.312
+## 19 Last Manning Standin   yahoo      2     14      0.125
+## 20 Viking Joe_Lindquist   espn       2     14      0.125</code></pre>
+<p>And on that note, who scored the most and lest points?</p>
+<pre class="r"><code>mostandleastpoints = 
+oneteameachrow %&gt;%
+  group_by(Team1, league) %&gt;%
+  summarise(SeasonPoints = sum(Score)) %&gt;%
+  rename(Team = Team1) %&gt;%
+  left_join(
+    oneteameachrow %&gt;%
+      group_by(Team2, league) %&gt;%
+        rename(Team = Team2) %&gt;%
+      summarise(SeasonPointsAgainst = sum(Score))
+  ) </code></pre>
+<pre><code>## Joining, by = c(&quot;Team&quot;, &quot;league&quot;)</code></pre>
+<pre class="r"><code>mostandleastpoints %&gt;%
+  datatable()</code></pre>
+<div id="htmlwidget-4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["'R'm Chair_Quarterback","2-2-2_Mega-H-Ertz","Baller's Ballers","Bama","Brady for President","Epsilon_Ballers","General Puddin Pants","Gosset's_T-Down","Green_Baye's Theorem","Las Vegas_Radians","Last Manning Standin","Lights Kamara Action","Mauled Mentos","Raw_and Savage","Stampeders","Team_Guns N' Rosas","Team_Shank a Potamus","The Big Gronkowski","Viking Joe_Lindquist","Yo_soy_Fiesta!"],["espn","espn","yahoo","yahoo","yahoo","espn","yahoo","espn","espn","espn","yahoo","yahoo","yahoo","espn","yahoo","espn","espn","yahoo","espn","yahoo"],[1766.7,1909.54,1831.74,1828.62,2207.02,1854.02,1694.04,2059.3,1834.08,1804.6,1218.82,1775.62,1912.14,1636.82,1659.5,1757.18,1701.86,1387.12,1613.48,1919.06],[1769.16,1707.1,1780,1958.28,1743.94,1635.28,1717.54,1947.56,1887.32,1816.2,1576.44,1919.84,1776.54,1791.1,1717.62,1720.12,1793.24,1538.68,1870.5,1704.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>league<\/th>\n      <th>SeasonPoints<\/th>\n      <th>SeasonPointsAgainst<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>With that, how did this play out with overall wins and losses?</p>
+<pre class="r"><code>library(ggrepel)
+mostandleastpoints %&gt;%
+  left_join(winpercent %&gt;% select(win,wins), by = c(&quot;Team&quot;=&quot;win&quot;)) %&gt;%
+
+  ggplot(aes(x=SeasonPoints,y=SeasonPointsAgainst, color = league)) +
+  geom_point() +
+  # geom_abline(slope = 1) +
+  geom_hline(aes(yintercept = mean(SeasonPointsAgainst)),linetype = 2) +
+  geom_vline(aes(xintercept = mean(SeasonPoints)),linetype = 2) +
+  geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
+  labs(title = &quot;Points For vs Points Against: Who is lucky?&quot;, x = &quot;Points For&quot;, y = &quot;Points Against&quot;,caption = &quot;ESPN in Red and YAHOO in Green (Wins)&quot;) + 
+  theme(legend.position=&quot;none&quot;) +
+  annotate(&quot;text&quot;, x = 2175, y = 1975, label = &quot;Good and Unlucky&quot;, size = 3) +
+  annotate(&quot;text&quot;, x = 2175, y = 1550, label = &quot;Good and Lucky&quot;, size = 3) +
+  annotate(&quot;text&quot;, x = 1650, y = 1975, label = &quot;Bad and Unlucky&quot;, size = 3) +
+  annotate(&quot;text&quot;, x = 1650, y = 1550, label = &quot;Bad and Lucky&quot;, size = 3) </code></pre>
+<p><img src="/post/2018-12-29-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>It looks like Gosset’s T-Down scored a lot and had a lot of points scored against him. Its impressive he pulled off 11 wins.</p>
+<p>On the other hand, Brady for President scored a lot of points but only had a moderate amount scored against him - This is probably what allowed him to win 12 games.</p>
+<p>However, Last Man Standin and The Big Gronkowski didn’t have that many points scored against them, so they made up for it by not scoring that many points themselves. That was nice of you guys.</p>
+<p>And Interestingly enought… R’m Chair Quarterback (me) is just about as average as it gets… I always strive to be mediocre.</p>
+<div id="winning-percentage-vs-every-team-every-week" class="section level3">
+<h3>Winning Percentage vs Every Team Every Week</h3>
+<p>Another measure of luck is comparing a team’s win percentage against how well a team would have done if they played every team every week.</p>
+<p>We already have win percentage. Lets calculate the ‘every team every week’ win percentage.</p>
+<pre class="r"><code>oneteameachrow %&gt;%
+  group_by(week) %&gt;%
+  mutate(WeekWins = rank(Score)-1) %&gt;%
+  mutate(WeekLoses = 20-rank(Score)) %&gt;%
+  ungroup() %&gt;%
+  group_by(Team1, league) %&gt;%
+  summarise(WeekWins = sum(WeekWins),WeekLoses = sum(WeekLoses)) %&gt;%
+  arrange(WeekWins) %&gt;% 
+  rename(Team = Team1) %&gt;%
+  mutate(OverallPerc = WeekWins/(WeekWins+WeekLoses)) %&gt;%
+    left_join(winpercent %&gt;% rename(Team = win)) %&gt;%
+  ggplot(aes(x=winpercent,y=OverallPerc, color = league)) +
+  geom_point() +  
+  geom_abline(slope = 1) +
+  geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
+  labs(title = &quot;Are you as good as you should have been?&quot;, x = &quot;16 Game Winning Percentage&quot;, y = &quot;Every Team Every Week Win Percentage&quot;,caption = &quot;ESPN in Red and YAHOO in Green (Wins)&quot;) +
+  theme(legend.position=&quot;none&quot;) </code></pre>
+<pre><code>## Joining, by = c(&quot;Team&quot;, &quot;league&quot;)</code></pre>
+<p><img src="/post/2018-12-29-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
 </div>
 </div>
