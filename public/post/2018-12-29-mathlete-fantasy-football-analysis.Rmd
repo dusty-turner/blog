@@ -204,7 +204,7 @@ However, Last Man Standin and The Big Gronkowski didn't have that many points sc
 
 And Interestingly enought... R'm Chair Quarterback (me) is just about as average as it gets... I always strive to be mediocre.
 
-### Winning Percentage vs Every Team Every Week
+## Winning Percentage vs Every Team Every Week
 
 Another measure of luck is comparing a team's win percentage against how well a team would have done if they played every team every week.
 

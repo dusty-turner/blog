@@ -15,14 +15,14 @@
 
   
   <meta name="author" content="Dusty Turner" />
-  <meta name="description" content="IntroductionLibrariesThe DataAwardsHighest Weekly Point TotalLowest Weekly Point TotalWho is good, and who is lucky?Who played the most mugs?Who played the most plungers?Overall Points Scored vs Winning PercentageWinning Percentage vs Every Team Every WeekIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs." />
+  <meta name="description" content="IntroductionLibrariesThe DataAwardsHighest Weekly Point TotalLowest Weekly Point TotalWho is good, and who is lucky?Who played the most mugs?Who played the most plungers?Overall Points Scored vs Winning PercentageWinning Percentage vs Every Team Every WeekIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@dtdusty" />
     <meta name="twitter:title" content="Mathlete Fantasy Football Analysis" />
-    <meta name="twitter:description" content="IntroductionLibrariesThe DataAwardsHighest Weekly Point TotalLowest Weekly Point TotalWho is good, and who is lucky?Who played the most mugs?Who played the most plungers?Overall Points Scored vs Winning PercentageWinning Percentage vs Every Team Every WeekIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs." />
+    <meta name="twitter:description" content="IntroductionLibrariesThe DataAwardsHighest Weekly Point TotalLowest Weekly Point TotalWho is good, and who is lucky?Who played the most mugs?Who played the most plungers?Overall Points Scored vs Winning PercentageWinning Percentage vs Every Team Every WeekIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -229,9 +229,8 @@
 <li><a href="#who-is-good-and-who-is-lucky">Who is good, and who is lucky?</a><ul>
 <li><a href="#who-played-the-most-mugs">Who played the most mugs?</a></li>
 <li><a href="#who-played-the-most-plungers">Who played the most plungers?</a></li>
-<li><a href="#overall-points-scored-vs-winning-percentage">Overall Points Scored vs Winning Percentage</a><ul>
+<li><a href="#overall-points-scored-vs-winning-percentage">Overall Points Scored vs Winning Percentage</a></li>
 <li><a href="#winning-percentage-vs-every-team-every-week">Winning Percentage vs Every Team Every Week</a></li>
-</ul></li>
 </ul></li>
 </ul>
 </div>
@@ -465,8 +464,9 @@ mostandleastpoints %&gt;%
 <p>On the other hand, Brady for President scored a lot of points but only had a moderate amount scored against him - This is probably what allowed him to win 12 games.</p>
 <p>However, Last Man Standin and The Big Gronkowski didn’t have that many points scored against them, so they made up for it by not scoring that many points themselves. That was nice of you guys.</p>
 <p>And Interestingly enought… R’m Chair Quarterback (me) is just about as average as it gets… I always strive to be mediocre.</p>
-<div id="winning-percentage-vs-every-team-every-week" class="section level3">
-<h3>Winning Percentage vs Every Team Every Week</h3>
+</div>
+<div id="winning-percentage-vs-every-team-every-week" class="section level2">
+<h2>Winning Percentage vs Every Team Every Week</h2>
 <p>Another measure of luck is comparing a team’s win percentage against how well a team would have done if they played every team every week.</p>
 <p>We already have win percentage. Lets calculate the ‘every team every week’ win percentage.</p>
 <pre class="r"><code>oneteameachrow %&gt;%
@@ -488,7 +488,6 @@ mostandleastpoints %&gt;%
   theme(legend.position=&quot;none&quot;) </code></pre>
 <pre><code>## Joining, by = c(&quot;Team&quot;, &quot;league&quot;)</code></pre>
 <p><img src="/post/2018-12-29-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-</div>
 </div>
 </div>
 </article>
