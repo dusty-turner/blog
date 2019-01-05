@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 29 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Losing UNO to a 5 Year Old: An Exercise In Probability</title>
+      <link>/post/losing-uno-to-a-5-year-old-an-exercise-in-probability/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/losing-uno-to-a-5-year-old-an-exercise-in-probability/</guid>
+      <description>BackgroundOn of my son’s favorite games he received for Christmas this year is UNO Attack. If you are not familiar with the rules, you can get up to speed here. In short, the rules are no different than usual UNO except when you cannot play, instead of taking a card, you press a button on an UNO card shooting contraption. Most of the time you get no cards, but some of the time it will “attack” with 1 or more cards.</description>
+    </item>
     
     <item>
       <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
