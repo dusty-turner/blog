@@ -53,7 +53,7 @@ In my efforts to make this more real to him, I created this shiny app.  If nothi
 
 <center>
 ```{r, echo=FALSE} 
-knitr::include_app("https://dustyturner.shinyapps.io/CalUno/", height = "600px")
+knitr::include_app("https://dustyturner.shinyapps.io/CalUno/", height = "650px")
 ```
 </center>
 
