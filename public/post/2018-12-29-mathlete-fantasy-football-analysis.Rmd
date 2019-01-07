@@ -62,7 +62,7 @@ So who are the weekly highest scorers?  Lets build the dataframe to determine th
 
 The dataframe below determines who wins each game each week.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 gamewinnerdf = ffdata %>%
   group_by(week) %>%
   mutate(Winner = ifelse(TeamA>TeamB,PointsA,PointsB)) %>%
@@ -74,7 +74,7 @@ gamewinnerdf %>% datatable()
 
 This next chunk of code helps us view each team instead of each game.
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow = 
 bind_rows(
 gamewinnerdf %>%
@@ -89,7 +89,7 @@ oneteameachrow %>% datatable()
 
 Now, who wins the mug each week?
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(1,Score) %>% 
@@ -101,12 +101,12 @@ oneteameachrow %>%
 
 In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.
 
-```{r echo=FALSE, fig.width=1}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 knitr::include_graphics("/plunger.JPG")
 ```
 
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(-1,Score) %>%
@@ -120,7 +120,7 @@ One of the more frustrating things in fantasy football is to score a ton of poin
 
 ## Who played the most mugs?
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(-1,Score) %>%
@@ -133,7 +133,7 @@ Those poor stampeders just couldn't catch a break!
 
 ## Who played the most plungers?
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(1,Score) %>%
@@ -148,7 +148,7 @@ Man, I wish I could catch some luck.  Good work Big Gronkowski for beating down 
 
 First, who had the highest winning percentage?
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 winpercent = gamewinnerdf %>%
   mutate(win = ifelse(PointsA>PointsB,TeamA,TeamB)) %>%
   group_by(win,league) %>%
@@ -159,7 +159,7 @@ winpercent
 
 And on that note, who scored the most and lest points?
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 mostandleastpoints = 
 oneteameachrow %>%
   group_by(Team1, league) %>%
@@ -177,7 +177,7 @@ mostandleastpoints %>%
 
 With that, how did this play out with overall wins and losses?
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 library(ggrepel)
 mostandleastpoints %>%
   left_join(winpercent %>% select(win,wins), by = c("Team"="win")) %>%
@@ -210,7 +210,7 @@ Another measure of luck is comparing a team's win percentage against how well a 
 
 We already have win percentage.  Lets calculate the 'every team every week' win percentage.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   mutate(WeekWins = rank(Score)-1) %>%
@@ -226,6 +226,8 @@ oneteameachrow %>%
   geom_point() +  
   geom_abline(slope = 1) +
   geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
+  annotate("text", x = .2, y = .8, label = "Luckly", size = 5) +
+  annotate("text", x = .7, y = .2, label = "Unuckly", size = 5) +
   labs(title = "Are you as good as you should have been?", x = "16 Game Winning Percentage", y = "Every Team Every Week Win Percentage",caption = "ESPN in Red and YAHOO in Green (Wins)") +
   theme(legend.position="none") 
 ```

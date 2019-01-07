@@ -128,6 +128,7 @@ oneteameachrow %&gt;% datatable()</code></pre>
 <div id="lowest-weekly-point-total" class="section level2">
 <h2>Lowest Weekly Point Total</h2>
 <p>In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.</p>
+<pre class="r"><code>knitr::include_graphics(&quot;/plunger.JPG&quot;)</code></pre>
 <p><img src="/plunger.JPG" /><!-- --></p>
 <pre class="r"><code>oneteameachrow %&gt;%
   group_by(week) %&gt;%
@@ -250,9 +251,8 @@ oneteameachrow %&gt;%
       group_by(Team2, league) %&gt;%
         rename(Team = Team2) %&gt;%
       summarise(SeasonPointsAgainst = sum(Score))
-  ) </code></pre>
-<pre><code>## Joining, by = c(&quot;Team&quot;, &quot;league&quot;)</code></pre>
-<pre class="r"><code>mostandleastpoints %&gt;%
+  ) 
+mostandleastpoints %&gt;%
   datatable()</code></pre>
 <div id="htmlwidget-4" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["'R'm Chair_Quarterback","2-2-2_Mega-H-Ertz","Baller's Ballers","Bama","Brady for President","Epsilon_Ballers","General Puddin Pants","Gosset's_T-Down","Green_Baye's Theorem","Las Vegas_Radians","Last Manning Standin","Lights Kamara Action","Mauled Mentos","Raw_and Savage","Stampeders","Team_Guns N' Rosas","Team_Shank a Potamus","The Big Gronkowski","Viking Joe_Lindquist","Yo_soy_Fiesta!"],["espn","espn","yahoo","yahoo","yahoo","espn","yahoo","espn","espn","espn","yahoo","yahoo","yahoo","espn","yahoo","espn","espn","yahoo","espn","yahoo"],[1766.7,1909.54,1831.74,1828.62,2207.02,1854.02,1694.04,2059.3,1834.08,1804.6,1218.82,1775.62,1912.14,1636.82,1659.5,1757.18,1701.86,1387.12,1613.48,1919.06],[1769.16,1707.1,1780,1958.28,1743.94,1635.28,1717.54,1947.56,1887.32,1816.2,1576.44,1919.84,1776.54,1791.1,1717.62,1720.12,1793.24,1538.68,1870.5,1704.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>league<\/th>\n      <th>SeasonPoints<\/th>\n      <th>SeasonPointsAgainst<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
@@ -298,9 +298,10 @@ mostandleastpoints %&gt;%
   geom_point() +  
   geom_abline(slope = 1) +
   geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
+  annotate(&quot;text&quot;, x = .2, y = .8, label = &quot;Luckly&quot;, size = 5) +
+  annotate(&quot;text&quot;, x = .7, y = .2, label = &quot;Unuckly&quot;, size = 5) +
   labs(title = &quot;Are you as good as you should have been?&quot;, x = &quot;16 Game Winning Percentage&quot;, y = &quot;Every Team Every Week Win Percentage&quot;,caption = &quot;ESPN in Red and YAHOO in Green (Wins)&quot;) +
   theme(legend.position=&quot;none&quot;) </code></pre>
-<pre><code>## Joining, by = c(&quot;Team&quot;, &quot;league&quot;)</code></pre>
 <p><img src="/post/2018-12-29-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 </div>
