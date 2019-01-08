@@ -15,14 +15,16 @@
 
   
   <meta name="author" content="Dusty Turner" />
-  <meta name="description" content="IntroductionThe DataAwardsHighest Weekly Point TotalLowest Weekly Point TotalWhich Leagues are better?Most MugsMost PlungersLeague PointsWho is good, and who is lucky?Who played the most mugs?Who played the most plungers?Overall Points Scored vs Winning PercentageWho scored the most and lest points?Points For vs Points AgainstWinning Percentage vs Every Team Every WeekEvery Team Every Week Win PercentageIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs." />
+  <meta name="description" content="IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@dtdusty" />
     <meta name="twitter:title" content="Mathlete Fantasy Football Analysis" />
-    <meta name="twitter:description" content="IntroductionThe DataAwardsHighest Weekly Point TotalLowest Weekly Point TotalWhich Leagues are better?Most MugsMost PlungersLeague PointsWho is good, and who is lucky?Who played the most mugs?Who played the most plungers?Overall Points Scored vs Winning PercentageWho scored the most and lest points?Points For vs Points AgainstWinning Percentage vs Every Team Every WeekEvery Team Every Week Win PercentageIntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs." />
+    <meta name="twitter:description" content="IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
+The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -216,32 +218,6 @@
 <link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
 
-<div id="TOC">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-data">The Data</a></li>
-<li><a href="#awards">Awards</a><ul>
-<li><a href="#highest-weekly-point-total">Highest Weekly Point Total</a></li>
-<li><a href="#lowest-weekly-point-total">Lowest Weekly Point Total</a></li>
-</ul></li>
-<li><a href="#which-leagues-are-better">Which Leagues are better?</a><ul>
-<li><a href="#most-mugs">Most Mugs</a></li>
-<li><a href="#most-plungers">Most Plungers</a></li>
-<li><a href="#league-points">League Points</a></li>
-</ul></li>
-<li><a href="#who-is-good-and-who-is-lucky">Who is good, and who is lucky?</a><ul>
-<li><a href="#who-played-the-most-mugs">Who played the most mugs?</a></li>
-<li><a href="#who-played-the-most-plungers">Who played the most plungers?</a></li>
-<li><a href="#overall-points-scored-vs-winning-percentage">Overall Points Scored vs Winning Percentage</a><ul>
-<li><a href="#who-scored-the-most-and-lest-points">Who scored the most and lest points?</a></li>
-<li><a href="#points-for-vs-points-against">Points For vs Points Against</a></li>
-</ul></li>
-<li><a href="#winning-percentage-vs-every-team-every-week">Winning Percentage vs Every Team Every Week</a><ul>
-<li><a href="#every-team-every-week-win-percentage">Every Team Every Week Win Percentage</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
@@ -404,57 +380,59 @@
 <div id="overall-points-scored-vs-winning-percentage" class="section level2">
 <h2>Overall Points Scored vs Winning Percentage</h2>
 <p>First, who had the highest winning percentage?</p>
-<pre><code>## # A tibble: 20 x 5
+<pre><code>## # A tibble: 20 x 4
 ## # Groups:   win [20]
-##    win                    league  wins losses winpercent
-##    &lt;chr&gt;                  &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-##  1 Brady for President    yahoo     12      4      0.75 
-##  2 Epsilon_Ballers        espn      11      5      0.688
-##  3 Gosset&#39;s_T-Down        espn      11      5      0.688
-##  4 General Puddin Pants   yahoo     10      6      0.625
-##  5 Yo_soy_Fiesta!         yahoo     10      6      0.625
-##  6 2-2-2_Mega-H-Ertz      espn       9      7      0.562
-##  7 Baller&#39;s Ballers       yahoo      9      7      0.562
-##  8 Green_Baye&#39;s Theorem   espn       9      7      0.562
-##  9 Las Vegas_Radians      espn       9      7      0.562
-## 10 &#39;R&#39;m Chair_Quarterback espn       8      8      0.5  
-## 11 Stampeders             yahoo      8      8      0.5  
-## 12 Team_Guns N&#39; Rosas     espn       8      8      0.5  
-## 13 Bama                   yahoo      7      9      0.438
-## 14 Lights Kamara Action   yahoo      7      9      0.438
-## 15 Mauled Mentos          yahoo      7      9      0.438
-## 16 Team_Shank a Potamus   espn       7      9      0.438
-## 17 Raw_and Savage         espn       6     10      0.375
-## 18 The Big Gronkowski     yahoo      5     11      0.312
-## 19 Last Manning Standin   yahoo      2     14      0.125
-## 20 Viking Joe_Lindquist   espn       2     14      0.125</code></pre>
+##    win                    league winpercent SeasonPointsScored
+##    &lt;chr&gt;                  &lt;chr&gt;       &lt;dbl&gt;              &lt;dbl&gt;
+##  1 Brady for President    yahoo       0.75               2207.
+##  2 Epsilon_Ballers        espn        0.688              1854.
+##  3 Gosset&#39;s_T-Down        espn        0.688              2059.
+##  4 General Puddin Pants   yahoo       0.625              1694.
+##  5 Yo_soy_Fiesta!         yahoo       0.625              1919.
+##  6 2-2-2_Mega-H-Ertz      espn        0.562              1910.
+##  7 Baller&#39;s Ballers       yahoo       0.562              1832.
+##  8 Green_Baye&#39;s Theorem   espn        0.562              1834.
+##  9 Las Vegas_Radians      espn        0.562              1805.
+## 10 &#39;R&#39;m Chair_Quarterback espn        0.5                1767.
+## 11 Stampeders             yahoo       0.5                1660.
+## 12 Team_Guns N&#39; Rosas     espn        0.5                1757.
+## 13 Bama                   yahoo       0.438              1829.
+## 14 Lights Kamara Action   yahoo       0.438              1776.
+## 15 Mauled Mentos          yahoo       0.438              1912.
+## 16 Team_Shank a Potamus   espn        0.438              1702.
+## 17 Raw_and Savage         espn        0.375              1637.
+## 18 The Big Gronkowski     yahoo       0.312              1387.
+## 19 Last Manning Standin   yahoo       0.125              1219.
+## 20 Viking Joe_Lindquist   espn        0.125              1613.</code></pre>
+<p>It looks like some teams won more than they should have.</p>
 <p>Sometimes you can get lucky if you play teams that don’t score much. What would everyone’s record be if you played every team every week. That should take some “luck” out of it.</p>
-<pre><code>## # A tibble: 20 x 5
-## # Groups:   Team1 [20]
-##    Team1                  league WeekWins WeekLoses Percent
-##    &lt;chr&gt;                  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-##  1 Brady for President    yahoo      235       69     0.773
-##  2 Gosset&#39;s_T-Down        espn       210.      94.5   0.689
-##  3 Yo_soy_Fiesta!         yahoo      177      127     0.582
-##  4 2-2-2_Mega-H-Ertz      espn       174      130     0.572
-##  5 Mauled Mentos          yahoo      174      130     0.572
-##  6 Bama                   yahoo      166      138     0.546
-##  7 Epsilon_Ballers        espn       164      140     0.539
-##  8 Green_Baye&#39;s Theorem   espn       156      148     0.513
-##  9 Las Vegas_Radians      espn       154      150     0.507
-## 10 Baller&#39;s Ballers       yahoo      148.     156.    0.488
-## 11 Lights Kamara Action   yahoo      146      158     0.480
-## 12 &#39;R&#39;m Chair_Quarterback espn       139      165     0.457
-## 13 Team_Guns N&#39; Rosas     espn       139      165     0.457
-## 14 General Puddin Pants   yahoo      131      173     0.431
-## 15 Team_Shank a Potamus   espn       129      175     0.424
-## 16 The Big Gronkowski     yahoo      100      147     0.405
-## 17 Stampeders             yahoo      116      188     0.382
-## 18 Raw_and Savage         espn       109      195     0.359
-## 19 Viking Joe_Lindquist   espn        99      205     0.326
-## 20 Last Manning Standin   yahoo       63      184     0.255</code></pre>
-<div id="who-scored-the-most-and-lest-points" class="section level3">
-<h3>Who scored the most and lest points?</h3>
+<pre><code>## # A tibble: 20 x 9
+## # Groups:   win [?]
+##    win   league.x  wins losses winpercent league.y WeekWins WeekLoses
+##    &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Brad~ yahoo       12      4      0.75  yahoo        235         69
+##  2 Epsi~ espn        11      5      0.688 espn         164        140
+##  3 Goss~ espn        11      5      0.688 espn         210.        94
+##  4 Gene~ yahoo       10      6      0.625 yahoo        131        173
+##  5 Yo_s~ yahoo       10      6      0.625 yahoo        177        127
+##  6 2-2-~ espn         9      7      0.562 espn         174        130
+##  7 Ball~ yahoo        9      7      0.562 yahoo        148.       155
+##  8 Gree~ espn         9      7      0.562 espn         156        148
+##  9 Las ~ espn         9      7      0.562 espn         154        150
+## 10 &#39;R&#39;m~ espn         8      8      0.5   espn         139        165
+## 11 Stam~ yahoo        8      8      0.5   yahoo        116        188
+## 12 Team~ espn         8      8      0.5   espn         139        165
+## 13 Bama  yahoo        7      9      0.438 yahoo        166        138
+## 14 Ligh~ yahoo        7      9      0.438 yahoo        146        158
+## 15 Maul~ yahoo        7      9      0.438 yahoo        174        130
+## 16 Team~ espn         7      9      0.438 espn         129        175
+## 17 Raw_~ espn         6     10      0.375 espn         109        195
+## 18 The ~ yahoo        5     11      0.312 yahoo        100        147
+## 19 Last~ yahoo        2     14      0.125 yahoo         63        184
+## 20 Viki~ espn         2     14      0.125 espn          99        205
+## # ... with 1 more variable: EveryWeekEveryTeamWinPercent &lt;dbl&gt;</code></pre>
+<div id="who-scored-the-most-and-least-points" class="section level3">
+<h3>Who scored the most and least points?</h3>
 <pre><code>##                      Team league SeasonPoints SeasonPointsAgainst
 ## 1  &#39;R&#39;m Chair_Quarterback   espn      1766.70             1769.16
 ## 2       2-2-2_Mega-H-Ertz   espn      1909.54             1707.10

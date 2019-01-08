@@ -15,7 +15,7 @@ tags:
   - YAHOO API
 output:
   blogdown::html_page:
-    toc: TRUE
+    toc: FALSE
     # theme: lumen
     # highlight: tango
 ---
@@ -194,25 +194,34 @@ winpercent = gamewinnerdf %>%
   mutate(win = ifelse(PointsA>PointsB,TeamA,TeamB)) %>%
   group_by(win,league) %>%
   summarise(wins = n(), losses = 16-n(), winpercent = wins/16) %>%
-  arrange(desc(winpercent))
-winpercent
+  arrange(desc(winpercent)) 
+  # select(win, winpercent)
+winpercent %>% left_join(
+
+oneteameachrow %>% group_by(Team1) %>% summarise(SeasonPointsScored = sum(Score))
+   , by = c("win" = "Team1")
+) %>% select(-wins, -losses)
 ```
+It looks like some teams won more than they should have.  
 
 Sometimes you can get lucky if you play teams that don't score much.  What would everyone's record be if you played every team every week.  That should take some "luck" out of it.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+winpercent %>% left_join(
+
 oneteameachrow %>%
   group_by(week) %>%
   mutate(WeekWins = rank(Score)-1) %>%
   mutate(WeekLoses = 20-rank(Score)) %>%
   ungroup() %>%
   group_by(Team1, league) %>%
-  summarise(WeekWins = sum(WeekWins),WeekLoses = sum(WeekLoses)) %>%
-  mutate(Percent = WeekWins/(WeekWins+WeekLoses)) %>%
-  arrange(desc(Percent))
+  summarise(WeekWins = sum(WeekWins),WeekLoses = floor(sum(WeekLoses))) %>%
+  mutate(EveryWeekEveryTeamWinPercent = WeekWins/(WeekWins+WeekLoses)) %>%
+  arrange(desc(EveryWeekEveryTeamWinPercent)) , by = c("win" = "Team1")
+) 
 ```
 
-### Who scored the most and lest points?
+### Who scored the most and least points?
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 mostandleastpoints = 
