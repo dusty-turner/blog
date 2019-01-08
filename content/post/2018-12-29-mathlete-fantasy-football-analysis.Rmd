@@ -218,7 +218,7 @@ oneteameachrow %>%
   summarise(WeekWins = sum(WeekWins),WeekLoses = floor(sum(WeekLoses))) %>%
   mutate(EveryWeekEveryTeamWinPercent = WeekWins/(WeekWins+WeekLoses)) %>%
   arrange(desc(EveryWeekEveryTeamWinPercent)) , by = c("win" = "Team1")
-) 
+)  %>% select(-c(wins,losses))
 ```
 
 ### Who scored the most and least points?
@@ -290,8 +290,8 @@ oneteameachrow %>%
   geom_point() +  
   geom_abline(slope = 1) +
   geom_text_repel(aes(label=paste(Team,wins)),hjust=.5, vjust=-.5, max.iter = 1000000) +
-  annotate("text", x = .2, y = .8, label = "Luckly", size = 5) +
-  annotate("text", x = .7, y = .2, label = "Unuckly", size = 5) +
+  annotate("text", x = .2, y = .8, label = "Lucky", size = 5) +
+  annotate("text", x = .7, y = .2, label = "Unlucky", size = 5) +
   labs(title = "Are you as good as you should have been?", x = "16 Game Winning Percentage", y = "Every Team Every Week Win Percentage",caption = "ESPN in Red and YAHOO in Green (Wins)") +
   theme(legend.position="none") 
 ```

@@ -406,30 +406,30 @@ The motivation for this project was to compare two leagues performances over the
 ## 20 Viking Joe_Lindquist   espn        0.125              1613.</code></pre>
 <p>It looks like some teams won more than they should have.</p>
 <p>Sometimes you can get lucky if you play teams that don’t score much. What would everyone’s record be if you played every team every week. That should take some “luck” out of it.</p>
-<pre><code>## # A tibble: 20 x 8
-## # Groups:   win [?]
-##    win    wins losses winpercent league WeekWins WeekLoses EveryWeekEvery~
-##    &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;           &lt;dbl&gt;
-##  1 Brad~    12      4      0.75  yahoo      235         69           0.773
-##  2 Epsi~    11      5      0.688 espn       164        140           0.539
-##  3 Goss~    11      5      0.688 espn       210.        94           0.690
-##  4 Gene~    10      6      0.625 yahoo      131        173           0.431
-##  5 Yo_s~    10      6      0.625 yahoo      177        127           0.582
-##  6 2-2-~     9      7      0.562 espn       174        130           0.572
-##  7 Ball~     9      7      0.562 yahoo      148.       155           0.489
-##  8 Gree~     9      7      0.562 espn       156        148           0.513
-##  9 Las ~     9      7      0.562 espn       154        150           0.507
-## 10 &#39;R&#39;m~     8      8      0.5   espn       139        165           0.457
-## 11 Stam~     8      8      0.5   yahoo      116        188           0.382
-## 12 Team~     8      8      0.5   espn       139        165           0.457
-## 13 Bama      7      9      0.438 yahoo      166        138           0.546
-## 14 Ligh~     7      9      0.438 yahoo      146        158           0.480
-## 15 Maul~     7      9      0.438 yahoo      174        130           0.572
-## 16 Team~     7      9      0.438 espn       129        175           0.424
-## 17 Raw_~     6     10      0.375 espn       109        195           0.359
-## 18 The ~     5     11      0.312 yahoo      100        147           0.405
-## 19 Last~     2     14      0.125 yahoo       63        184           0.255
-## 20 Viki~     2     14      0.125 espn        99        205           0.326</code></pre>
+<pre><code>## # A tibble: 20 x 6
+## # Groups:   win [20]
+##    win           winpercent league WeekWins WeekLoses EveryWeekEveryTeamW~
+##    &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;                &lt;dbl&gt;
+##  1 Brady for Pr~      0.75  yahoo      235         69                0.773
+##  2 Epsilon_Ball~      0.688 espn       164        140                0.539
+##  3 Gosset&#39;s_T-D~      0.688 espn       210.        94                0.690
+##  4 General Pudd~      0.625 yahoo      131        173                0.431
+##  5 Yo_soy_Fiest~      0.625 yahoo      177        127                0.582
+##  6 2-2-2_Mega-H~      0.562 espn       174        130                0.572
+##  7 Baller&#39;s Bal~      0.562 yahoo      148.       155                0.489
+##  8 Green_Baye&#39;s~      0.562 espn       156        148                0.513
+##  9 Las Vegas_Ra~      0.562 espn       154        150                0.507
+## 10 &#39;R&#39;m Chair_Q~      0.5   espn       139        165                0.457
+## 11 Stampeders         0.5   yahoo      116        188                0.382
+## 12 Team_Guns N&#39;~      0.5   espn       139        165                0.457
+## 13 Bama               0.438 yahoo      166        138                0.546
+## 14 Lights Kamar~      0.438 yahoo      146        158                0.480
+## 15 Mauled Mentos      0.438 yahoo      174        130                0.572
+## 16 Team_Shank a~      0.438 espn       129        175                0.424
+## 17 Raw_and Sava~      0.375 espn       109        195                0.359
+## 18 The Big Gron~      0.312 yahoo      100        147                0.405
+## 19 Last Manning~      0.125 yahoo       63        184                0.255
+## 20 Viking Joe_L~      0.125 espn        99        205                0.326</code></pre>
 <div id="who-scored-the-most-and-least-points" class="section level3">
 <h3>Who scored the most and least points?</h3>
 <pre><code>##                      Team league SeasonPoints SeasonPointsAgainst
