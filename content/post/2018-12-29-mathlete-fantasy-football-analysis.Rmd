@@ -155,13 +155,6 @@ oneteameachrow %>%
   summarise(WeeklyPoints = sum(Score)) %>% as.data.frame()
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-oneteameachrow %>%
-  group_by(week,league) %>%
-  summarise(WeeklyPoints = sum(Score)) %>% as.data.frame()
-```
-
-
 # Who is good, and who is lucky?
 
 One of the more frustrating things in fantasy football is to score a ton of points, only to play the team who scores the most in your league.  Lets look at some measures of luck.
@@ -205,7 +198,21 @@ winpercent = gamewinnerdf %>%
 winpercent
 ```
 
-And on that note, who scored the most and lest points?
+Sometimes you can get lucky if you play teams that don't score much.  What would everyone's record be if you played every team every week.  That should take some "luck" out of it.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+oneteameachrow %>%
+  group_by(week) %>%
+  mutate(WeekWins = rank(Score)-1) %>%
+  mutate(WeekLoses = 20-rank(Score)) %>%
+  ungroup() %>%
+  group_by(Team1, league) %>%
+  summarise(WeekWins = sum(WeekWins),WeekLoses = sum(WeekLoses)) %>%
+  mutate(Percent = WeekWins/(WeekWins+WeekLoses)) %>%
+  arrange(desc(Percent))
+```
+
+### Who scored the most and lest points?
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 mostandleastpoints = 
@@ -220,10 +227,10 @@ oneteameachrow %>%
       summarise(SeasonPointsAgainst = sum(Score))
   ) 
 mostandleastpoints %>%
-  datatable()
+  as.data.frame()
 ```
 
-With that, how did this play out with overall wins and losses?
+### Points For vs Points Against
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(ggrepel)
@@ -256,7 +263,7 @@ And Interestingly enought... R'm Chair Quarterback (me) is just about as average
 
 Another measure of luck is comparing a team's win percentage against how well a team would have done if they played every team every week.
 
-We already have win percentage.  Lets calculate the 'every team every week' win percentage.
+### Every Team Every Week Win Percentage
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%

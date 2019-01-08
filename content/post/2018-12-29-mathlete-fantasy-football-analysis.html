@@ -46,8 +46,13 @@ output:
 <li><a href="#who-is-good-and-who-is-lucky">Who is good, and who is lucky?</a><ul>
 <li><a href="#who-played-the-most-mugs">Who played the most mugs?</a></li>
 <li><a href="#who-played-the-most-plungers">Who played the most plungers?</a></li>
-<li><a href="#overall-points-scored-vs-winning-percentage">Overall Points Scored vs Winning Percentage</a></li>
-<li><a href="#winning-percentage-vs-every-team-every-week">Winning Percentage vs Every Team Every Week</a></li>
+<li><a href="#overall-points-scored-vs-winning-percentage">Overall Points Scored vs Winning Percentage</a><ul>
+<li><a href="#who-scored-the-most-and-lest-points">Who scored the most and lest points?</a></li>
+<li><a href="#points-for-vs-points-against">Points For vs Points Against</a></li>
+</ul></li>
+<li><a href="#winning-percentage-vs-every-team-every-week">Winning Percentage vs Every Team Every Week</a><ul>
+<li><a href="#every-team-every-week-win-percentage">Every Team Every Week Win Percentage</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </div>
@@ -167,39 +172,6 @@ output:
 ## 30   15  yahoo       790.16
 ## 31   16   espn      1201.24
 ## 32   16  yahoo       892.18</code></pre>
-<pre><code>##    week league WeeklyPoints
-## 1     1   espn      1156.20
-## 2     1  yahoo      1161.14
-## 3     2   espn      1140.32
-## 4     2  yahoo      1148.46
-## 5     3   espn      1020.78
-## 6     3  yahoo      1071.54
-## 7     4   espn      1119.52
-## 8     4  yahoo      1205.86
-## 9     5   espn      1101.86
-## 10    5  yahoo      1106.20
-## 11    6   espn      1195.88
-## 12    6  yahoo      1150.54
-## 13    7   espn      1092.38
-## 14    7  yahoo      1206.48
-## 15    8   espn      1157.46
-## 16    8  yahoo      1139.16
-## 17    9   espn      1077.72
-## 18    9  yahoo      1138.78
-## 19   10   espn      1220.06
-## 20   10  yahoo      1217.40
-## 21   11   espn      1213.96
-## 22   11  yahoo      1177.58
-## 23   12   espn      1161.62
-## 24   12  yahoo      1136.68
-## 25   13   espn      1083.74
-## 26   13  yahoo      1043.60
-## 27   14   espn      1063.82
-## 28   14  yahoo       847.92
-## 29   15   espn       931.02
-## 30   15  yahoo       790.16
-## 31   16   espn      1201.24
-## 32   16  yahoo       892.18</code></pre>
 </div>
 </div>
 <div id="who-is-good-and-who-is-lucky" class="section level1">
@@ -270,20 +242,70 @@ output:
 ## 18 The Big Gronkowski     yahoo      5     11      0.312
 ## 19 Last Manning Standin   yahoo      2     14      0.125
 ## 20 Viking Joe_Lindquist   espn       2     14      0.125</code></pre>
-<p>And on that note, who scored the most and lest points?</p>
-<div id="htmlwidget-2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["'R'm Chair_Quarterback","2-2-2_Mega-H-Ertz","Baller's Ballers","Bama","Brady for President","Epsilon_Ballers","General Puddin Pants","Gosset's_T-Down","Green_Baye's Theorem","Las Vegas_Radians","Last Manning Standin","Lights Kamara Action","Mauled Mentos","Raw_and Savage","Stampeders","Team_Guns N' Rosas","Team_Shank a Potamus","The Big Gronkowski","Viking Joe_Lindquist","Yo_soy_Fiesta!"],["espn","espn","yahoo","yahoo","yahoo","espn","yahoo","espn","espn","espn","yahoo","yahoo","yahoo","espn","yahoo","espn","espn","yahoo","espn","yahoo"],[1766.7,1909.54,1831.74,1828.62,2207.02,1854.02,1694.04,2059.3,1834.08,1804.6,1218.82,1775.62,1912.14,1636.82,1659.5,1757.18,1701.86,1387.12,1613.48,1919.06],[1769.16,1707.1,1780,1958.28,1743.94,1635.28,1717.54,1947.56,1887.32,1816.2,1576.44,1919.84,1776.54,1791.1,1717.62,1720.12,1793.24,1538.68,1870.5,1704.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Team<\/th>\n      <th>league<\/th>\n      <th>SeasonPoints<\/th>\n      <th>SeasonPointsAgainst<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p>With that, how did this play out with overall wins and losses?</p>
+<p>Sometimes you can get lucky if you play teams that don’t score much. What would everyone’s record be if you played every team every week. That should take some “luck” out of it.</p>
+<pre><code>## # A tibble: 20 x 5
+## # Groups:   Team1 [20]
+##    Team1                  league WeekWins WeekLoses Percent
+##    &lt;chr&gt;                  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Brady for President    yahoo      235       69     0.773
+##  2 Gosset&#39;s_T-Down        espn       210.      94.5   0.689
+##  3 Yo_soy_Fiesta!         yahoo      177      127     0.582
+##  4 2-2-2_Mega-H-Ertz      espn       174      130     0.572
+##  5 Mauled Mentos          yahoo      174      130     0.572
+##  6 Bama                   yahoo      166      138     0.546
+##  7 Epsilon_Ballers        espn       164      140     0.539
+##  8 Green_Baye&#39;s Theorem   espn       156      148     0.513
+##  9 Las Vegas_Radians      espn       154      150     0.507
+## 10 Baller&#39;s Ballers       yahoo      148.     156.    0.488
+## 11 Lights Kamara Action   yahoo      146      158     0.480
+## 12 &#39;R&#39;m Chair_Quarterback espn       139      165     0.457
+## 13 Team_Guns N&#39; Rosas     espn       139      165     0.457
+## 14 General Puddin Pants   yahoo      131      173     0.431
+## 15 Team_Shank a Potamus   espn       129      175     0.424
+## 16 The Big Gronkowski     yahoo      100      147     0.405
+## 17 Stampeders             yahoo      116      188     0.382
+## 18 Raw_and Savage         espn       109      195     0.359
+## 19 Viking Joe_Lindquist   espn        99      205     0.326
+## 20 Last Manning Standin   yahoo       63      184     0.255</code></pre>
+<div id="who-scored-the-most-and-lest-points" class="section level3">
+<h3>Who scored the most and lest points?</h3>
+<pre><code>##                      Team league SeasonPoints SeasonPointsAgainst
+## 1  &#39;R&#39;m Chair_Quarterback   espn      1766.70             1769.16
+## 2       2-2-2_Mega-H-Ertz   espn      1909.54             1707.10
+## 3        Baller&#39;s Ballers  yahoo      1831.74             1780.00
+## 4                    Bama  yahoo      1828.62             1958.28
+## 5     Brady for President  yahoo      2207.02             1743.94
+## 6         Epsilon_Ballers   espn      1854.02             1635.28
+## 7    General Puddin Pants  yahoo      1694.04             1717.54
+## 8         Gosset&#39;s_T-Down   espn      2059.30             1947.56
+## 9    Green_Baye&#39;s Theorem   espn      1834.08             1887.32
+## 10      Las Vegas_Radians   espn      1804.60             1816.20
+## 11   Last Manning Standin  yahoo      1218.82             1576.44
+## 12   Lights Kamara Action  yahoo      1775.62             1919.84
+## 13          Mauled Mentos  yahoo      1912.14             1776.54
+## 14         Raw_and Savage   espn      1636.82             1791.10
+## 15             Stampeders  yahoo      1659.50             1717.62
+## 16     Team_Guns N&#39; Rosas   espn      1757.18             1720.12
+## 17   Team_Shank a Potamus   espn      1701.86             1793.24
+## 18     The Big Gronkowski  yahoo      1387.12             1538.68
+## 19   Viking Joe_Lindquist   espn      1613.48             1870.50
+## 20         Yo_soy_Fiesta!  yahoo      1919.06             1704.80</code></pre>
+</div>
+<div id="points-for-vs-points-against" class="section level3">
+<h3>Points For vs Points Against</h3>
 <p><img src="/post/2018-12-29-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>It looks like Gosset’s T-Down scored a lot and had a lot of points scored against him. Its impressive he pulled off 11 wins.</p>
 <p>On the other hand, Brady for President scored a lot of points but only had a moderate amount scored against him - This is probably what allowed him to win 12 games.</p>
 <p>However, Last Man Standin and The Big Gronkowski didn’t have that many points scored against them, so they made up for it by not scoring that many points themselves. That was nice of you guys.</p>
 <p>And Interestingly enought… R’m Chair Quarterback (me) is just about as average as it gets… I always strive to be mediocre.</p>
 </div>
+</div>
 <div id="winning-percentage-vs-every-team-every-week" class="section level2">
 <h2>Winning Percentage vs Every Team Every Week</h2>
 <p>Another measure of luck is comparing a team’s win percentage against how well a team would have done if they played every team every week.</p>
-<p>We already have win percentage. Lets calculate the ‘every team every week’ win percentage.</p>
+<div id="every-team-every-week-win-percentage" class="section level3">
+<h3>Every Team Every Week Win Percentage</h3>
 <p><img src="/post/2018-12-29-mathlete-fantasy-football-analysis_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
 </div>
 </div>
