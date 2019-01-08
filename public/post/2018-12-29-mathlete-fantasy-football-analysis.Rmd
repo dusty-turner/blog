@@ -39,7 +39,7 @@ library(DT)
 
 # The Data
 
-The data I use for this post comes from two leages - one from yahoo and one from ESPN.  Here it is below.
+The data I use for this post comes from two leages - one from yahoo and one from ESPN.  It is all available below.
 
 ```{r echo=FALSE, message=FALSE}
 ffdata = read_csv("espndf.csv") %>%
@@ -48,11 +48,8 @@ ffdata = read_csv("espndf.csv") %>%
 ffdata %>% datatable()
 ```
 
-## Weekly Results
 
-Below are the weekly results for your peruseal.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 gamewinnerdf = ffdata %>%
   group_by(week) %>%
   mutate(Winner = ifelse(TeamA>TeamB,PointsA,PointsB)) %>%
@@ -78,7 +75,7 @@ knitr::include_graphics("/mug.JPG")
 <!-- So who are the weekly highest scorers?   -->
 
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow = 
 bind_rows(
 gamewinnerdf %>%
@@ -93,7 +90,7 @@ gamewinnerdf %>%
 
 Now, who wins the mug each week?
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(1,Score) %>% 
@@ -105,13 +102,13 @@ oneteameachrow %>%
 
 In a similar vein, we awarded the coveted (not so much) plunger for the manager who scored the least points each week.
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 knitr::include_graphics("/plunger.JPG")
 ```
 
 Here are the plunger winners.
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(-1,Score) %>%
@@ -125,7 +122,7 @@ Lets look at several metric.
 
 ## Most Mugs
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(1,Score) %>% 
@@ -138,7 +135,7 @@ oneteameachrow %>%
 
 ## Most Plungers
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(-1,Score) %>%
@@ -152,13 +149,13 @@ oneteameachrow %>%
 
 ## League Points
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week,league) %>%
   summarise(WeeklyPoints = sum(Score)) %>% as.data.frame()
 ```
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week,league) %>%
   summarise(WeeklyPoints = sum(Score)) %>% as.data.frame()
@@ -171,7 +168,7 @@ One of the more frustrating things in fantasy football is to score a ton of poin
 
 ## Who played the most mugs?
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(-1,Score) %>%
@@ -184,7 +181,7 @@ Those poor stampeders just couldn't catch a break!
 
 ## Who played the most plungers?
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   top_n(1,Score) %>%
@@ -199,7 +196,7 @@ Man, I wish I could catch some luck.  Good work Big Gronkowski for beating down 
 
 First, who had the highest winning percentage?
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 winpercent = gamewinnerdf %>%
   mutate(win = ifelse(PointsA>PointsB,TeamA,TeamB)) %>%
   group_by(win,league) %>%
@@ -210,7 +207,7 @@ winpercent
 
 And on that note, who scored the most and lest points?
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 mostandleastpoints = 
 oneteameachrow %>%
   group_by(Team1, league) %>%
@@ -228,7 +225,7 @@ mostandleastpoints %>%
 
 With that, how did this play out with overall wins and losses?
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(ggrepel)
 mostandleastpoints %>%
   left_join(winpercent %>% select(win,wins), by = c("Team"="win")) %>%
@@ -261,7 +258,7 @@ Another measure of luck is comparing a team's win percentage against how well a 
 
 We already have win percentage.  Lets calculate the 'every team every week' win percentage.
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 oneteameachrow %>%
   group_by(week) %>%
   mutate(WeekWins = rank(Score)-1) %>%
