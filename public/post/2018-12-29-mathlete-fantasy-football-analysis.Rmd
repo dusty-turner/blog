@@ -28,7 +28,7 @@ The motivation for this project was to compare two leagues performances over the
 
 This post will pick up where last post left off and do some analysis between the two leagues.
 
-I am not sharing my code to improve readability.  If you are interested in the code for this script, send me a note, as I am happy to share.  
+I have hid my code to improve readability.  If you are interested in the code for this script, send me a note, as I am happy to share.  
 
 <!-- ## Libraries -->
 
