@@ -118,7 +118,7 @@ oneteameachrow %>%
 
 # Which Leagues are better?  
 
-Lets look at several metric.
+Lets look at several metrics.
 
 ## Most Mugs
 
@@ -207,7 +207,7 @@ It looks like some teams won more than they should have.
 Sometimes you can get lucky if you play teams that don't score much.  What would everyone's record be if you played every team every week.  That should take some "luck" out of it.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-winpercent %>% left_join(
+winpercent %>% select(-league) %>% left_join(
 
 oneteameachrow %>%
   group_by(week) %>%
