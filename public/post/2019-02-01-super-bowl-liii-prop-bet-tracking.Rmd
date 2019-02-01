@@ -105,5 +105,5 @@ datatable(CurrentScores)
 library(DT)
 data %>% select(-c(are_you_a_cadet_im_keeping_these_separate_for_my_cadet_super_bowl_party, timestamp)) %>% janitor::clean_names(case = "upper_lower") 
 # datatable()
-
+ 
 ```

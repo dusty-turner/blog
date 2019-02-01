@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 29 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/army-math/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Super Bowl LIII Prop Bet Tracking</title>
+      <link>/post/super-bowl-liii-prop-bet-tracking/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/super-bowl-liii-prop-bet-tracking/</guid>
+      <description>Current Scores{&#34;x&#34;:{&#34;filter&#34;:&#34;none&#34;,&#34;data&#34;:[[&#34;james.pleuss@westpoint.edu&#34;,&#34;michael.prokos@westpoint.edu&#34;,&#34;katieannborgelt@gmail.com&#34;,&#34;danballer13@gmail.com&#34;,&#34;dusty.s.turner@gmail.com&#34;,&#34;a.edward.major@gmail.com&#34;,&#34;christopherbrantfisher@gmail.com&#34;],[2,2,3,3,7,2,2]],&#34;container&#34;:&#34;\n \n \n  \n Score\n \n \n&#34;,&#34;options&#34;:{&#34;columnDefs&#34;:[{&#34;className&#34;:&#34;dt-right&#34;,&#34;targets&#34;:1},{&#34;orderable&#34;:false,&#34;targets&#34;:0}],&#34;order&#34;:[],&#34;autoWidth&#34;:false,&#34;orderClasses&#34;:false}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}Selections## # A tibble: 7 x 43## EMAILaddress WHOwillWINtheCO~ WILLtheCOINbeHE~ WILLtheCALLbeHE~## &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; ## 1 james.pleus~ Rams (+1) Tails (+1) Tails (+1) ## 2 michael.pro~ Rams (+1) Heads (+1) Heads (+1) ## 3 katieannbor~ Rams (+1) Tails (+1) Heads (+1) ## 4 danballer13~ Patriots (+1) Tails (+1) Tails (+1) ## 5 dusty.</description>
+    </item>
     
     <item>
       <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
