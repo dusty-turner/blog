@@ -14,6 +14,8 @@ blogdown::html_page:
   toc: FALSE
 ---
 
+Follow Live!
+
 <center>
 ```{r, echo=FALSE, out.width='100%'} 
 knitr::include_app("https://dustyturner.shinyapps.io/PropBetsSuperBowl50/", height = "650px")
