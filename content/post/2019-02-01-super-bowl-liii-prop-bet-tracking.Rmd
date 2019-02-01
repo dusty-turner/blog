@@ -176,6 +176,8 @@ unresolvedshow %>% filter(email_address!="dusty.s.turner@gmail.com") %>%
   t() %>% as.data.frame()
 
 rownames(intermediate) = colnames(unresolvedshow)
+colnames(intermediate) = finalemails$email_address
+intermediate = intermediate[-1,]
 
 ```
 
