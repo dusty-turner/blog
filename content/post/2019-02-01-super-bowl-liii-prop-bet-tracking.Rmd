@@ -17,9 +17,15 @@ library(tidyverse)
 library(shiny)
 ```
 
-## Super Bowl Prop Bet Live Update
+# Super Bowl Prop Bet Live Update
 
-Hi all, thanks for participating in the prop bets for the 2019 Super Bowl.  This will update live during the game.  Please Enjoy!
+Hi all, thanks for participating in the prop bets for the 2019 Super Bowl.  
+
+During my ear recovery, I accumulated some fun prop “bets” (no money is involved) for the upcoming Super Bowl to make the game more fun and interesting.  Questions range from “Who will be the winner” to “How long will the National Anthem Last” to “What color will the post-game Gatorade bath be”? 
+
+If you have not made your selections, please do so [here](https://goo.gl/forms/fCzb9maHCsRbU3Nc2)!
+
+This will update live during the game.  Please Enjoy!
 
 <center>
 ```{r, echo=FALSE, out.width='100%'} 
