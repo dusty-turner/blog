@@ -10,11 +10,10 @@ tags:
   - army math
   - games
 output:
-blogdown::html_page:
-  toc: FALSE
+runtime: shiny
 ---
 
-Follow Live!
+
 
 <center>
 ```{r, echo=FALSE, out.width='100%'} 
