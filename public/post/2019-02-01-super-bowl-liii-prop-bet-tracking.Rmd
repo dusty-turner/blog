@@ -12,6 +12,11 @@ tags:
 runtime: shiny
 ---
 
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(tidyverse)
+library(shiny)
+```
+
 ## Super Bowl Prop Bet Live Update
 
 Hi all, thanks for participating in the prop bets for the 2019 Super Bowl.  This will update live during the game.  Please Enjoy!
