@@ -17,7 +17,7 @@ runtime: shiny
 
 <center>
 ```{r, echo=FALSE, out.width='100%'} 
-knitr::include_app("https://dustyturner.shinyapps.io/PropBetsSuperBowl50/", height = "800px")
+knitr::include_app("https://dustyturner.shinyapps.io/PropBetsSuperBowl50/", height = "100px")
 # knitr::include_app("https://dustyturner.shinyapps.io/CalUno/", height = "650px")
 ```
 </center>
