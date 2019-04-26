@@ -9,5 +9,11 @@ categories:
 tags:
   - shiny
   - USMA
+runtime: shiny
 ---
 
+<center>
+```{r, echo=FALSE} 
+knitr::include_app("https://dustyturner.shinyapps.io/CadetSummer2019/", height = "1500px")
+```
+</center>
