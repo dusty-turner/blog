@@ -12,8 +12,12 @@ tags:
 runtime: shiny
 ---
 
+It is our last summer at West Point!  We will sure miss our cadets.  To keep touch with everyone, I've created a ShinyApp (embedded below) that shows the location (and dates) of everyone over the summer training period.
+
+If you'd rather view the app outside the blog, here is the [link](https://dustyturner.shinyapps.io/CadetSummer2019/)
+
 <center>
 ```{r, echo=FALSE} 
-knitr::include_app("https://dustyturner.shinyapps.io/CadetSummer2019/", height = "1500px")
+knitr::include_app("https://dustyturner.shinyapps.io/CadetSummer2019/", height = "1000px")
 ```
 </center>
