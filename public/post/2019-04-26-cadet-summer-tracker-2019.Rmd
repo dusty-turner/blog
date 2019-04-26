@@ -1,0 +1,13 @@
+---
+title: Cadet Summer Tracker 2019
+author: Dusty Turner
+date: '2019-04-26'
+slug: cadet-summer-tracker-2019
+categories:
+  - shiny
+  - USMA
+tags:
+  - shiny
+  - USMA
+---
+
