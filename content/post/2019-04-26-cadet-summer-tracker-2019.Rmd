@@ -1,21 +1,16 @@
 ---
-output: html_document
+title: Cadet Summer Tracker 2019
+author: Dusty Turner
+date: '2019-04-26'
+slug: cadet-summer-tracker-2019
+categories:
+  - shiny
+  - USMA
+tags:
+  - shiny
+  - USMA
 runtime: shiny
 ---
-
-<!-- title: Cadet Summer Tracker 2019 -->
-<!-- author: Dusty Turner -->
-<!-- date: '2019-04-26' -->
-<!-- slug: cadet-summer-tracker-2019 -->
-<!-- categories: -->
-<!--   - shiny -->
-<!--   - USMA -->
-<!-- tags: -->
-<!--   - shiny -->
-<!--   - USMA -->
-<!-- runtime: shiny -->
-
-
 
 It is our last summer at West Point!  We will sure miss our cadets.  To keep touch with everyone, I've created a ShinyApp (embedded below) that shows the location (and dates) of everyone over the summer training period.
 
