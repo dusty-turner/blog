@@ -24,7 +24,7 @@
     <item>
       <title>Beatnavy</title>
       <link>/categories/beatnavy/</link>
-      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/beatnavy/</guid>
       <description></description>
@@ -54,6 +54,15 @@
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/datascience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devtools</title>
+      <link>/categories/devtools/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/devtools/</guid>
       <description></description>
     </item>
     
@@ -144,6 +153,15 @@
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/rmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Roxygen</title>
+      <link>/categories/roxygen/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/roxygen/</guid>
       <description></description>
     </item>
     

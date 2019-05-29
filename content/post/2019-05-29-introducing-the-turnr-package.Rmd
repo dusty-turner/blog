@@ -1,0 +1,97 @@
+---
+title: Introducing The turnR Package
+author: Dusty Turner
+date: '2019-05-29'
+slug: introducing-the-turnr-package
+categories:
+  - beatnavy
+  - devtools
+  - roxygen
+tags:
+  - beatnavy
+  - devtools
+  - roxygen
+---
+
+## Inspiration
+
+At the [2019 New York R Conference]("https://www.rstats.nyc/"), [Emily Robinson]("https://twitter.com/robinson_es") gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"]("https://www.rstats.nyc/2019/nyr/") (*Note: This link will be live once the video is published*).  I dabbled with creating a [package]("https://github.com/dusty-turner/puertoRicoR") before, but her talk made creating a package so much more tangible (and scale-able).  
+
+Armed with her inspiration and her brother's sage advice (below):
+
+<center>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">When you’ve written the same code 3 times, write a function<br><br>When you’ve given the same in-person advice 3 times, write a blog post</p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/928447584712253440?ref_src=twsrc%5Etfw">November 9, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</center>
+
+I now have all the encouragement I needed to give this a hack.
+
+I will spare all the frustrating details, but the appripriatly named book, ["R Packages"]("https://r-pkgs.org/index.html") by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan]("https://twitter.com/JennyBryan") tell you all you need to know to create your own package.  [Chapter 2]("https://r-pkgs.org/whole-game.html") is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
+
+## turnR
+
+To download the `turnR` package, run the uncommented code below.  Then call the package.
+
+```{r}
+# devtools::install_github("dusty-turner/turnR", force = TRUE)
+library(turnR)
+```
+
+### Available Functions
+
+To get the package off the ground, I created a simple function my 4 year old daughter would love
+
+```{r}
+mycat(CatName = "Garfield")
+```
+
+I also find myself making some of the same adjustments over and over again to my ggplots.  In particular, I like to center the title and remove the legend for certain plots.  Here is a look.
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(tidyverse)
+set.seed(256)
+data("diamonds") 
+
+diamonds = diamonds %>%
+  sample_frac(.1)
+
+diamonds %>%
+  ggplot(aes(x=color,y=price,fill = color)) +
+  geom_violin() +
+  labs(x="Color",y="Price",title="Distribution of Diamond Price by Color", subtitle = "Colored by Color") +
+  theme_turnR()
+
+```
+
+Sometimes, when my 'x' axis is a factor, the labels run over.  This fixes that issue.
+
+```{r}
+
+diamonds %>%
+  ggplot(aes(x=cut,y=price,fill = cut)) +
+  geom_violin() +
+  labs(x="Cut",y="Price",title="Distribution of Diamond Price by Color", subtitle = "Colored by Cut; Faceted by Color") +
+  theme_turnR_f() +
+  facet_wrap(~color)
+
+```
+
+Lastly, as an alternavite to `t.test`, I often run a randomization test.  It gets frustrating finding my old code for this, so the `turnR` package to the rescue.
+
+This test returns the probability that each null hypothesis is true along with the difference in means of each samples. 
+
+```{r}
+x=rnorm(100,5,2)
+y=rnorm(100,5.1,1)
+randtest(x=x,y=y,fun = mean, reps = 1000)[2]
+randtest(x=x,y=y,fun = mean, reps = 1000)[3]
+```
+
+And of course, it always helps to visualize the difference.
+
+```{r}
+randtestviz(x=x,y=y,fun=mean,reps=1000)
+```
+

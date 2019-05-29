@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Roxygen on Dusty Turner</title>
+    <link>/tags/roxygen/</link>
+    <description>Recent content in Roxygen on Dusty Turner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 29 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/roxygen/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introducing The turnR Package</title>
+      <link>/post/introducing-the-turnr-package/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/introducing-the-turnr-package/</guid>
+      <description>InspirationAt the 2019 New York R Conference, Emily Robinson gave a great talk called “Everything You Wanted to Know About Making R Packages but Were Afraid to Ask” (Note: This link will be live once the video is published). I dabbled with creating a package before, but her talk made creating a package so much more tangible (and scale-able).
+Armed with her inspiration and her brother’s sage advice (below):</description>
+    </item>
+    
+  </channel>
+</rss>
