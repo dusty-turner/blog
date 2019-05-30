@@ -210,7 +210,7 @@ Armed with her inspiration and her brother’s sage advice (below):" />
     </header>
     <article class="post-content"><div id="inspiration" class="section level2">
 <h2>Inspiration</h2>
-<p>At the <a href="%22https://www.rstats.nyc/%22">2019 New York R Conference</a>, <a href="%22https://twitter.com/robinson_es%22">Emily Robinson</a> gave a great talk called <a href="%22https://www.rstats.nyc/2019/nyr/%22">“Everything You Wanted to Know About Making R Packages but Were Afraid to Ask”</a> (<em>Note: This link will be live once the video is published</em>). I dabbled with creating a <a href="%22https://github.com/dusty-turner/puertoRicoR%22">package</a> before, but her talk made creating a package so much more tangible (and scale-able).</p>
+<p>At the <a href="https://www.rstats.nyc/">2019 New York R Conference</a>, <a href="https://twitter.com/robinson_es">Emily Robinson</a> gave a great talk called <a href="https://www.rstats.nyc/2019/nyr/">“Everything You Wanted to Know About Making R Packages but Were Afraid to Ask”</a> (<em>Note: This link will be live once the video is published</em>). I dabbled with creating a <a href="https://github.com/dusty-turner/puertoRicoR">package</a> before, but her talk made creating a package so much more tangible (and scale-able).</p>
 <p>Armed with her inspiration and her brother’s sage advice (below):</p>
 <center>
 <blockquote class="twitter-tweet" data-lang="en">
@@ -222,7 +222,7 @@ When you’ve written the same code 3 times, write a function<br><br>When you’
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 <p>I now have all the encouragement I needed to give this a hack.</p>
-<p>I will spare all the frustrating details, but the appropriately named book, <a href="%22https://r-pkgs.org/index.html%22">“R Packages”</a> by <a href="%22https://twitter.com/hadleywickham%22">Hadley Wickham</a> and <a href="%22https://twitter.com/JennyBryan%22">Jenny Bryan</a> tell you all you need to know to create your own package. <a href="%22https://r-pkgs.org/whole-game.html%22">Chapter 2</a> is the one-stop-shop I used to get my package off the ground. There is, of course, more to do to get this fully developed.</p>
+<p>I will spare all the frustrating details, but the appropriately named book, <a href="https://r-pkgs.org/index.html">“R Packages”</a> by <a href="%22https://twitter.com/hadleywickham%22">Hadley Wickham</a> and <a href="https://twitter.com/JennyBryan">Jenny Bryan</a> tell you all you need to know to create your own package. <a href="https://r-pkgs.org/whole-game.html">Chapter 2</a> is the one-stop-shop I used to get my package off the ground. There is, of course, more to do to get this fully developed.</p>
 </div>
 <div id="turnr" class="section level2">
 <h2>turnR</h2>
@@ -231,7 +231,7 @@ When you’ve written the same code 3 times, write a function<br><br>When you’
 library(turnR)</code></pre>
 <div id="available-functions" class="section level3">
 <h3>Available Functions</h3>
-<p>To get the package off the ground, I created a simple function my 4 year old daughter would love</p>
+<p>To get the package off the ground, I created a simple function inspired by my 4 year old daughter.</p>
 <pre class="r"><code>mycat(CatName = &quot;Garfield&quot;)</code></pre>
 <pre><code>## Your Cat&#39;s Name is Garfield 
 ##    /\_/\
@@ -263,7 +263,7 @@ diamonds %&gt;%
   facet_wrap(~color)</code></pre>
 <p><img src="/post/2019-05-29-introducing-the-turnr-package_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Lastly, as an alternative to <code>t.test</code>, I often run a randomization test. It gets frustrating finding my old code for this, so the <code>turnR</code> package to the rescue.</p>
-<p>This test returns the probability that each null hypothesis is true along with the difference in means of each samples.</p>
+<p>This test returns the probability that each null hypothesis is true along with the difference in means of each samples. It will also return all data under index 1: [1] (not shown).</p>
 <pre class="r"><code>x=rnorm(100,5,2)
 y=rnorm(100,5.1,1)
 randtest(x=x,y=y,fun = mean, reps = 1000)[2]</code></pre>
@@ -277,6 +277,7 @@ randtest(x=x,y=y,fun = mean, reps = 1000)[2]</code></pre>
 <pre class="r"><code>randtestviz(x=x,y=y,fun=mean,reps=1000)</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="/post/2019-05-29-introducing-the-turnr-package_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>I expect more to follow in the future!</p>
 </div>
 </div>
 </article>

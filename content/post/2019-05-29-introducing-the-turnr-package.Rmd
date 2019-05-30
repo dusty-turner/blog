@@ -15,7 +15,7 @@ tags:
 
 ## Inspiration
 
-At the [2019 New York R Conference]("https://www.rstats.nyc/"), [Emily Robinson]("https://twitter.com/robinson_es") gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"]("https://www.rstats.nyc/2019/nyr/") (*Note: This link will be live once the video is published*).  I dabbled with creating a [package]("https://github.com/dusty-turner/puertoRicoR") before, but her talk made creating a package so much more tangible (and scale-able).  
+At the [2019 New York R Conference](https://www.rstats.nyc/), [Emily Robinson](https://twitter.com/robinson_es) gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"](https://www.rstats.nyc/2019/nyr/) (*Note: This link will be live once the video is published*).  I dabbled with creating a [package](https://github.com/dusty-turner/puertoRicoR) before, but her talk made creating a package so much more tangible (and scale-able).  
 
 Armed with her inspiration and her brother's sage advice (below):
 
@@ -28,7 +28,7 @@ Armed with her inspiration and her brother's sage advice (below):
 
 I now have all the encouragement I needed to give this a hack.
 
-I will spare all the frustrating details, but the appropriately named book, ["R Packages"]("https://r-pkgs.org/index.html") by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan]("https://twitter.com/JennyBryan") tell you all you need to know to create your own package.  [Chapter 2]("https://r-pkgs.org/whole-game.html") is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
+I will spare all the frustrating details, but the appropriately named book, ["R Packages"](https://r-pkgs.org/index.html) by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan](https://twitter.com/JennyBryan) tell you all you need to know to create your own package.  [Chapter 2](https://r-pkgs.org/whole-game.html) is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
 
 ## turnR
 
@@ -41,7 +41,7 @@ library(turnR)
 
 ### Available Functions
 
-To get the package off the ground, I created a simple function my 4 year old daughter would love
+To get the package off the ground, I created a simple function inspired by my 4 year old daughter.
 
 ```{r}
 mycat(CatName = "Garfield")
@@ -91,7 +91,7 @@ randtest(x=x,y=y,fun = mean, reps = 1000)[3]
 
 And of course, it always helps to visualize the difference.
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 randtestviz(x=x,y=y,fun=mean,reps=1000)
 ```
 
