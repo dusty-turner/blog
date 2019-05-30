@@ -80,7 +80,7 @@ diamonds %>%
 
 Lastly, as an alternative to `t.test`, I often run a randomization test.  It gets frustrating finding my old code for this, so the `turnR` package to the rescue.
 
-This test returns the probability that each null hypothesis is true along with the difference in means of each samples. 
+This test returns the probability that each null hypothesis is true along with the difference in means of each samples. It will also return all data under index 1: [1] (not shown).
 
 ```{r}
 x=rnorm(100,5,2)
