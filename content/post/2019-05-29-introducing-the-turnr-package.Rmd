@@ -28,7 +28,7 @@ Armed with her inspiration and her brother's sage advice (below):
 
 I now have all the encouragement I needed to give this a hack.
 
-I will spare all the frustrating details, but the appripriatly named book, ["R Packages"]("https://r-pkgs.org/index.html") by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan]("https://twitter.com/JennyBryan") tell you all you need to know to create your own package.  [Chapter 2]("https://r-pkgs.org/whole-game.html") is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
+I will spare all the frustrating details, but the appropriately named book, ["R Packages"]("https://r-pkgs.org/index.html") by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan]("https://twitter.com/JennyBryan") tell you all you need to know to create your own package.  [Chapter 2]("https://r-pkgs.org/whole-game.html") is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
 
 ## turnR
 
@@ -78,7 +78,7 @@ diamonds %>%
 
 ```
 
-Lastly, as an alternavite to `t.test`, I often run a randomization test.  It gets frustrating finding my old code for this, so the `turnR` package to the rescue.
+Lastly, as an alternative to `t.test`, I often run a randomization test.  It gets frustrating finding my old code for this, so the `turnR` package to the rescue.
 
 This test returns the probability that each null hypothesis is true along with the difference in means of each samples. 
 
