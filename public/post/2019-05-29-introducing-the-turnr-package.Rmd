@@ -26,7 +26,7 @@ Armed with her inspiration and her brother's sage advice (below):
 
 </center>
 
-I now have all the encouragement I needed to give this a hack.
+I now have all the encouragement I needed to give this a wholehearted, harty-hack.
 
 I will spare all the frustrating details, but the appropriately named book, ["R Packages"](https://r-pkgs.org/index.html) by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan](https://twitter.com/JennyBryan) tell you all you need to know to create your own package.  [Chapter 2](https://r-pkgs.org/whole-game.html) is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
 
@@ -41,11 +41,15 @@ library(turnR)
 
 ### Available Functions
 
+#### My Cat 
+
 To get the package off the ground, I created a simple function inspired by my 4 year old daughter.
 
 ```{r}
 mycat(CatName = "Garfield")
 ```
+
+#### ggplot themes
 
 I also find myself making some of the same adjustments over and over again to my ggplots.  In particular, I like to center the title and remove the legend for certain plots.  Here is a look.
 
@@ -54,10 +58,8 @@ library(tidyverse)
 set.seed(256)
 data("diamonds") 
 
-diamonds = diamonds %>%
-  sample_frac(.1)
-
 diamonds %>%
+  sample_frac(.1) %>%
   ggplot(aes(x=color,y=price,fill = color)) +
   geom_violin() +
   labs(x="Color",y="Price",title="Distribution of Diamond Price by Color", subtitle = "Colored by Color") +
@@ -78,20 +80,29 @@ diamonds %>%
 
 ```
 
-Lastly, as an alternative to `t.test`, I often run a randomization test.  It gets frustrating finding my old code for this, so the `turnR` package to the rescue.
+#### Randomization Test
+
+Lastly, as an alternative to `t.test`, I often run a randomization test.  It gets frustrating finding my old code over and over. So `turnR` package to the rescue!
 
 This test returns the probability that each null hypothesis is true along with the difference in means of each samples. It will also return all data under index 1: [1] (not shown).
+
+P Values (index 2)
 
 ```{r}
 x=rnorm(100,5,2)
 y=rnorm(100,5.1,1)
 randtest(x=x,y=y,fun = mean, reps = 1000)[2]
+```
+
+Average Difference in Means (index 3)
+
+```{r}
 randtest(x=x,y=y,fun = mean, reps = 1000)[3]
 ```
 
 And of course, it always helps to visualize the difference.
 
-```{r}
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 randtestviz(x=x,y=y,fun=mean,reps=1000)
 ```
 
