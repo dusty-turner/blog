@@ -17,7 +17,7 @@ tags:
 
 At the [2019 New York R Conference](https://www.rstats.nyc/), [Emily Robinson](https://twitter.com/robinson_es) gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"](https://www.rstats.nyc/2019/nyr/) (*Note: This link will be live once the video is published*).  I dabbled with creating a [package](https://github.com/dusty-turner/puertoRicoR) before, but her talk made creating a package so much more tangible (and scale-able), and it pushed me over the edge to try again.  
 
-During her talk, she also made refrence to a new book to help package writing newbies like me.
+During her talk, she also made reference to a new book to help package writing newbies like me.
 
 <center>
 
@@ -26,7 +26,7 @@ During her talk, she also made refrence to a new book to help package writing ne
 
 </center>
 
-I now had all the encouragement I needed to give this a wholehearted, harty-hack.
+I now had all the encouragement I needed to give this a wholehearted, harty hack.
 
 I will spare all the frustrating details, but the appropriately named book, ["R Packages"](https://r-pkgs.org/index.html) by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan](https://twitter.com/JennyBryan) tells you all you need to know to get you started.  [Chapter 2](https://r-pkgs.org/whole-game.html) is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
 
