@@ -15,7 +15,15 @@ tags:
 
 ## Inspiration
 
-At the [2019 New York R Conference](https://www.rstats.nyc/), [Emily Robinson](https://twitter.com/robinson_es) gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"](https://www.rstats.nyc/2019/nyr/) (*Note: This link will be live once the video is published*).  I dabbled with creating a [package](https://github.com/dusty-turner/puertoRicoR) before, but her talk made creating a package so much more tangible (and scale-able), and it pushed me over the edge to try again.  
+At the [2019 New York R Conference](https://www.rstats.nyc/), [Emily Robinson](https://twitter.com/robinson_es) gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"](https://www.rstats.nyc/2019/nyr/) (*Note: This link will be live once the video is published*).  
+
+Emily Robinson is one of my 'heros of R.'  I was honored to host her several years back a the United States Military Academy when she came to present her work on A/B Testing during her time at Esty.  
+
+```{r echo=FALSE, fig.width=1}
+knitr::include_graphics("/emilydustycrop.PNG")
+```
+
+I dabbled with creating a [package](https://github.com/dusty-turner/puertoRicoR) before, but her talk made creating a package so much more tangible (and scale-able), and it pushed me over the edge to try again.  
 
 During her talk, she also made reference to a new book to help package writing newbies like me.
 
@@ -29,6 +37,8 @@ During her talk, she also made reference to a new book to help package writing n
 I now had all the encouragement I needed to give this a wholehearted, harty hack.
 
 I will spare all the frustrating details, but the appropriately named book, ["R Packages"](https://r-pkgs.org/index.html) by [Hadley Wickham]("https://twitter.com/hadleywickham") and [Jenny Bryan](https://twitter.com/JennyBryan) tells you all you need to know to get you started.  [Chapter 2](https://r-pkgs.org/whole-game.html) is the one-stop-shop I used to get my package off the ground.  There is, of course, more to do to get this fully developed.  
+
+One of Emily's biggest pieces of advice that I took away from her talk was to come up with a good package name.  It needed to be 'googleable' and memorable and there were several other important considerations for naming the package.  Well, I don't know how well I met all the criteria, but I am happy with the appropriatness of how much this package name reflects that I made it :).
 
 ## turnR
 
