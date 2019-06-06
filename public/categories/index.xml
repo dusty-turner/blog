@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Army Math</title>
       <link>/categories/army-math/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/army-math/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>Beatnavy</title>
       <link>/categories/beatnavy/</link>
-      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/beatnavy/</guid>
       <description></description>
@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>Bootstrap</title>
+      <link>/categories/bootstrap/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/bootstrap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Children</title>
       <link>/categories/children/</link>
       <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
@@ -51,7 +60,7 @@
     <item>
       <title>Datascience</title>
       <link>/categories/datascience/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/datascience/</guid>
       <description></description>
@@ -90,6 +99,15 @@
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/fantasy-football/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Foreach</title>
+      <link>/categories/foreach/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/foreach/</guid>
       <description></description>
     </item>
     
