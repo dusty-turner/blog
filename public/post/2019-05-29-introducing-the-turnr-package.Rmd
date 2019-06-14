@@ -17,7 +17,8 @@ tags:
 
 At the [2019 New York R Conference](https://www.rstats.nyc/), [Emily Robinson](https://twitter.com/robinson_es) gave a great talk called ["Everything You Wanted to Know About Making R Packages but Were Afraid to Ask"](https://www.rstats.nyc/2019/nyr/) (*Note: This link will be live once the video is published*).  
 
-Emily Robinson is one of my 'heros of R.'  I was honored to host her several years back a the United States Military Academy when she came to present her work on A/B Testing during her time at Esty.  
+Emily Robinson is one of my 'heros of R.'  I was honored to host her several years back a the United States Military Academy when she came to present her work on A/B Testing during her time at Esty.   
+
 
 ```{r echo=FALSE, fig.width=1}
 knitr::include_graphics("/emilydustycrop.PNG")
