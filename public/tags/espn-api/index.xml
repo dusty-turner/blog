@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Espn Api on Dusty Turner</title>
+    <title>ESPN API on Dusty Turner</title>
     <link>/tags/espn-api/</link>
-    <description>Recent content in Espn Api on Dusty Turner</description>
+    <description>Recent content in ESPN API on Dusty Turner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
@@ -38,7 +38,7 @@ The motivation for this project was to compare two leagues performances over the
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
+      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
 Incorporated this year are a few (transparent) things.
 Bowl selections automatically lock once they start.
 Bowl results automatically update once they are complete.

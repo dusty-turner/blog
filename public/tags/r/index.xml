@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Dusty Turner</title>
+    <title>r on Dusty Turner</title>
     <link>/tags/r/</link>
-    <description>Recent content in R on Dusty Turner</description>
+    <description>Recent content in r on Dusty Turner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
@@ -39,7 +39,7 @@ Also, special thanks to drob and juliasilge who privde the tidytext package and 
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
+      <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
 </description>
     </item>
     
@@ -49,7 +49,7 @@ Also, special thanks to drob and juliasilge who privde the tidytext package and 
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
-      <description>Taking A Look Across The Country</description>
+      <description>Taking A Look Across The Country</description>
     </item>
     
     <item>

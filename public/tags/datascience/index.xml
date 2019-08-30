@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Datascience on Dusty Turner</title>
+    <title>datascience on Dusty Turner</title>
     <link>/tags/datascience/</link>
-    <description>Recent content in Datascience on Dusty Turner</description>
+    <description>Recent content in datascience on Dusty Turner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
@@ -72,7 +72,7 @@ Oh, and Jim and I went for a little “R” run as well in Vancouver.</descripti
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
-      <description>Taking A Look Across The Country</description>
+      <description>Taking A Look Across The Country</description>
     </item>
     
     <item>

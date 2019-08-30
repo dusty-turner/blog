@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>Army Math</title>
+      <title>army math</title>
       <link>/tags/army-math/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
@@ -22,7 +22,7 @@
     </item>
     
     <item>
-      <title>Beatnavy</title>
+      <title>beatnavy</title>
       <link>/tags/beatnavy/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
@@ -31,16 +31,7 @@
     </item>
     
     <item>
-      <title>Books</title>
-      <link>/tags/books/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/books/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bootstrap</title>
+      <title>bootstrap</title>
       <link>/tags/bootstrap/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
@@ -49,16 +40,7 @@
     </item>
     
     <item>
-      <title>Children</title>
-      <link>/tags/children/</link>
-      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/children/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Datascience</title>
+      <title>datascience</title>
       <link>/tags/datascience/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
@@ -67,43 +49,7 @@
     </item>
     
     <item>
-      <title>Devtools</title>
-      <link>/tags/devtools/</link>
-      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/devtools/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dplyr</title>
-      <link>/tags/dplyr/</link>
-      <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/dplyr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Espn Api</title>
-      <link>/tags/espn-api/</link>
-      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/espn-api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fantasy Football</title>
-      <link>/tags/fantasy-football/</link>
-      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/fantasy-football/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Foreach</title>
+      <title>foreach</title>
       <link>/tags/foreach/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
@@ -112,70 +58,16 @@
     </item>
     
     <item>
-      <title>Forecast</title>
-      <link>/tags/forecast/</link>
-      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
+      <title>devtools</title>
+      <link>/tags/devtools/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/forecast/</guid>
+      <guid>/tags/devtools/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Games</title>
-      <link>/tags/games/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/games/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ggplot2</title>
-      <link>/tags/ggplot2/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ggplot2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Lubridate</title>
-      <link>/tags/lubridate/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/lubridate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Model Building</title>
-      <link>/tags/model-building/</link>
-      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/model-building/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R</title>
-      <link>/tags/r/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rmd</title>
-      <link>/tags/rmd/</link>
-      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rmd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Roxygen</title>
+      <title>roxygen</title>
       <link>/tags/roxygen/</link>
       <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
       
@@ -184,16 +76,7 @@
     </item>
     
     <item>
-      <title>Scraping</title>
-      <link>/tags/scraping/</link>
-      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/scraping/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shiny</title>
+      <title>shiny</title>
       <link>/tags/shiny/</link>
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
@@ -202,25 +85,7 @@
     </item>
     
     <item>
-      <title>Tidytext</title>
-      <link>/tags/tidytext/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidytext/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Usma</title>
+      <title>USMA</title>
       <link>/tags/usma/</link>
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
@@ -229,11 +94,146 @@
     </item>
     
     <item>
-      <title>Yahoo Api</title>
+      <title>games</title>
+      <link>/tags/games/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/games/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>children</title>
+      <link>/tags/children/</link>
+      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/children/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ESPN API</title>
+      <link>/tags/espn-api/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/espn-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fantasy football</title>
+      <link>/tags/fantasy-football/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fantasy-football/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>YAHOO API</title>
       <link>/tags/yahoo-api/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/yahoo-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>books</title>
+      <link>/tags/books/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lubridate</title>
+      <link>/tags/lubridate/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lubridate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r</title>
+      <link>/tags/r/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidytext</title>
+      <link>/tags/tidytext/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidytext/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>model building</title>
+      <link>/tags/model-building/</link>
+      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/model-building/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>forecast</title>
+      <link>/tags/forecast/</link>
+      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/forecast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dplyr</title>
+      <link>/tags/dplyr/</link>
+      <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dplyr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scraping</title>
+      <link>/tags/scraping/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rmd</title>
+      <link>/tags/rmd/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rmd/</guid>
       <description></description>
     </item>
     

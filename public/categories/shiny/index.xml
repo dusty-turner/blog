@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shiny on Dusty Turner</title>
+    <title>shiny on Dusty Turner</title>
     <link>/categories/shiny/</link>
-    <description>Recent content in Shiny on Dusty Turner</description>
+    <description>Recent content in shiny on Dusty Turner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
@@ -18,7 +18,7 @@
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/cadet-summer-tracker-2019/</guid>
-      <description>It is our last summer at West Point! We will sure miss our cadets. To keep touch with everyone, I’ve created a ShinyApp (embedded below) that shows the location (and dates) of everyone over the summer training period.
+      <description>It is our last summer at West Point! We will sure miss our cadets. To keep touch with everyone, I’ve created a ShinyApp (embedded below) that shows the location (and dates) of everyone over the summer training period.
 If you’d rather view the app outside the blog, here is the link
 ----</description>
     </item>
@@ -38,7 +38,7 @@ If you’d rather view the app outside the blog, here is the link
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
+      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
 Incorporated this year are a few (transparent) things.
 Bowl selections automatically lock once they start.
 Bowl results automatically update once they are complete.
@@ -67,7 +67,7 @@ Oh, and I got to go for a little run before the conferece!</description>
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
+      <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
 </description>
     </item>
     
@@ -77,7 +77,7 @@ Oh, and I got to go for a little run before the conferece!</description>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
-      <description>Taking A Look Across The Country</description>
+      <description>Taking A Look Across The Country</description>
     </item>
     
   </channel>

@@ -31,7 +31,7 @@ Complaining about this let me to Googling, which, as usual, let me to a solution
 
 
 
-<meta name="generator" content="Hugo 0.30.2" />
+<meta name="generator" content="Hugo 0.57.2" />
 
 
 <link rel="canonical" href="/post/parellel-processing-and-bootstrapping-for-diamonds/" />
@@ -208,7 +208,10 @@ Complaining about this let me to Googling, which, as usual, let me to a solution
       <h1 class="post-title">Parellel Processing and Bootstrapping for Diamonds</h1>
       <p class="post-meta">@Dusty Turner · Jun 5, 2019 · 6 min read</p>
     </header>
-    <article class="post-content"><div id="introduction" class="section level2">
+    <article class="post-content">
+
+
+<div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Often times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long”&quot; simulations that take up more time than what I’d like to use in the classrooms.</p>
 <p>Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</p>
@@ -440,7 +443,7 @@ shinyApp(
     </footer>
     
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -497,12 +500,16 @@ shinyApp(
 <script src="/js/bundle.js"></script>
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-109926409-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109926409-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
