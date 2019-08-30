@@ -22,7 +22,7 @@ cover: /img/boot.jpg
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Often times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long”&quot; simulations that take up more time than what I’d like to use in the classrooms.</p>
+<p>Often times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.</p>
 <p>Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</p>
 </div>
 <div id="gratitude" class="section level2">
@@ -57,29 +57,29 @@ system.time({
   }
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.17    0.00    0.17</code></pre>
+##    0.22    0.02    0.25</code></pre>
 <p>I tracked the time and it doesn’t take all that long… but then again its only 100 loops.</p>
 <p>After executing this loop, I can do my future analysis with the following data:</p>
 <pre class="r"><code>head(coefdf)</code></pre>
 <pre><code>## # A tibble: 6 x 6
-##   `(Intercept)`  cut.L  cut.Q  cut.C `cut^4` carat
-##           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1        -3640. 4850.  -3776. 1873.   -815.  7690.
-## 2        -3035. -360.    527.   33.2    NA   8703.
-## 3        -2647. 1193.  -1093.  938.   1482.  7872.
-## 4        -3300.  814.    232.  276.    208.  9115.
-## 5        -2924.  -41.8   745. 1309.   1163.  8696.
-## 6        -2680. 2370.  -1031.  508.    -52.9 7223.</code></pre>
+##   `(Intercept)` cut.L    cut.Q  cut.C `cut^4` carat
+##           &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1        -2219.  519.  -433.   -168.   -185.  7867.
+## 2        -3336. 1998. -1142.   1242.    -49.0 8530.
+## 3        -2130.  355.   -59.7  -777.   -313.  7589.
+## 4        -2991.  855.  -519.     10.6   728.  8962.
+## 5        -2932.  468.     3.77  326.     63.5 8725.
+## 6        -2331.  976.  -622.    828.    501.  7480.</code></pre>
 <pre class="r"><code>head(allsamples)</code></pre>
 <pre><code>## # A tibble: 6 x 4
-##   price carat cut       iteration
-##   &lt;int&gt; &lt;dbl&gt; &lt;ord&gt;         &lt;int&gt;
-## 1   465  0.23 Very Good         1
-## 2   627  0.33 Very Good         1
-## 3  6059  1.03 Ideal             1
-## 4   735  0.42 Very Good         1
-## 5   487  0.28 Ideal             1
-## 6   669  0.43 Good              1</code></pre>
+##   price carat cut     iteration
+##   &lt;int&gt; &lt;dbl&gt; &lt;ord&gt;       &lt;int&gt;
+## 1   684  0.3  Premium         1
+## 2 12157  1.59 Ideal           1
+## 3  6468  1.25 Ideal           1
+## 4   475  0.3  Ideal           1
+## 5 13009  1.5  Premium         1
+## 6   967  0.34 Ideal           1</code></pre>
 <p>But you can see how this can quickly balloon into taking too much time. We can solve that problem with parallel processing.</p>
 </div>
 <div id="parallel-processing" class="section level2">
@@ -112,7 +112,7 @@ system.time({
   }
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##    3.61    0.52    7.74</code></pre>
+##    5.40    0.86   16.26</code></pre>
 <p>Now we can retrieve the data from our ‘loop’ in the following way:</p>
 <pre class="r"><code>coefs = 
 bind_rows(r[,2],.id = &quot;iteration&quot;) %&gt;% as_tibble()
@@ -120,32 +120,32 @@ head(coefs)</code></pre>
 <pre><code>## # A tibble: 6 x 7
 ##   iteration cutFair cutGood cutVery.Good cutPremium cutIdeal carat
 ##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1 result.1   -4082.  -2577.       -2468.     -2150.   -2130. 7667.
-## 2 result.2   -3465.  -2680.       -2153.     -2352.   -1982. 7705.
-## 3 result.3   -3831.  -2516.       -2092.     -2415.   -1906. 7729.
-## 4 result.4   -3336.  -2904.       -2400.     -2424.   -2024. 7746.
-## 5 result.5   -4129.  -2862.       -2741.     -2842.   -2301. 8253.
-## 6 result.6   -5159.  -2517.       -2288.     -2213.   -2112. 7839.</code></pre>
+## 1 result.1   -3430.  -2659.       -2126.     -2195.   -2042. 7733.
+## 2 result.2   -4618.  -2788.       -2414.     -2289.   -1939. 7822.
+## 3 result.3   -3828.  -2791.       -2326.     -2529.   -2267. 8016.
+## 4 result.4   -3312.  -2939.       -2157.     -2107.   -1768. 7506.
+## 5 result.5   -4041.  -2780.       -2508.     -2408.   -2139. 8001.
+## 6 result.6   -3846.  -3323.       -2323.     -2466.   -2047. 8003.</code></pre>
 <pre class="r"><code>sampledata = 
 bind_rows(r[,1],.id = &quot;iteration&quot;) %&gt;% as_tibble()
 head(sampledata)</code></pre>
 <pre><code>## # A tibble: 6 x 4
-##   iteration price carat cut      
-##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;ord&gt;    
-## 1 result.1    772  0.4  Premium  
-## 2 result.1   4619  1.01 Very Good
-## 3 result.1   4455  1.16 Very Good
-## 4 result.1  14586  1.5  Premium  
-## 5 result.1   3816  0.91 Fair     
-## 6 result.1   2634  0.61 Ideal</code></pre>
+##   iteration price carat cut  
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;ord&gt;
+## 1 result.1   4963  0.83 Ideal
+## 2 result.1  12680  2.02 Ideal
+## 3 result.1   1192  0.41 Ideal
+## 4 result.1   8044  1.06 Ideal
+## 5 result.1    956  0.7  Fair 
+## 6 result.1    900  0.32 Ideal</code></pre>
 <p>Now the point is to find a 95% confidence interval of what the true <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_is\)</span> are.</p>
 <pre><code>##           vars       25%       95%
-## 1      cutFair -4207.312 -3044.180
-## 2      cutGood -2932.242 -2321.161
-## 3 cutVery.Good -2504.028 -2035.413
-## 4   cutPremium -2579.377 -2091.462
-## 5     cutIdeal -2184.499 -1805.584
-## 6        carat  7720.972  8257.092</code></pre>
+## 1      cutFair -4206.658 -3059.029
+## 2      cutGood -2939.818 -2323.923
+## 3 cutVery.Good -2505.515 -2032.013
+## 4   cutPremium -2578.164 -2090.914
+## 5     cutIdeal -2183.189 -1809.374
+## 6        carat  7726.031  8251.822</code></pre>
 <p>Looks like none of the confidence intervals contain <code>0</code>. Therefore carat does have a relationship with price for each level of cut.</p>
 </div>
 <div id="displaying-the-results" class="section level2">
