@@ -69,7 +69,7 @@ ESPNGet$status_code
 ```
 
 Lastly, the following code creates a clean-ish list from the JSON returned from the API.  The V2 did not return the data this cleanly - so despite the frustrations re-figuring this out, the V3 appears to be an improvement.
-
+ 
 ```{r}
 ESPNRaw <- rawToChar(ESPNGet$content)
 ESPNFromJSON <- jsonlite::fromJSON(ESPNRaw)
