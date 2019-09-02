@@ -1,5 +1,5 @@
 ---
-title: 'ESPN Fantasy Football V3 API: An R Solution'
+title: 'ESPN Fantasy Football V3 API for Public Leagues: An R Solution'
 author: Dusty Turner
 date: '2019-08-29'
 slug: espn-fantasy-football-v3-api-an-r-solution

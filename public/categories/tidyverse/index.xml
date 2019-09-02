@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 27 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ESPN Fantasy Football V3 API for Private Leagues: Python Through R</title>
+      <link>/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/</guid>
+      <description>Accessing ESPN Fantasy Football for Private LeaguesIn my previous post, I explained how to access the ESPN Fantasy Football’s new (V3) public API. But what if your league manager does not make the league public? Are you out of luck?
+In this post I’ll explain how to pass ‘cookies’ to ESPN and access private league data.
+To accomplish this, we’ll use…
+PythonretriculatepurrrPython?</description>
+    </item>
+    
+    <item>
+      <title>ESPN Fantasy Football V3 API for Public Leagues: An R Solution</title>
+      <link>/post/espn-fantasy-football-v3-api-an-r-solution/</link>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/espn-fantasy-football-v3-api-an-r-solution/</guid>
+      <description>ESPN’s New API (V3)In previous seasons, we’ve enjoyed relatively easy access to ESPN’s fantasy sports data. Sometime in the last few months, ESPN altered/upgraded their AP to V3.
+As I’ve tried to replicate previous analysis, old methods accessing the V2 API no longer work.
+Credit Where Credit Is DueQuick crash course on ESPN’s new #fantasyfootball API, #python focused — https://t.</description>
+    </item>
     
     <item>
       <title>Goal: Read 1000 (Children&#39;s) Books in 2018</title>
