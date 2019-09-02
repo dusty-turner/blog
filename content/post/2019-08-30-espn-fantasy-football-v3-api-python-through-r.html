@@ -1,7 +1,7 @@
 ---
 title: 'ESPN Fantasy Football V3 API for Private Leagues: Python Through R'
 author: Dusty Turner
-date: '2019-08-30'
+date: '2019-09-02'
 slug: espn-fantasy-football-v3-api-for-private-leagues-Python-through-r
 categories:
   - fantasy football
@@ -40,17 +40,17 @@ cover: /img/football.jpg
 </ul>
 <div id="python" class="section level4">
 <h4>Python?!</h4>
-<p>Yes - Beleive it or not, though I’m an avid R user, I believe in using the best tool for the job. I code in Python about as well as I speak Spanish. I have to think really hard as I translate vocabulary, I don’t always know what I’m saying, and I often have to repeat something verbatim that I read somewhere else.</p>
+<p>Yes - Believe it or not, though I’m an avid R user, I believe in using the best tool for the job. I code in Python about as well as I speak Spanish. I have to think really hard as I translate vocabulary, I don’t always know what I’m saying, and I often have to repeat something verbatim that I read somewhere else.</p>
 <p>Despite my best efforts to accomplish this in R, I simply have not been able to make it work yet. (Please let me know if you or someone else figures out how to do this!) Again, major thanks to <a href="https://stmorse.github.io/">Steve Morse</a> for <a href="https://stmorse.github.io/journal/espn-fantasy-v3.html">this post</a>. Follow him on twitter @<a href="https://twitter.com/thestevemo">thestevemo</a>.</p>
-<p>So, my motto here, to butcher a quote from “Tropic Thunder” is to, “never go full Python….” In light of that, it gave me a great opportuinty to learn <code>retriculate</code>.</p>
+<p>So, my motto here, to butcher a quote from “Tropic Thunder” is to, “never go full Python….” In light of that, it gave me a great opportunity to learn <code>retriculate</code>.</p>
 </div>
 </div>
 <div id="access-private-league-data" class="section level3">
 <h3>Access Private League Data</h3>
-<p>Take the steps below to acces private leagues. Again, if your league is public, you can access the API like <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">so</a>.</p>
+<p>Take the steps below to access private leagues. Again, if your league is public, you can access the API like <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">so</a>.</p>
 <div id="build-url" class="section level4">
 <h4>Build URL</h4>
-<p>To begin, we build the URL to access the API. This is the same as if we access a public league. Restating from my previous post - replace the <code>leagueID</code> with your private leage ID. In the ‘tail’ of the URL, we request different chunks of data from the API. These are all the elements of which I’m aware. Feel free to shorten if you do not need to request all the data.</p>
+<p>To begin, we build the URL to access the API. This is the same as if we access a public league. Restating from my previous post - replace the <code>leagueID</code> with your private league ID. In the ‘tail’ of the URL, we request different chunks of data from the API. These are all the elements of which I’m aware. Feel free to shorten if you do not need to request all the data.</p>
 <pre class="r"><code>base = &quot;http://fantasy.espn.com/apis/v3/games/ffl/seasons/&quot;
 year = &quot;2019&quot;
 mid = &quot;/segments/0/leagues/&quot;
@@ -64,14 +64,14 @@ url = paste0(base,year,mid,leagueID,tail)</code></pre>
 <p>You can find both of these cookies in Chrome in the following path:</p>
 <p>Settings &gt;&gt; Privacy and Security &gt;&gt; Site Settings &gt;&gt; Cookies &gt;&gt; See All Cookies and Site Data</p>
 <p>They’ll be listed among the ‘ESPN’ cookies. You can find these two cookies similarly in other browsers.</p>
-<pre class="r"><code>swid = &quot;{cookie-with-curley-brackets-included}&quot;
+<pre class="r"><code>swid = &quot;{cookie-with-curly-brackets-included}&quot;
 espn_s2 =  &quot;very%long%cookie%296%ish%characters%long%with%no%brackets%&quot;</code></pre>
 </div>
 <div id="what-currently-does-not-work-r" class="section level4">
 <h4>What Currently Does Not Work (R)</h4>
 <pre class="r"><code>ESPNGet &lt;- httr::GET(url = url,
                      httr::set_cookies(
-                       `swid` = &quot;{cookie-with-curley-brackets-included}&quot;,
+                       `swid` = &quot;{cookie-with-curly-brackets-included}&quot;,
                        `espn_s2` =  &quot;very%long%cookie%296%characters%long%with%no%brackets%&quot;
                      ))
 ESPNGet$status_code</code></pre>
@@ -93,8 +93,8 @@ ESPNGet$status_code</code></pre>
 <!-- ``` -->
 <!-- </center> -->
 <!-- Clever... -->
-<p><strong>Note</strong> The code below is Python. According to the <code>reticulate</code> documentation, R and Python will pass variables back and forth betwen each other. Pass R objects to Python by preceeding the r variable with <code>r.</code>. Python objects pass to R by preceeding the object with <code>py$</code>.</p>
-<p>In order to access the url built from <code>r</code> code we write execute the following:</p>
+<p><strong>Note</strong> The code below is Python. According to the <code>reticulate</code> documentation, R and Python will pass variables back and forth between each other. Pass R objects to Python by preceding the r variable with <code>r.</code>. Python objects pass to R by preceding the object with <code>py$</code>.</p>
+<p>In order to access the URL built from <code>r</code> code we write execute the following:</p>
 <pre class="python"><code>r.url</code></pre>
 <pre><code>## &#39;http://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/89417258?view=mDraftDetail&amp;view=mLiveScoring&amp;view=mMatchupScore&amp;view=mPendingTransactions&amp;view=mPositionalRatings&amp;view=mSettings&amp;view=mTeam&amp;view=modular&amp;view=mNav&amp;view=mMatchupScore&#39;</code></pre>
 </div>
@@ -104,7 +104,7 @@ ESPNGet$status_code</code></pre>
 <pre class="python"><code>import requests
 
 r = requests.get(r.url,
-                 cookies={&quot;SWID&quot;: &quot;{cookie-with-curley-brackets-included}&quot;,
+                 cookies={&quot;SWID&quot;: &quot;{cookie-with-curly-brackets-included}&quot;,
                           &quot;espn_s2&quot;: &quot;very%long%token%296%characters%long%with%no%brackets%&quot; })
 d = r.json()
 r.status_code</code></pre>
@@ -118,7 +118,7 @@ r.status_code</code></pre>
 <p>This is taylor made for <code>purrr</code>. We are able to parse the JSON and extract the data of interest.</p>
 <div id="team-records" class="section level4">
 <h4>Team Records</h4>
-<p>The first basic piece of information to extact is team records.</p>
+<p>The first basic piece of information to extract is team records.</p>
 <pre class="r"><code>library(tidyverse)
 library(purrr)
 TeamRecords =
