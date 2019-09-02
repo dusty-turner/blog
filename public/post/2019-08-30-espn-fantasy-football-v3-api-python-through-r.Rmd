@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ### Accessing ESPN Fantasy Football for Private Leagues
 
-In my previous [post]("https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/"), I explained how to access the ESPN Fantasy Football's new (V3) *public* API.  But what if your league manager does not make the league public?  Are you out of luck?
+In my previous [post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/), I explained how to access the ESPN Fantasy Football's new (V3) *public* API.  But what if your league manager does not make the league public?  Are you out of luck?
 
 In this post I'll explain how to pass 'cookies' to ESPN and access private league data.  
 
@@ -36,13 +36,13 @@ To accomplish this, we'll use...
 
 Yes - Beleive it or not, though I'm an avid R user, I believe in using the best tool for the job.  I code in Python about as well as I speak Spanish.  I have to think really hard as I translate vocabulary, I don't always know what I'm saying, and I often have to repeat something verbatim that I read somewhere else.    
 
-Despite my best efforts to accomplish this in R, I simply have not been able to make it work yet. (Please let me know if you or someone else figures out how to do this!)  Again, major thanks to [Steve Morse]("https://stmorse.github.io/") for [this post]("https://stmorse.github.io/journal/espn-fantasy-v3.html").  Follow him on twitter @[thestevemo]("https://twitter.com/thestevemo").  
+Despite my best efforts to accomplish this in R, I simply have not been able to make it work yet. (Please let me know if you or someone else figures out how to do this!)  Again, major thanks to [Steve Morse](https://stmorse.github.io/) for [this post](https://stmorse.github.io/journal/espn-fantasy-v3.html).  Follow him on twitter @[thestevemo](https://twitter.com/thestevemo).  
 
 So, my motto here, to butcher a quote from "Tropic Thunder" is to, "never go full Python...."  In light of that, it gave me a great  opportuinty to learn `retriculate`.
 
 ### Access Private League Data
 
-Take the steps below to acces private leagues.  Again, if your league is public, you can access the API like [so]("https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/").
+Take the steps below to acces private leagues.  Again, if your league is public, you can access the API like [so](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/).
 
 #### Build URL
 
@@ -96,9 +96,9 @@ The status code is 401.  This means the request has been blocked and we cannot a
 
 #### What does work: Python in R
 
-Since we cannot use R to access the API, lets replicate [Steve]("https://twitter.com/thestevemo")'s [work in Python]("https://stmorse.github.io/journal/espn-fantasy-v3.html").  Since we want to manipulate and eventually visualize the data in R, lets access the data using Python code in R. 
+Since we cannot use R to access the API, lets replicate [Steve](https://twitter.com/thestevemo)'s [work in Python](https://stmorse.github.io/journal/espn-fantasy-v3.html).  Since we want to manipulate and eventually visualize the data in R, lets access the data using Python code in R. 
 
-First, ensure Python is installed on your computer.  The latest release of Python should be located for [Windows]("https://www.Python.org/downloads/windows/") or [MAC]("https://www.python.org/downloads/mac-osx/") users.  
+First, ensure Python is installed on your computer.  The latest release of Python should be located for [Windows](https://www.Python.org/downloads/windows/) or [MAC](https://www.python.org/downloads/mac-osx/) users.  
 
 Next, install the `reticulate` package with `install.packages("reticulate")` and call the library.  
 ```{r}
@@ -164,7 +164,7 @@ If you've provided the correct URL and cookies, you should receive status 200.  
 
 ### Manipulate the Data
 
-Now that we have accessed private league ESPN Fantasy Football data, we need to get it in a usable format.  In my [previous post]("https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/"), because we were able to access our public league data using R code, our data was in the shape of a dataframe.  Using this technique, the data is in JSON format.  
+Now that we have accessed private league ESPN Fantasy Football data, we need to get it in a usable format.  In my [previous post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/), because we were able to access our public league data using R code, our data was in the shape of a dataframe.  Using this technique, the data is in JSON format.  
 
 This is taylor made for `purrr`. We are able to parse the JSON and extract the data of interest. 
 

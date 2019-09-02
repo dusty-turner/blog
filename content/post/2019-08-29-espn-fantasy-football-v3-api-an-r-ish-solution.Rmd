@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 In previous seasons, we've enjoyed relatively easy access to ESPN's fantasy sports data.  Sometime in the last few months, ESPN altered/upgraded their AP to V3.
 
-As I've tried to replicate [previous analysis]("https://dusty-turner.netlify.com/post/mathlete-fantasy-football-analysis2018/"), old methods accessing the [V2 API]("https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/") no longer work.
+As I've tried to replicate [previous analysis](https://dusty-turner.netlify.com/post/mathlete-fantasy-football-analysis2018/), old methods accessing the [V2 API](https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/) no longer work.
 
 ### Credit Where Credit Is Due
 
@@ -33,7 +33,7 @@ As I've tried to replicate [previous analysis]("https://dusty-turner.netlify.com
 
 </center>
 
-I must also credit this [reddit thread]("https://www.reddit.com/r/fantasyfootball/comments/aq284h/espn_api/") where one of the users shared the URL with end points that provide the all the available data requests for the API (as far as I can tell).
+I must also credit this [reddit thread](https://www.reddit.com/r/fantasyfootball/comments/aq284h/espn_api/) where one of the users shared the URL with end points that provide the all the available data requests for the API (as far as I can tell).
 
 ### Getting the Data
 
@@ -132,33 +132,4 @@ I plan on several future posts from here that include...
 - Analyzing the league
 - A walk through of cookies for private leagues
 - How to use `reticulate` with Python and `purrr` to access the API.
-
-
-<!-- ```{r} -->
-<!-- library(reticulate) -->
-<!-- ``` -->
-
-<!-- ```{python} -->
-<!-- import requests -->
-
-<!-- url = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/89417258?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore" -->
-
-<!-- r = requests.get(url) -->
-<!-- d = r.json() -->
-
-<!-- ``` -->
-
-
-<!-- ```{r} -->
-<!--     ## records -->
-<!--   py$d$teams %>% map_df(magrittr::extract, c("location", "nickname", "id")) %>% bind_cols( -->
-<!--     py$d$teams %>% map("record") %>% map("overall") %>% map_df(magrittr::extract, c("losses", "wins")) -->
-<!--   ) -->
-
-<!--     ## schedule below     -->
-<!-- py$d$schedule %>% map_df(magrittr::extract, c("winner","matchupPeriodId")) %>%  -->
-<!--   bind_cols(py$d$schedule %>% map("away") %>% map_df(magrittr::extract,c("teamId","totalPoints"))) %>% -->
-<!--   bind_cols(py$d$schedule %>% map("home") %>% map_df(magrittr::extract,c("teamId","totalPoints"))) -->
-
-<!-- ``` -->
 

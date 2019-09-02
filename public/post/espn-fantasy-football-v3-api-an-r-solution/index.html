@@ -208,7 +208,7 @@ As I’ve tried to replicate previous analysis, old methods accessing the V2 API
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">ESPN Fantasy Football V3 API for Public Leagues: An R Solution</h1>
-      <p class="post-meta">@Dusty Turner · Aug 29, 2019 · 5 min read</p>
+      <p class="post-meta">@Dusty Turner · Aug 29, 2019 · 4 min read</p>
     </header>
     <article class="post-content">
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
@@ -226,7 +226,7 @@ As I’ve tried to replicate previous analysis, old methods accessing the V2 API
 <div id="espns-new-api-v3" class="section level3">
 <h3>ESPN’s New API (V3)</h3>
 <p>In previous seasons, we’ve enjoyed relatively easy access to ESPN’s fantasy sports data. Sometime in the last few months, ESPN altered/upgraded their AP to V3.</p>
-<p>As I’ve tried to replicate <a href="%22https://dusty-turner.netlify.com/post/mathlete-fantasy-football-analysis2018/%22">previous analysis</a>, old methods accessing the <a href="%22https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/%22">V2 API</a> no longer work.</p>
+<p>As I’ve tried to replicate <a href="https://dusty-turner.netlify.com/post/mathlete-fantasy-football-analysis2018/">previous analysis</a>, old methods accessing the <a href="https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/">V2 API</a> no longer work.</p>
 </div>
 <div id="credit-where-credit-is-due" class="section level3">
 <h3>Credit Where Credit Is Due</h3>
@@ -239,7 +239,7 @@ Quick crash course on ESPN’s new <a href="https://twitter.com/hashtag/fantasyf
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
-<p>I must also credit this <a href="%22https://www.reddit.com/r/fantasyfootball/comments/aq284h/espn_api/%22">reddit thread</a> where one of the users shared the URL with end points that provide the all the available data requests for the API (as far as I can tell).</p>
+<p>I must also credit this <a href="https://www.reddit.com/r/fantasyfootball/comments/aq284h/espn_api/">reddit thread</a> where one of the users shared the URL with end points that provide the all the available data requests for the API (as far as I can tell).</p>
 </div>
 <div id="getting-the-data" class="section level3">
 <h3>Getting the Data</h3>
@@ -462,25 +462,6 @@ Palindrome Tikkit
 <li>A walk through of cookies for private leagues</li>
 <li>How to use <code>reticulate</code> with Python and <code>purrr</code> to access the API.</li>
 </ul>
-<!-- ```{r} -->
-<!-- library(reticulate) -->
-<!-- ``` -->
-<!-- ```{python} -->
-<!-- import requests -->
-<!-- url = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/89417258?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore" -->
-<!-- r = requests.get(url) -->
-<!-- d = r.json() -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!--     ## records -->
-<!--   py$d$teams %>% map_df(magrittr::extract, c("location", "nickname", "id")) %>% bind_cols( -->
-<!--     py$d$teams %>% map("record") %>% map("overall") %>% map_df(magrittr::extract, c("losses", "wins")) -->
-<!--   ) -->
-<!--     ## schedule below     -->
-<!-- py$d$schedule %>% map_df(magrittr::extract, c("winner","matchupPeriodId")) %>%  -->
-<!--   bind_cols(py$d$schedule %>% map("away") %>% map_df(magrittr::extract,c("teamId","totalPoints"))) %>% -->
-<!--   bind_cols(py$d$schedule %>% map("home") %>% map_df(magrittr::extract,c("teamId","totalPoints"))) -->
-<!-- ``` -->
 </div>
 </article>
     <footer class="post-footer">
