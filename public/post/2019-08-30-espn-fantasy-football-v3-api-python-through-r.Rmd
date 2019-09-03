@@ -83,8 +83,17 @@ espn_s2 =  "very%long%cookie%296%ish%characters%long%with%no%brackets%"
 
 #### What Currently Does Not Work (R)
 
-```{r eval=TRUE, include=TRUE}
+```{r eval=FALSE, include=TRUE}
 ESPNGet <- httr::GET(url = url,
+                     httr::set_cookies(
+                       `swid` = "{cookie-with-curly-brackets-included}",
+                       `espn_s2` =  "very%long%cookie%296%characters%long%with%no%brackets%"
+                     ))
+ESPNGet$status_code
+```
+ 
+```{r echo=FALSE}
+ESPNGet <- httr::GET(url = "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2018/segments/0/leagues/1314476?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav&view=mMatchupScore",
                      httr::set_cookies(
                        `swid` = "{cookie-with-curly-brackets-included}",
                        `espn_s2` =  "very%long%cookie%296%characters%long%with%no%brackets%"
