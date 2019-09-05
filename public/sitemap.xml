@@ -58,12 +58,12 @@
   </url>
   
   <url>
-    <loc>/categories/python/</loc>
+    <loc>/tags/python/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/python/</loc>
+    <loc>/categories/python/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -88,12 +88,12 @@
   </url>
   
   <url>
-    <loc>/categories/army-math/</loc>
+    <loc>/tags/army-math/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/army-math/</loc>
+    <loc>/categories/army-math/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -118,17 +118,12 @@
   </url>
   
   <url>
-    <loc>/categories/datascience/</loc>
-    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/datascience/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/foreach/</loc>
+    <loc>/categories/datascience/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -138,17 +133,22 @@
   </url>
   
   <url>
+    <loc>/tags/foreach/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/parellel-processing-and-bootstrapping-for-diamonds/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/devtools/</loc>
+    <loc>/tags/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/devtools/</loc>
+    <loc>/categories/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -158,12 +158,12 @@
   </url>
   
   <url>
-    <loc>/categories/roxygen/</loc>
+    <loc>/tags/roxygen/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/roxygen/</loc>
+    <loc>/categories/roxygen/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -173,12 +173,12 @@
   </url>
   
   <url>
-    <loc>/tags/shiny/</loc>
+    <loc>/categories/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/shiny/</loc>
+    <loc>/tags/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -193,12 +193,12 @@
   </url>
   
   <url>
-    <loc>/categories/games/</loc>
+    <loc>/tags/games/</loc>
     <lastmod>2019-02-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/games/</loc>
+    <loc>/categories/games/</loc>
     <lastmod>2019-02-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -208,12 +208,12 @@
   </url>
   
   <url>
-    <loc>/tags/children/</loc>
+    <loc>/categories/children/</loc>
     <lastmod>2019-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/children/</loc>
+    <loc>/tags/children/</loc>
     <lastmod>2019-01-04T00:00:00+00:00</lastmod>
   </url>
   
@@ -233,12 +233,12 @@
   </url>
   
   <url>
-    <loc>/tags/yahoo-api/</loc>
+    <loc>/categories/yahoo-api/</loc>
     <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/yahoo-api/</loc>
+    <loc>/tags/yahoo-api/</loc>
     <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,12 +258,12 @@
   </url>
   
   <url>
-    <loc>/tags/lubridate/</loc>
+    <loc>/categories/lubridate/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/lubridate/</loc>
+    <loc>/tags/lubridate/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -278,12 +278,12 @@
   </url>
   
   <url>
-    <loc>/categories/tidytext/</loc>
+    <loc>/tags/tidytext/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/tidytext/</loc>
+    <loc>/categories/tidytext/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -378,12 +378,12 @@
   </url>
   
   <url>
-    <loc>/tags/rmd/</loc>
+    <loc>/categories/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/rmd/</loc>
+    <loc>/tags/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   

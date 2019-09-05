@@ -109,7 +109,8 @@ Since we cannot use R to access the API, lets replicate [Steve](https://twitter.
 
 First, ensure Python is installed on your computer.  The latest release of Python should be located for [Windows](https://www.Python.org/downloads/windows/) or [MAC](https://www.python.org/downloads/mac-osx/) users.  
 
-Next, install the `reticulate` package with `install.packages("reticulate")` and call the library.  
+Next, install the `reticulate` package with `install.packages("reticulate")` and call the library.  Thanks to [Kevin Ushey]("https://twitter.com/kevin_ushey") for the great package that helps Python illiterate people like me execute a few lines of Python code in R.
+
 ```{r}
 library(reticulate)
 ```

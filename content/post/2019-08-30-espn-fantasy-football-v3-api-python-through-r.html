@@ -82,7 +82,7 @@ ESPNGet$status_code</code></pre>
 <h4>What does work: Python in R</h4>
 <p>Since we cannot use R to access the API, lets replicate <a href="https://twitter.com/thestevemo">Steve</a>’s <a href="https://stmorse.github.io/journal/espn-fantasy-v3.html">work in Python</a>. Since we want to manipulate and eventually visualize the data in R, lets access the data using Python code in R.</p>
 <p>First, ensure Python is installed on your computer. The latest release of Python should be located for <a href="https://www.Python.org/downloads/windows/">Windows</a> or <a href="https://www.python.org/downloads/mac-osx/">MAC</a> users.</p>
-<p>Next, install the <code>reticulate</code> package with <code>install.packages("reticulate")</code> and call the library.</p>
+<p>Next, install the <code>reticulate</code> package with <code>install.packages("reticulate")</code> and call the library. Thanks to <a href="%22https://twitter.com/kevin_ushey%22">Kevin Ushey</a> for the great package that helps Python illiterate people like me execute a few lines of Python code in R.</p>
 <pre class="r"><code>library(reticulate)</code></pre>
 <p>Should future Python code not work, it could be because R is unable to find where Python is installed. You can point R in the right direction with this call: <code>use_Python("/path/to/Python_folder")</code></p>
 <p>The reticulate packages creates an R/Python marriage.</p>
