@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ESPN Fantasy Football V3 API for Private Leagues: An R Solution (Finally!)</title>
+      <link>/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</link>
+      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</guid>
+      <description>Accessing ESPN’s New V3 API for Private Leagues: How We Got HereThis marks post 3 of n of my 2019 ESPN Fantasy Football blog posts. In the last few months, ESPN upgraded their API from V2 to V3, breaking all of our previous work accessing and analysing the data from the API.
+In my last two posts, I explored how to access data from ESPN’s V3 API for public leagues.</description>
+    </item>
     
     <item>
       <title>ESPN Fantasy Football V3 API for Private Leagues: Python Through R</title>
