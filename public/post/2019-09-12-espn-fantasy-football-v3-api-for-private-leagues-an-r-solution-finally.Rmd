@@ -18,7 +18,7 @@ cover: /img/football.jpg
 
 This marks post 3 of n of my 2019 ESPN Fantasy Football blog posts.  In the last few months, ESPN upgraded their API from V2 to V3, breaking all of our previous work [accessing](https://dusty-turner.netlify.com/post/espn-yahoo-api-navigation/) and [analysing](https://dusty-turner.netlify.com/post/mathlete-fantasy-football-analysis2018/) the data from the API.
 
-In my last two posts, I explored how to access data from ESPN's V3 API for [public](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/) leagues.  My best efforts to access data for private leagues in R fell short.  Using the work from my friend [Steve](https://twitter.com/thestevemo) on his [blog](https://stmorse.github.io/journal/espn-fantasy-v3.html), I was able to execute Python code inside R chunks with the library `reticulate`.  I wrote about that process in my previous [post](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/). 
+In my last two posts, I explored how to access data from ESPN's V3 API for [public](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/) leagues.  My best efforts to access data for private leagues in R fell short.  Using the work from my friend [Steve](https://twitter.com/thestevemo) on his [blog](https://stmorse.github.io/journal/espn-fantasy-v3.html), I was able to execute Python code inside R chunks with the library `reticulate`.  I wrote about that process in [post 2](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/). 
 
 My best efforts to access ESPN's new API in R fell short, that is, until I asked my friend [Nick](https://twitter.com/nickryanpaul).  Nick crushed this and I'm extremely grateful that he figured it out.  I'll detail below what he did.
 
@@ -91,7 +91,7 @@ We have previously built our URL.
 url
 ```
 
-Next, we create a save our cookies in the following object:
+Next, we save our cookies:
 
 ```{r eval=FALSE, include=TRUE}
 cookies <- c(`swid` = "{cookie-with-curly-brackets-included}",
