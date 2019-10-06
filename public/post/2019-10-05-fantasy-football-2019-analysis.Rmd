@@ -1,0 +1,69 @@
+---
+title: Fantasy Football 2019 Analysis
+author: Dusty Turner
+date: '2019-10-05'
+slug: fantasy-football-2019-analysis
+categories:
+  - fantasy football
+  - beatnavy
+  - datascience
+  - ESPN API
+tags:
+  - fantasy football
+  - beatnavy
+  - datascience
+  - ESPN API
+# cover: /img/cover.jpg
+---
+
+## The Goal of this Analysis
+
+I am a stereotypical bad fantasy football manager.  My motivation for this analysis is to show how I'm unlucky.  
+
+Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to.
+
+## ESPN Fantasy Football Analysis: How To Get The Data
+
+This is the final (maybe) of a series of posts where I am chronologicaling my process of accessing and analyzing ESPN's fantasy football data using my league as an example.
+
+First, I explained how I accessed ESPN's fantasy football data in public leagues using their new V3 API [here](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/).  
+
+Next, I mimicked [thestevemo](https://twitter.com/thestevemo)'s [blogpost](https://stmorse.github.io/journal/espn-fantasy-v3.html) in accessing private league data.  I wasn't having success in R so I used reticulate and [made it happen](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/).
+
+Most recently, [nickryanpaul](https://twitter.com/nickryanpaul) helped me figure out how to [access the API](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/) using R.
+
+## League Analysis
+
+[League Analysis Dashboard](https://dusty-turner.netlify.com/fantasyfootball2019/fantasy-football-league-dashboard)
+
+So far, I've built this to do the following:
+
+1. Identify the top and bottom teams every week.  In my league we give a mug to the top points scorer and a plunger for the bottom dweller. 
+
+2. Show a graphic to see who is over performing (or under performing) according to their record.
+
+3. Analyse whose players are over/under performing according to ESPN's projections.  Another way to look at this is examining how accurate ESPN's projections are.  Along with this - If every team played their optimal lineup, what would their record be.  
+
+4. Lastly, I created a couple of miscellaneous observations.  I created a histogram of how accurate ESPN's predictions are by position.  Also, I created a radar chart to show how each team ranks in scoring at each position compared to the other teams.  
+
+I plan to add more as the season progresses (and I have time). 
+
+## Team By Team Analysis
+
+For each team, I created a markdown report analyzing their performance.  Here is the analysis I currently have for each team:
+
+1. Short league summary depicting if the selected team earned the top (or bottom) points scorer award.
+
+2. A visualization showing how well each player performed according to their expectation.  Also a sortable table of this graphic.
+
+3. A listing of the optimal lineup and how badly the manager missed this lineup.
+
+4. A radar chart showing how well each position performed compared to all previous weeks.  
+
+Here is the most current analysis for each team.  
+
+[R'm Chair Quarterback](https://dusty-turner.netlify.com/fantasyfootball2019/current/'R'm%20Chair_Quarterback_Update.html)
+
+## Feedback Welcome
+
+Please provide any feedback you may have.  How could I make this better?  What else could I analyse?  

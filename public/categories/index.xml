@@ -7,15 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>beatnavy</title>
+      <link>/categories/beatnavy/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/beatnavy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datascience</title>
+      <link>/categories/datascience/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/datascience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>ESPN API</title>
       <link>/categories/espn-api/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/espn-api/</guid>
       <description></description>
@@ -24,7 +42,7 @@
     <item>
       <title>fantasy football</title>
       <link>/categories/fantasy-football/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/fantasy-football/</guid>
       <description></description>
@@ -58,29 +76,11 @@
     </item>
     
     <item>
-      <title>beatnavy</title>
-      <link>/categories/beatnavy/</link>
-      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/beatnavy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>bootstrap</title>
       <link>/categories/bootstrap/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/bootstrap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>datascience</title>
-      <link>/categories/datascience/</link>
-      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/datascience/</guid>
       <description></description>
     </item>
     

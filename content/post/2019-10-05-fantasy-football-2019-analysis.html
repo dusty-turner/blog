@@ -1,0 +1,60 @@
+---
+title: Fantasy Football 2019 Analysis
+author: Dusty Turner
+date: '2019-10-05'
+slug: fantasy-football-2019-analysis
+categories:
+  - fantasy football
+  - beatnavy
+  - datascience
+  - ESPN API
+tags:
+  - fantasy football
+  - beatnavy
+  - datascience
+  - ESPN API
+# cover: /img/cover.jpg
+---
+
+
+
+<div id="the-goal-of-this-analysis" class="section level2">
+<h2>The Goal of this Analysis</h2>
+<p>I am a stereotypical bad fantasy football manager. My motivation for this analysis is to show how I’m unlucky.</p>
+<p>Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to.</p>
+</div>
+<div id="espn-fantasy-football-analysis-how-to-get-the-data" class="section level2">
+<h2>ESPN Fantasy Football Analysis: How To Get The Data</h2>
+<p>This is the final (maybe) of a series of posts where I am chronologicaling my process of accessing and analyzing ESPN’s fantasy football data using my league as an example.</p>
+<p>First, I explained how I accessed ESPN’s fantasy football data in public leagues using their new V3 API <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">here</a>.</p>
+<p>Next, I mimicked <a href="https://twitter.com/thestevemo">thestevemo</a>’s <a href="https://stmorse.github.io/journal/espn-fantasy-v3.html">blogpost</a> in accessing private league data. I wasn’t having success in R so I used reticulate and <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/">made it happen</a>.</p>
+<p>Most recently, <a href="https://twitter.com/nickryanpaul">nickryanpaul</a> helped me figure out how to <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/">access the API</a> using R.</p>
+</div>
+<div id="league-analysis" class="section level2">
+<h2>League Analysis</h2>
+<p><a href="https://dusty-turner.netlify.com/fantasyfootball2019/fantasy-football-league-dashboard">League Analysis Dashboard</a></p>
+<p>So far, I’ve built this to do the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>Identify the top and bottom teams every week. In my league we give a mug to the top points scorer and a plunger for the bottom dweller.</p></li>
+<li><p>Show a graphic to see who is over performing (or under performing) according to their record.</p></li>
+<li><p>Analyse whose players are over/under performing according to ESPN’s projections. Another way to look at this is examining how accurate ESPN’s projections are. Along with this - If every team played their optimal lineup, what would their record be.</p></li>
+<li><p>Lastly, I created a couple of miscellaneous observations. I created a histogram of how accurate ESPN’s predictions are by position. Also, I created a radar chart to show how each team ranks in scoring at each position compared to the other teams.</p></li>
+</ol>
+<p>I plan to add more as the season progresses (and I have time).</p>
+</div>
+<div id="team-by-team-analysis" class="section level2">
+<h2>Team By Team Analysis</h2>
+<p>For each team, I created a markdown report analyzing their performance. Here is the analysis I currently have for each team:</p>
+<ol style="list-style-type: decimal">
+<li><p>Short league summary depicting if the selected team earned the top (or bottom) points scorer award.</p></li>
+<li><p>A visualization showing how well each player performed according to their expectation. Also a sortable table of this graphic.</p></li>
+<li><p>A listing of the optimal lineup and how badly the manager missed this lineup.</p></li>
+<li><p>A radar chart showing how well each position performed compared to all previous weeks.</p></li>
+</ol>
+<p>Here is the most current analysis for each team.</p>
+<p><a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/&#39;R&#39;m%20Chair_Quarterback_Update.html">R’m Chair Quarterback</a></p>
+</div>
+<div id="feedback-welcome" class="section level2">
+<h2>Feedback Welcome</h2>
+<p>Please provide any feedback you may have. How could I make this better? What else could I analyse?</p>
+</div>
