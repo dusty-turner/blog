@@ -15,7 +15,7 @@
 
   
   <meta name="author" content="Dusty Turner" />
-  <meta name="description" content="The Goal of this AnalysisOne of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rahter unlucky. To show this, I created this post.
+  <meta name="description" content="The Goal of this AnalysisOne of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rather unlucky. To show this, I created this post.
 Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to." />
 
   
@@ -23,7 +23,7 @@ Below I summarize how I got the data, the information I can glean from the data,
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@dtdusty" />
     <meta name="twitter:title" content="Fantasy Football 2019 Analysis" />
-    <meta name="twitter:description" content="The Goal of this AnalysisOne of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rahter unlucky. To show this, I created this post.
+    <meta name="twitter:description" content="The Goal of this AnalysisOne of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rather unlucky. To show this, I created this post.
 Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
@@ -213,20 +213,16 @@ Below I summarize how I got the data, the information I can glean from the data,
 
 <div id="the-goal-of-this-analysis" class="section level3">
 <h3>The Goal of this Analysis</h3>
-<p>One of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rahter unlucky. To show this, I created this post.</p>
+<p>One of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rather unlucky. To show this, I created this post.</p>
 <p>Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to.</p>
-</div>
-<div id="espn-fantasy-football-analysis-how-to-get-the-data" class="section level3">
-<h3>ESPN Fantasy Football Analysis: How To Get The Data</h3>
-<p>This is the final (maybe) of a series of posts where I am chronologicaling my process of accessing and analyzing ESPN’s fantasy football data using my league as an example.</p>
-<p>First, I explained how I accessed ESPN’s fantasy football data in public leagues using their new V3 API <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">here</a>.</p>
-<p>Next, I mimicked <a href="https://twitter.com/thestevemo">thestevemo</a>’s <a href="https://stmorse.github.io/journal/espn-fantasy-v3.html">blogpost</a> in accessing private league data. I wasn’t having success in R so I used reticulate and <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/">made it happen</a>.</p>
-<p>Most recently, <a href="https://twitter.com/nickryanpaul">nickryanpaul</a> helped me figure out how to <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/">access the API</a> using R.</p>
+<p>There’s not any code in this post. The code I used to create the dashboard of analysis (pictured below) is on this github repo <a href="https://github.com/dusty-turner/ESPN-V3">dusty-turner/ESPN-V3</a>.</p>
+<p>Admittedly, the repo (and code) are quite messy. I hope to clean it up over the coming weeks.</p>
+<p><img src="/dashboard.PNG" /><!-- --></p>
 </div>
 <div id="league-analysis" class="section level3">
 <h3>League Analysis</h3>
 <p><a href="https://dusty-turner.netlify.com/fantasyfootball2019/fantasy-football-league-dashboard">League Analysis Dashboard</a></p>
-<p>So far, I’ve built this to do the following:</p>
+<p>At the above link, you’ll fine a dashboard that will show analysis from my league. It includes the following:</p>
 <ol style="list-style-type: decimal">
 <li><p>Identify the top and bottom teams every week. In my league we give a mug to the top points scorer and a plunger for the bottom dweller.</p></li>
 <li><p>Show a graphic to see who is over performing (or under performing) according to their record.</p></li>
@@ -237,6 +233,7 @@ Below I summarize how I got the data, the information I can glean from the data,
 </div>
 <div id="team-by-team-analysis" class="section level3">
 <h3>Team By Team Analysis</h3>
+<p><a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/&#39;R&#39;m%20Chair_Quarterback_Update.html">R’m Chair Quarterback</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/Analysis_Paralysis_Update.html">Analysis Paralysis</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/compute%20_this!_update.html">Compute This!</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/dallas_the%20boys_update">Dallas The Boys</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/palindrome_tikkit_update">Palindrome Tikkit</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/philly_chapmaniacs_update">Philly Chapmaniacs</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/team_ward_update">Team Ward</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/the%20objective_functions_update">The OBJective Functions</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/the_chief_update">The Chief</a> | <a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/the_plainsmen_update">The Plainsmen</a></p>
 <p>For each team, I created a markdown report analyzing their performance. Here is the analysis I currently have for each team:</p>
 <ol style="list-style-type: decimal">
 <li><p>Short league summary depicting if the selected team earned the top (or bottom) points scorer award.</p></li>
@@ -244,13 +241,12 @@ Below I summarize how I got the data, the information I can glean from the data,
 <li><p>A listing of the optimal lineup and how badly the manager missed this lineup.</p></li>
 <li><p>A radar chart showing how well each position performed compared to all previous weeks.</p></li>
 </ol>
-<p>Here is the most current analysis for each team.</p>
-<p><a href="https://dusty-turner.netlify.com/fantasyfootball2019/current/&#39;R&#39;m%20Chair_Quarterback_Update.html">R’m Chair Quarterback</a></p>
 </div>
-<div id="code-available" class="section level3">
-<h3>Code Available</h3>
-<p>You can access the code to this project at my github repo: <a href="https://github.com/dusty-turner/ESPN-V3">dusty-turner/ESPN-V3</a>.</p>
-<p>Admiddely, the repo (and code) are quite messy. I hope to clean it up over the coming weeks.</p>
+<div id="some-background-how-do-you-get-your-leagues-data" class="section level3">
+<h3>Some Background: How do you get your league’s data?</h3>
+<p>As a recap from previous posts:</p>
+<p>If your league is public, follow this <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-an-r-solution/">post</a>.</p>
+<p>If your league is public, you can use <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/">python code in R</a> or more simply, do it <a href="https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/">directly in R</a>.</p>
 </div>
 <div id="feedback-welcome" class="section level3">
 <h3>Feedback Welcome</h3>
