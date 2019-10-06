@@ -1,5 +1,5 @@
 ---
-title: Fantasy Football 2019 Analysis
+title: 'ESPN Fantasy Football 2019: League and Team Analysis'
 author: Dusty Turner
 date: '2019-10-05'
 slug: fantasy-football-2019-analysis
