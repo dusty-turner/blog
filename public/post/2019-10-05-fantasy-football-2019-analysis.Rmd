@@ -16,13 +16,13 @@ tags:
 # cover: /img/cover.jpg
 ---
 
-## The Goal of this Analysis
+### The Goal of this Analysis
 
-I am a stereotypical bad fantasy football manager.  My motivation for this analysis is to show how I'm unlucky.  
+One of my superpowers is being a bad fantasy football manager.  My motivation for this analysis is to show how I'm not actually that bad - but rahter unlucky.  To show this, I created this post.
 
 Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to.
 
-## ESPN Fantasy Football Analysis: How To Get The Data
+### ESPN Fantasy Football Analysis: How To Get The Data
 
 This is the final (maybe) of a series of posts where I am chronologicaling my process of accessing and analyzing ESPN's fantasy football data using my league as an example.
 
@@ -32,7 +32,7 @@ Next, I mimicked [thestevemo](https://twitter.com/thestevemo)'s [blogpost](https
 
 Most recently, [nickryanpaul](https://twitter.com/nickryanpaul) helped me figure out how to [access the API](https://dusty-turner.netlify.com/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/) using R.
 
-## League Analysis
+### League Analysis
 
 [League Analysis Dashboard](https://dusty-turner.netlify.com/fantasyfootball2019/fantasy-football-league-dashboard)
 
@@ -48,7 +48,7 @@ So far, I've built this to do the following:
 
 I plan to add more as the season progresses (and I have time). 
 
-## Team By Team Analysis
+### Team By Team Analysis
 
 For each team, I created a markdown report analyzing their performance.  Here is the analysis I currently have for each team:
 
@@ -64,6 +64,12 @@ Here is the most current analysis for each team.
 
 [R'm Chair Quarterback](https://dusty-turner.netlify.com/fantasyfootball2019/current/'R'm%20Chair_Quarterback_Update.html)
 
-## Feedback Welcome
+### Code Available
+
+You can access the code to this project at my github repo: [dusty-turner/ESPN-V3](https://github.com/dusty-turner/ESPN-V3).  
+
+Admiddely, the repo (and code) are quite messy.  I hope to clean it up over the coming weeks. 
+
+### Feedback Welcome
 
 Please provide any feedback you may have.  How could I make this better?  What else could I analyse?  
