@@ -36,8 +36,12 @@ tags:
 <p>A colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.</p>
 <div id="install-andor-load-necessary-packages" class="section level3">
 <h3>Install and/or load necessary packages</h3>
-<pre class="r"><code>if (!require(&quot;tidyverse&quot;)) install.packages(&quot;tidyverse&quot;)
-if (!require(&quot;readr&quot;)) install.packages(&quot;readr&quot;)
+<pre class="r"><code>if (!require(&quot;tidyverse&quot;)) install.packages(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.1</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.1</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.6.1</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.1</code></pre>
+<pre class="r"><code>if (!require(&quot;readr&quot;)) install.packages(&quot;readr&quot;)
 if (!require(&quot;lubridate&quot;)) install.packages(&quot;lubridate&quot;)
 if (!require(&quot;stringi&quot;)) install.packages(&quot;stringi&quot;)</code></pre>
 </div>
@@ -53,10 +57,10 @@ if (!require(&quot;stringi&quot;)) install.packages(&quot;stringi&quot;)</code><
 ## cols(
 ##   `Date Time (GMT)` = col_character(),
 ##   DotW = col_character(),
-##   Hosts = col_integer(),
-##   Users = col_integer(),
+##   Hosts = col_double(),
+##   Users = col_double(),
 ##   `Users Per Host` = col_double(),
-##   weekno = col_integer(),
+##   weekno = col_double(),
 ##   desdate = col_double()
 ## )</code></pre>
 <p>We notice that it read in our data column as a character string. We’ll have to do some work to fix that, but lets to some further exploration for now.</p>
@@ -76,33 +80,24 @@ if (!require(&quot;stringi&quot;)) install.packages(&quot;stringi&quot;)</code><
 <p>This confirms that our date is in the wrong format. It appears everything else is fine.</p>
 <p>The structure command is also a valuable tool. This shows us how R interprets the data and if there are any hidden levels or format issues in which we are unaware.</p>
 <pre class="r"><code>str(data)</code></pre>
-<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    7519 obs. of  7 variables:
+<pre><code>## Classes &#39;spec_tbl_df&#39;, &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;: 7519 obs. of  7 variables:
 ##  $ Date Time (GMT): chr  &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; ...
 ##  $ DotW           : chr  &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; ...
-##  $ Hosts          : int  1368 1355 1351 1344 1375 1411 1462 1402 1427 1436 ...
-##  $ Users          : int  27084 26674 26424 28796 29589 30998 32096 31137 31193 29795 ...
+##  $ Hosts          : num  1368 1355 1351 1344 1375 ...
+##  $ Users          : num  27084 26674 26424 28796 29589 ...
 ##  $ Users Per Host : num  19.8 19.7 19.6 21.4 21.5 ...
-##  $ weekno         : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ weekno         : num  1 1 1 1 1 1 1 1 1 1 ...
 ##  $ desdate        : num  42875 42875 42875 42875 42875 ...
-##  - attr(*, &quot;spec&quot;)=List of 2
-##   ..$ cols   :List of 7
-##   .. ..$ Date Time (GMT): list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
-##   .. ..$ DotW           : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
-##   .. ..$ Hosts          : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
-##   .. ..$ Users          : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
-##   .. ..$ Users Per Host : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_double&quot; &quot;collector&quot;
-##   .. ..$ weekno         : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_integer&quot; &quot;collector&quot;
-##   .. ..$ desdate        : list()
-##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_double&quot; &quot;collector&quot;
-##   ..$ default: list()
-##   .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_guess&quot; &quot;collector&quot;
-##   ..- attr(*, &quot;class&quot;)= chr &quot;col_spec&quot;</code></pre>
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   `Date Time (GMT)` = col_character(),
+##   ..   DotW = col_character(),
+##   ..   Hosts = col_double(),
+##   ..   Users = col_double(),
+##   ..   `Users Per Host` = col_double(),
+##   ..   weekno = col_double(),
+##   ..   desdate = col_double()
+##   .. )</code></pre>
 <p>One issue we notice is there there areparenthesis <code>()</code> in the <code>Date Time (GMT)</code> column name. We will run into issues calling this column in the future because we will have to put the name in ‘single quotes’. To allow us to directly call the column name, we will rename this column, as well as several others for similar reasons.</p>
 <p>An ounce of prevention…</p>
 <pre class="r"><code>names(data) = c(&quot;DateTimeGMT&quot;, &quot;DotW&quot;,&quot;Hosts&quot;, &quot;Users&quot;, &quot;UsersPerHost&quot;, &quot;weekno&quot;, &quot;desdate&quot;)
@@ -224,7 +219,7 @@ plotting</code></pre>
 <div id="analysis-by-week" class="section level3">
 <h3>Analysis by week</h3>
 <p>Lets plot the <code>UsersPerHost</code> by week.</p>
-<p>First, we must create a column for week. The code below identifies each week in the dataset and numbers them 1 through n.</p>
+<p>First, we must create a column for week. The code below identifies each week in the dataset and numbers them 1 through n. </p>
 <pre class="r"><code>data$week = trunc((data$newdate - min(data$newdate))/dweeks(1))</code></pre>
 <p>Now for the plot by week.</p>
 <pre class="r"><code>ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
@@ -270,26 +265,26 @@ helper %&gt;%
   arrange(desc(diff)) %&gt;%
   select(&quot;weekpair&quot;, &quot;p adj&quot;, &quot;diff&quot;, &quot;lwr&quot;, &quot;upr&quot;)</code></pre>
 <pre><code>##    weekpair p adj   diff    lwr    upr
-## 1       6-1     0  2.603  1.575  3.630
-## 2       6-2     0  1.734  0.885  2.582
-## 3     18-16     0  1.582  0.476  2.688
-## 4      12-1     0  1.504  0.476  2.532
-## 5      14-9     0 -1.252 -2.091 -0.412
-## 6      21-2     0 -1.308 -2.248 -0.369
-## 7      15-4     0 -1.643 -2.500 -0.786
-## 8      14-5     0 -1.792 -2.635 -0.949
-## 9      16-2     0 -1.864 -2.714 -1.014
-## 10     16-5     0 -1.865 -2.706 -1.023
-## 11     20-2     0 -1.878 -2.762 -0.994
-## 12    16-11     0 -1.971 -2.828 -1.114
-## 13     21-4     0 -1.985 -2.931 -1.040
-## 14    20-11     0 -1.985 -2.876 -1.094
-## 15     20-8     0 -2.010 -2.882 -1.139
-## 16     18-6     0 -2.016 -3.121 -0.911
-## 17     19-6     0 -2.417 -3.319 -1.515
-## 18     17-6     0 -2.522 -3.355 -1.690
-## 19     14-6     0 -3.525 -4.364 -2.686
-## 20     16-6     0 -3.597 -4.435 -2.760</code></pre>
+## 1         9 0.001  1.180  0.276  2.084
+## 2        13 0.000 -1.252 -2.091 -0.412
+## 3        19 0.000 -1.295 -2.267 -0.323
+## 4        16 0.000 -1.324 -2.162 -0.487
+## 5         7 0.000 -1.361 -2.281 -0.442
+## 6         2 0.000 -1.424 -2.257 -0.591
+## 7        15 0.000 -1.596 -2.728 -0.463
+## 8        12 0.000 -1.601 -2.439 -0.762
+## 9         6 0.000 -1.607 -2.451 -0.763
+## 10       18 0.000 -1.655 -2.532 -0.777
+## 11        3 0.000 -1.792 -2.635 -0.949
+## 12        8 0.000 -1.851 -2.737 -0.965
+## 13       11 0.000 -1.878 -2.762 -0.994
+## 14       20 0.000 -1.971 -2.828 -1.114
+## 15       10 0.000 -1.996 -2.833 -1.159
+## 16        1 0.000 -2.243 -3.078 -1.408
+## 17       14 0.000 -2.273 -3.109 -1.437
+## 18        5 0.000 -2.417 -3.319 -1.515
+## 19        4 0.000 -2.513 -3.386 -1.640
+## 20       17 0.000 -3.525 -4.364 -2.686</code></pre>
 <p>Lets tranform this information into a datafame that we can plot.</p>
 <pre class="r"><code>tukeydata = as.data.frame(tukey$`as.factor(week)`)
 plotting = tukeydata %&gt;%
@@ -301,26 +296,26 @@ plotting = tukeydata %&gt;%
   sample_n(20) %&gt;%
   arrange(diff)</code></pre>
 <pre><code>##    names        diff        ymin        ymax
-## 1   15-6 -2.69898852 -3.53715144 -1.86082559
-## 2   19-6 -2.41736319 -3.31941644 -1.51530994
-## 3  20-10 -1.86520417 -2.78412499 -0.94628336
-## 4  20-18 -1.59582296 -2.72845967 -0.46318624
-## 5   17-4 -1.46626463 -2.31786824 -0.61466102
-## 6   21-2 -1.30808908 -2.24765345 -0.36852470
-## 7   17-8 -0.92118857 -1.75338790 -0.08898924
-## 8  18-11 -0.38918799 -1.50880877  0.73043278
-## 9   18-2 -0.28220661 -1.39662786  0.83221463
-## 10  13-9  0.03042234 -0.80446001  0.86530468
-## 11  17-1  0.08033255 -0.94447914  1.10514424
-## 12   8-2  0.13232365 -0.71571340  0.98036071
-## 13   2-0  0.25673819 -0.59844952  1.11192590
-## 14 19-15  0.28162532 -0.62246437  1.18571502
-## 15 18-17  0.50665830 -0.59575886  1.60907546
-## 16  18-1  0.58699086 -0.66898485  1.84296656
-## 17   3-1  0.64588469 -0.38608307  1.67785245
-## 18 12-10  0.64793942 -0.23702449  1.53290334
-## 19   4-0  0.93413791  0.07281567  1.79546014
-## 20   6-4  1.05612872  0.20137473  1.91088272</code></pre>
+## 1   21-6 -3.04161752 -3.96981242 -2.11342261
+## 2  16-12 -2.49897277 -3.33712708 -1.66081846
+## 3  21-12 -1.94320310 -2.87188933 -1.01451688
+## 4  16-13 -1.35456470 -2.19109315 -0.51803624
+## 5  19-12 -1.31894878 -2.22150758 -0.41638998
+## 6  21-10 -1.29526368 -2.26735194 -0.32317542
+## 7  14-13 -1.28196178 -2.12015917 -0.44376439
+## 8  15-11 -1.07244146 -1.92997776 -0.21490517
+## 9   20-7 -1.00773729 -1.89995235 -0.11552223
+## 10 20-15 -0.91256949 -1.78703147 -0.03810751
+## 11 17-10 -0.77603952 -1.65744358  0.10536455
+## 12  15-0 -0.70872189 -1.55358205  0.13613827
+## 13  19-3 -0.46052198 -1.36773906  0.44669511
+## 14  18-2 -0.28220661 -1.39662786  0.83221463
+## 15 16-14 -0.07260292 -0.91351710  0.76831127
+## 16 19-17  0.10503016 -0.79403846  1.00409878
+## 17   9-7  0.33057589 -0.52609269  1.18724447
+## 18   4-2  0.67739971 -0.18968727  1.54448670
+## 19   8-1  1.00152112 -0.02546822  2.02851046
+## 20 17-14  1.00239091  0.16632295  1.83845888</code></pre>
 </div>
 <div id="plots-of-pairwise-compaisons" class="section level3">
 <h3>Plots of Pairwise Compaisons</h3>

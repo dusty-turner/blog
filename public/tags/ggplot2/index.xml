@@ -53,7 +53,7 @@ Bowl selections automatically lock once they start.
       
       <guid>/post/helping-a-colleague-explore-data/</guid>
       <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
-Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)if (!require(&amp;quot;readr&amp;quot;)) install.packages(&amp;quot;readr&amp;quot;)if (!require(&amp;quot;lubridate&amp;quot;)) install.packages(&amp;quot;lubridate&amp;quot;)if (!require(&amp;quot;stringi&amp;quot;)) install.packages(&amp;quot;stringi&amp;quot;)Set Working Directory If Necessary# setwd(&amp;quot;//filepath/of/your/csvfile&amp;quot;)Read in dataWe use read_csv from the readr package because it does a better job than the base read.</description>
+Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 3.6.1## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 3.</description>
     </item>
     
   </channel>
