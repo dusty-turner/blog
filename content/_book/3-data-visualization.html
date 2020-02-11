@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Data Visualization | Intermediate R</title>
+  <meta name="description" content="3 Data Visualization | Intermediate R" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Data Visualization | Intermediate R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Data Visualization | Intermediate R" />
+  
+  
+  
+
+<meta name="author" content="MAJ Dusty Turner" />
+
+
+<meta name="date" content="2020-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-data-manipulation.html"/>
+<link rel="next" href="4-data-modeling.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "/">Tutorial Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Class Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#expectations"><i class="fa fa-check"></i><b>1.1</b> Expectations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#class-introductions"><i class="fa fa-check"></i><b>1.2</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#instructor-introduction"><i class="fa fa-check"></i><b>1.3</b> Instructor Introduction</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.4</b> Course Intent</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.5</b> Get Course Documents</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#analysis-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Analysis with <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#joins"><i class="fa fa-check"></i><b>2.3</b> Joins</a></li>
+<li class="chapter" data-level="2.4" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#other-dplyr-tricks"><i class="fa fa-check"></i><b>2.4</b> Other dplyr Tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
+<li class="chapter" data-level="" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i>Scatter Plot</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.2</b> Animation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-data-modeling.html"><a href="4-data-modeling.html"><i class="fa fa-check"></i><b>4</b> Data Modeling</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-data-modeling.html"><a href="4-data-modeling.html#load-packages"><i class="fa fa-check"></i><b>4.1</b> Load Packages</a></li>
+<li class="chapter" data-level="4.2" data-path="4-data-modeling.html"><a href="4-data-modeling.html#read-data"><i class="fa fa-check"></i><b>4.2</b> Read Data</a></li>
+<li class="chapter" data-level="4.3" data-path="4-data-modeling.html"><a href="4-data-modeling.html#data-exploration"><i class="fa fa-check"></i><b>4.3</b> Data Exploration</a></li>
+<li class="chapter" data-level="4.4" data-path="4-data-modeling.html"><a href="4-data-modeling.html#split-data-testtrain"><i class="fa fa-check"></i><b>4.4</b> Split Data test/train</a></li>
+<li class="chapter" data-level="4.5" data-path="4-data-modeling.html"><a href="4-data-modeling.html#preprocess-data"><i class="fa fa-check"></i><b>4.5</b> Preprocess Data</a></li>
+<li class="chapter" data-level="4.6" data-path="4-data-modeling.html"><a href="4-data-modeling.html#apply-preprocessing"><i class="fa fa-check"></i><b>4.6</b> Apply Preprocessing</a></li>
+<li class="chapter" data-level="4.7" data-path="4-data-modeling.html"><a href="4-data-modeling.html#prepare-cross-validation"><i class="fa fa-check"></i><b>4.7</b> Prepare Cross Validation</a></li>
+<li class="chapter" data-level="4.8" data-path="4-data-modeling.html"><a href="4-data-modeling.html#specify-models"><i class="fa fa-check"></i><b>4.8</b> Specify Models</a></li>
+<li class="chapter" data-level="4.9" data-path="4-data-modeling.html"><a href="4-data-modeling.html#create-grid-of-parameters-to-validate-over"><i class="fa fa-check"></i><b>4.9</b> Create Grid of Parameters to Validate Over</a></li>
+<li class="chapter" data-level="4.10" data-path="4-data-modeling.html"><a href="4-data-modeling.html#execute-cross-validation"><i class="fa fa-check"></i><b>4.10</b> Execute Cross Validation</a></li>
+<li class="chapter" data-level="4.11" data-path="4-data-modeling.html"><a href="4-data-modeling.html#select-best-parameters"><i class="fa fa-check"></i><b>4.11</b> Select Best Parameters</a></li>
+<li class="chapter" data-level="4.12" data-path="4-data-modeling.html"><a href="4-data-modeling.html#save-best-paramenters"><i class="fa fa-check"></i><b>4.12</b> Save Best Paramenters</a></li>
+<li class="chapter" data-level="4.13" data-path="4-data-modeling.html"><a href="4-data-modeling.html#compare-models"><i class="fa fa-check"></i><b>4.13</b> Compare Models</a></li>
+<li class="chapter" data-level="4.14" data-path="4-data-modeling.html"><a href="4-data-modeling.html#run-best-model-on-all-data"><i class="fa fa-check"></i><b>4.14</b> Run Best Model on All Data</a></li>
+<li class="chapter" data-level="4.15" data-path="4-data-modeling.html"><a href="4-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>4.15</b> Run Model on New Data</a></li>
+<li class="chapter" data-level="4.16" data-path="4-data-modeling.html"><a href="4-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>4.16</b> Variable Importance</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1">
+<h1><span class="header-section-number">3</span> Data Visualization</h1>
+<div id="bar-chart" class="section level2">
+<h2><span class="header-section-number">3.1</span> Bar Chart</h2>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="3-data-visualization.html#cb60-1"></a>slgname</span></code></pre></div>
+<pre><code>## # A tibble: 1,564 x 9
+##    player_id player             h doubles triples    hr    ab     g   slg
+##    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ruthba01  Babe Ruth       2873     506     136   714  8398  2503 0.690
+##  2 willite01 Ted Williams    2654     525      71   521  7706  2292 0.634
+##  3 gehrilo01 Lou Gehrig      2721     534     163   493  8001  2164 0.632
+##  4 foxxji01  Jimmie Foxx     2646     458     125   534  8134  2317 0.609
+##  5 bondsba01 Barry Bonds     2935     601      77   762  9847  2986 0.607
+##  6 greenha01 Hank Greenberg  1628     379      71   331  5193  1394 0.605
+##  7 mcgwima01 Mark McGwire    1626     252       6   583  6187  1874 0.588
+##  8 ramirma02 Manny Ramirez   2574     547      20   555  8244  2302 0.585
+##  9 dimagjo01 Joe DiMaggio    2214     389     131   361  6821  1736 0.579
+## 10 hornsro01 Rogers Hornsby  2930     541     169   301  8173  2259 0.577
+## # ... with 1,554 more rows</code></pre>
+<div id="canvas" class="section level3 unnumbered">
+<h3>Canvas</h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="3-data-visualization.html#cb62-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb62-2"><a href="3-data-visualization.html#cb62-2"></a><span class="st">  </span><span class="kw">ggplot</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="mapping" class="section level3 unnumbered">
+<h3>Mapping</h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="3-data-visualization.html#cb63-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb63-2"><a href="3-data-visualization.html#cb63-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr))</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="filter-data" class="section level3 unnumbered">
+<h3>Filter Data</h3>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="3-data-visualization.html#cb64-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb64-2"><a href="3-data-visualization.html#cb64-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb64-3"><a href="3-data-visualization.html#cb64-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) </span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+<div id="plot-mechanism" class="section level3 unnumbered">
+<h3>Plot ‘mechanism’</h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="3-data-visualization.html#cb65-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb65-2"><a href="3-data-visualization.html#cb65-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb65-3"><a href="3-data-visualization.html#cb65-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) <span class="op">+</span></span>
+<span id="cb65-4"><a href="3-data-visualization.html#cb65-4"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="coordinate-flip" class="section level3 unnumbered">
+<h3>Coordinate Flip</h3>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="3-data-visualization.html#cb66-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb66-2"><a href="3-data-visualization.html#cb66-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb66-3"><a href="3-data-visualization.html#cb66-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) <span class="op">+</span></span>
+<span id="cb66-4"><a href="3-data-visualization.html#cb66-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb66-5"><a href="3-data-visualization.html#cb66-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+<div id="reorder-factors" class="section level3 unnumbered">
+<h3>Reorder Factors</h3>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="3-data-visualization.html#cb67-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-2"><a href="3-data-visualization.html#cb67-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-3"><a href="3-data-visualization.html#cb67-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr)) <span class="op">+</span></span>
+<span id="cb67-4"><a href="3-data-visualization.html#cb67-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb67-5"><a href="3-data-visualization.html#cb67-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+</div>
+<div id="color-bars" class="section level3 unnumbered">
+<h3>Color Bars</h3>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="3-data-visualization.html#cb68-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb68-2"><a href="3-data-visualization.html#cb68-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb68-3"><a href="3-data-visualization.html#cb68-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr, <span class="dt">fill =</span> slg)) <span class="op">+</span></span>
+<span id="cb68-4"><a href="3-data-visualization.html#cb68-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb68-5"><a href="3-data-visualization.html#cb68-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+</div>
+<div id="update-labels" class="section level3 unnumbered">
+<h3>Update Labels</h3>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="3-data-visualization.html#cb69-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb69-2"><a href="3-data-visualization.html#cb69-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb69-3"><a href="3-data-visualization.html#cb69-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr, <span class="dt">fill =</span> slg)) <span class="op">+</span></span>
+<span id="cb69-4"><a href="3-data-visualization.html#cb69-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb69-5"><a href="3-data-visualization.html#cb69-5"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb69-6"><a href="3-data-visualization.html#cb69-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Player&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Home Runs&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Top 20 Home Run Hitters&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Slugging Percentage&quot;</span>,</span>
+<span id="cb69-7"><a href="3-data-visualization.html#cb69-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;1871-2016&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;*Among Players Who&#39;ve Played at least 1000 games&quot;</span>)</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+</div>
+<div id="scatter-plot" class="section level2 unnumbered">
+<h2>Scatter Plot</h2>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="3-data-visualization.html#cb70-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-2"><a href="3-data-visualization.html#cb70-2"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-3"><a href="3-data-visualization.html#cb70-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-4"><a href="3-data-visualization.html#cb70-4"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-5"><a href="3-data-visualization.html#cb70-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb70-6"><a href="3-data-visualization.html#cb70-6"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-7"><a href="3-data-visualization.html#cb70-7"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-8"><a href="3-data-visualization.html#cb70-8"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-9"><a href="3-data-visualization.html#cb70-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr,<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb70-10"><a href="3-data-visualization.html#cb70-10"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="3-data-visualization.html#cb71-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-2"><a href="3-data-visualization.html#cb71-2"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-3"><a href="3-data-visualization.html#cb71-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-4"><a href="3-data-visualization.html#cb71-4"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-5"><a href="3-data-visualization.html#cb71-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb71-6"><a href="3-data-visualization.html#cb71-6"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-7"><a href="3-data-visualization.html#cb71-7"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-8"><a href="3-data-visualization.html#cb71-8"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-9"><a href="3-data-visualization.html#cb71-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
+<span id="cb71-10"><a href="3-data-visualization.html#cb71-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb71-11"><a href="3-data-visualization.html#cb71-11"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="3-data-visualization.html#cb73-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-2"><a href="3-data-visualization.html#cb73-2"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-3"><a href="3-data-visualization.html#cb73-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-4"><a href="3-data-visualization.html#cb73-4"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-5"><a href="3-data-visualization.html#cb73-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb73-6"><a href="3-data-visualization.html#cb73-6"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-7"><a href="3-data-visualization.html#cb73-7"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-8"><a href="3-data-visualization.html#cb73-8"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-9"><a href="3-data-visualization.html#cb73-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
+<span id="cb73-10"><a href="3-data-visualization.html#cb73-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb73-11"><a href="3-data-visualization.html#cb73-11"></a><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb73-12"><a href="3-data-visualization.html#cb73-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>team_id)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-37-3.png" width="672" /></p>
+</div>
+<div id="animation" class="section level2">
+<h2><span class="header-section-number">3.2</span> Animation</h2>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="3-data-visualization.html#cb75-1"></a><span class="kw">library</span>(gganimate)</span>
+<span id="cb75-2"><a href="3-data-visualization.html#cb75-2"></a>p =</span>
+<span id="cb75-3"><a href="3-data-visualization.html#cb75-3"></a>data <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb75-4"><a href="3-data-visualization.html#cb75-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(lg_id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-5"><a href="3-data-visualization.html#cb75-5"></a><span class="st">  </span><span class="kw">group_by</span>(year_id, team_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-6"><a href="3-data-visualization.html#cb75-6"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(hr,so,bb,ab), <span class="op">~</span><span class="kw">sum</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb75-7"><a href="3-data-visualization.html#cb75-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-8"><a href="3-data-visualization.html#cb75-8"></a><span class="st">  </span><span class="kw">inner_join</span>(</span>
+<span id="cb75-9"><a href="3-data-visualization.html#cb75-9"></a>    data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-10"><a href="3-data-visualization.html#cb75-10"></a><span class="st">      </span><span class="kw">select</span>(year_id,team_id,lg_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-11"><a href="3-data-visualization.html#cb75-11"></a><span class="st">      </span><span class="kw">distinct</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-12"><a href="3-data-visualization.html#cb75-12"></a><span class="st">  </span><span class="co"># pivot_longer(cols = hr:so) %&gt;% </span></span>
+<span id="cb75-13"><a href="3-data-visualization.html#cb75-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>so,<span class="dt">y=</span>hr,<span class="dt">color =</span> bb,<span class="dt">size =</span> ab, <span class="dt">group =</span> year_id)) <span class="op">+</span></span>
+<span id="cb75-14"><a href="3-data-visualization.html#cb75-14"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb75-15"><a href="3-data-visualization.html#cb75-15"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>lg_id) <span class="op">+</span></span>
+<span id="cb75-16"><a href="3-data-visualization.html#cb75-16"></a><span class="st">  </span><span class="co"># labs(title = &#39;Year: {frame_time}&#39;) +</span></span>
+<span id="cb75-17"><a href="3-data-visualization.html#cb75-17"></a><span class="st">  </span><span class="kw">transition_states</span>(year_id, <span class="dt">transition_length=</span><span class="dv">1</span>, <span class="dt">state_length=</span><span class="dv">30</span>) <span class="op">+</span></span>
+<span id="cb75-18"><a href="3-data-visualization.html#cb75-18"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Year: {closest_state}&#39;</span>) <span class="op">+</span></span>
+<span id="cb75-19"><a href="3-data-visualization.html#cb75-19"></a><span class="st">  </span><span class="kw">enter_fade</span>() <span class="op">+</span></span>
+<span id="cb75-20"><a href="3-data-visualization.html#cb75-20"></a><span class="st">  </span><span class="kw">exit_fade</span>() </span>
+<span id="cb75-21"><a href="3-data-visualization.html#cb75-21"></a></span>
+<span id="cb75-22"><a href="3-data-visualization.html#cb75-22"></a><span class="kw">animate</span>(p,</span>
+<span id="cb75-23"><a href="3-data-visualization.html#cb75-23"></a>        <span class="dt">nframes =</span> <span class="kw">length</span>(<span class="kw">unique</span>(data<span class="op">$</span>year_id))<span class="op">*</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 
+Frame 1 (0%)
+Frame 2 (0%)
+Frame 3 (1%)
+Frame 4 (1%)
+Frame 5 (1%)
+Frame 6 (2%)
+Frame 7 (2%)
+Frame 8 (2%)
+Frame 9 (3%)
+Frame 10 (3%)
+Frame 11 (3%)
+Frame 12 (4%)
+Frame 13 (4%)
+Frame 14 (4%)
+Frame 15 (5%)
+Frame 16 (5%)
+Frame 17 (5%)
+Frame 18 (6%)
+Frame 19 (6%)
+Frame 20 (6%)
+Frame 21 (7%)
+Frame 22 (7%)
+Frame 23 (7%)
+Frame 24 (8%)
+Frame 25 (8%)
+Frame 26 (8%)
+Frame 27 (9%)
+Frame 28 (9%)
+Frame 29 (9%)
+Frame 30 (10%)
+Frame 31 (10%)
+Frame 32 (10%)
+Frame 33 (11%)
+Frame 34 (11%)
+Frame 35 (11%)
+Frame 36 (12%)
+Frame 37 (12%)
+Frame 38 (13%)
+Frame 39 (13%)
+Frame 40 (13%)
+Frame 41 (14%)
+Frame 42 (14%)
+Frame 43 (14%)
+Frame 44 (15%)
+Frame 45 (15%)
+Frame 46 (15%)
+Frame 47 (16%)
+Frame 48 (16%)
+Frame 49 (16%)
+Frame 50 (17%)
+Frame 51 (17%)
+Frame 52 (17%)
+Frame 53 (18%)
+Frame 54 (18%)
+Frame 55 (18%)
+Frame 56 (19%)
+Frame 57 (19%)
+Frame 58 (19%)
+Frame 59 (20%)
+Frame 60 (20%)
+Frame 61 (20%)
+Frame 62 (21%)
+Frame 63 (21%)
+Frame 64 (21%)
+Frame 65 (22%)
+Frame 66 (22%)
+Frame 67 (22%)
+Frame 68 (23%)
+Frame 69 (23%)
+Frame 70 (23%)
+Frame 71 (24%)
+Frame 72 (24%)
+Frame 73 (25%)
+Frame 74 (25%)
+Frame 75 (25%)
+Frame 76 (26%)
+Frame 77 (26%)
+Frame 78 (26%)
+Frame 79 (27%)
+Frame 80 (27%)
+Frame 81 (27%)
+Frame 82 (28%)
+Frame 83 (28%)
+Frame 84 (28%)
+Frame 85 (29%)
+Frame 86 (29%)
+Frame 87 (29%)
+Frame 88 (30%)
+Frame 89 (30%)
+Frame 90 (30%)
+Frame 91 (31%)
+Frame 92 (31%)
+Frame 93 (31%)
+Frame 94 (32%)
+Frame 95 (32%)
+Frame 96 (32%)
+Frame 97 (33%)
+Frame 98 (33%)
+Frame 99 (33%)
+Frame 100 (34%)
+Frame 101 (34%)
+Frame 102 (34%)
+Frame 103 (35%)
+Frame 104 (35%)
+Frame 105 (35%)
+Frame 106 (36%)
+Frame 107 (36%)
+Frame 108 (36%)
+Frame 109 (37%)
+Frame 110 (37%)
+Frame 111 (38%)
+Frame 112 (38%)
+Frame 113 (38%)
+Frame 114 (39%)
+Frame 115 (39%)
+Frame 116 (39%)
+Frame 117 (40%)
+Frame 118 (40%)
+Frame 119 (40%)
+Frame 120 (41%)
+Frame 121 (41%)
+Frame 122 (41%)
+Frame 123 (42%)
+Frame 124 (42%)
+Frame 125 (42%)
+Frame 126 (43%)
+Frame 127 (43%)
+Frame 128 (43%)
+Frame 129 (44%)
+Frame 130 (44%)
+Frame 131 (44%)
+Frame 132 (45%)
+Frame 133 (45%)
+Frame 134 (45%)
+Frame 135 (46%)
+Frame 136 (46%)
+Frame 137 (46%)
+Frame 138 (47%)
+Frame 139 (47%)
+Frame 140 (47%)
+Frame 141 (48%)
+Frame 142 (48%)
+Frame 143 (48%)
+Frame 144 (49%)
+Frame 145 (49%)
+Frame 146 (50%)
+Frame 147 (50%)
+Frame 148 (50%)
+Frame 149 (51%)
+Frame 150 (51%)
+Frame 151 (51%)
+Frame 152 (52%)
+Frame 153 (52%)
+Frame 154 (52%)
+Frame 155 (53%)
+Frame 156 (53%)
+Frame 157 (53%)
+Frame 158 (54%)
+Frame 159 (54%)
+Frame 160 (54%)
+Frame 161 (55%)
+Frame 162 (55%)
+Frame 163 (55%)
+Frame 164 (56%)
+Frame 165 (56%)
+Frame 166 (56%)
+Frame 167 (57%)
+Frame 168 (57%)
+Frame 169 (57%)
+Frame 170 (58%)
+Frame 171 (58%)
+Frame 172 (58%)
+Frame 173 (59%)
+Frame 174 (59%)
+Frame 175 (59%)
+Frame 176 (60%)
+Frame 177 (60%)
+Frame 178 (60%)
+Frame 179 (61%)
+Frame 180 (61%)
+Frame 181 (61%)
+Frame 182 (62%)
+Frame 183 (62%)
+Frame 184 (63%)
+Frame 185 (63%)
+Frame 186 (63%)
+Frame 187 (64%)
+Frame 188 (64%)
+Frame 189 (64%)
+Frame 190 (65%)
+Frame 191 (65%)
+Frame 192 (65%)
+Frame 193 (66%)
+Frame 194 (66%)
+Frame 195 (66%)
+Frame 196 (67%)
+Frame 197 (67%)
+Frame 198 (67%)
+Frame 199 (68%)
+Frame 200 (68%)
+Frame 201 (68%)
+Frame 202 (69%)
+Frame 203 (69%)
+Frame 204 (69%)
+Frame 205 (70%)
+Frame 206 (70%)
+Frame 207 (70%)
+Frame 208 (71%)
+Frame 209 (71%)
+Frame 210 (71%)
+Frame 211 (72%)
+Frame 212 (72%)
+Frame 213 (72%)
+Frame 214 (73%)
+Frame 215 (73%)
+Frame 216 (73%)
+Frame 217 (74%)
+Frame 218 (74%)
+Frame 219 (75%)
+Frame 220 (75%)
+Frame 221 (75%)
+Frame 222 (76%)
+Frame 223 (76%)
+Frame 224 (76%)
+Frame 225 (77%)
+Frame 226 (77%)
+Frame 227 (77%)
+Frame 228 (78%)
+Frame 229 (78%)
+Frame 230 (78%)
+Frame 231 (79%)
+Frame 232 (79%)
+Frame 233 (79%)
+Frame 234 (80%)
+Frame 235 (80%)
+Frame 236 (80%)
+Frame 237 (81%)
+Frame 238 (81%)
+Frame 239 (81%)
+Frame 240 (82%)
+Frame 241 (82%)
+Frame 242 (82%)
+Frame 243 (83%)
+Frame 244 (83%)
+Frame 245 (83%)
+Frame 246 (84%)
+Frame 247 (84%)
+Frame 248 (84%)
+Frame 249 (85%)
+Frame 250 (85%)
+Frame 251 (85%)
+Frame 252 (86%)
+Frame 253 (86%)
+Frame 254 (86%)
+Frame 255 (87%)
+Frame 256 (87%)
+Frame 257 (88%)
+Frame 258 (88%)
+Frame 259 (88%)
+Frame 260 (89%)
+Frame 261 (89%)
+Frame 262 (89%)
+Frame 263 (90%)
+Frame 264 (90%)
+Frame 265 (90%)
+Frame 266 (91%)
+Frame 267 (91%)
+Frame 268 (91%)
+Frame 269 (92%)
+Frame 270 (92%)
+Frame 271 (92%)
+Frame 272 (93%)
+Frame 273 (93%)
+Frame 274 (93%)
+Frame 275 (94%)
+Frame 276 (94%)
+Frame 277 (94%)
+Frame 278 (95%)
+Frame 279 (95%)
+Frame 280 (95%)
+Frame 281 (96%)
+Frame 282 (96%)
+Frame 283 (96%)
+Frame 284 (97%)
+Frame 285 (97%)
+Frame 286 (97%)
+Frame 287 (98%)
+Frame 288 (98%)
+Frame 289 (98%)
+Frame 290 (99%)
+Frame 291 (99%)
+Frame 292 (100%)
+## Finalizing encoding... done!</code></pre>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-38-1.gif" /><!-- --></p>
+<!-- ```{r} -->
+<!-- library(gapminder) -->
+<!-- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) + -->
+<!--   geom_point(alpha = 0.7, show.legend = FALSE) + -->
+<!--   scale_colour_manual(values = country_colors) + -->
+<!--   scale_size(range = c(2, 12)) + -->
+<!--   scale_x_log10() + -->
+<!--   facet_wrap(~continent) + -->
+<!--   # Here comes the gganimate specific bits -->
+<!--   labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') + -->
+<!--   transition_time(year) + -->
+<!--   ease_aes('linear') -->
+<!-- # file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE) -->
+<!-- ``` -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-data-modeling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
