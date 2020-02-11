@@ -147,7 +147,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
-<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>3.2</b> Scatter Plot</a></li>
+<li class="chapter" data-level="" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i>Scatter Plot</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.2</b> Animation</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-data-modeling.html"><a href="4-data-modeling.html"><i class="fa fa-check"></i><b>4</b> Data Modeling</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-data-modeling.html"><a href="4-data-modeling.html#load-packages"><i class="fa fa-check"></i><b>4.1</b> Load Packages</a></li>
@@ -226,8 +227,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11
 ## # ... with 102,806 more rows, and 9 more variables: SB &lt;dbl&gt;, CS &lt;dbl&gt;, BB &lt;dbl&gt;,
 ## #   SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;lgl&gt;, GIDP &lt;lgl&gt;</code></pre>
-<div id="fix-read-in-errors" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Fix Read In Errors</h3>
+<div id="fix-read-in-errors" class="section level3 unnumbered">
+<h3>Fix Read In Errors</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2-data-manipulation.html#cb7-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>()))</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI
@@ -269,8 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 102,806 more rows, and 9 more variables: SB &lt;dbl&gt;, CS &lt;dbl&gt;, BB &lt;dbl&gt;,
 ## #   SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;, GIDP &lt;dbl&gt;</code></pre>
 </div>
-<div id="clean-column-names" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Clean Column Names</h3>
+<div id="clean-column-names" class="section level3 unnumbered">
+<h3>Clean Column Names</h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2-data-manipulation.html#cb13-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb13-2"><a href="2-data-manipulation.html#cb13-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
@@ -293,8 +294,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="analysis-with-dplyr" class="section level2">
 <h2><span class="header-section-number">2.2</span> Analysis with <code>dplyr</code></h2>
 <p>Who has the highest career slugging percentage</p>
-<div id="select" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Select</h3>
+<div id="select" class="section level3 unnumbered">
+<h3>Select</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2-data-manipulation.html#cb15-1"></a>data =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb15-2"><a href="2-data-manipulation.html#cb15-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="2-data-manipulation.html#cb16-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -314,8 +315,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 barrofr01    1871    13     2     1     0    86    18
 ## # ... with 102,806 more rows</code></pre>
 </div>
-<div id="group_by" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Group_by</h3>
+<div id="group_by" class="section level3 unnumbered">
+<h3>Group_by</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="2-data-manipulation.html#cb18-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb18-2"><a href="2-data-manipulation.html#cb18-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb18-3"><a href="2-data-manipulation.html#cb18-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id)</span></code></pre></div>
@@ -335,8 +336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 barrofr01    1871    13     2     1     0    86    18
 ## # ... with 102,806 more rows</code></pre>
 </div>
-<div id="summarise" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Summarise</h3>
+<div id="summarise" class="section level3 unnumbered">
+<h3>Summarise</h3>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="2-data-manipulation.html#cb20-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb20-2"><a href="2-data-manipulation.html#cb20-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb20-3"><a href="2-data-manipulation.html#cb20-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -361,8 +362,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 abbeych01   492    67    46    19  1751   451
 ## # ... with 18,905 more rows</code></pre>
 </div>
-<div id="filter" class="section level3">
-<h3><span class="header-section-number">2.2.4</span> Filter</h3>
+<div id="filter" class="section level3 unnumbered">
+<h3>Filter</h3>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="2-data-manipulation.html#cb22-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb22-2"><a href="2-data-manipulation.html#cb22-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb22-3"><a href="2-data-manipulation.html#cb22-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -388,8 +389,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 alicelu01  1031   189    53    47  3971  1341
 ## # ... with 1,554 more rows</code></pre>
 </div>
-<div id="mutate" class="section level3">
-<h3><span class="header-section-number">2.2.5</span> Mutate</h3>
+<div id="mutate" class="section level3 unnumbered">
+<h3>Mutate</h3>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="2-data-manipulation.html#cb24-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb24-2"><a href="2-data-manipulation.html#cb24-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb24-3"><a href="2-data-manipulation.html#cb24-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -416,8 +417,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 alicelu01  1031   189    53    47  3971  1341 0.369
 ## # ... with 1,554 more rows</code></pre>
 </div>
-<div id="arrange" class="section level3">
-<h3><span class="header-section-number">2.2.6</span> Arrange</h3>
+<div id="arrange" class="section level3 unnumbered">
+<h3>Arrange</h3>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="2-data-manipulation.html#cb26-1"></a>slgdata =<span class="st"> </span></span>
 <span id="cb26-2"><a href="2-data-manipulation.html#cb26-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb26-3"><a href="2-data-manipulation.html#cb26-3"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -451,8 +452,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="joins" class="section level2">
 <h2><span class="header-section-number">2.3</span> Joins</h2>
-<div id="player-id-data" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Player ID Data</h3>
+<div id="player-id-data" class="section level3 unnumbered">
+<h3>Player ID Data</h3>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2-data-manipulation.html#cb28-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Master.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -482,11 +483,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 abbated~      1877          4       15 USA          PA         Latrobe        1957
 ##  9 abbeybe~      1869         11       11 USA          VT         Essex          1962
 ## 10 abbeych~      1866         10       14 USA          NE         Falls Ci~      1926
-## # ... with 19,095 more rows, and 16 more variables: deathMonth &lt;dbl&gt;,
-## #   deathDay &lt;dbl&gt;, deathCountry &lt;chr&gt;, deathState &lt;chr&gt;, deathCity &lt;chr&gt;,
-## #   nameFirst &lt;chr&gt;, nameLast &lt;chr&gt;, nameGiven &lt;chr&gt;, weight &lt;dbl&gt;, height &lt;dbl&gt;,
-## #   bats &lt;chr&gt;, throws &lt;chr&gt;, debut &lt;date&gt;, finalGame &lt;date&gt;, retroID &lt;chr&gt;,
-## #   bbrefID &lt;chr&gt;</code></pre>
+## # ... with 19,095 more rows, and 16 more variables: deathMonth &lt;dbl&gt;, deathDay &lt;dbl&gt;,
+## #   deathCountry &lt;chr&gt;, deathState &lt;chr&gt;, deathCity &lt;chr&gt;, nameFirst &lt;chr&gt;,
+## #   nameLast &lt;chr&gt;, nameGiven &lt;chr&gt;, weight &lt;dbl&gt;, height &lt;dbl&gt;, bats &lt;chr&gt;,
+## #   throws &lt;chr&gt;, debut &lt;date&gt;, finalGame &lt;date&gt;, retroID &lt;chr&gt;, bbrefID &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="2-data-manipulation.html#cb32-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Master.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb32-2"><a href="2-data-manipulation.html#cb32-2"></a><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb32-3"><a href="2-data-manipulation.html#cb32-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">paste</span>(nameFirst,nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -541,8 +541,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
 </div>
-<div id="join-the-data" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Join the Data</h3>
+<div id="join-the-data" class="section level3 unnumbered">
+<h3>Join the Data</h3>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="2-data-manipulation.html#cb39-1"></a>slgdata <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb39-2"><a href="2-data-manipulation.html#cb39-2"></a><span class="st">  </span><span class="kw">left_join</span>(master, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
@@ -563,8 +563,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-2"><a href="2-data-manipulation.html#cb41-2"></a>slgdata <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb41-3"><a href="2-data-manipulation.html#cb41-3"></a><span class="st">  </span><span class="kw">left_join</span>(master, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</span></code></pre></div>
 </div>
-<div id="rename-columns" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> Rename Columns</h3>
+<div id="rename-columns" class="section level3 unnumbered">
+<h3>Rename Columns</h3>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="2-data-manipulation.html#cb42-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb42-2"><a href="2-data-manipulation.html#cb42-2"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
@@ -585,8 +585,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb44-2"><a href="2-data-manipulation.html#cb44-2"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb44-3"><a href="2-data-manipulation.html#cb44-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</span></code></pre></div>
 </div>
-<div id="reorder-columns" class="section level3">
-<h3><span class="header-section-number">2.3.4</span> Reorder Columns</h3>
+<div id="reorder-columns" class="section level3 unnumbered">
+<h3>Reorder Columns</h3>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="2-data-manipulation.html#cb45-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb45-2"><a href="2-data-manipulation.html#cb45-2"></a><span class="st">  </span><span class="kw">select</span>(player_id, player, <span class="kw">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
@@ -610,8 +610,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="other-dplyr-tricks" class="section level2">
 <h2><span class="header-section-number">2.4</span> Other dplyr Tricks</h2>
-<div id="count" class="section level3">
-<h3><span class="header-section-number">2.4.1</span> Count</h3>
+<div id="count" class="section level3 unnumbered">
+<h3>Count</h3>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="2-data-manipulation.html#cb48-1"></a>data</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr
@@ -661,8 +661,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 ryanno01     27
 ## # ... with 18,905 more rows</code></pre>
 </div>
-<div id="uncount" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> Uncount</h3>
+<div id="uncount" class="section level3 unnumbered">
+<h3>Uncount</h3>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="2-data-manipulation.html#cb54-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb54-2"><a href="2-data-manipulation.html#cb54-2"></a><span class="st">  </span><span class="kw">uncount</span>(triples)</span></code></pre></div>
 <pre><code>## # A tibble: 80,303 x 8
@@ -680,8 +680,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 ruthba01  Babe Ruth  2873     506   714  8398  2503 0.690
 ## # ... with 80,293 more rows</code></pre>
 </div>
-<div id="summarise-1" class="section level3">
-<h3><span class="header-section-number">2.4.3</span> Summarise</h3>
+<div id="summarise-1" class="section level3 unnumbered">
+<h3>Summarise</h3>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="2-data-manipulation.html#cb56-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb56-2"><a href="2-data-manipulation.html#cb56-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb56-3"><a href="2-data-manipulation.html#cb56-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
