@@ -138,6 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#instructor-introduction"><i class="fa fa-check"></i><b>1.3</b> Instructor Introduction</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.4</b> Course Intent</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.5</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.6</b> Tidy Ecosystem</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
@@ -192,26 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="2-data-manipulation.html#cb1-3"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
 <div id="read-in-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> Read in Data</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="2-data-manipulation.html#cb2-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   playerID = col_character(),
-##   teamID = col_character(),
-##   lgID = col_character(),
-##   SF = col_logical(),
-##   GIDP = col_logical()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre><code>## Warning: 45441 parsing failures.
-##   row  col           expected actual          file
-## 25015 GIDP 1/0/T/F/TRUE/FALSE     2  &#39;Batting.csv&#39;
-## 25016 GIDP 1/0/T/F/TRUE/FALSE     10 &#39;Batting.csv&#39;
-## 25018 GIDP 1/0/T/F/TRUE/FALSE     4  &#39;Batting.csv&#39;
-## 25028 GIDP 1/0/T/F/TRUE/FALSE     8  &#39;Batting.csv&#39;
-## 25030 GIDP 1/0/T/F/TRUE/FALSE     3  &#39;Batting.csv&#39;
-## ..... .... .................. ...... .............
-## See problems(...) for more details.</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="2-data-manipulation.html#cb2-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -229,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;lgl&gt;, GIDP &lt;lgl&gt;</code></pre>
 <div id="fix-read-in-errors" class="section level3 unnumbered">
 <h3>Fix Read In Errors</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2-data-manipulation.html#cb7-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2-data-manipulation.html#cb4-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>()))</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -245,15 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11
 ## # ... with 102,806 more rows, and 9 more variables: SB &lt;dbl&gt;, CS &lt;dbl&gt;, BB &lt;dbl&gt;,
 ## #   SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;, GIDP &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="2-data-manipulation.html#cb9-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">guess_max =</span> <span class="dv">10000</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   playerID = col_character(),
-##   teamID = col_character(),
-##   lgID = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2-data-manipulation.html#cb6-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">guess_max =</span> <span class="dv">10000</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -272,8 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="clean-column-names" class="section level3 unnumbered">
 <h3>Clean Column Names</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2-data-manipulation.html#cb13-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb13-2"><a href="2-data-manipulation.html#cb13-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="2-data-manipulation.html#cb8-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="2-data-manipulation.html#cb8-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr
 ##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -293,13 +267,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="analysis-with-dplyr" class="section level2">
 <h2><span class="header-section-number">2.2</span> Analysis with <code>dplyr</code></h2>
-<p>Who has the highest career slugging percentage</p>
+<p>Who has the highest career slugging percentage?</p>
 <div id="select" class="section level3 unnumbered">
 <h3>Select</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2-data-manipulation.html#cb15-1"></a>data =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-2"><a href="2-data-manipulation.html#cb15-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="2-data-manipulation.html#cb16-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-2"><a href="2-data-manipulation.html#cb16-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="2-data-manipulation.html#cb10-1"></a>data =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="2-data-manipulation.html#cb10-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="2-data-manipulation.html#cb11-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="2-data-manipulation.html#cb11-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g)</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 8
 ##    player_id year_id     h   x2b   x3b    hr    ab     g
 ##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -317,9 +291,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="group_by" class="section level3 unnumbered">
 <h3>Group_by</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="2-data-manipulation.html#cb18-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb18-2"><a href="2-data-manipulation.html#cb18-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb18-3"><a href="2-data-manipulation.html#cb18-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2-data-manipulation.html#cb13-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="2-data-manipulation.html#cb13-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-3"><a href="2-data-manipulation.html#cb13-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id)</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 8
 ## # Groups:   player_id [18,915]
 ##    player_id year_id     h   x2b   x3b    hr    ab     g
@@ -338,15 +312,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="summarise" class="section level3 unnumbered">
 <h3>Summarise</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="2-data-manipulation.html#cb20-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb20-2"><a href="2-data-manipulation.html#cb20-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb20-3"><a href="2-data-manipulation.html#cb20-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb20-4"><a href="2-data-manipulation.html#cb20-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
-<span id="cb20-5"><a href="2-data-manipulation.html#cb20-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
-<span id="cb20-6"><a href="2-data-manipulation.html#cb20-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
-<span id="cb20-7"><a href="2-data-manipulation.html#cb20-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
-<span id="cb20-8"><a href="2-data-manipulation.html#cb20-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
-<span id="cb20-9"><a href="2-data-manipulation.html#cb20-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) </span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2-data-manipulation.html#cb15-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="2-data-manipulation.html#cb15-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-3"><a href="2-data-manipulation.html#cb15-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-4"><a href="2-data-manipulation.html#cb15-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
+<span id="cb15-5"><a href="2-data-manipulation.html#cb15-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
+<span id="cb15-6"><a href="2-data-manipulation.html#cb15-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
+<span id="cb15-7"><a href="2-data-manipulation.html#cb15-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
+<span id="cb15-8"><a href="2-data-manipulation.html#cb15-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
+<span id="cb15-9"><a href="2-data-manipulation.html#cb15-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) </span></code></pre></div>
 <pre><code>## # A tibble: 18,915 x 7
 ##    player_id     h   x2b   x3b    hr    ab     g
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -364,16 +338,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="filter" class="section level3 unnumbered">
 <h3>Filter</h3>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="2-data-manipulation.html#cb22-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb22-2"><a href="2-data-manipulation.html#cb22-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb22-3"><a href="2-data-manipulation.html#cb22-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb22-4"><a href="2-data-manipulation.html#cb22-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
-<span id="cb22-5"><a href="2-data-manipulation.html#cb22-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
-<span id="cb22-6"><a href="2-data-manipulation.html#cb22-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
-<span id="cb22-7"><a href="2-data-manipulation.html#cb22-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
-<span id="cb22-8"><a href="2-data-manipulation.html#cb22-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
-<span id="cb22-9"><a href="2-data-manipulation.html#cb22-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb22-10"><a href="2-data-manipulation.html#cb22-10"></a><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="2-data-manipulation.html#cb17-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="2-data-manipulation.html#cb17-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-3"><a href="2-data-manipulation.html#cb17-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-4"><a href="2-data-manipulation.html#cb17-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
+<span id="cb17-5"><a href="2-data-manipulation.html#cb17-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
+<span id="cb17-6"><a href="2-data-manipulation.html#cb17-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
+<span id="cb17-7"><a href="2-data-manipulation.html#cb17-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
+<span id="cb17-8"><a href="2-data-manipulation.html#cb17-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
+<span id="cb17-9"><a href="2-data-manipulation.html#cb17-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-10"><a href="2-data-manipulation.html#cb17-10"></a><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 7
 ##    player_id     h   x2b   x3b    hr    ab     g
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -391,17 +365,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="mutate" class="section level3 unnumbered">
 <h3>Mutate</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="2-data-manipulation.html#cb24-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb24-2"><a href="2-data-manipulation.html#cb24-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb24-3"><a href="2-data-manipulation.html#cb24-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb24-4"><a href="2-data-manipulation.html#cb24-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
-<span id="cb24-5"><a href="2-data-manipulation.html#cb24-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
-<span id="cb24-6"><a href="2-data-manipulation.html#cb24-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
-<span id="cb24-7"><a href="2-data-manipulation.html#cb24-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
-<span id="cb24-8"><a href="2-data-manipulation.html#cb24-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
-<span id="cb24-9"><a href="2-data-manipulation.html#cb24-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb24-10"><a href="2-data-manipulation.html#cb24-10"></a><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb24-11"><a href="2-data-manipulation.html#cb24-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>hr)<span class="op">/</span>ab)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="2-data-manipulation.html#cb19-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-2"><a href="2-data-manipulation.html#cb19-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-3"><a href="2-data-manipulation.html#cb19-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-4"><a href="2-data-manipulation.html#cb19-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
+<span id="cb19-5"><a href="2-data-manipulation.html#cb19-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
+<span id="cb19-6"><a href="2-data-manipulation.html#cb19-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
+<span id="cb19-7"><a href="2-data-manipulation.html#cb19-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
+<span id="cb19-8"><a href="2-data-manipulation.html#cb19-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
+<span id="cb19-9"><a href="2-data-manipulation.html#cb19-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-10"><a href="2-data-manipulation.html#cb19-10"></a><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-11"><a href="2-data-manipulation.html#cb19-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>hr)<span class="op">/</span>ab)</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 8
 ##    player_id     h   x2b   x3b    hr    ab     g   slg
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -419,21 +393,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="arrange" class="section level3 unnumbered">
 <h3>Arrange</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="2-data-manipulation.html#cb26-1"></a>slgdata =<span class="st"> </span></span>
-<span id="cb26-2"><a href="2-data-manipulation.html#cb26-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb26-3"><a href="2-data-manipulation.html#cb26-3"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb26-4"><a href="2-data-manipulation.html#cb26-4"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb26-5"><a href="2-data-manipulation.html#cb26-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
-<span id="cb26-6"><a href="2-data-manipulation.html#cb26-6"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
-<span id="cb26-7"><a href="2-data-manipulation.html#cb26-7"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
-<span id="cb26-8"><a href="2-data-manipulation.html#cb26-8"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
-<span id="cb26-9"><a href="2-data-manipulation.html#cb26-9"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
-<span id="cb26-10"><a href="2-data-manipulation.html#cb26-10"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb26-11"><a href="2-data-manipulation.html#cb26-11"></a><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb26-12"><a href="2-data-manipulation.html#cb26-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>hr)<span class="op">/</span>ab) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb26-13"><a href="2-data-manipulation.html#cb26-13"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(slg))</span>
-<span id="cb26-14"><a href="2-data-manipulation.html#cb26-14"></a></span>
-<span id="cb26-15"><a href="2-data-manipulation.html#cb26-15"></a>slgdata</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="2-data-manipulation.html#cb21-1"></a>slgdata =<span class="st"> </span></span>
+<span id="cb21-2"><a href="2-data-manipulation.html#cb21-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-3"><a href="2-data-manipulation.html#cb21-3"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-4"><a href="2-data-manipulation.html#cb21-4"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-5"><a href="2-data-manipulation.html#cb21-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
+<span id="cb21-6"><a href="2-data-manipulation.html#cb21-6"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
+<span id="cb21-7"><a href="2-data-manipulation.html#cb21-7"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
+<span id="cb21-8"><a href="2-data-manipulation.html#cb21-8"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
+<span id="cb21-9"><a href="2-data-manipulation.html#cb21-9"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
+<span id="cb21-10"><a href="2-data-manipulation.html#cb21-10"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-11"><a href="2-data-manipulation.html#cb21-11"></a><span class="st">  </span><span class="kw">filter</span>(g<span class="op">&gt;</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-12"><a href="2-data-manipulation.html#cb21-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">slg =</span> (h <span class="op">+</span><span class="st"> </span>x2b <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>x3b <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>hr)<span class="op">/</span>ab) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-13"><a href="2-data-manipulation.html#cb21-13"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(slg))</span>
+<span id="cb21-14"><a href="2-data-manipulation.html#cb21-14"></a></span>
+<span id="cb21-15"><a href="2-data-manipulation.html#cb21-15"></a>slgdata</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 8
 ##    player_id     h   x2b   x3b    hr    ab     g   slg
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -454,22 +428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.3</span> Joins</h2>
 <div id="player-id-data" class="section level3 unnumbered">
 <h3>Player ID Data</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2-data-manipulation.html#cb28-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Master.csv&quot;</span>) </span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   birthYear = col_double(),
-##   birthMonth = col_double(),
-##   birthDay = col_double(),
-##   deathYear = col_double(),
-##   deathMonth = col_double(),
-##   deathDay = col_double(),
-##   weight = col_double(),
-##   height = col_double(),
-##   debut = col_date(format = &quot;&quot;),
-##   finalGame = col_date(format = &quot;&quot;)
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="2-data-manipulation.html#cb23-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Master.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 19,105 x 24
 ##    playerID birthYear birthMonth birthDay birthCountry birthState birthCity deathYear
 ##    &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
@@ -483,29 +442,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 abbated~      1877          4       15 USA          PA         Latrobe        1957
 ##  9 abbeybe~      1869         11       11 USA          VT         Essex          1962
 ## 10 abbeych~      1866         10       14 USA          NE         Falls Ci~      1926
-## # ... with 19,095 more rows, and 16 more variables: deathMonth &lt;dbl&gt;, deathDay &lt;dbl&gt;,
-## #   deathCountry &lt;chr&gt;, deathState &lt;chr&gt;, deathCity &lt;chr&gt;, nameFirst &lt;chr&gt;,
-## #   nameLast &lt;chr&gt;, nameGiven &lt;chr&gt;, weight &lt;dbl&gt;, height &lt;dbl&gt;, bats &lt;chr&gt;,
-## #   throws &lt;chr&gt;, debut &lt;date&gt;, finalGame &lt;date&gt;, retroID &lt;chr&gt;, bbrefID &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="2-data-manipulation.html#cb32-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;Master.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb32-2"><a href="2-data-manipulation.html#cb32-2"></a><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb32-3"><a href="2-data-manipulation.html#cb32-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">paste</span>(nameFirst,nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb32-4"><a href="2-data-manipulation.html#cb32-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;name&quot;</span>))</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   birthYear = col_double(),
-##   birthMonth = col_double(),
-##   birthDay = col_double(),
-##   deathYear = col_double(),
-##   deathMonth = col_double(),
-##   deathDay = col_double(),
-##   weight = col_double(),
-##   height = col_double(),
-##   debut = col_date(format = &quot;&quot;),
-##   finalGame = col_date(format = &quot;&quot;)
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+## # ... with 19,095 more rows, and 16 more variables: deathMonth &lt;dbl&gt;,
+## #   deathDay &lt;dbl&gt;, deathCountry &lt;chr&gt;, deathState &lt;chr&gt;, deathCity &lt;chr&gt;,
+## #   nameFirst &lt;chr&gt;, nameLast &lt;chr&gt;, nameGiven &lt;chr&gt;, weight &lt;dbl&gt;, height &lt;dbl&gt;,
+## #   bats &lt;chr&gt;, throws &lt;chr&gt;, debut &lt;date&gt;, finalGame &lt;date&gt;, retroID &lt;chr&gt;,
+## #   bbrefID &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="2-data-manipulation.html#cb25-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Master.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb25-2"><a href="2-data-manipulation.html#cb25-2"></a><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb25-3"><a href="2-data-manipulation.html#cb25-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">paste</span>(nameFirst,nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb25-4"><a href="2-data-manipulation.html#cb25-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;name&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 19,105 x 2
 ##    playerID  player        
 ##    &lt;chr&gt;     &lt;chr&gt;         
@@ -520,31 +465,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 abbeybe01 Bert Abbey    
 ## 10 abbeych01 Charlie Abbey 
 ## # ... with 19,095 more rows</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="2-data-manipulation.html#cb36-1"></a>master =<span class="st"> </span></span>
-<span id="cb36-2"><a href="2-data-manipulation.html#cb36-2"></a><span class="kw">read_csv</span>(<span class="st">&quot;Master.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb36-3"><a href="2-data-manipulation.html#cb36-3"></a><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb36-4"><a href="2-data-manipulation.html#cb36-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">paste</span>(nameFirst,nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb36-5"><a href="2-data-manipulation.html#cb36-5"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;name&quot;</span>))</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   birthYear = col_double(),
-##   birthMonth = col_double(),
-##   birthDay = col_double(),
-##   deathYear = col_double(),
-##   deathMonth = col_double(),
-##   deathDay = col_double(),
-##   weight = col_double(),
-##   height = col_double(),
-##   debut = col_date(format = &quot;&quot;),
-##   finalGame = col_date(format = &quot;&quot;)
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="2-data-manipulation.html#cb27-1"></a>master =<span class="st"> </span></span>
+<span id="cb27-2"><a href="2-data-manipulation.html#cb27-2"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Master.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb27-3"><a href="2-data-manipulation.html#cb27-3"></a><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb27-4"><a href="2-data-manipulation.html#cb27-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">paste</span>(nameFirst,nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb27-5"><a href="2-data-manipulation.html#cb27-5"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;name&quot;</span>))</span></code></pre></div>
 </div>
 <div id="join-the-data" class="section level3 unnumbered">
 <h3>Join the Data</h3>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="2-data-manipulation.html#cb39-1"></a>slgdata <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb39-2"><a href="2-data-manipulation.html#cb39-2"></a><span class="st">  </span><span class="kw">left_join</span>(master, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2-data-manipulation.html#cb28-1"></a>slgdata <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-2"><a href="2-data-manipulation.html#cb28-2"></a><span class="st">  </span><span class="kw">left_join</span>(master, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
 ##    player_id     h   x2b   x3b    hr    ab     g   slg player        
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         
@@ -559,14 +489,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 dimagjo01  2214   389   131   361  6821  1736 0.579 Joe DiMaggio  
 ## 10 hornsro01  2930   541   169   301  8173  2259 0.577 Rogers Hornsby
 ## # ... with 1,554 more rows</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="2-data-manipulation.html#cb41-1"></a>slgname =<span class="st"> </span></span>
-<span id="cb41-2"><a href="2-data-manipulation.html#cb41-2"></a>slgdata <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb41-3"><a href="2-data-manipulation.html#cb41-3"></a><span class="st">  </span><span class="kw">left_join</span>(master, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="2-data-manipulation.html#cb30-1"></a>slgname =<span class="st"> </span></span>
+<span id="cb30-2"><a href="2-data-manipulation.html#cb30-2"></a>slgdata <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb30-3"><a href="2-data-manipulation.html#cb30-3"></a><span class="st">  </span><span class="kw">left_join</span>(master, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;player_id&quot;</span> =<span class="st"> &quot;playerID&quot;</span>))</span></code></pre></div>
 </div>
 <div id="rename-columns" class="section level3 unnumbered">
 <h3>Rename Columns</h3>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="2-data-manipulation.html#cb42-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb42-2"><a href="2-data-manipulation.html#cb42-2"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="2-data-manipulation.html#cb31-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb31-2"><a href="2-data-manipulation.html#cb31-2"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
 ##    player_id     h doubles triples    hr    ab     g   slg player        
 ##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         
@@ -581,14 +511,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 dimagjo01  2214     389     131   361  6821  1736 0.579 Joe DiMaggio  
 ## 10 hornsro01  2930     541     169   301  8173  2259 0.577 Rogers Hornsby
 ## # ... with 1,554 more rows</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="2-data-manipulation.html#cb44-1"></a>slgname =<span class="st"> </span></span>
-<span id="cb44-2"><a href="2-data-manipulation.html#cb44-2"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb44-3"><a href="2-data-manipulation.html#cb44-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="2-data-manipulation.html#cb33-1"></a>slgname =<span class="st"> </span></span>
+<span id="cb33-2"><a href="2-data-manipulation.html#cb33-2"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb33-3"><a href="2-data-manipulation.html#cb33-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">doubles =</span> x2b, <span class="dt">triples =</span> x3b)</span></code></pre></div>
 </div>
 <div id="reorder-columns" class="section level3 unnumbered">
 <h3>Reorder Columns</h3>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="2-data-manipulation.html#cb45-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb45-2"><a href="2-data-manipulation.html#cb45-2"></a><span class="st">  </span><span class="kw">select</span>(player_id, player, <span class="kw">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="2-data-manipulation.html#cb34-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-2"><a href="2-data-manipulation.html#cb34-2"></a><span class="st">  </span><span class="kw">select</span>(player_id, player, <span class="kw">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
 ##    player_id player             h doubles triples    hr    ab     g   slg
 ##    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -603,16 +533,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 dimagjo01 Joe DiMaggio    2214     389     131   361  6821  1736 0.579
 ## 10 hornsro01 Rogers Hornsby  2930     541     169   301  8173  2259 0.577
 ## # ... with 1,554 more rows</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="2-data-manipulation.html#cb47-1"></a>slgname =</span>
-<span id="cb47-2"><a href="2-data-manipulation.html#cb47-2"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb47-3"><a href="2-data-manipulation.html#cb47-3"></a><span class="st">  </span><span class="kw">select</span>(player_id, player, <span class="kw">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="2-data-manipulation.html#cb36-1"></a>slgname =</span>
+<span id="cb36-2"><a href="2-data-manipulation.html#cb36-2"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-3"><a href="2-data-manipulation.html#cb36-3"></a><span class="st">  </span><span class="kw">select</span>(player_id, player, <span class="kw">everything</span>())</span></code></pre></div>
 </div>
 </div>
 <div id="other-dplyr-tricks" class="section level2">
 <h2><span class="header-section-number">2.4</span> Other dplyr Tricks</h2>
 <div id="count" class="section level3 unnumbered">
 <h3>Count</h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="2-data-manipulation.html#cb48-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="2-data-manipulation.html#cb37-1"></a>data</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
 ##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr
 ##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -628,8 +558,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 barrofr01    1871     1 BS1     &lt;NA&gt;     18    86    13    13     2     1     0
 ## # ... with 102,806 more rows, and 10 more variables: rbi &lt;dbl&gt;, sb &lt;dbl&gt;, cs &lt;dbl&gt;,
 ## #   bb &lt;dbl&gt;, so &lt;dbl&gt;, ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="2-data-manipulation.html#cb50-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb50-2"><a href="2-data-manipulation.html#cb50-2"></a><span class="st">  </span><span class="kw">count</span>(player_id)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="2-data-manipulation.html#cb39-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb39-2"><a href="2-data-manipulation.html#cb39-2"></a><span class="st">  </span><span class="kw">count</span>(player_id)</span></code></pre></div>
 <pre><code>## # A tibble: 18,915 x 2
 ##    player_id     n
 ##    &lt;chr&gt;     &lt;int&gt;
@@ -644,8 +574,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 abbeybe01     6
 ## 10 abbeych01     5
 ## # ... with 18,905 more rows</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="2-data-manipulation.html#cb52-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb52-2"><a href="2-data-manipulation.html#cb52-2"></a><span class="st">  </span><span class="kw">count</span>(player_id, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="2-data-manipulation.html#cb41-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb41-2"><a href="2-data-manipulation.html#cb41-2"></a><span class="st">  </span><span class="kw">count</span>(player_id, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 18,915 x 2
 ##    player_id     n
 ##    &lt;chr&gt;     &lt;int&gt;
@@ -663,8 +593,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="uncount" class="section level3 unnumbered">
 <h3>Uncount</h3>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="2-data-manipulation.html#cb54-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb54-2"><a href="2-data-manipulation.html#cb54-2"></a><span class="st">  </span><span class="kw">uncount</span>(triples)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="2-data-manipulation.html#cb43-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb43-2"><a href="2-data-manipulation.html#cb43-2"></a><span class="st">  </span><span class="kw">uncount</span>(triples)</span></code></pre></div>
 <pre><code>## # A tibble: 80,303 x 8
 ##    player_id player        h doubles    hr    ab     g   slg
 ##    &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -682,15 +612,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="summarise-1" class="section level3 unnumbered">
 <h3>Summarise</h3>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="2-data-manipulation.html#cb56-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb56-2"><a href="2-data-manipulation.html#cb56-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb56-3"><a href="2-data-manipulation.html#cb56-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb56-4"><a href="2-data-manipulation.html#cb56-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
-<span id="cb56-5"><a href="2-data-manipulation.html#cb56-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
-<span id="cb56-6"><a href="2-data-manipulation.html#cb56-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
-<span id="cb56-7"><a href="2-data-manipulation.html#cb56-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
-<span id="cb56-8"><a href="2-data-manipulation.html#cb56-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
-<span id="cb56-9"><a href="2-data-manipulation.html#cb56-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) </span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="2-data-manipulation.html#cb45-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb45-2"><a href="2-data-manipulation.html#cb45-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb45-3"><a href="2-data-manipulation.html#cb45-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb45-4"><a href="2-data-manipulation.html#cb45-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h =</span> <span class="kw">sum</span>(h), </span>
+<span id="cb45-5"><a href="2-data-manipulation.html#cb45-5"></a>            <span class="dt">x2b =</span> <span class="kw">sum</span>(x2b),</span>
+<span id="cb45-6"><a href="2-data-manipulation.html#cb45-6"></a>            <span class="dt">x3b =</span> <span class="kw">sum</span>(x3b),</span>
+<span id="cb45-7"><a href="2-data-manipulation.html#cb45-7"></a>            <span class="dt">hr =</span> <span class="kw">sum</span>(hr),</span>
+<span id="cb45-8"><a href="2-data-manipulation.html#cb45-8"></a>            <span class="dt">ab =</span> <span class="kw">sum</span>(ab),</span>
+<span id="cb45-9"><a href="2-data-manipulation.html#cb45-9"></a>            <span class="dt">g =</span> <span class="kw">sum</span>(g)) </span></code></pre></div>
 <pre><code>## # A tibble: 18,915 x 7
 ##    player_id     h   x2b   x3b    hr    ab     g
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -705,10 +635,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 abbeybe01    38     3     3     0   225    79
 ## 10 abbeych01   492    67    46    19  1751   451
 ## # ... with 18,905 more rows</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="2-data-manipulation.html#cb58-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb58-2"><a href="2-data-manipulation.html#cb58-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb58-3"><a href="2-data-manipulation.html#cb58-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb58-4"><a href="2-data-manipulation.html#cb58-4"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="op">-</span>year_id),<span class="op">~</span><span class="kw">sum</span>(.))</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="2-data-manipulation.html#cb47-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb47-2"><a href="2-data-manipulation.html#cb47-2"></a><span class="st">  </span><span class="kw">select</span>(player_id,year_id,h,x2b,x3b,hr,ab, g) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb47-3"><a href="2-data-manipulation.html#cb47-3"></a><span class="st">  </span><span class="kw">group_by</span>(player_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb47-4"><a href="2-data-manipulation.html#cb47-4"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="op">-</span>year_id),<span class="op">~</span><span class="kw">sum</span>(.))</span></code></pre></div>
 <pre><code>## # A tibble: 18,915 x 7
 ##    player_id     h   x2b   x3b    hr    ab     g
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -774,6 +704,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

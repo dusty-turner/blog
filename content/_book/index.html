@@ -138,6 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#instructor-introduction"><i class="fa fa-check"></i><b>1.3</b> Instructor Introduction</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.4</b> Course Intent</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.5</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.6</b> Tidy Ecosystem</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
@@ -264,7 +265,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="get-course-documents" class="section level2">
 <h2><span class="header-section-number">1.5</span> Get Course Documents</h2>
-<p>ADD REPO LOCATION HERE</p>
+<p>[github repo]<a href="https://github.com/dusty-turner/MORS-Intermediate-R" class="uri">https://github.com/dusty-turner/MORS-Intermediate-R</a></p>
+<p>SSH:</p>
+<p><span class="math inline">\(git@github.com:dusty-turner/MORS-Intermediate-R.git\)</span></p>
+<p>HTTPS:</p>
+<p><a href="https://github.com/dusty-turner/MORS-Intermediate-R.git" class="uri">https://github.com/dusty-turner/MORS-Intermediate-R.git</a></p>
+</div>
+<div id="tidy-ecosystem" class="section level2">
+<h2><span class="header-section-number">1.6</span> Tidy Ecosystem</h2>
+<p><img src="images/tidyverse.png" /></p>
+<p><img src="images/tidymodels.png" /></p>
 
 </div>
 </div>
@@ -315,6 +325,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

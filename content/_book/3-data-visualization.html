@@ -138,6 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#instructor-introduction"><i class="fa fa-check"></i><b>1.3</b> Instructor Introduction</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.4</b> Course Intent</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.5</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.6</b> Tidy Ecosystem</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
@@ -189,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">3</span> Data Visualization</h1>
 <div id="bar-chart" class="section level2">
 <h2><span class="header-section-number">3.1</span> Bar Chart</h2>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="3-data-visualization.html#cb60-1"></a>slgname</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="3-data-visualization.html#cb49-1"></a>slgname</span></code></pre></div>
 <pre><code>## # A tibble: 1,564 x 9
 ##    player_id player             h doubles triples    hr    ab     g   slg
 ##    &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -206,136 +207,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 1,554 more rows</code></pre>
 <div id="canvas" class="section level3 unnumbered">
 <h3>Canvas</h3>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="3-data-visualization.html#cb62-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb62-2"><a href="3-data-visualization.html#cb62-2"></a><span class="st">  </span><span class="kw">ggplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="3-data-visualization.html#cb51-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb51-2"><a href="3-data-visualization.html#cb51-2"></a><span class="st">  </span><span class="kw">ggplot</span>()</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="mapping" class="section level3 unnumbered">
 <h3>Mapping</h3>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="3-data-visualization.html#cb63-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb63-2"><a href="3-data-visualization.html#cb63-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr))</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="3-data-visualization.html#cb52-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb52-2"><a href="3-data-visualization.html#cb52-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr))</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="filter-data" class="section level3 unnumbered">
 <h3>Filter Data</h3>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="3-data-visualization.html#cb64-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-2"><a href="3-data-visualization.html#cb64-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-3"><a href="3-data-visualization.html#cb64-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) </span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="3-data-visualization.html#cb53-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb53-2"><a href="3-data-visualization.html#cb53-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb53-3"><a href="3-data-visualization.html#cb53-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) </span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 <div id="plot-mechanism" class="section level3 unnumbered">
 <h3>Plot ‘mechanism’</h3>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="3-data-visualization.html#cb65-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb65-2"><a href="3-data-visualization.html#cb65-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb65-3"><a href="3-data-visualization.html#cb65-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) <span class="op">+</span></span>
-<span id="cb65-4"><a href="3-data-visualization.html#cb65-4"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="3-data-visualization.html#cb54-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-2"><a href="3-data-visualization.html#cb54-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-3"><a href="3-data-visualization.html#cb54-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) <span class="op">+</span></span>
+<span id="cb54-4"><a href="3-data-visualization.html#cb54-4"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
 <div id="coordinate-flip" class="section level3 unnumbered">
 <h3>Coordinate Flip</h3>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="3-data-visualization.html#cb66-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb66-2"><a href="3-data-visualization.html#cb66-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb66-3"><a href="3-data-visualization.html#cb66-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) <span class="op">+</span></span>
-<span id="cb66-4"><a href="3-data-visualization.html#cb66-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb66-5"><a href="3-data-visualization.html#cb66-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="3-data-visualization.html#cb55-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb55-2"><a href="3-data-visualization.html#cb55-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb55-3"><a href="3-data-visualization.html#cb55-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>player, <span class="dt">y =</span> hr)) <span class="op">+</span></span>
+<span id="cb55-4"><a href="3-data-visualization.html#cb55-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb55-5"><a href="3-data-visualization.html#cb55-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="reorder-factors" class="section level3 unnumbered">
 <h3>Reorder Factors</h3>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="3-data-visualization.html#cb67-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb67-2"><a href="3-data-visualization.html#cb67-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb67-3"><a href="3-data-visualization.html#cb67-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr)) <span class="op">+</span></span>
-<span id="cb67-4"><a href="3-data-visualization.html#cb67-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb67-5"><a href="3-data-visualization.html#cb67-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="3-data-visualization.html#cb56-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb56-2"><a href="3-data-visualization.html#cb56-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb56-3"><a href="3-data-visualization.html#cb56-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr)) <span class="op">+</span></span>
+<span id="cb56-4"><a href="3-data-visualization.html#cb56-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb56-5"><a href="3-data-visualization.html#cb56-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 <div id="color-bars" class="section level3 unnumbered">
 <h3>Color Bars</h3>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="3-data-visualization.html#cb68-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb68-2"><a href="3-data-visualization.html#cb68-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb68-3"><a href="3-data-visualization.html#cb68-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr, <span class="dt">fill =</span> slg)) <span class="op">+</span></span>
-<span id="cb68-4"><a href="3-data-visualization.html#cb68-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb68-5"><a href="3-data-visualization.html#cb68-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="3-data-visualization.html#cb57-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb57-2"><a href="3-data-visualization.html#cb57-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb57-3"><a href="3-data-visualization.html#cb57-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr, <span class="dt">fill =</span> slg)) <span class="op">+</span></span>
+<span id="cb57-4"><a href="3-data-visualization.html#cb57-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb57-5"><a href="3-data-visualization.html#cb57-5"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 <div id="update-labels" class="section level3 unnumbered">
 <h3>Update Labels</h3>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="3-data-visualization.html#cb69-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb69-2"><a href="3-data-visualization.html#cb69-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb69-3"><a href="3-data-visualization.html#cb69-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr, <span class="dt">fill =</span> slg)) <span class="op">+</span></span>
-<span id="cb69-4"><a href="3-data-visualization.html#cb69-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb69-5"><a href="3-data-visualization.html#cb69-5"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb69-6"><a href="3-data-visualization.html#cb69-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Player&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Home Runs&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Top 20 Home Run Hitters&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Slugging Percentage&quot;</span>,</span>
-<span id="cb69-7"><a href="3-data-visualization.html#cb69-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;1871-2016&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;*Among Players Who&#39;ve Played at least 1000 games&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="3-data-visualization.html#cb58-1"></a>slgname <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb58-2"><a href="3-data-visualization.html#cb58-2"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">20</span>, h) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb58-3"><a href="3-data-visualization.html#cb58-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(player,hr), <span class="dt">y =</span> hr, <span class="dt">fill =</span> slg)) <span class="op">+</span></span>
+<span id="cb58-4"><a href="3-data-visualization.html#cb58-4"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb58-5"><a href="3-data-visualization.html#cb58-5"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb58-6"><a href="3-data-visualization.html#cb58-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Player&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Home Runs&quot;</span>, </span>
+<span id="cb58-7"><a href="3-data-visualization.html#cb58-7"></a>       <span class="dt">title =</span> <span class="st">&quot;Top 20 Home Run Hitters&quot;</span>, </span>
+<span id="cb58-8"><a href="3-data-visualization.html#cb58-8"></a>       <span class="dt">fill =</span> <span class="st">&quot;Slugging Percentage&quot;</span>,</span>
+<span id="cb58-9"><a href="3-data-visualization.html#cb58-9"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;1871-2016&quot;</span>, </span>
+<span id="cb58-10"><a href="3-data-visualization.html#cb58-10"></a>       <span class="dt">caption =</span> <span class="st">&quot;*Among Players Who&#39;ve Played at least 1000 games&quot;</span>)</span></code></pre></div>
 <p><img src="Intermediate_R_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 </div>
 <div id="scatter-plot" class="section level2 unnumbered">
 <h2>Scatter Plot</h2>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="3-data-visualization.html#cb70-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-2"><a href="3-data-visualization.html#cb70-2"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-3"><a href="3-data-visualization.html#cb70-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-4"><a href="3-data-visualization.html#cb70-4"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-5"><a href="3-data-visualization.html#cb70-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
-<span id="cb70-6"><a href="3-data-visualization.html#cb70-6"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-7"><a href="3-data-visualization.html#cb70-7"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-8"><a href="3-data-visualization.html#cb70-8"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb70-9"><a href="3-data-visualization.html#cb70-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr,<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
-<span id="cb70-10"><a href="3-data-visualization.html#cb70-10"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
-<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="3-data-visualization.html#cb71-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-2"><a href="3-data-visualization.html#cb71-2"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-3"><a href="3-data-visualization.html#cb71-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-4"><a href="3-data-visualization.html#cb71-4"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-5"><a href="3-data-visualization.html#cb71-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
-<span id="cb71-6"><a href="3-data-visualization.html#cb71-6"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-7"><a href="3-data-visualization.html#cb71-7"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-8"><a href="3-data-visualization.html#cb71-8"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb71-9"><a href="3-data-visualization.html#cb71-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
-<span id="cb71-10"><a href="3-data-visualization.html#cb71-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
-<span id="cb71-11"><a href="3-data-visualization.html#cb71-11"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="3-data-visualization.html#cb73-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-2"><a href="3-data-visualization.html#cb73-2"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-3"><a href="3-data-visualization.html#cb73-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-4"><a href="3-data-visualization.html#cb73-4"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-5"><a href="3-data-visualization.html#cb73-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
-<span id="cb73-6"><a href="3-data-visualization.html#cb73-6"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-7"><a href="3-data-visualization.html#cb73-7"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-8"><a href="3-data-visualization.html#cb73-8"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-9"><a href="3-data-visualization.html#cb73-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
-<span id="cb73-10"><a href="3-data-visualization.html#cb73-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
-<span id="cb73-11"><a href="3-data-visualization.html#cb73-11"></a><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
-<span id="cb73-12"><a href="3-data-visualization.html#cb73-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>team_id)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-37-3.png" width="672" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="3-data-visualization.html#cb59-1"></a>scatterdat =<span class="st"> </span></span>
+<span id="cb59-2"><a href="3-data-visualization.html#cb59-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-3"><a href="3-data-visualization.html#cb59-3"></a><span class="st">  </span><span class="kw">filter</span>(lg_id <span class="op">==</span><span class="st"> &quot;AL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-4"><a href="3-data-visualization.html#cb59-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">team_id =</span> <span class="kw">fct_lump</span>(team_id, <span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-5"><a href="3-data-visualization.html#cb59-5"></a><span class="st">  </span><span class="kw">filter</span>(team_id <span class="op">!=</span><span class="st"> &quot;Other&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-6"><a href="3-data-visualization.html#cb59-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">complete.cases</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb59-7"><a href="3-data-visualization.html#cb59-7"></a><span class="st">  </span><span class="kw">filter</span>(year_id<span class="op">&gt;</span><span class="dv">1990</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-8"><a href="3-data-visualization.html#cb59-8"></a><span class="st">  </span><span class="kw">group_by</span>(team_id,year_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb59-9"><a href="3-data-visualization.html#cb59-9"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(g<span class="op">:</span>gidp), <span class="op">~</span><span class="kw">sum</span>(.))  </span>
+<span id="cb59-10"><a href="3-data-visualization.html#cb59-10"></a></span>
+<span id="cb59-11"><a href="3-data-visualization.html#cb59-11"></a>scatterdat</span></code></pre></div>
+<pre><code>## # A tibble: 260 x 19
+## # Groups:   team_id [10]
+##    team_id year_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb
+##    &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 BAL        1991  2365  5604   686  1421   256    29   170   660    50    33   528
+##  2 BAL        1992  2183  5485   705  1423   243    36   148   680    89    48   647
+##  3 BAL        1993  2127  5508   786  1470   287    24   157   744    73    54   655
+##  4 BAL        1994  1473  3856   589  1047   185    20   139   557    69    13   438
+##  5 BAL        1995  2046  4837   704  1267   229    27   173   668    92    45   574
+##  6 BAL        1996  2245  5689   949  1557   299    29   257   914    76    40   645
+##  7 BAL        1997  2282  5584   812  1498   264    22   196   780    63    26   586
+##  8 BAL        1998  2359  5565   817  1520   303    11   214   783    86    48   593
+##  9 BAL        1999  2300  5637   851  1572   299    21   203   804   107    46   615
+## 10 BAL        2000  2210  5549   794  1508   310    22   184   750   126    65   558
+## # ... with 250 more rows, and 6 more variables: so &lt;dbl&gt;, ibb &lt;dbl&gt;, hbp &lt;dbl&gt;,
+## #   sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
+<div id="canvas-1" class="section level3 unnumbered">
+<h3>Canvas</h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="3-data-visualization.html#cb61-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb61-2"><a href="3-data-visualization.html#cb61-2"></a><span class="st">  </span><span class="kw">ggplot</span>() </span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+<div id="mapping-1" class="section level3 unnumbered">
+<h3>Mapping</h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="3-data-visualization.html#cb62-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb62-2"><a href="3-data-visualization.html#cb62-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr,<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr)))</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+</div>
+<div id="plot-mechanism-geom_point" class="section level3 unnumbered">
+<h3>Plot ‘mechanism’: geom_point()</h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="3-data-visualization.html#cb63-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb63-2"><a href="3-data-visualization.html#cb63-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr,<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb63-3"><a href="3-data-visualization.html#cb63-3"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+<div id="plot-mechanism-geom_smooth" class="section level3 unnumbered">
+<h3>Plot ‘mechanism’: geom_smooth()</h3>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="3-data-visualization.html#cb64-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb64-2"><a href="3-data-visualization.html#cb64-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
+<span id="cb64-3"><a href="3-data-visualization.html#cb64-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb64-4"><a href="3-data-visualization.html#cb64-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="facet-plots" class="section level3 unnumbered">
+<h3>Facet Plots</h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="3-data-visualization.html#cb65-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb65-2"><a href="3-data-visualization.html#cb65-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
+<span id="cb65-3"><a href="3-data-visualization.html#cb65-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb65-4"><a href="3-data-visualization.html#cb65-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb65-5"><a href="3-data-visualization.html#cb65-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>team_id)</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+</div>
+<div id="update-labels-1" class="section level3 unnumbered">
+<h3>Update Labels</h3>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="3-data-visualization.html#cb66-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb66-2"><a href="3-data-visualization.html#cb66-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
+<span id="cb66-3"><a href="3-data-visualization.html#cb66-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb66-4"><a href="3-data-visualization.html#cb66-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb66-5"><a href="3-data-visualization.html#cb66-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>team_id) <span class="op">+</span></span>
+<span id="cb66-6"><a href="3-data-visualization.html#cb66-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Home Run Changes Over Time&quot;</span>,</span>
+<span id="cb66-7"><a href="3-data-visualization.html#cb66-7"></a>       <span class="dt">subtitle =</span> <span class="kw">paste</span>(<span class="st">&quot;From&quot;</span>, <span class="kw">min</span>(scatterdat<span class="op">$</span>year_id), <span class="st">&quot;to&quot;</span>, <span class="kw">max</span>(scatterdat<span class="op">$</span>year_id)),</span>
+<span id="cb66-8"><a href="3-data-visualization.html#cb66-8"></a>       <span class="dt">color =</span> <span class="st">&quot;Team&quot;</span>,</span>
+<span id="cb66-9"><a href="3-data-visualization.html#cb66-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Season&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Season Home Run Total&quot;</span>)</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+</div>
+<div id="change-smoothing-line" class="section level3 unnumbered">
+<h3>Change Smoothing Line</h3>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="3-data-visualization.html#cb67-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-2"><a href="3-data-visualization.html#cb67-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year_id,<span class="dt">y=</span>hr)) <span class="op">+</span></span>
+<span id="cb67-3"><a href="3-data-visualization.html#cb67-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">fct_reorder</span>(team_id,<span class="op">-</span>hr))) <span class="op">+</span></span>
+<span id="cb67-4"><a href="3-data-visualization.html#cb67-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
+<span id="cb67-5"><a href="3-data-visualization.html#cb67-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>team_id) <span class="op">+</span></span>
+<span id="cb67-6"><a href="3-data-visualization.html#cb67-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Home Run Changes Over Time&quot;</span>,</span>
+<span id="cb67-7"><a href="3-data-visualization.html#cb67-7"></a>       <span class="dt">subtitle =</span> <span class="kw">paste</span>(<span class="st">&quot;From&quot;</span>, <span class="kw">min</span>(scatterdat<span class="op">$</span>year_id), <span class="st">&quot;to&quot;</span>, <span class="kw">max</span>(scatterdat<span class="op">$</span>year_id)),</span>
+<span id="cb67-8"><a href="3-data-visualization.html#cb67-8"></a>       <span class="dt">color =</span> <span class="st">&quot;Team&quot;</span>,</span>
+<span id="cb67-9"><a href="3-data-visualization.html#cb67-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Season&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Season Home Run Total&quot;</span>)</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+</div>
 </div>
 <div id="animation" class="section level2">
 <h2><span class="header-section-number">3.2</span> Animation</h2>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="3-data-visualization.html#cb75-1"></a><span class="kw">library</span>(gganimate)</span>
-<span id="cb75-2"><a href="3-data-visualization.html#cb75-2"></a>p =</span>
-<span id="cb75-3"><a href="3-data-visualization.html#cb75-3"></a>data <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb75-4"><a href="3-data-visualization.html#cb75-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(lg_id)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-5"><a href="3-data-visualization.html#cb75-5"></a><span class="st">  </span><span class="kw">group_by</span>(year_id, team_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-6"><a href="3-data-visualization.html#cb75-6"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(hr,so,bb,ab), <span class="op">~</span><span class="kw">sum</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb75-7"><a href="3-data-visualization.html#cb75-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-8"><a href="3-data-visualization.html#cb75-8"></a><span class="st">  </span><span class="kw">inner_join</span>(</span>
-<span id="cb75-9"><a href="3-data-visualization.html#cb75-9"></a>    data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-10"><a href="3-data-visualization.html#cb75-10"></a><span class="st">      </span><span class="kw">select</span>(year_id,team_id,lg_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-11"><a href="3-data-visualization.html#cb75-11"></a><span class="st">      </span><span class="kw">distinct</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-12"><a href="3-data-visualization.html#cb75-12"></a><span class="st">  </span><span class="co"># pivot_longer(cols = hr:so) %&gt;% </span></span>
-<span id="cb75-13"><a href="3-data-visualization.html#cb75-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>so,<span class="dt">y=</span>hr,<span class="dt">color =</span> bb,<span class="dt">size =</span> ab, <span class="dt">group =</span> year_id)) <span class="op">+</span></span>
-<span id="cb75-14"><a href="3-data-visualization.html#cb75-14"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb75-15"><a href="3-data-visualization.html#cb75-15"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>lg_id) <span class="op">+</span></span>
-<span id="cb75-16"><a href="3-data-visualization.html#cb75-16"></a><span class="st">  </span><span class="co"># labs(title = &#39;Year: {frame_time}&#39;) +</span></span>
-<span id="cb75-17"><a href="3-data-visualization.html#cb75-17"></a><span class="st">  </span><span class="kw">transition_states</span>(year_id, <span class="dt">transition_length=</span><span class="dv">1</span>, <span class="dt">state_length=</span><span class="dv">30</span>) <span class="op">+</span></span>
-<span id="cb75-18"><a href="3-data-visualization.html#cb75-18"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Year: {closest_state}&#39;</span>) <span class="op">+</span></span>
-<span id="cb75-19"><a href="3-data-visualization.html#cb75-19"></a><span class="st">  </span><span class="kw">enter_fade</span>() <span class="op">+</span></span>
-<span id="cb75-20"><a href="3-data-visualization.html#cb75-20"></a><span class="st">  </span><span class="kw">exit_fade</span>() </span>
-<span id="cb75-21"><a href="3-data-visualization.html#cb75-21"></a></span>
-<span id="cb75-22"><a href="3-data-visualization.html#cb75-22"></a><span class="kw">animate</span>(p,</span>
-<span id="cb75-23"><a href="3-data-visualization.html#cb75-23"></a>        <span class="dt">nframes =</span> <span class="kw">length</span>(<span class="kw">unique</span>(data<span class="op">$</span>year_id))<span class="op">*</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="3-data-visualization.html#cb68-1"></a><span class="kw">library</span>(gganimate)</span>
+<span id="cb68-2"><a href="3-data-visualization.html#cb68-2"></a></span>
+<span id="cb68-3"><a href="3-data-visualization.html#cb68-3"></a>animdata =</span>
+<span id="cb68-4"><a href="3-data-visualization.html#cb68-4"></a><span class="st">  </span>data <span class="op">%&gt;%</span></span>
+<span id="cb68-5"><a href="3-data-visualization.html#cb68-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(lg_id)) <span class="op">%&gt;%</span></span>
+<span id="cb68-6"><a href="3-data-visualization.html#cb68-6"></a><span class="st">  </span><span class="kw">group_by</span>(year_id, team_id) <span class="op">%&gt;%</span></span>
+<span id="cb68-7"><a href="3-data-visualization.html#cb68-7"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(hr, so, bb, ab), <span class="op">~</span><span class="st"> </span><span class="kw">sum</span>(., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb68-8"><a href="3-data-visualization.html#cb68-8"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb68-9"><a href="3-data-visualization.html#cb68-9"></a><span class="st">  </span><span class="kw">inner_join</span>(data <span class="op">%&gt;%</span></span>
+<span id="cb68-10"><a href="3-data-visualization.html#cb68-10"></a><span class="st">               </span><span class="kw">select</span>(year_id, team_id, lg_id) <span class="op">%&gt;%</span></span>
+<span id="cb68-11"><a href="3-data-visualization.html#cb68-11"></a><span class="st">               </span><span class="kw">distinct</span>()) </span>
+<span id="cb68-12"><a href="3-data-visualization.html#cb68-12"></a></span>
+<span id="cb68-13"><a href="3-data-visualization.html#cb68-13"></a>animdata</span></code></pre></div>
+<pre><code>## # A tibble: 2,785 x 7
+##    year_id team_id    hr    so    bb    ab lg_id
+##      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+##  1    1876 BSN         9    98    58  2722 NL   
+##  2    1876 CHN         8    45    70  2748 NL   
+##  3    1876 CN1         4   136    41  2372 NL   
+##  4    1876 HAR         2    78    39  2664 NL   
+##  5    1876 LS1         6    98    24  2570 NL   
+##  6    1876 NY3         2    35    18  2180 NL   
+##  7    1876 PHN         7    36    27  2387 NL   
+##  8    1876 SL3         2    63    59  2478 NL   
+##  9    1877 BSN         4   121    65  2368 NL   
+## 10    1877 CHN         0   111    57  2273 NL   
+## # ... with 2,775 more rows</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="3-data-visualization.html#cb70-1"></a>p =<span class="st"> </span>animdata <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-2"><a href="3-data-visualization.html#cb70-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> so,<span class="dt">y =</span> hr, <span class="dt">color =</span> bb,<span class="dt">size =</span> ab,<span class="dt">group =</span> year_id)) <span class="op">+</span></span>
+<span id="cb70-3"><a href="3-data-visualization.html#cb70-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb70-4"><a href="3-data-visualization.html#cb70-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>lg_id) <span class="op">+</span></span>
+<span id="cb70-5"><a href="3-data-visualization.html#cb70-5"></a><span class="st">  </span><span class="kw">transition_states</span>(year_id,<span class="dt">transition_length =</span> <span class="dv">1</span>,<span class="dt">state_length =</span> <span class="dv">30</span>) <span class="op">+</span></span>
+<span id="cb70-6"><a href="3-data-visualization.html#cb70-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Year: {closest_state}&#39;</span>) <span class="op">+</span></span>
+<span id="cb70-7"><a href="3-data-visualization.html#cb70-7"></a><span class="st">  </span><span class="kw">enter_fade</span>() <span class="op">+</span></span>
+<span id="cb70-8"><a href="3-data-visualization.html#cb70-8"></a><span class="st">  </span><span class="kw">exit_fade</span>()</span>
+<span id="cb70-9"><a href="3-data-visualization.html#cb70-9"></a></span>
+<span id="cb70-10"><a href="3-data-visualization.html#cb70-10"></a><span class="kw">animate</span>(p,<span class="dt">nframes =</span> <span class="kw">length</span>(<span class="kw">unique</span>(data<span class="op">$</span>year_id)) <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 Frame 1 (0%)
 Frame 2 (0%)
@@ -630,7 +699,7 @@ Frame 290 (99%)
 Frame 291 (99%)
 Frame 292 (100%)
 ## Finalizing encoding... done!</code></pre>
-<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-38-1.gif" /><!-- --></p>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-46-1.gif" /><!-- --></p>
 <!-- ```{r} -->
 <!-- library(gapminder) -->
 <!-- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) + -->
@@ -695,6 +764,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
