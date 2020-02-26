@@ -169,6 +169,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="4-data-modeling.html"><a href="4-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>4.15</b> Run Model on New Data</a></li>
 <li class="chapter" data-level="4.16" data-path="4-data-modeling.html"><a href="4-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>4.16</b> Variable Importance</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-text-analysis.html"><a href="5-text-analysis.html"><i class="fa fa-check"></i><b>5</b> Text Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-text-analysis.html"><a href="5-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>5.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="5.2" data-path="5-text-analysis.html"><a href="5-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>5.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="5.3" data-path="5-text-analysis.html"><a href="5-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>5.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="5.4" data-path="5-text-analysis.html"><a href="5-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>5.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="5.5" data-path="5-text-analysis.html"><a href="5-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>5.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="5.6" data-path="5-text-analysis.html"><a href="5-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>5.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="5-text-analysis.html"><a href="5-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>5.7</b> Visualizations</a></li>
+<li class="chapter" data-level="5.8" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modleing"><i class="fa fa-check"></i><b>5.8</b> Topic Modleing</a></li>
+<li class="chapter" data-level="5.9" data-path="5-text-analysis.html"><a href="5-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>5.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="5.10" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>5.10</b> Topic Modeling</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -289,20 +301,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb59-11"><a href="3-data-visualization.html#cb59-11"></a>scatterdat</span></code></pre></div>
 <pre><code>## # A tibble: 260 x 19
 ## # Groups:   team_id [10]
-##    team_id year_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb
-##    &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 BAL        1991  2365  5604   686  1421   256    29   170   660    50    33   528
-##  2 BAL        1992  2183  5485   705  1423   243    36   148   680    89    48   647
-##  3 BAL        1993  2127  5508   786  1470   287    24   157   744    73    54   655
-##  4 BAL        1994  1473  3856   589  1047   185    20   139   557    69    13   438
-##  5 BAL        1995  2046  4837   704  1267   229    27   173   668    92    45   574
-##  6 BAL        1996  2245  5689   949  1557   299    29   257   914    76    40   645
-##  7 BAL        1997  2282  5584   812  1498   264    22   196   780    63    26   586
-##  8 BAL        1998  2359  5565   817  1520   303    11   214   783    86    48   593
-##  9 BAL        1999  2300  5637   851  1572   299    21   203   804   107    46   615
-## 10 BAL        2000  2210  5549   794  1508   310    22   184   750   126    65   558
-## # ... with 250 more rows, and 6 more variables: so &lt;dbl&gt;, ibb &lt;dbl&gt;, hbp &lt;dbl&gt;,
-## #   sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
+##    team_id year_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so
+##    &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 BAL        1991  2365  5604   686  1421   256    29   170   660    50    33   528   974
+##  2 BAL        1992  2183  5485   705  1423   243    36   148   680    89    48   647   827
+##  3 BAL        1993  2127  5508   786  1470   287    24   157   744    73    54   655   930
+##  4 BAL        1994  1473  3856   589  1047   185    20   139   557    69    13   438   655
+##  5 BAL        1995  2046  4837   704  1267   229    27   173   668    92    45   574   803
+##  6 BAL        1996  2245  5689   949  1557   299    29   257   914    76    40   645   915
+##  7 BAL        1997  2282  5584   812  1498   264    22   196   780    63    26   586   952
+##  8 BAL        1998  2359  5565   817  1520   303    11   214   783    86    48   593   903
+##  9 BAL        1999  2300  5637   851  1572   299    21   203   804   107    46   615   890
+## 10 BAL        2000  2210  5549   794  1508   310    22   184   750   126    65   558   900
+## # ... with 250 more rows, and 5 more variables: ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;,
+## #   gidp &lt;dbl&gt;</code></pre>
 <div id="canvas-1" class="section level3 unnumbered">
 <h3>Canvas</h3>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="3-data-visualization.html#cb61-1"></a>scatterdat <span class="op">%&gt;%</span><span class="st"> </span></span>

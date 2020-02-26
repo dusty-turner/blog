@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="3-data-visualization.html"/>
-
+<link rel="next" href="5-text-analysis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,6 +169,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.15" data-path="4-data-modeling.html"><a href="4-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>4.15</b> Run Model on New Data</a></li>
 <li class="chapter" data-level="4.16" data-path="4-data-modeling.html"><a href="4-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>4.16</b> Variable Importance</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-text-analysis.html"><a href="5-text-analysis.html"><i class="fa fa-check"></i><b>5</b> Text Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-text-analysis.html"><a href="5-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>5.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="5.2" data-path="5-text-analysis.html"><a href="5-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>5.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="5.3" data-path="5-text-analysis.html"><a href="5-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>5.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="5.4" data-path="5-text-analysis.html"><a href="5-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>5.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="5.5" data-path="5-text-analysis.html"><a href="5-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>5.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="5.6" data-path="5-text-analysis.html"><a href="5-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>5.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="5-text-analysis.html"><a href="5-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>5.7</b> Visualizations</a></li>
+<li class="chapter" data-level="5.8" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modleing"><i class="fa fa-check"></i><b>5.8</b> Topic Modleing</a></li>
+<li class="chapter" data-level="5.9" data-path="5-text-analysis.html"><a href="5-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>5.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="5.10" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>5.10</b> Topic Modeling</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -256,20 +268,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb77-13"><a href="4-data-modeling.html#cb77-13"></a></span>
 <span id="cb77-14"><a href="4-data-modeling.html#cb77-14"></a>hof</span></code></pre></div>
 <pre><code>## # A tibble: 1,565 x 20
-##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 aaronha01  3298 12364  2174  3771   624    98   755  2297   240    73  1402  1383
-##  2 abreubo01  2425  8480  1453  2470   574    59   288  1363   400   128  1476  1840
-##  3 adairje01  1165  4019   378  1022   163    19    57   366    29    29   208   499
-##  4 adamsbo03  1281  4019   591  1082   188    49    37   303    67    30   414   447
-##  5 adamssp01  1424  5557   844  1588   249    48     9   394   154    50   453   223
-##  6 adcocjo01  1959  6606   823  1832   295    35   336  1122    20    25   594  1059
-##  7 ageeto01   1129  3912   558   999   170    27   130   433   167    81   342   918
-##  8 ainsmed01  1078  3048   299   707   108    54    22   317    86    16   263   315
-##  9 alfoned01  1506  5385   777  1532   282    18   146   744    53    17   596   617
-## 10 alicelu01  1341  3971   551  1031   189    53    47   422    81    50   500   624
-## # ... with 1,555 more rows, and 7 more variables: ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;,
-## #   sf &lt;dbl&gt;, gidp &lt;dbl&gt;, lastyear &lt;dbl&gt;, inducted &lt;fct&gt;</code></pre>
+##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aaronha01  3298 12364  2174  3771   624    98   755  2297   240    73  1402  1383   293
+##  2 abreubo01  2425  8480  1453  2470   574    59   288  1363   400   128  1476  1840   115
+##  3 adairje01  1165  4019   378  1022   163    19    57   366    29    29   208   499    31
+##  4 adamsbo03  1281  4019   591  1082   188    49    37   303    67    30   414   447     1
+##  5 adamssp01  1424  5557   844  1588   249    48     9   394   154    50   453   223     0
+##  6 adcocjo01  1959  6606   823  1832   295    35   336  1122    20    25   594  1059    55
+##  7 ageeto01   1129  3912   558   999   170    27   130   433   167    81   342   918    26
+##  8 ainsmed01  1078  3048   299   707   108    54    22   317    86    16   263   315     0
+##  9 alfoned01  1506  5385   777  1532   282    18   146   744    53    17   596   617    22
+## 10 alicelu01  1341  3971   551  1031   189    53    47   422    81    50   500   624    25
+## # ... with 1,555 more rows, and 6 more variables: hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;,
+## #   lastyear &lt;dbl&gt;, inducted &lt;fct&gt;</code></pre>
 <div id="filter-for-hof-eligable-players" class="section level3 unnumbered">
 <h3>Filter for HOF Eligable Players</h3>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="4-data-modeling.html#cb79-1"></a>hof <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -286,40 +298,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb81-4"><a href="4-data-modeling.html#cb81-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>lastyear)</span>
 <span id="cb81-5"><a href="4-data-modeling.html#cb81-5"></a>hofmod</span></code></pre></div>
 <pre><code>## # A tibble: 1,397 x 19
-##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 aaronha01  3298 12364  2174  3771   624    98   755  2297   240    73  1402  1383
-##  2 adairje01  1165  4019   378  1022   163    19    57   366    29    29   208   499
-##  3 adamsbo03  1281  4019   591  1082   188    49    37   303    67    30   414   447
-##  4 adamssp01  1424  5557   844  1588   249    48     9   394   154    50   453   223
-##  5 adcocjo01  1959  6606   823  1832   295    35   336  1122    20    25   594  1059
-##  6 ageeto01   1129  3912   558   999   170    27   130   433   167    81   342   918
-##  7 ainsmed01  1078  3048   299   707   108    54    22   317    86    16   263   315
-##  8 alfoned01  1506  5385   777  1532   282    18   146   744    53    17   596   617
-##  9 alicelu01  1341  3971   551  1031   189    53    47   422    81    50   500   624
-## 10 allenbe01  1139  3404   357   815   140    21    73   351    13    16   370   424
-## # ... with 1,387 more rows, and 6 more variables: ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;,
-## #   sf &lt;dbl&gt;, gidp &lt;dbl&gt;, inducted &lt;fct&gt;</code></pre>
+##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 aaronha01  3298 12364  2174  3771   624    98   755  2297   240    73  1402  1383   293
+##  2 adairje01  1165  4019   378  1022   163    19    57   366    29    29   208   499    31
+##  3 adamsbo03  1281  4019   591  1082   188    49    37   303    67    30   414   447     1
+##  4 adamssp01  1424  5557   844  1588   249    48     9   394   154    50   453   223     0
+##  5 adcocjo01  1959  6606   823  1832   295    35   336  1122    20    25   594  1059    55
+##  6 ageeto01   1129  3912   558   999   170    27   130   433   167    81   342   918    26
+##  7 ainsmed01  1078  3048   299   707   108    54    22   317    86    16   263   315     0
+##  8 alfoned01  1506  5385   777  1532   282    18   146   744    53    17   596   617    22
+##  9 alicelu01  1341  3971   551  1031   189    53    47   422    81    50   500   624    25
+## 10 allenbe01  1139  3404   357   815   140    21    73   351    13    16   370   424    52
+## # ... with 1,387 more rows, and 5 more variables: hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;,
+## #   inducted &lt;fct&gt;</code></pre>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="4-data-modeling.html#cb83-1"></a>hoftest =<span class="st"> </span></span>
 <span id="cb83-2"><a href="4-data-modeling.html#cb83-2"></a>hof <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb83-3"><a href="4-data-modeling.html#cb83-3"></a><span class="st">  </span><span class="kw">filter</span>(lastyear <span class="op">&gt;</span><span class="st"> </span><span class="dv">2012</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb83-4"><a href="4-data-modeling.html#cb83-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>lastyear,<span class="op">-</span>inducted)</span>
 <span id="cb83-5"><a href="4-data-modeling.html#cb83-5"></a>hoftest</span></code></pre></div>
 <pre><code>## # A tibble: 168 x 18
-##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 abreubo01  2425  8480  1453  2470   574    59   288  1363   400   128  1476  1840
-##  2 andruel01  1221  4625   648  1266   207    37    35   436   241    83   408   684
-##  3 aybarer01  1346  4842   606  1324   241    45    51   451   144    58   257   613
-##  4 barmecl01  1186  3805   434   932   208    17    89   415    43    30   216   734
-##  5 bautijo02  1519  5139   878  1311   267    17   308   862    60    26   881  1113
-##  6 bayja01    1278  4505   737  1200   240    30   222   754    95    17   636  1216
-##  7 beltrad01  2720 10295  1428  2942   591    36   445  1571   119    42   775  1584
-##  8 beltrca01  2457  9301  1522  2617   536    78   421  1536   312    49  1051  1693
-##  9 berkmla01  1879  6491  1146  1905   422    30   366  1234    86    48  1201  1300
-## 10 betanyu01  1156  4052   437  1057   218    29    80   457    30    30   143   435
-## # ... with 158 more rows, and 5 more variables: ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;,
-## #   sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
+##    player_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs    bb    so   ibb
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abreubo01  2425  8480  1453  2470   574    59   288  1363   400   128  1476  1840   115
+##  2 andruel01  1221  4625   648  1266   207    37    35   436   241    83   408   684     4
+##  3 aybarer01  1346  4842   606  1324   241    45    51   451   144    58   257   613    16
+##  4 barmecl01  1186  3805   434   932   208    17    89   415    43    30   216   734    32
+##  5 bautijo02  1519  5139   878  1311   267    17   308   862    60    26   881  1113    53
+##  6 bayja01    1278  4505   737  1200   240    30   222   754    95    17   636  1216    38
+##  7 beltrad01  2720 10295  1428  2942   591    36   445  1571   119    42   775  1584   108
+##  8 beltrca01  2457  9301  1522  2617   536    78   421  1536   312    49  1051  1693   101
+##  9 berkmla01  1879  6491  1146  1905   422    30   366  1234    86    48  1201  1300   160
+## 10 betanyu01  1156  4052   437  1057   218    29    80   457    30    30   143   435    10
+## # ... with 158 more rows, and 4 more variables: hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div id="data-exploration" class="section level2">
@@ -362,9 +373,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Operations:
 ## 
-## K-nearest neighbor imputation for player_id, ab, r, h, x2b, x3b, hr, rbi, sb, cs, ... [trained]
-## Centering for g, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ... [trained]
-## Scaling for g, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ... [trained]
+## K-nearest neighbor imputation for player_id, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ... [trained]
+## Centering for g, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ibb, hbp, ... [trained]
+## Scaling for g, ab, r, h, x2b, x3b, hr, rbi, sb, cs, bb, so, ibb, hbp, ... [trained]
 ## Variables removed player_id [trained]</code></pre>
 </div>
 <div id="apply-preprocessing" class="section level2">
@@ -375,20 +386,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-4"><a href="4-data-modeling.html#cb90-4"></a></span>
 <span id="cb90-5"><a href="4-data-modeling.html#cb90-5"></a>hof_training_preprocessed_tbl</span></code></pre></div>
 <pre><code>## # A tibble: 1,118 x 18
-##         g      ab       r       h     x2b      x3b      hr    rbi     sb     cs
-##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1  3.96   3.72    3.93    3.84    3.27    1.08e+0  5.51    4.55   0.786  0.783
-##  2 -0.873 -0.702  -1.08   -0.770  -0.790  -8.61e-1 -0.556  -0.939 -0.701 -0.323
-##  3 -0.610 -0.702  -0.489  -0.669  -0.570  -1.22e-1 -0.730  -1.12  -0.433 -0.298
-##  4 -0.286  0.113   0.217   0.179  -0.0318 -1.47e-1 -0.974  -0.859  0.180  0.205
-##  5  0.925  0.670   0.158   0.589   0.374  -4.67e-1  1.87    1.21  -0.764 -0.423
-##  6 -0.954 -0.759  -0.582  -0.809  -0.728  -6.64e-1  0.0781 -0.748  0.272  0.984
-##  7 -1.07  -1.22   -1.30   -1.30   -1.27    5.94e-4 -0.861  -1.08  -0.299 -0.649
-##  8 -0.101  0.0222  0.0300  0.0853  0.259  -8.85e-1  0.217   0.136 -0.532 -0.624
-##  9 -0.474 -0.728  -0.601  -0.755  -0.561  -2.40e-2 -0.643  -0.780 -0.334  0.205
-## 10 -0.932 -1.03   -1.14   -1.12   -0.993  -8.12e-1 -0.417  -0.981 -0.813 -0.649
-## # ... with 1,108 more rows, and 8 more variables: bb &lt;dbl&gt;, so &lt;dbl&gt;, ibb &lt;dbl&gt;,
-## #   hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;, inducted &lt;fct&gt;</code></pre>
+##         g      ab       r       h     x2b      x3b      hr    rbi     sb     cs     bb
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1  3.96   3.72    3.93    3.84    3.27    1.08e+0  5.51    4.55   0.786  0.783  2.89 
+##  2 -0.873 -0.702  -1.08   -0.770  -0.790  -8.61e-1 -0.556  -0.939 -0.701 -0.323 -1.11 
+##  3 -0.610 -0.702  -0.489  -0.669  -0.570  -1.22e-1 -0.730  -1.12  -0.433 -0.298 -0.421
+##  4 -0.286  0.113   0.217   0.179  -0.0318 -1.47e-1 -0.974  -0.859  0.180  0.205 -0.290
+##  5  0.925  0.670   0.158   0.589   0.374  -4.67e-1  1.87    1.21  -0.764 -0.423  0.182
+##  6 -0.954 -0.759  -0.582  -0.809  -0.728  -6.64e-1  0.0781 -0.748  0.272  0.984 -0.662
+##  7 -1.07  -1.22   -1.30   -1.30   -1.27    5.94e-4 -0.861  -1.08  -0.299 -0.649 -0.927
+##  8 -0.101  0.0222  0.0300  0.0853  0.259  -8.85e-1  0.217   0.136 -0.532 -0.624  0.189
+##  9 -0.474 -0.728  -0.601  -0.755  -0.561  -2.40e-2 -0.643  -0.780 -0.334  0.205 -0.133
+## 10 -0.932 -1.03   -1.14   -1.12   -0.993  -8.12e-1 -0.417  -0.981 -0.813 -0.649 -0.568
+## # ... with 1,108 more rows, and 7 more variables: so &lt;dbl&gt;, ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;,
+## #   sf &lt;dbl&gt;, gidp &lt;dbl&gt;, inducted &lt;fct&gt;</code></pre>
 </div>
 <div id="prepare-cross-validation" class="section level2">
 <h2><span class="header-section-number">4.7</span> Prepare Cross Validation</h2>
@@ -771,8 +782,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="3-data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="3-data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-text-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
