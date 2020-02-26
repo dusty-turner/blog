@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Text Analysis | Intermediate R</title>
+  <meta name="description" content="5 Text Analysis | Intermediate R" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Text Analysis | Intermediate R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Text Analysis | Intermediate R" />
+  
+  
+  
+
+<meta name="author" content="MAJ Dusty Turner" />
+
+
+<meta name="date" content="2020-06-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4-data-modeling.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href = "/">Tutorial Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Class Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#expectations"><i class="fa fa-check"></i><b>1.1</b> Expectations</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#class-introductions"><i class="fa fa-check"></i><b>1.2</b> Class Introductions</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#instructor-introduction"><i class="fa fa-check"></i><b>1.3</b> Instructor Introduction</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-intent"><i class="fa fa-check"></i><b>1.4</b> Course Intent</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#get-course-documents"><i class="fa fa-check"></i><b>1.5</b> Get Course Documents</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#tidy-ecosystem"><i class="fa fa-check"></i><b>1.6</b> Tidy Ecosystem</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#read-in-data"><i class="fa fa-check"></i><b>2.1</b> Read in Data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#analysis-with-dplyr"><i class="fa fa-check"></i><b>2.2</b> Analysis with <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#joins"><i class="fa fa-check"></i><b>2.3</b> Joins</a></li>
+<li class="chapter" data-level="2.4" data-path="2-data-manipulation.html"><a href="2-data-manipulation.html#other-dplyr-tricks"><i class="fa fa-check"></i><b>2.4</b> Other dplyr Tricks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-data-visualization.html"><a href="3-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-data-visualization.html"><a href="3-data-visualization.html#bar-chart"><i class="fa fa-check"></i><b>3.1</b> Bar Chart</a></li>
+<li class="chapter" data-level="" data-path="3-data-visualization.html"><a href="3-data-visualization.html#scatter-plot"><i class="fa fa-check"></i>Scatter Plot</a></li>
+<li class="chapter" data-level="3.2" data-path="3-data-visualization.html"><a href="3-data-visualization.html#animation"><i class="fa fa-check"></i><b>3.2</b> Animation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-data-modeling.html"><a href="4-data-modeling.html"><i class="fa fa-check"></i><b>4</b> Data Modeling</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-data-modeling.html"><a href="4-data-modeling.html#load-packages"><i class="fa fa-check"></i><b>4.1</b> Load Packages</a></li>
+<li class="chapter" data-level="4.2" data-path="4-data-modeling.html"><a href="4-data-modeling.html#read-data"><i class="fa fa-check"></i><b>4.2</b> Read Data</a></li>
+<li class="chapter" data-level="4.3" data-path="4-data-modeling.html"><a href="4-data-modeling.html#data-exploration"><i class="fa fa-check"></i><b>4.3</b> Data Exploration</a></li>
+<li class="chapter" data-level="4.4" data-path="4-data-modeling.html"><a href="4-data-modeling.html#split-data-testtrain"><i class="fa fa-check"></i><b>4.4</b> Split Data test/train</a></li>
+<li class="chapter" data-level="4.5" data-path="4-data-modeling.html"><a href="4-data-modeling.html#preprocess-data"><i class="fa fa-check"></i><b>4.5</b> Preprocess Data</a></li>
+<li class="chapter" data-level="4.6" data-path="4-data-modeling.html"><a href="4-data-modeling.html#apply-preprocessing"><i class="fa fa-check"></i><b>4.6</b> Apply Preprocessing</a></li>
+<li class="chapter" data-level="4.7" data-path="4-data-modeling.html"><a href="4-data-modeling.html#prepare-cross-validation"><i class="fa fa-check"></i><b>4.7</b> Prepare Cross Validation</a></li>
+<li class="chapter" data-level="4.8" data-path="4-data-modeling.html"><a href="4-data-modeling.html#specify-models"><i class="fa fa-check"></i><b>4.8</b> Specify Models</a></li>
+<li class="chapter" data-level="4.9" data-path="4-data-modeling.html"><a href="4-data-modeling.html#create-grid-of-parameters-to-validate-over"><i class="fa fa-check"></i><b>4.9</b> Create Grid of Parameters to Validate Over</a></li>
+<li class="chapter" data-level="4.10" data-path="4-data-modeling.html"><a href="4-data-modeling.html#execute-cross-validation"><i class="fa fa-check"></i><b>4.10</b> Execute Cross Validation</a></li>
+<li class="chapter" data-level="4.11" data-path="4-data-modeling.html"><a href="4-data-modeling.html#select-best-parameters"><i class="fa fa-check"></i><b>4.11</b> Select Best Parameters</a></li>
+<li class="chapter" data-level="4.12" data-path="4-data-modeling.html"><a href="4-data-modeling.html#save-best-paramenters"><i class="fa fa-check"></i><b>4.12</b> Save Best Paramenters</a></li>
+<li class="chapter" data-level="4.13" data-path="4-data-modeling.html"><a href="4-data-modeling.html#compare-models"><i class="fa fa-check"></i><b>4.13</b> Compare Models</a></li>
+<li class="chapter" data-level="4.14" data-path="4-data-modeling.html"><a href="4-data-modeling.html#run-best-model-on-all-data"><i class="fa fa-check"></i><b>4.14</b> Run Best Model on All Data</a></li>
+<li class="chapter" data-level="4.15" data-path="4-data-modeling.html"><a href="4-data-modeling.html#run-model-on-new-data"><i class="fa fa-check"></i><b>4.15</b> Run Model on New Data</a></li>
+<li class="chapter" data-level="4.16" data-path="4-data-modeling.html"><a href="4-data-modeling.html#variable-importance"><i class="fa fa-check"></i><b>4.16</b> Variable Importance</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-text-analysis.html"><a href="5-text-analysis.html"><i class="fa fa-check"></i><b>5</b> Text Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-text-analysis.html"><a href="5-text-analysis.html#the-adventures-of-tom-sawyer"><i class="fa fa-check"></i><b>5.1</b> The Adventures of Tom Sawyer</a></li>
+<li class="chapter" data-level="5.2" data-path="5-text-analysis.html"><a href="5-text-analysis.html#find-chapter-splits"><i class="fa fa-check"></i><b>5.2</b> Find Chapter Splits</a></li>
+<li class="chapter" data-level="5.3" data-path="5-text-analysis.html"><a href="5-text-analysis.html#tokenize-the-book"><i class="fa fa-check"></i><b>5.3</b> Tokenize the Book</a></li>
+<li class="chapter" data-level="5.4" data-path="5-text-analysis.html"><a href="5-text-analysis.html#remove-stop-words"><i class="fa fa-check"></i><b>5.4</b> Remove ‘stop words’</a></li>
+<li class="chapter" data-level="5.5" data-path="5-text-analysis.html"><a href="5-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>5.5</b> Join Sentiments</a></li>
+<li class="chapter" data-level="5.6" data-path="5-text-analysis.html"><a href="5-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>5.6</b> Descriptive Text Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="5-text-analysis.html"><a href="5-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>5.7</b> Visualizations</a></li>
+<li class="chapter" data-level="5.8" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modleing"><i class="fa fa-check"></i><b>5.8</b> Topic Modleing</a></li>
+<li class="chapter" data-level="5.9" data-path="5-text-analysis.html"><a href="5-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>5.9</b> Term Frequency</a></li>
+<li class="chapter" data-level="5.10" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>5.10</b> Topic Modeling</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Intermediate R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="text-analysis" class="section level1">
+<h1><span class="header-section-number">5</span> Text Analysis</h1>
+<div id="the-adventures-of-tom-sawyer" class="section level2">
+<h2><span class="header-section-number">5.1</span> The Adventures of Tom Sawyer</h2>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="5-text-analysis.html#cb133-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb133-2"><a href="5-text-analysis.html#cb133-2"></a><span class="kw">library</span>(tidytext)</span>
+<span id="cb133-3"><a href="5-text-analysis.html#cb133-3"></a><span class="kw">library</span>(stringi)</span>
+<span id="cb133-4"><a href="5-text-analysis.html#cb133-4"></a></span>
+<span id="cb133-5"><a href="5-text-analysis.html#cb133-5"></a>book =<span class="st"> </span><span class="kw">read_file</span>(<span class="st">&quot;data_files//The-Adventures-of-Tom-Sawyer.txt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">enframe</span>(<span class="dt">name =</span> <span class="st">&quot;Book&quot;</span>)</span>
+<span id="cb133-6"><a href="5-text-analysis.html#cb133-6"></a>book</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##    Book value                                                                                 
+##   &lt;int&gt; &lt;chr&gt;                                                                                 
+## 1     1 &quot;The Project Gutenberg EBook of The Adventures of Tom Sawyer, Complete\r\n\r\nby Mark~</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="5-text-analysis.html#cb135-1"></a>book <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nchar</span>()</span></code></pre></div>
+<pre><code>##   Book  value 
+##      1 423754</code></pre>
+</div>
+<div id="find-chapter-splits" class="section level2">
+<h2><span class="header-section-number">5.2</span> Find Chapter Splits</h2>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="5-text-analysis.html#cb137-1"></a>book =</span>
+<span id="cb137-2"><a href="5-text-analysis.html#cb137-2"></a>book <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate_rows</span>(value, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">CHAPTER&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb137-3"><a href="5-text-analysis.html#cb137-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb137-4"><a href="5-text-analysis.html#cb137-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(<span class="dt">string =</span> value, <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb137-5"><a href="5-text-analysis.html#cb137-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_replace</span>(value, <span class="st">&quot;jpg&quot;</span>, <span class="st">&quot;HERE&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb137-6"><a href="5-text-analysis.html#cb137-6"></a><span class="st">  </span><span class="kw">separate</span>(<span class="dt">col =</span> <span class="st">&quot;value&quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Chapter&quot;</span>, <span class="st">&quot;Text&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;HERE&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb137-7"><a href="5-text-analysis.html#cb137-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Text)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb137-8"><a href="5-text-analysis.html#cb137-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Chapter =</span> <span class="kw">unlist</span>(<span class="kw">str_extract_all</span>(Chapter, <span class="st">&quot;[A-Z]+&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb137-9"><a href="5-text-analysis.html#cb137-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Text =</span> <span class="kw">str_replace_all</span>(Text, <span class="st">&quot;[.]&quot;</span>,<span class="st">&quot; &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb137-10"><a href="5-text-analysis.html#cb137-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Chapter =</span> <span class="kw">as.numeric</span>(<span class="kw">as.roman</span>(Chapter)))</span></code></pre></div>
+</div>
+<div id="tokenize-the-book" class="section level2">
+<h2><span class="header-section-number">5.3</span> Tokenize the Book</h2>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="5-text-analysis.html#cb138-1"></a>booktokens =<span class="st"> </span>book   <span class="op">%&gt;%</span></span>
+<span id="cb138-2"><a href="5-text-analysis.html#cb138-2"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(word, Text)</span>
+<span id="cb138-3"><a href="5-text-analysis.html#cb138-3"></a>booktokens</span></code></pre></div>
+<pre><code>## # A tibble: 70,882 x 3
+##     Book Chapter word  
+##    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt; 
+##  1     1       1 182k  
+##  2     1       1 tom   
+##  3     1       1 no    
+##  4     1       1 answer
+##  5     1       1 tom   
+##  6     1       1 no    
+##  7     1       1 answer
+##  8     1       1 what’s
+##  9     1       1 gone  
+## 10     1       1 with  
+## # ... with 70,872 more rows</code></pre>
+</div>
+<div id="remove-stop-words" class="section level2">
+<h2><span class="header-section-number">5.4</span> Remove ‘stop words’</h2>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="5-text-analysis.html#cb140-1"></a>bookstop =<span class="st"> </span>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb140-2"><a href="5-text-analysis.html#cb140-2"></a><span class="st">  </span><span class="kw">anti_join</span>(stop_words)</span>
+<span id="cb140-3"><a href="5-text-analysis.html#cb140-3"></a>bookstop</span></code></pre></div>
+<pre><code>## # A tibble: 26,251 x 3
+##     Book Chapter word  
+##    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt; 
+##  1     1       1 182k  
+##  2     1       1 tom   
+##  3     1       1 answer
+##  4     1       1 tom   
+##  5     1       1 answer
+##  6     1       1 what’s
+##  7     1       1 boy   
+##  8     1       1 tom   
+##  9     1       1 answer
+## 10     1       1 lady  
+## # ... with 26,241 more rows</code></pre>
+</div>
+<div id="join-sentiments" class="section level2">
+<h2><span class="header-section-number">5.5</span> Join Sentiments</h2>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="5-text-analysis.html#cb142-1"></a><span class="kw">get_sentiments</span>(<span class="dt">lexicon =</span> <span class="st">&quot;afinn&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2,477 x 2
+##    word       value
+##    &lt;chr&gt;      &lt;dbl&gt;
+##  1 abandon       -2
+##  2 abandoned     -2
+##  3 abandons      -2
+##  4 abducted      -2
+##  5 abduction     -2
+##  6 abductions    -2
+##  7 abhor         -3
+##  8 abhorred      -3
+##  9 abhorrent     -3
+## 10 abhors        -3
+## # ... with 2,467 more rows</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="5-text-analysis.html#cb144-1"></a><span class="kw">get_sentiments</span>(<span class="dt">lexicon =</span> <span class="st">&quot;bing&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6,786 x 2
+##    word        sentiment
+##    &lt;chr&gt;       &lt;chr&gt;    
+##  1 2-faces     negative 
+##  2 abnormal    negative 
+##  3 abolish     negative 
+##  4 abominable  negative 
+##  5 abominably  negative 
+##  6 abominate   negative 
+##  7 abomination negative 
+##  8 abort       negative 
+##  9 aborted     negative 
+## 10 aborts      negative 
+## # ... with 6,776 more rows</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="5-text-analysis.html#cb146-1"></a><span class="kw">get_sentiments</span>(<span class="dt">lexicon =</span> <span class="st">&quot;loughran&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 4,150 x 2
+##    word         sentiment
+##    &lt;chr&gt;        &lt;chr&gt;    
+##  1 abandon      negative 
+##  2 abandoned    negative 
+##  3 abandoning   negative 
+##  4 abandonment  negative 
+##  5 abandonments negative 
+##  6 abandons     negative 
+##  7 abdicated    negative 
+##  8 abdicates    negative 
+##  9 abdicating   negative 
+## 10 abdication   negative 
+## # ... with 4,140 more rows</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="5-text-analysis.html#cb148-1"></a><span class="kw">get_sentiments</span>(<span class="dt">lexicon =</span> <span class="st">&quot;nrc&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 13,901 x 2
+##    word        sentiment
+##    &lt;chr&gt;       &lt;chr&gt;    
+##  1 abacus      trust    
+##  2 abandon     fear     
+##  3 abandon     negative 
+##  4 abandon     sadness  
+##  5 abandoned   anger    
+##  6 abandoned   fear     
+##  7 abandoned   negative 
+##  8 abandoned   sadness  
+##  9 abandonment anger    
+## 10 abandonment fear     
+## # ... with 13,891 more rows</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="5-text-analysis.html#cb150-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb150-2"><a href="5-text-analysis.html#cb150-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 70,882 x 4
+##     Book Chapter word   sentiment
+##    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+##  1     1       1 182k   &lt;NA&gt;     
+##  2     1       1 tom    &lt;NA&gt;     
+##  3     1       1 no     &lt;NA&gt;     
+##  4     1       1 answer &lt;NA&gt;     
+##  5     1       1 tom    &lt;NA&gt;     
+##  6     1       1 no     &lt;NA&gt;     
+##  7     1       1 answer &lt;NA&gt;     
+##  8     1       1 what’s &lt;NA&gt;     
+##  9     1       1 gone   &lt;NA&gt;     
+## 10     1       1 with   &lt;NA&gt;     
+## # ... with 70,872 more rows</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="5-text-analysis.html#cb152-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb152-2"><a href="5-text-analysis.html#cb152-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb152-3"><a href="5-text-analysis.html#cb152-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment))</span></code></pre></div>
+<pre><code>## # A tibble: 4,778 x 4
+##     Book Chapter word      sentiment
+##    &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    
+##  1     1       1 wonder    positive 
+##  2     1       1 pride     positive 
+##  3     1       1 well      positive 
+##  4     1       1 perplexed negative 
+##  5     1       1 loud      negative 
+##  6     1       1 enough    positive 
+##  7     1       1 well      positive 
+##  8     1       1 noise     negative 
+##  9     1       1 slack     negative 
+## 10     1       1 well      positive 
+## # ... with 4,768 more rows</code></pre>
+</div>
+<div id="descriptive-text-statistics" class="section level2">
+<h2><span class="header-section-number">5.6</span> Descriptive Text Statistics</h2>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="5-text-analysis.html#cb154-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb154-2"><a href="5-text-analysis.html#cb154-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb154-3"><a href="5-text-analysis.html#cb154-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment)) <span class="op">%&gt;%</span></span>
+<span id="cb154-4"><a href="5-text-analysis.html#cb154-4"></a><span class="st">  </span><span class="kw">count</span>(Chapter,sentiment)</span></code></pre></div>
+<pre><code>## # A tibble: 64 x 3
+##    Chapter sentiment     n
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
+##  1       1 negative     95
+##  2       1 positive     81
+##  3       2 negative     40
+##  4       2 positive     66
+##  5       3 negative     96
+##  6       3 positive     84
+##  7       4 negative     96
+##  8       4 positive    147
+##  9       5 negative     63
+## 10       5 positive     60
+## # ... with 54 more rows</code></pre>
+</div>
+<div id="visualizations" class="section level2">
+<h2><span class="header-section-number">5.7</span> Visualizations</h2>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="5-text-analysis.html#cb156-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb156-2"><a href="5-text-analysis.html#cb156-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb156-3"><a href="5-text-analysis.html#cb156-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment)) <span class="op">%&gt;%</span></span>
+<span id="cb156-4"><a href="5-text-analysis.html#cb156-4"></a><span class="st">  </span><span class="kw">count</span>(Chapter,sentiment) <span class="op">%&gt;%</span></span>
+<span id="cb156-5"><a href="5-text-analysis.html#cb156-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">if_else</span>(sentiment <span class="op">==</span><span class="st"> &quot;negative&quot;</span>,n<span class="op">*-</span><span class="dv">1</span>,<span class="kw">as.double</span>(n))) <span class="op">%&gt;%</span></span>
+<span id="cb156-6"><a href="5-text-analysis.html#cb156-6"></a><span class="st">  </span><span class="kw">group_by</span>(Chapter) <span class="op">%&gt;%</span></span>
+<span id="cb156-7"><a href="5-text-analysis.html#cb156-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">order =</span> <span class="kw">group_indices</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb156-8"><a href="5-text-analysis.html#cb156-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span></span>
+<span id="cb156-9"><a href="5-text-analysis.html#cb156-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pos =</span> <span class="kw">if_else</span>(n<span class="op">&gt;</span><span class="dv">0</span>,<span class="st">&quot;pos&quot;</span>,<span class="st">&quot;neg&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb156-10"><a href="5-text-analysis.html#cb156-10"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb156-11"><a href="5-text-analysis.html#cb156-11"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Chapter,<span class="dt">y=</span>n,<span class="dt">fill =</span> pos, <span class="dt">color =</span> pos)) <span class="op">+</span></span>
+<span id="cb156-12"><a href="5-text-analysis.html#cb156-12"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb156-13"><a href="5-text-analysis.html#cb156-13"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>)) <span class="op">+</span></span>
+<span id="cb156-14"><a href="5-text-analysis.html#cb156-14"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;black&quot;</span>)) <span class="op">+</span></span>
+<span id="cb156-15"><a href="5-text-analysis.html#cb156-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>, <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>)) <span class="op">+</span></span>
+<span id="cb156-16"><a href="5-text-analysis.html#cb156-16"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Net Positive Words&quot;</span>,</span>
+<span id="cb156-17"><a href="5-text-analysis.html#cb156-17"></a>       <span class="dt">title =</span> <span class="st">&quot;Sentiment Analysis of &#39;The Adventures of Tom Sawyer&#39;&quot;</span>,</span>
+<span id="cb156-18"><a href="5-text-analysis.html#cb156-18"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Net Positive Words by Chapter&quot;</span>)</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+</div>
+<div id="topic-modleing" class="section level2">
+<h2><span class="header-section-number">5.8</span> Topic Modleing</h2>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="5-text-analysis.html#cb157-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb157-2"><a href="5-text-analysis.html#cb157-2"></a><span class="st">  </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7,774 x 2
+##    word      n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 the    3708
+##  2 and    3059
+##  3 a      1807
+##  4 to     1696
+##  5 of     1474
+##  6 he     1158
+##  7 was    1126
+##  8 it     1090
+##  9 in      943
+## 10 that    875
+## # ... with 7,764 more rows</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="5-text-analysis.html#cb159-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb159-2"><a href="5-text-analysis.html#cb159-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb159-3"><a href="5-text-analysis.html#cb159-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment)) <span class="op">%&gt;%</span></span>
+<span id="cb159-4"><a href="5-text-analysis.html#cb159-4"></a><span class="st">  </span><span class="kw">count</span>(word,sentiment, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1,358 x 3
+##    word   sentiment     n
+##    &lt;chr&gt;  &lt;chr&gt;     &lt;int&gt;
+##  1 well   positive    152
+##  2 like   positive    113
+##  3 good   positive    101
+##  4 work   positive     88
+##  5 right  positive     83
+##  6 great  positive     68
+##  7 dead   negative     59
+##  8 enough positive     57
+##  9 poor   negative     52
+## 10 cave   negative     41
+## # ... with 1,348 more rows</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="5-text-analysis.html#cb161-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb161-2"><a href="5-text-analysis.html#cb161-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb161-3"><a href="5-text-analysis.html#cb161-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment)) <span class="op">%&gt;%</span></span>
+<span id="cb161-4"><a href="5-text-analysis.html#cb161-4"></a><span class="st">  </span><span class="kw">count</span>(word, sentiment, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb161-5"><a href="5-text-analysis.html#cb161-5"></a><span class="st">  </span><span class="kw">group_by</span>(sentiment) <span class="op">%&gt;%</span></span>
+<span id="cb161-6"><a href="5-text-analysis.html#cb161-6"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span></span>
+<span id="cb161-7"><a href="5-text-analysis.html#cb161-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb161-8"><a href="5-text-analysis.html#cb161-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">fct_reorder</span>(word,n), <span class="dt">y =</span> n, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></span>
+<span id="cb161-9"><a href="5-text-analysis.html#cb161-9"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb161-10"><a href="5-text-analysis.html#cb161-10"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sentiment, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></span>
+<span id="cb161-11"><a href="5-text-analysis.html#cb161-11"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb161-12"><a href="5-text-analysis.html#cb161-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Word&quot;</span>)</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+</div>
+<div id="term-frequency" class="section level2">
+<h2><span class="header-section-number">5.9</span> Term Frequency</h2>
+<p>Term Frequency: The number of times that a term occurs in the book.</p>
+<p>Inverse Document Frequency: <span class="math inline">\(\ln(\frac{Total Number of Documents}{Total Number of Documents Containing Specified Word})\)</span>: Measure of how much information the word provides.</p>
+<p>Term Frequency - Inverse Document Frequency: Term Frequency * Inverse Document Frequency</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="5-text-analysis.html#cb162-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb162-2"><a href="5-text-analysis.html#cb162-2"></a><span class="st">  </span><span class="kw">count</span>(Chapter, word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;count&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb162-3"><a href="5-text-analysis.html#cb162-3"></a><span class="st">  </span><span class="kw">add_count</span>(word) <span class="op">%&gt;%</span></span>
+<span id="cb162-4"><a href="5-text-analysis.html#cb162-4"></a><span class="st">  </span><span class="kw">spread</span>(Chapter, count) <span class="op">%&gt;%</span></span>
+<span id="cb162-5"><a href="5-text-analysis.html#cb162-5"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 7,774 x 36
+##    word       n   `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`  `10`  `11`  `12`  `13`
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1 a         32    66    75    62   132    58    94    34    53    54    52    29    42    81
+##  2 all       32     4     8     9    20     7    12    12     6    11     2     3     9     9
+##  3 and       32   102    77   110   166   101   139    96    88    99    87    66    77   113
+##  4 as        32    16     4    12    18    22    14    10     7    12    10    11     9     9
+##  5 be        32     4     5     4    15     7     3     6    11     9     4     5     8    16
+##  6 before    32     3     3     4     2     2     3     4     3     2     3     6     2     2
+##  7 but       32    19    16    18    22    14    33    22    11    11    18    10    13    28
+##  8 for       32    26    11    18    46    27    15     9     6    14    10    12    16    15
+##  9 got       32     6     6     6     7     1    10     4     2     5     7     2     1     4
+## 10 had       32    13    13    22    27    15    13     8    17     9     8    17    12    21
+## # ... with 7,764 more rows, and 21 more variables: `14` &lt;int&gt;, `15` &lt;int&gt;, `16` &lt;int&gt;,
+## #   `17` &lt;int&gt;, `18` &lt;int&gt;, `19` &lt;int&gt;, `20` &lt;int&gt;, `21` &lt;int&gt;, `22` &lt;int&gt;, `23` &lt;int&gt;,
+## #   `24` &lt;int&gt;, `25` &lt;int&gt;, `27` &lt;int&gt;, `28` &lt;int&gt;, `29` &lt;int&gt;, `30` &lt;int&gt;, `31` &lt;int&gt;,
+## #   `32` &lt;int&gt;, `33` &lt;int&gt;, `34` &lt;int&gt;, `35` &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="5-text-analysis.html#cb164-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb164-2"><a href="5-text-analysis.html#cb164-2"></a><span class="st">  </span><span class="kw">count</span>(Chapter, word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;Chapter_Total&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb164-3"><a href="5-text-analysis.html#cb164-3"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb164-4"><a href="5-text-analysis.html#cb164-4"></a>    booktokens <span class="op">%&gt;%</span></span>
+<span id="cb164-5"><a href="5-text-analysis.html#cb164-5"></a><span class="st">      </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;Book_Total&quot;</span>)</span>
+<span id="cb164-6"><a href="5-text-analysis.html#cb164-6"></a>    )</span></code></pre></div>
+<pre><code>## # A tibble: 24,205 x 4
+##    Chapter word  Chapter_Total Book_Total
+##      &lt;dbl&gt; &lt;chr&gt;         &lt;int&gt;      &lt;int&gt;
+##  1      16 the             275       3708
+##  2      16 and             269       3059
+##  3      35 the             245       3708
+##  4      33 the             205       3708
+##  5      30 the             187       3708
+##  6       4 the             185       3708
+##  7       5 the             167       3708
+##  8       4 and             166       3059
+##  9      29 the             166       3708
+## 10      21 the             162       3708
+## # ... with 24,195 more rows</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="5-text-analysis.html#cb166-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb166-2"><a href="5-text-analysis.html#cb166-2"></a><span class="st">  </span><span class="kw">count</span>(Chapter, word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;Chapter_Total&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb166-3"><a href="5-text-analysis.html#cb166-3"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb166-4"><a href="5-text-analysis.html#cb166-4"></a>    booktokens <span class="op">%&gt;%</span></span>
+<span id="cb166-5"><a href="5-text-analysis.html#cb166-5"></a><span class="st">      </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;Book_Total&quot;</span>)</span>
+<span id="cb166-6"><a href="5-text-analysis.html#cb166-6"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb166-7"><a href="5-text-analysis.html#cb166-7"></a><span class="st">  </span><span class="kw">bind_tf_idf</span>(word, Chapter, Chapter_Total) <span class="op">%&gt;%</span></span>
+<span id="cb166-8"><a href="5-text-analysis.html#cb166-8"></a><span class="st">  </span><span class="kw">filter</span>(Chapter_Total<span class="op">!=</span>Book_Total) <span class="op">%&gt;%</span></span>
+<span id="cb166-9"><a href="5-text-analysis.html#cb166-9"></a><span class="st">  </span><span class="kw">filter</span>(tf<span class="op">&lt;</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb166-10"><a href="5-text-analysis.html#cb166-10"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>tf_idf)</span></code></pre></div>
+<pre><code>## # A tibble: 19,903 x 7
+##    Chapter word   Chapter_Total Book_Total      tf   idf tf_idf
+##      &lt;dbl&gt; &lt;chr&gt;          &lt;int&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1      25 193k               1          2 0.5      2.83 1.42  
+##  2      20 178k               1          3 0.5      2.43 1.21  
+##  3      20 t                  1          4 0.5      2.43 1.21  
+##  4      25 t                  1          4 0.5      2.43 1.21  
+##  5      35 works             32         33 0.00636  2.83 0.0180
+##  6      19 auntie             6         17 0.00754  2.14 0.0161
+##  7      34 jones              5          9 0.00563  2.83 0.0160
+##  8      32 cave               9         41 0.00863  1.58 0.0136
+##  9      35 e                 23         24 0.00457  2.83 0.0129
+## 10      11 potter            10         39 0.00667  1.92 0.0128
+## # ... with 19,893 more rows</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="5-text-analysis.html#cb168-1"></a>booktokens <span class="op">%&gt;%</span></span>
+<span id="cb168-2"><a href="5-text-analysis.html#cb168-2"></a><span class="st">  </span><span class="kw">count</span>(Chapter, word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;Chapter_Total&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb168-3"><a href="5-text-analysis.html#cb168-3"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb168-4"><a href="5-text-analysis.html#cb168-4"></a>    booktokens <span class="op">%&gt;%</span></span>
+<span id="cb168-5"><a href="5-text-analysis.html#cb168-5"></a><span class="st">      </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">name =</span> <span class="st">&quot;Book_Total&quot;</span>)</span>
+<span id="cb168-6"><a href="5-text-analysis.html#cb168-6"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb168-7"><a href="5-text-analysis.html#cb168-7"></a><span class="st">  </span><span class="kw">bind_tf_idf</span>(word, Chapter, Chapter_Total) <span class="op">%&gt;%</span></span>
+<span id="cb168-8"><a href="5-text-analysis.html#cb168-8"></a><span class="st">  </span><span class="kw">filter</span>(Chapter_Total<span class="op">!=</span>Book_Total) <span class="op">%&gt;%</span></span>
+<span id="cb168-9"><a href="5-text-analysis.html#cb168-9"></a><span class="st">  </span><span class="kw">filter</span>(tf<span class="op">&lt;</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb168-10"><a href="5-text-analysis.html#cb168-10"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>tf_idf) <span class="op">%&gt;%</span></span>
+<span id="cb168-11"><a href="5-text-analysis.html#cb168-11"></a><span class="st">  </span><span class="kw">group_by</span>(Chapter) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">top_n</span>(<span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb168-12"><a href="5-text-analysis.html#cb168-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word =</span> <span class="kw">fct_reorder</span>(word, tf_idf)) <span class="op">%&gt;%</span></span>
+<span id="cb168-13"><a href="5-text-analysis.html#cb168-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> word,<span class="dt">y =</span> tf_idf, <span class="dt">fill =</span> Chapter)) <span class="op">+</span></span>
+<span id="cb168-14"><a href="5-text-analysis.html#cb168-14"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb168-15"><a href="5-text-analysis.html#cb168-15"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Chapter, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">ncol =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb168-16"><a href="5-text-analysis.html#cb168-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-77-1.png" width="1152" /></p>
+</div>
+<div id="topic-modeling" class="section level2">
+<h2><span class="header-section-number">5.10</span> Topic Modeling</h2>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="5-text-analysis.html#cb169-1"></a><span class="kw">library</span>(topicmodels)</span>
+<span id="cb169-2"><a href="5-text-analysis.html#cb169-2"></a></span>
+<span id="cb169-3"><a href="5-text-analysis.html#cb169-3"></a>bookdtm =</span>
+<span id="cb169-4"><a href="5-text-analysis.html#cb169-4"></a>booktokens <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb169-5"><a href="5-text-analysis.html#cb169-5"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;nrc&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb169-6"><a href="5-text-analysis.html#cb169-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb169-7"><a href="5-text-analysis.html#cb169-7"></a><span class="st">  </span><span class="kw">select</span>(Chapter,word) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb169-8"><a href="5-text-analysis.html#cb169-8"></a><span class="st">  </span><span class="kw">count</span>(Chapter,word) <span class="op">%&gt;%</span></span>
+<span id="cb169-9"><a href="5-text-analysis.html#cb169-9"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">document =</span> Chapter, <span class="dt">term =</span> word, <span class="dt">count =</span> n) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb169-10"><a href="5-text-analysis.html#cb169-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">document =</span> <span class="kw">as.integer</span>(document), <span class="dt">count =</span> <span class="kw">as.double</span>(count))  <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb169-11"><a href="5-text-analysis.html#cb169-11"></a><span class="st">  </span><span class="kw">cast_dtm</span>(document, term, count)</span>
+<span id="cb169-12"><a href="5-text-analysis.html#cb169-12"></a></span>
+<span id="cb169-13"><a href="5-text-analysis.html#cb169-13"></a><span class="co"># set a seed so that the output of the model is predictable</span></span>
+<span id="cb169-14"><a href="5-text-analysis.html#cb169-14"></a>ap_lda &lt;-<span class="st"> </span><span class="kw">LDA</span>(bookdtm, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">seed =</span> <span class="dv">1234</span>))</span>
+<span id="cb169-15"><a href="5-text-analysis.html#cb169-15"></a>ap_lda</span></code></pre></div>
+<pre><code>## A LDA_VEM topic model with 2 topics.</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="5-text-analysis.html#cb171-1"></a>ap_topics &lt;-<span class="st"> </span><span class="kw">tidy</span>(ap_lda, <span class="dt">matrix =</span> <span class="st">&quot;beta&quot;</span>)</span>
+<span id="cb171-2"><a href="5-text-analysis.html#cb171-2"></a>ap_topics</span></code></pre></div>
+<pre><code>## # A tibble: 3,526 x 3
+##    topic term            beta
+##    &lt;int&gt; &lt;chr&gt;          &lt;dbl&gt;
+##  1     1 advantage   3.10e- 4
+##  2     2 advantage   9.02e-79
+##  3     1 adventurous 1.03e- 4
+##  4     2 adventurous 7.65e-79
+##  5     1 afraid      1.95e- 3
+##  6     2 afraid      2.91e- 3
+##  7     1 arrest      1.03e- 4
+##  8     2 arrest      3.63e-79
+##  9     1 astronomer  4.14e- 4
+## 10     2 astronomer  4.49e-78
+## # ... with 3,516 more rows</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="5-text-analysis.html#cb173-1"></a>ap_top_terms &lt;-<span class="st"> </span>ap_topics <span class="op">%&gt;%</span></span>
+<span id="cb173-2"><a href="5-text-analysis.html#cb173-2"></a><span class="st">  </span><span class="kw">group_by</span>(topic) <span class="op">%&gt;%</span></span>
+<span id="cb173-3"><a href="5-text-analysis.html#cb173-3"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>, beta) <span class="op">%&gt;%</span></span>
+<span id="cb173-4"><a href="5-text-analysis.html#cb173-4"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb173-5"><a href="5-text-analysis.html#cb173-5"></a><span class="st">  </span><span class="kw">arrange</span>(topic, <span class="op">-</span>beta)</span>
+<span id="cb173-6"><a href="5-text-analysis.html#cb173-6"></a></span>
+<span id="cb173-7"><a href="5-text-analysis.html#cb173-7"></a>ap_top_terms <span class="op">%&gt;%</span></span>
+<span id="cb173-8"><a href="5-text-analysis.html#cb173-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">reorder_within</span>(term, beta, topic)) <span class="op">%&gt;%</span></span>
+<span id="cb173-9"><a href="5-text-analysis.html#cb173-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(term, beta, <span class="dt">fill =</span> <span class="kw">factor</span>(topic))) <span class="op">+</span></span>
+<span id="cb173-10"><a href="5-text-analysis.html#cb173-10"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb173-11"><a href="5-text-analysis.html#cb173-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>topic, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb173-12"><a href="5-text-analysis.html#cb173-12"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb173-13"><a href="5-text-analysis.html#cb173-13"></a><span class="st">  </span><span class="kw">scale_x_reordered</span>()</span></code></pre></div>
+<p><img src="Intermediate_R_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="5-text-analysis.html#cb174-1"></a>beta_spread &lt;-<span class="st"> </span>ap_topics <span class="op">%&gt;%</span></span>
+<span id="cb174-2"><a href="5-text-analysis.html#cb174-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">topic =</span> <span class="kw">paste0</span>(<span class="st">&quot;topic&quot;</span>, topic)) <span class="op">%&gt;%</span></span>
+<span id="cb174-3"><a href="5-text-analysis.html#cb174-3"></a><span class="st">  </span><span class="kw">spread</span>(topic, beta) <span class="op">%&gt;%</span></span>
+<span id="cb174-4"><a href="5-text-analysis.html#cb174-4"></a><span class="st">  </span><span class="kw">filter</span>(topic1 <span class="op">&gt;</span><span class="st"> </span><span class="fl">.001</span> <span class="op">|</span><span class="st"> </span>topic2 <span class="op">&gt;</span><span class="st"> </span><span class="fl">.001</span>) <span class="op">%&gt;%</span></span>
+<span id="cb174-5"><a href="5-text-analysis.html#cb174-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_ratio =</span> <span class="kw">log2</span>(topic2 <span class="op">/</span><span class="st"> </span>topic1))</span>
+<span id="cb174-6"><a href="5-text-analysis.html#cb174-6"></a></span>
+<span id="cb174-7"><a href="5-text-analysis.html#cb174-7"></a>beta_spread</span></code></pre></div>
+<pre><code>## # A tibble: 382 x 4
+##    term        topic1   topic2 log_ratio
+##    &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1 abandoned 4.14e- 4 0.00182     2.14  
+##  2 adventure 2.10e- 3 0.00117    -0.846 
+##  3 afraid    1.95e- 3 0.00291     0.580 
+##  4 agony     1.24e- 3 0.00122    -0.0310
+##  5 agree     1.03e- 4 0.00137     3.72  
+##  6 agreed    1.35e- 3 0.00136     0.0174
+##  7 agreement 8.21e-84 0.00547   268.    
+##  8 alive     1.24e- 3 0.00182     0.554 
+##  9 angel     2.07e- 3 0.000759   -1.45  
+## 10 angry     1.24e- 3 0.000456   -1.45  
+## # ... with 372 more rows</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="5-text-analysis.html#cb176-1"></a>ap_documents &lt;-<span class="st"> </span><span class="kw">tidy</span>(ap_lda, <span class="dt">matrix =</span> <span class="st">&quot;gamma&quot;</span>)</span>
+<span id="cb176-2"><a href="5-text-analysis.html#cb176-2"></a>ap_documents</span></code></pre></div>
+<pre><code>## # A tibble: 64 x 3
+##    document topic     gamma
+##    &lt;chr&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 1            1 1.00     
+##  2 2            1 1.00     
+##  3 3            1 1.00     
+##  4 4            1 1.00     
+##  5 5            1 1.00     
+##  6 6            1 0.417    
+##  7 7            1 1.00     
+##  8 8            1 1.00     
+##  9 9            1 0.0000810
+## 10 10           1 0.0000971
+## # ... with 54 more rows</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="5-text-analysis.html#cb178-1"></a>booktokens <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-2"><a href="5-text-analysis.html#cb178-2"></a><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;nrc&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-3"><a href="5-text-analysis.html#cb178-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sentiment)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-4"><a href="5-text-analysis.html#cb178-4"></a><span class="st">  </span><span class="kw">select</span>(Chapter,word) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-5"><a href="5-text-analysis.html#cb178-5"></a><span class="st">  </span><span class="kw">count</span>(Chapter,word) <span class="op">%&gt;%</span></span>
+<span id="cb178-6"><a href="5-text-analysis.html#cb178-6"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">document =</span> Chapter, <span class="dt">term =</span> word, <span class="dt">count =</span> n) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-7"><a href="5-text-analysis.html#cb178-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">document =</span> <span class="kw">as.integer</span>(document), <span class="dt">count =</span> <span class="kw">as.double</span>(count)) <span class="op">%&gt;%</span></span>
+<span id="cb178-8"><a href="5-text-analysis.html#cb178-8"></a><span class="st">  </span><span class="kw">filter</span>(document <span class="op">==</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span></span>
+<span id="cb178-9"><a href="5-text-analysis.html#cb178-9"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(count))</span></code></pre></div>
+<pre><code>## # A tibble: 214 x 3
+##    document term   count
+##       &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
+##  1        6 good      45
+##  2        6 boy       32
+##  3        6 awful     20
+##  4        6 devil     18
+##  5        6 dying     15
+##  6        6 groan     15
+##  7        6 honest    14
+##  8        6 found     12
+##  9        6 hurt      12
+## 10        6 lie       12
+## # ... with 204 more rows</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-data-modeling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
