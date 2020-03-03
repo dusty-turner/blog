@@ -177,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="5-text-analysis.html"><a href="5-text-analysis.html#join-sentiments"><i class="fa fa-check"></i><b>5.5</b> Join Sentiments</a></li>
 <li class="chapter" data-level="5.6" data-path="5-text-analysis.html"><a href="5-text-analysis.html#descriptive-text-statistics"><i class="fa fa-check"></i><b>5.6</b> Descriptive Text Statistics</a></li>
 <li class="chapter" data-level="5.7" data-path="5-text-analysis.html"><a href="5-text-analysis.html#visualizations"><i class="fa fa-check"></i><b>5.7</b> Visualizations</a></li>
-<li class="chapter" data-level="5.8" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modleing"><i class="fa fa-check"></i><b>5.8</b> Topic Modleing</a></li>
+<li class="chapter" data-level="5.8" data-path="5-text-analysis.html"><a href="5-text-analysis.html#n-gram-analysis"><i class="fa fa-check"></i><b>5.8</b> N-Gram Analysis</a></li>
 <li class="chapter" data-level="5.9" data-path="5-text-analysis.html"><a href="5-text-analysis.html#term-frequency"><i class="fa fa-check"></i><b>5.9</b> Term Frequency</a></li>
 <li class="chapter" data-level="5.10" data-path="5-text-analysis.html"><a href="5-text-analysis.html#topic-modeling"><i class="fa fa-check"></i><b>5.10</b> Topic Modeling</a></li>
 </ul></li>
@@ -207,74 +207,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Read in Data</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="2-data-manipulation.html#cb2-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
-##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 abercda~   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0
-##  2 addybo01   1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8
-##  3 allisar~   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3
-##  4 allisdo~   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1
-##  5 ansonca~   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6
-##  6 armstbo~   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0
-##  7 barkeal~   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0
-##  8 barnero~   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11
-##  9 barrebi~   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0
-## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1
-## # ... with 102,806 more rows, and 8 more variables: CS &lt;dbl&gt;, BB &lt;dbl&gt;, SO &lt;dbl&gt;, IBB &lt;dbl&gt;,
-## #   HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;lgl&gt;, GIDP &lt;lgl&gt;</code></pre>
+##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB    CS    BB
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda~   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0
+##  2 addybo01   1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4
+##  3 allisar~   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2
+##  4 allisdo~   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0
+##  5 ansonca~   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2
+##  6 armstbo~   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0
+##  7 barkeal~   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1
+##  8 barnero~   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13
+##  9 barrebi~   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0
+## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0
+## # ... with 102,806 more rows, and 6 more variables: SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;lgl&gt;,
+## #   GIDP &lt;lgl&gt;</code></pre>
 <div id="fix-read-in-errors" class="section level3 unnumbered">
 <h3>Fix Read In Errors</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2-data-manipulation.html#cb4-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>()))</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
-##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 abercda~   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0
-##  2 addybo01   1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8
-##  3 allisar~   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3
-##  4 allisdo~   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1
-##  5 ansonca~   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6
-##  6 armstbo~   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0
-##  7 barkeal~   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0
-##  8 barnero~   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11
-##  9 barrebi~   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0
-## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1
-## # ... with 102,806 more rows, and 8 more variables: CS &lt;dbl&gt;, BB &lt;dbl&gt;, SO &lt;dbl&gt;, IBB &lt;dbl&gt;,
-## #   HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;, GIDP &lt;dbl&gt;</code></pre>
+##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB    CS    BB
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda~   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0
+##  2 addybo01   1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4
+##  3 allisar~   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2
+##  4 allisdo~   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0
+##  5 ansonca~   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2
+##  6 armstbo~   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0
+##  7 barkeal~   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1
+##  8 barnero~   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13
+##  9 barrebi~   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0
+## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0
+## # ... with 102,806 more rows, and 6 more variables: SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;,
+## #   GIDP &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2-data-manipulation.html#cb6-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">guess_max =</span> <span class="dv">10000</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
-##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 abercda~   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0
-##  2 addybo01   1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8
-##  3 allisar~   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3
-##  4 allisdo~   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1
-##  5 ansonca~   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6
-##  6 armstbo~   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0
-##  7 barkeal~   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0
-##  8 barnero~   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11
-##  9 barrebi~   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0
-## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1
-## # ... with 102,806 more rows, and 8 more variables: CS &lt;dbl&gt;, BB &lt;dbl&gt;, SO &lt;dbl&gt;, IBB &lt;dbl&gt;,
-## #   HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;, GIDP &lt;dbl&gt;</code></pre>
+##    playerID yearID stint teamID lgID      G    AB     R     H  `2B`  `3B`    HR   RBI    SB    CS    BB
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda~   1871     1 TRO    &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0     0
+##  2 addybo01   1871     1 RC1    &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1     4
+##  3 allisar~   1871     1 CL1    &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1     2
+##  4 allisdo~   1871     1 WS3    &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1     0
+##  5 ansonca~   1871     1 RC1    &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2     2
+##  6 armstbo~   1871     1 FW1    &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1     0
+##  7 barkeal~   1871     1 RC1    &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0     1
+##  8 barnero~   1871     1 BS1    &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6    13
+##  9 barrebi~   1871     1 FW1    &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0     0
+## 10 barrofr~   1871     1 BS1    &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0     0
+## # ... with 102,806 more rows, and 6 more variables: SO &lt;dbl&gt;, IBB &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;,
+## #   GIDP &lt;dbl&gt;</code></pre>
 </div>
 <div id="clean-column-names" class="section level3 unnumbered">
 <h3>Clean Column Names</h3>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="2-data-manipulation.html#cb8-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Batting.csv&quot;</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="dt">SF =</span> <span class="kw">col_double</span>(), <span class="dt">GIDP =</span> <span class="kw">col_double</span>())) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb8-2"><a href="2-data-manipulation.html#cb8-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
-##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr   rbi    sb
-##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 abercda01    1871     1 TRO     &lt;NA&gt;      1     4     0     0     0     0     0     0     0
-##  2 addybo01     1871     1 RC1     &lt;NA&gt;     25   118    30    32     6     0     0    13     8
-##  3 allisar01    1871     1 CL1     &lt;NA&gt;     29   137    28    40     4     5     0    19     3
-##  4 allisdo01    1871     1 WS3     &lt;NA&gt;     27   133    28    44    10     2     2    27     1
-##  5 ansonca01    1871     1 RC1     &lt;NA&gt;     25   120    29    39    11     3     0    16     6
-##  6 armstbo01    1871     1 FW1     &lt;NA&gt;     12    49     9    11     2     1     0     5     0
-##  7 barkeal01    1871     1 RC1     &lt;NA&gt;      1     4     0     1     0     0     0     2     0
-##  8 barnero01    1871     1 BS1     &lt;NA&gt;     31   157    66    63    10     9     0    34    11
-##  9 barrebi01    1871     1 FW1     &lt;NA&gt;      1     5     1     1     1     0     0     1     0
-## 10 barrofr01    1871     1 BS1     &lt;NA&gt;     18    86    13    13     2     1     0    11     1
-## # ... with 102,806 more rows, and 8 more variables: cs &lt;dbl&gt;, bb &lt;dbl&gt;, so &lt;dbl&gt;, ibb &lt;dbl&gt;,
-## #   hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
+##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01    1871     1 TRO     &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0
+##  2 addybo01     1871     1 RC1     &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1
+##  3 allisar01    1871     1 CL1     &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1
+##  4 allisdo01    1871     1 WS3     &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1
+##  5 ansonca01    1871     1 RC1     &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2
+##  6 armstbo01    1871     1 FW1     &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1
+##  7 barkeal01    1871     1 RC1     &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0
+##  8 barnero01    1871     1 BS1     &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6
+##  9 barrebi01    1871     1 FW1     &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0
+## 10 barrofr01    1871     1 BS1     &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0
+## # ... with 102,806 more rows, and 7 more variables: bb &lt;dbl&gt;, so &lt;dbl&gt;, ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;,
+## #   sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div id="analysis-with-dplyr" class="section level2">
@@ -442,22 +442,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Player ID Data</h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="2-data-manipulation.html#cb23-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Master.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 19,105 x 24
-##    playerID birthYear birthMonth birthDay birthCountry birthState birthCity deathYear
-##    &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
-##  1 aardsda~      1981         12       27 USA          CO         Denver           NA
-##  2 aaronha~      1934          2        5 USA          AL         Mobile           NA
-##  3 aaronto~      1939          8        5 USA          AL         Mobile         1984
-##  4 aasedo01      1954          9        8 USA          CA         Orange           NA
-##  5 abadan01      1972          8       25 USA          FL         Palm Bea~        NA
-##  6 abadfe01      1985         12       17 D.R.         La Romana  La Romana        NA
-##  7 abadijo~      1850         11        4 USA          PA         Philadel~      1905
-##  8 abbated~      1877          4       15 USA          PA         Latrobe        1957
-##  9 abbeybe~      1869         11       11 USA          VT         Essex          1962
-## 10 abbeych~      1866         10       14 USA          NE         Falls Ci~      1926
-## # ... with 19,095 more rows, and 16 more variables: deathMonth &lt;dbl&gt;, deathDay &lt;dbl&gt;,
-## #   deathCountry &lt;chr&gt;, deathState &lt;chr&gt;, deathCity &lt;chr&gt;, nameFirst &lt;chr&gt;, nameLast &lt;chr&gt;,
-## #   nameGiven &lt;chr&gt;, weight &lt;dbl&gt;, height &lt;dbl&gt;, bats &lt;chr&gt;, throws &lt;chr&gt;, debut &lt;date&gt;,
-## #   finalGame &lt;date&gt;, retroID &lt;chr&gt;, bbrefID &lt;chr&gt;</code></pre>
+##    playerID birthYear birthMonth birthDay birthCountry birthState birthCity deathYear deathMonth
+##    &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+##  1 aardsda~      1981         12       27 USA          CO         Denver           NA         NA
+##  2 aaronha~      1934          2        5 USA          AL         Mobile           NA         NA
+##  3 aaronto~      1939          8        5 USA          AL         Mobile         1984          8
+##  4 aasedo01      1954          9        8 USA          CA         Orange           NA         NA
+##  5 abadan01      1972          8       25 USA          FL         Palm Bea~        NA         NA
+##  6 abadfe01      1985         12       17 D.R.         La Romana  La Romana        NA         NA
+##  7 abadijo~      1850         11        4 USA          PA         Philadel~      1905          5
+##  8 abbated~      1877          4       15 USA          PA         Latrobe        1957          1
+##  9 abbeybe~      1869         11       11 USA          VT         Essex          1962          6
+## 10 abbeych~      1866         10       14 USA          NE         Falls Ci~      1926          4
+## # ... with 19,095 more rows, and 15 more variables: deathDay &lt;dbl&gt;, deathCountry &lt;chr&gt;,
+## #   deathState &lt;chr&gt;, deathCity &lt;chr&gt;, nameFirst &lt;chr&gt;, nameLast &lt;chr&gt;, nameGiven &lt;chr&gt;, weight &lt;dbl&gt;,
+## #   height &lt;dbl&gt;, bats &lt;chr&gt;, throws &lt;chr&gt;, debut &lt;date&gt;, finalGame &lt;date&gt;, retroID &lt;chr&gt;,
+## #   bbrefID &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="2-data-manipulation.html#cb25-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data_files/Master.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb25-2"><a href="2-data-manipulation.html#cb25-2"></a><span class="st">  </span><span class="kw">select</span>(playerID, nameFirst, nameLast) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb25-3"><a href="2-data-manipulation.html#cb25-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">player =</span> <span class="kw">paste</span>(nameFirst,nameLast)) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -555,20 +555,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Count</h3>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="2-data-manipulation.html#cb37-1"></a>data</span></code></pre></div>
 <pre><code>## # A tibble: 102,816 x 22
-##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr   rbi    sb
-##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 abercda01    1871     1 TRO     &lt;NA&gt;      1     4     0     0     0     0     0     0     0
-##  2 addybo01     1871     1 RC1     &lt;NA&gt;     25   118    30    32     6     0     0    13     8
-##  3 allisar01    1871     1 CL1     &lt;NA&gt;     29   137    28    40     4     5     0    19     3
-##  4 allisdo01    1871     1 WS3     &lt;NA&gt;     27   133    28    44    10     2     2    27     1
-##  5 ansonca01    1871     1 RC1     &lt;NA&gt;     25   120    29    39    11     3     0    16     6
-##  6 armstbo01    1871     1 FW1     &lt;NA&gt;     12    49     9    11     2     1     0     5     0
-##  7 barkeal01    1871     1 RC1     &lt;NA&gt;      1     4     0     1     0     0     0     2     0
-##  8 barnero01    1871     1 BS1     &lt;NA&gt;     31   157    66    63    10     9     0    34    11
-##  9 barrebi01    1871     1 FW1     &lt;NA&gt;      1     5     1     1     1     0     0     1     0
-## 10 barrofr01    1871     1 BS1     &lt;NA&gt;     18    86    13    13     2     1     0    11     1
-## # ... with 102,806 more rows, and 8 more variables: cs &lt;dbl&gt;, bb &lt;dbl&gt;, so &lt;dbl&gt;, ibb &lt;dbl&gt;,
-## #   hbp &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
+##    player_id year_id stint team_id lg_id     g    ab     r     h   x2b   x3b    hr   rbi    sb    cs
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 abercda01    1871     1 TRO     &lt;NA&gt;      1     4     0     0     0     0     0     0     0     0
+##  2 addybo01     1871     1 RC1     &lt;NA&gt;     25   118    30    32     6     0     0    13     8     1
+##  3 allisar01    1871     1 CL1     &lt;NA&gt;     29   137    28    40     4     5     0    19     3     1
+##  4 allisdo01    1871     1 WS3     &lt;NA&gt;     27   133    28    44    10     2     2    27     1     1
+##  5 ansonca01    1871     1 RC1     &lt;NA&gt;     25   120    29    39    11     3     0    16     6     2
+##  6 armstbo01    1871     1 FW1     &lt;NA&gt;     12    49     9    11     2     1     0     5     0     1
+##  7 barkeal01    1871     1 RC1     &lt;NA&gt;      1     4     0     1     0     0     0     2     0     0
+##  8 barnero01    1871     1 BS1     &lt;NA&gt;     31   157    66    63    10     9     0    34    11     6
+##  9 barrebi01    1871     1 FW1     &lt;NA&gt;      1     5     1     1     1     0     0     1     0     0
+## 10 barrofr01    1871     1 BS1     &lt;NA&gt;     18    86    13    13     2     1     0    11     1     0
+## # ... with 102,806 more rows, and 7 more variables: bb &lt;dbl&gt;, so &lt;dbl&gt;, ibb &lt;dbl&gt;, hbp &lt;dbl&gt;, sh &lt;dbl&gt;,
+## #   sf &lt;dbl&gt;, gidp &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="2-data-manipulation.html#cb39-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb39-2"><a href="2-data-manipulation.html#cb39-2"></a><span class="st">  </span><span class="kw">count</span>(player_id)</span></code></pre></div>
 <pre><code>## # A tibble: 18,915 x 2
