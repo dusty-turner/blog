@@ -23,12 +23,12 @@
   </url>
   
   <url>
-    <loc>/tags/beatnavy/</loc>
+    <loc>/categories/beatnavy/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/beatnavy/</loc>
+    <loc>/tags/beatnavy/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -53,12 +53,12 @@
   </url>
   
   <url>
-    <loc>/tags/ford/</loc>
+    <loc>/categories/ford/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/ford/</loc>
+    <loc>/tags/ford/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -88,12 +88,12 @@
   </url>
   
   <url>
-    <loc>/tags/fantasy-football/</loc>
+    <loc>/categories/fantasy-football/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/fantasy-football/</loc>
+    <loc>/tags/fantasy-football/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -118,12 +118,12 @@
   </url>
   
   <url>
-    <loc>/tags/python/</loc>
+    <loc>/categories/python/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/python/</loc>
+    <loc>/tags/python/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -133,17 +133,12 @@
   </url>
   
   <url>
-    <loc>/tags/army-math/</loc>
-    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/army-math/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/bootstrap/</loc>
+    <loc>/tags/army-math/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -153,7 +148,7 @@
   </url>
   
   <url>
-    <loc>/tags/foreach/</loc>
+    <loc>/tags/bootstrap/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -163,17 +158,22 @@
   </url>
   
   <url>
+    <loc>/tags/foreach/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/parellel-processing-and-bootstrapping-for-diamonds/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/devtools/</loc>
+    <loc>/categories/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/devtools/</loc>
+    <loc>/tags/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -198,12 +198,12 @@
   </url>
   
   <url>
-    <loc>/tags/shiny/</loc>
+    <loc>/categories/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/shiny/</loc>
+    <loc>/tags/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -218,12 +218,12 @@
   </url>
   
   <url>
-    <loc>/categories/games/</loc>
+    <loc>/tags/games/</loc>
     <lastmod>2019-02-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/games/</loc>
+    <loc>/categories/games/</loc>
     <lastmod>2019-02-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,22 +258,22 @@
   </url>
   
   <url>
-    <loc>/categories/yahoo-api/</loc>
-    <lastmod>2018-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/yahoo-api/</loc>
     <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/books/</loc>
-    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
+    <loc>/categories/yahoo-api/</loc>
+    <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/books/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/books/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -293,22 +293,22 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/r/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/tidytext/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/tidytext/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tidytext/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -348,12 +348,12 @@
   </url>
   
   <url>
-    <loc>/tags/forecast/</loc>
+    <loc>/categories/forecast/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/forecast/</loc>
+    <loc>/tags/forecast/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -363,12 +363,12 @@
   </url>
   
   <url>
-    <loc>/categories/dplyr/</loc>
+    <loc>/tags/dplyr/</loc>
     <lastmod>2018-05-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/dplyr/</loc>
+    <loc>/categories/dplyr/</loc>
     <lastmod>2018-05-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -388,12 +388,12 @@
   </url>
   
   <url>
-    <loc>/categories/scraping/</loc>
+    <loc>/tags/scraping/</loc>
     <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/scraping/</loc>
+    <loc>/categories/scraping/</loc>
     <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -403,12 +403,12 @@
   </url>
   
   <url>
-    <loc>/tags/rmd/</loc>
+    <loc>/categories/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/rmd/</loc>
+    <loc>/tags/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   
