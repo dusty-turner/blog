@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, eval = TRUE
 
 Since the dawn of time, people have been developing human-like attachments to their transportation.  I imagine Moses naming his chariot, Noah his ark, and maybe even Jesus naming his borrowed donkey.
 
-Well, maybe I'm taking too much historical licence, but man's affinity for their transportation remains.  
+Well, maybe I'm taking too much historical license, but man's affinity for their transportation remains.  
 
 At the age of 21, my dad and I split the cost of a 2005 Ford F150.  The odometer read ~24,000 miles and it set us back ~$20,000.  
  
