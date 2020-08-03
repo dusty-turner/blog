@@ -456,7 +456,7 @@ games %&gt;%
   ylim(0,1) +
   scale_x_continuous(labels = scales::dollar_format(), breaks = seq(0,1,.1))</code></pre>
 <p><img src="/post/2020-08-01-wheel-spin-strategy-on-the-price-is-right_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>As you can see from the plot, the simulation shows that the first spin value at which you should hold vs spin again is .65. This is a rather surprising and unsettling realization. Many people would call a first contestant crazy for spinning again at .60 but this is what the data shows.</p>
+<p>As you can see from the plot, the simulation shows that the first spin value at which you should hold vs spin again is .7. This is a rather surprising and unsettling realization. There is a little noise in the data and it appears it is about a wash at .65.</p>
 <p>Taking a second look at this, we can reach the same conclusion via a heat map showing how the probability of winning on the big wheel balances out at about the .65 mark.</p>
 <pre class="r"><code>plot_data %&gt;%
   ggplot(aes(x=player_1_first,y=as.factor(num_spins),fill = win_if_percent)) +
