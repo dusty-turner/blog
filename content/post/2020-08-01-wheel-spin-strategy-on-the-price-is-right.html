@@ -125,6 +125,7 @@ if(player_2_first == player_1 &amp; player_2_first &lt; .5){ ## what happens if 
   player_2 &lt;- 10000  ## I put this here to catch spin 1 outcomes I missed
 }
 
+## Note: I only compare player 3&#39;s outcome to player 1 since this simulation is not concerned about the outcome between player 2 and 3 -- only if player 1 gets beat or not.
 
 ## set player 3&#39;s logic for spinning again
 if(player_3_first == player_1 &amp; player_3_first &lt; .5){ ## what happens if tied but spin below .5
@@ -285,7 +286,7 @@ games %&gt;%
 <p>Final thoughts:</p>
 <ul>
 <li><p>If you are the first player, spin again if your first spin is .60 or less.</p></li>
-<li><p>The Price Is Right would have better ratings if this actually happened:</p></li>
+<li><p>If any readers win the big wheel using this strategy then I expect a similar reaction as Barney Stinson gave below:</p></li>
 </ul>
 <center>
 <img src="/barney.gif" alt="barney" width="500">
