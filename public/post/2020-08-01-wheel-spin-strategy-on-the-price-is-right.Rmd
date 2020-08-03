@@ -34,7 +34,7 @@ In this blog, we look at spinning the big wheel.
 
 ## Spinning the Wheel
 
-In the price is right, the first three contestants (and second three) go head-head-head in spinning the big wheel.  The player with the highest sum of two spins without going over a dollar win and move on to the showcase showdown.
+In the price is right, the first three contestants (and second three) go head-to-head-to-head in spinning the big wheel.  The player with the highest sum of two spins without going over a dollar wins and moves on to the showcase showdown.
 
 The decision each player makes is whether or not to spin a second time after their first spin. 
 
@@ -53,7 +53,7 @@ The strategy is pretty simple for players two and three.
   
 #### 2nd Player  
   - After first spin, if you aren't winning, spin again.  
-  - If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a high spin than you is whatever your number is.    
+  - If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is 1-current spin value.    
   - If you are winning after the first spin, don't spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5.  
 
 #### 1st Player
@@ -240,13 +240,13 @@ plot_data %>%
 
 As you can see from the plot, the simulation shows that the first spin value at which you should hold vs spin again is .7.  This is a rather surprising and unsettling realization.  There is a little noise in the data and it appears it is about a wash at .65.
 
-Taking a second look at this, we can reach the same conclusion via a heat map showing how the probability of winning on the big wheel balances out at about the .65 mark. 
+Taking a second look at this, we can reach the same conclusion via a heat map showing how the probability of winning on the big wheel balances out at about the .65 mark.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 plot_data %>%
   ggplot(aes(x=player_1_first,y=as.factor(num_spins),fill = win_if_percent)) +
   geom_tile(color = "black") +
-  labs(x = "Spin Value After 'y' Spins", y = "Number of Spins",
+  labs(x = "Spin Value After 1st Spin", y = "Number of Spins",
        title = "The probility of winning if Player 1 spins once vs twice",
        subtitle = "Given first spin value",
        fill = "Probability of Winning") +

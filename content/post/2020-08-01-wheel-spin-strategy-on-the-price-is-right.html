@@ -33,7 +33,7 @@ Ticket to Ride caused a lot of strife between my kids :)
 </div>
 <div id="spinning-the-wheel" class="section level2">
 <h2>Spinning the Wheel</h2>
-<p>In the price is right, the first three contestants (and second three) go head-head-head in spinning the big wheel. The player with the highest sum of two spins without going over a dollar win and move on to the showcase showdown.</p>
+<p>In the price is right, the first three contestants (and second three) go head-to-head-to-head in spinning the big wheel. The player with the highest sum of two spins without going over a dollar wins and moves on to the showcase showdown.</p>
 <p>The decision each player makes is whether or not to spin a second time after their first spin.</p>
 <center>
 <img src="/today_spin.jpg" alt="wheel" width="500">
@@ -57,7 +57,7 @@ Ticket to Ride caused a lot of strife between my kids :)
 <ul>
 <li>After first spin, if you aren’t winning, spin again.<br />
 </li>
-<li>If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a high spin than you is whatever your number is.<br />
+<li>If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is 1-current spin value.<br />
 </li>
 <li>If you are winning after the first spin, don’t spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5.</li>
 </ul>
@@ -268,7 +268,7 @@ games %&gt;%
 <pre class="r"><code>plot_data %&gt;%
   ggplot(aes(x=player_1_first,y=as.factor(num_spins),fill = win_if_percent)) +
   geom_tile(color = &quot;black&quot;) +
-  labs(x = &quot;Spin Value After &#39;y&#39; Spins&quot;, y = &quot;Number of Spins&quot;,
+  labs(x = &quot;Spin Value After 1st Spin&quot;, y = &quot;Number of Spins&quot;,
        title = &quot;The probility of winning if Player 1 spins once vs twice&quot;,
        subtitle = &quot;Given first spin value&quot;,
        fill = &quot;Probability of Winning&quot;) +
