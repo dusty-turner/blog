@@ -53,14 +53,14 @@ The strategy is pretty simple for players two and three.
   
 #### 2nd Player  
   - After first spin, if you aren't winning, spin again.  
-  - If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is 1-current spin value.    
-  - If you are winning after the first spin, don't spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5.  
+  - If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is pretty high (1-current spin value).    
+  - If you are winning after the first spin, don't spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5 (1 - current spin value).  
 
 #### 1st Player
 
 This is a different story.  While we could work out the math, it is a little more complicated.  While I've never been afraid of a little math, I'd much rather simulate.  
 
-I'll talk though my logic below and show my code.  I do this so the reader can see my thought process and learn something or, more preferably, point out flaw in logic or propose cleaner or more succinct ways to code this.
+I'll talk though my logic below and show my code.  I do this so the reader can see my thought process and learn something or, more preferably, point out any flaws in logic or propose cleaner or more succinct ways of coding.
 
 ## Simulation
 
@@ -79,7 +79,7 @@ As a quick aside, lets hope you are never as unlucky as this player.
 To support the simulation, I...
 
 - ...create a function that will create the result of a single showcase showdown.  This function has an option for the first player to spin only once or twice.  
-- ... summarize the results of the spins.  We'll determine the probability of player 1 winning whether they spin once or twice at each value of initial spin.  
+- ... summarize the results of the spins.  We'll determine the probability of player 1 winning whether they spin once or twice at each initial spin value.  
 
 I will place comments in code to explain what is happening.
  
@@ -262,7 +262,7 @@ plot_data %>%
 
 Final thoughts:
 
-- If you are the first player, spin again if your first spin is .60 or less.
+- If you are the first player, spin again if your first spin is ~.65 or less.
 
 - If any readers win the big wheel using this strategy then I expect a similar reaction as Barney Stinson gave below:
 

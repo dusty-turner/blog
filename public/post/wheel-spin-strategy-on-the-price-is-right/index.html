@@ -250,15 +250,15 @@ Ticket to Ride caused a lot of strife between my kids :)
 <ul>
 <li>After first spin, if you aren’t winning, spin again.<br />
 </li>
-<li>If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is 1-current spin value.<br />
+<li>If you are winning after the first spin, spin again if you are less than .5 - as the probability of the next player getting a higher spin than you is pretty high (1-current spin value).<br />
 </li>
-<li>If you are winning after the first spin, don’t spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5.</li>
+<li>If you are winning after the first spin, don’t spin again if you are greater than .5 - as the probability of the next player getting a higher spin than you is less than .5 (1 - current spin value).</li>
 </ul>
 </div>
 <div id="st-player" class="section level4">
 <h4>1st Player</h4>
 <p>This is a different story. While we could work out the math, it is a little more complicated. While I’ve never been afraid of a little math, I’d much rather simulate.</p>
-<p>I’ll talk though my logic below and show my code. I do this so the reader can see my thought process and learn something or, more preferably, point out flaw in logic or propose cleaner or more succinct ways to code this.</p>
+<p>I’ll talk though my logic below and show my code. I do this so the reader can see my thought process and learn something or, more preferably, point out any flaws in logic or propose cleaner or more succinct ways of coding.</p>
 </div>
 </div>
 <div id="simulation" class="section level2">
@@ -276,7 +276,7 @@ Ticket to Ride caused a lot of strife between my kids :)
 <ul>
 <li>…create a function that will create the result of a single showcase showdown. This function has an option for the first player to spin only once or twice.<br />
 </li>
-<li>… summarize the results of the spins. We’ll determine the probability of player 1 winning whether they spin once or twice at each value of initial spin.</li>
+<li>… summarize the results of the spins. We’ll determine the probability of player 1 winning whether they spin once or twice at each initial spin value.</li>
 </ul>
 <p>I will place comments in code to explain what is happening.</p>
 <pre class="r"><code>library(tidyverse)
@@ -478,7 +478,7 @@ games %&gt;%
 <h2>Conclusion</h2>
 <p>Final thoughts:</p>
 <ul>
-<li><p>If you are the first player, spin again if your first spin is .60 or less.</p></li>
+<li><p>If you are the first player, spin again if your first spin is ~.65 or less.</p></li>
 <li><p>If any readers win the big wheel using this strategy then I expect a similar reaction as Barney Stinson gave below:</p></li>
 </ul>
 <center>
