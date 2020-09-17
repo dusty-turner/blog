@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fitness on Dusty Turner</title>
+    <link>/categories/fitness/</link>
+    <description>Recent content in fitness on Dusty Turner</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
+    <lastBuildDate>Sun, 09 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/fitness/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Peloton API Part 1: Accessing and Exploring</title>
+      <link>/post/the-peloton-api-part-1-accessing-and-exploring/</link>
+      <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-peloton-api-part-1-accessing-and-exploring/</guid>
+      <description>In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.
+Jill Perched on Her PelotonIn the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.</description>
+    </item>
+    
+  </channel>
+</rss>
