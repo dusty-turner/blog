@@ -23,14 +23,14 @@ In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton
 
 <center>
 <img src="/peloton_wife_1.jpg" alt="peloton" width="500">
-<figcaption>Jill Perched on Her Peloton</figcaption>
+<figcaption>Jill Smiling After Her 600th Ride (and new record)! </figcaption>
 </center> 
 
-In the last few months, a few works projects have taught me a lot about `purrr`, functional programming, collaborative projects, and APIs.  
+Over the last few months, a few works projects have taught me a lot about `purrr`, functional programming, collaborative projects, and APIs.  
 
-Over the next few blog posts, I hope to show a few things:
+In the next few Peloton blog posts, I hope to show a few things:
 
-1. How to access the Peloton API
+1. How to access the Peloton API.
 2. The power of `purrr` and functional programming.
 3. That I am the superior Peloton rider... or maybe not.
 
@@ -38,13 +38,13 @@ This first post will focus on accessing the Peloton API.
 
 # The Peloton API
 
-Thanks [Ben Weiher](https://github.com/bweiher/) for creating the [`pelotonR` package](https://github.com/bweiher/pelotonR). I was able to submit a couple pull requests to (hopefully) improve its capabilities.  Thanks Ben for being a gracious repo owner and accepting some of my pull requests.
+Thanks [Ben Weiher](https://github.com/bweiher/) for creating the [`pelotonR` package](https://github.com/bweiher/pelotonR). I was able to submit a couple pull requests that (I think) improved its capabilities.  Thanks Ben for being a gracious repo owner and accepting these pull requests.
 
 Oh, and while you are here, follow me on Peloton.  My user name is [DTDusty](https://members.onepeloton.com/members/DTDusty/overview)
 
 ## Install `pelotonR`
 
-First, to install the package, you can run the following code to download/install it from Ben's Repo.
+First, to install the package, you can run the following code to download/install it from Ben's repo.
 
 ```{r eval=FALSE, include=TRUE}
 devtools::install_github("bweiher/pelotonR")
@@ -91,7 +91,7 @@ For our own edification, here is a list of all the output columns alphabetized.
 
 Currently, the pelotonR package has a nice function for exploring your information.  As with most APIs the data is stored in JSON format  The function below extracts the data and unpacks some of the nested lists.
 
-Here it is below:
+Here it is below: 
 
 ```{r}
 my_workout_df <- pelotonR::get_all_workouts(userid = me$id, num_workouts = me$total_workouts, joins = "ride,ride.instructor")
@@ -133,7 +133,7 @@ parsed <- jsonlite::fromJSON(httr::content(pull, "text", encoding = "UTF-8"), si
 pull
 ```
 
-Status 200 means succes!
+Status 200 means success!
 
 This function below will pull out one instructor's information.  There is a LOT more information for each instructor -- but I will only extract a few interesting headings.
 

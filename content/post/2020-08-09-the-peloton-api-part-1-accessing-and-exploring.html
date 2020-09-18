@@ -20,24 +20,24 @@ cover: /img/bikecover.jpg
 <center>
 <img src="/peloton_wife_1.jpg" alt="peloton" width="500">
 <figcaption>
-Jill Perched on Her Peloton
+Jill Smiling After Her 600th Ride (and new record)!
 </figcaption>
 </center>
-<p>In the last few months, a few works projects have taught me a lot about <code>purrr</code>, functional programming, collaborative projects, and APIs.</p>
-<p>Over the next few blog posts, I hope to show a few things:</p>
+<p>Over the last few months, a few works projects have taught me a lot about <code>purrr</code>, functional programming, collaborative projects, and APIs.</p>
+<p>In the next few Peloton blog posts, I hope to show a few things:</p>
 <ol style="list-style-type: decimal">
-<li>How to access the Peloton API</li>
+<li>How to access the Peloton API.</li>
 <li>The power of <code>purrr</code> and functional programming.</li>
 <li>That I am the superior Peloton rider… or maybe not.</li>
 </ol>
 <p>This first post will focus on accessing the Peloton API.</p>
 <div id="the-peloton-api" class="section level1">
 <h1>The Peloton API</h1>
-<p>Thanks <a href="https://github.com/bweiher/">Ben Weiher</a> for creating the <a href="https://github.com/bweiher/pelotonR"><code>pelotonR</code> package</a>. I was able to submit a couple pull requests to (hopefully) improve its capabilities. Thanks Ben for being a gracious repo owner and accepting some of my pull requests.</p>
+<p>Thanks <a href="https://github.com/bweiher/">Ben Weiher</a> for creating the <a href="https://github.com/bweiher/pelotonR"><code>pelotonR</code> package</a>. I was able to submit a couple pull requests that (I think) improved its capabilities. Thanks Ben for being a gracious repo owner and accepting these pull requests.</p>
 <p>Oh, and while you are here, follow me on Peloton. My user name is <a href="https://members.onepeloton.com/members/DTDusty/overview">DTDusty</a></p>
 <div id="install-pelotonr" class="section level2">
 <h2>Install <code>pelotonR</code></h2>
-<p>First, to install the package, you can run the following code to download/install it from Ben’s Repo.</p>
+<p>First, to install the package, you can run the following code to download/install it from Ben’s repo.</p>
 <pre class="r"><code>devtools::install_github(&quot;bweiher/pelotonR&quot;)</code></pre>
 </div>
 <div id="load-libraries" class="section level2">
@@ -63,24 +63,25 @@ library(tidyverse)</code></pre>
 <p>Here it is below:</p>
 <pre class="r"><code>my_workout_df &lt;- pelotonR::get_all_workouts(userid = me$id, num_workouts = me$total_workouts, joins = &quot;ride,ride.instructor&quot;)
 my_workout_df </code></pre>
-<pre><code>## # A tibble: 198 x 77
+<pre><code>## # A tibble: 213 x 79
 ##    created_at          device_type end_time            fitbit_id fitness_discipl~ has_pedaling_me~
 ##    &lt;dttm&gt;              &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt;            &lt;lgl&gt;           
-##  1 2020-08-09 12:02:42 iPhone      2020-08-09 12:24:42 &lt;NA&gt;      yoga             FALSE           
-##  2 2020-08-06 17:37:17 home_bike_~ 2020-08-06 18:23:08 &lt;NA&gt;      cycling          TRUE            
-##  3 2020-08-04 17:53:32 home_bike_~ 2020-08-04 18:30:47 &lt;NA&gt;      cycling          TRUE            
-##  4 2020-08-04 17:47:23 home_bike_~ 2020-08-04 17:52:20 &lt;NA&gt;      cycling          TRUE            
-##  5 2020-08-03 19:34:03 home_bike_~ 2020-08-03 19:39:00 &lt;NA&gt;      stretching       FALSE           
-##  6 2020-08-03 19:21:02 home_bike_~ 2020-08-03 19:26:00 &lt;NA&gt;      cycling          TRUE            
-##  7 2020-08-03 18:47:51 home_bike_~ 2020-08-03 19:18:48 &lt;NA&gt;      cycling          TRUE            
-##  8 2020-08-03 18:40:17 home_bike_~ 2020-08-03 18:45:14 &lt;NA&gt;      cycling          TRUE            
-##  9 2020-07-29 21:22:35 home_bike_~ 2020-07-29 21:27:35 &lt;NA&gt;      stretching       FALSE           
-## 10 2020-07-29 20:50:21 home_bike_~ 2020-07-29 21:11:20 &lt;NA&gt;      cycling          TRUE            
-## # ... with 188 more rows, and 71 more variables: has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
+##  1 2020-09-17 18:12:20 home_bike_~ 2020-09-17 18:43:19 &lt;NA&gt;      cycling          TRUE            
+##  2 2020-09-17 18:05:42 home_bike_~ 2020-09-17 18:10:40 &lt;NA&gt;      cycling          TRUE            
+##  3 2020-09-09 20:42:54 home_bike_~ 2020-09-09 21:13:53 &lt;NA&gt;      cycling          TRUE            
+##  4 2020-09-09 20:35:40 home_bike_~ 2020-09-09 20:40:40 &lt;NA&gt;      cycling          TRUE            
+##  5 2020-09-03 21:53:49 home_bike_~ 2020-09-03 21:58:45 &lt;NA&gt;      cycling          TRUE            
+##  6 2020-09-03 21:17:34 home_bike_~ 2020-09-03 21:48:31 &lt;NA&gt;      cycling          TRUE            
+##  7 2020-09-03 21:10:04 home_bike_~ 2020-09-03 21:15:04 &lt;NA&gt;      cycling          TRUE            
+##  8 2020-09-01 22:01:18 home_bike_~ 2020-09-01 22:06:16 &lt;NA&gt;      stretching       FALSE           
+##  9 2020-09-01 21:20:35 home_bike_~ 2020-09-01 21:51:33 &lt;NA&gt;      cycling          TRUE            
+## 10 2020-09-01 21:13:31 home_bike_~ 2020-09-01 21:18:30 &lt;NA&gt;      cycling          TRUE            
+## # ... with 203 more rows, and 73 more variables: has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
 ## #   is_total_work_personal_record &lt;lgl&gt;, metrics_type &lt;chr&gt;, name &lt;chr&gt;, peloton_id &lt;chr&gt;,
 ## #   platform &lt;chr&gt;, start_time &lt;dttm&gt;, strava_id &lt;chr&gt;, status &lt;chr&gt;, timezone &lt;chr&gt;, title &lt;chr&gt;,
 ## #   total_work &lt;dbl&gt;, user_id &lt;chr&gt;, workout_type &lt;chr&gt;, total_video_watch_time_seconds &lt;int&gt;,
-## #   total_video_buffering_seconds &lt;int&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
+## #   total_video_buffering_seconds &lt;int&gt;, v2_total_video_watch_time_seconds &lt;chr&gt;,
+## #   v2_total_video_buffering_seconds &lt;chr&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
 ## #   device_time_created_at &lt;dttm&gt;, effort_zones &lt;chr&gt;, ride_has_closed_captions &lt;lgl&gt;,
 ## #   ride_content_provider &lt;chr&gt;, ride_content_format &lt;chr&gt;, ride_description &lt;chr&gt;,
 ## #   ride_difficulty_rating_avg &lt;dbl&gt;, ride_difficulty_rating_count &lt;int&gt;,
@@ -121,16 +122,16 @@ And here’s Jill on one of those workouts!
 <pre><code>## # A tibble: 32 x 1
 ##    ride_instructor                 
 ##    &lt;chr&gt;                           
-##  1 0021e2220a7940cf94a7647b1e4bae6c
-##  2 4039531b0cbf4fd49e9dae48fb96b667
-##  3 2e57092bee334c8c8dcb9fe16ba5308c
+##  1 731d7b7f6b414a49892c21f01e25317d
+##  2 4672db841da0495caf4b8f9cda405512
+##  3 048f0ce00edb4427b2dced6cbeb107fd
 ##  4 561f95c405734d8488ed8dcc8980d599
-##  5 3ff679ebbd324c83a8ab6cfa6bb4be37
-##  6 05735e106f0747d2a112d32678be8afd
-##  7 304389e2bfe44830854e071bffc137c9
-##  8 4904612965164231a37143805a387e40
-##  9 7f3de5e78bb44d8591a0f77f760478c3
-## 10 048f0ce00edb4427b2dced6cbeb107fd
+##  5 7f3de5e78bb44d8591a0f77f760478c3
+##  6 2e57092bee334c8c8dcb9fe16ba5308c
+##  7 c0a9505d8135412d824cf3c97406179b
+##  8 c406f36aa2a44a5baf8831f8b92f6920
+##  9 4904612965164231a37143805a387e40
+## 10 51702da3a4684b988d31d89eebb43175
 ## # ... with 22 more rows</code></pre>
 <p>While I was selective in what I extracted from this JSON, I do not see instructor name. Lets see what we can find if we dig into the API.</p>
 <div id="access-api" class="section level3">
@@ -144,7 +145,7 @@ pull</code></pre>
 ##   Status: 200
 ##   Content-Type: application/json
 ##   Size: 102 kB</code></pre>
-<p>Status 200 means succes!</p>
+<p>Status 200 means success!</p>
 <p>This function below will pull out one instructor’s information. There is a LOT more information for each instructor – but I will only extract a few interesting headings.</p>
 <pre class="r"><code>instructor_function &lt;- function(num = 2) {
   tibble(
