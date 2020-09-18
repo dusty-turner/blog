@@ -44,10 +44,10 @@ I met @jaredlander at the 2017 MIT Sloan Sports Analytics Conference. He gave a 
     
     <item>
       <title>The Peloton API Part 1: Accessing and Exploring</title>
-      <link>/post/the-peloton-api-part-1-accessing-and-exploring/</link>
+      <link>/post/the-peloton-api-part-1/</link>
       <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/the-peloton-api-part-1-accessing-and-exploring/</guid>
+      <guid>/post/the-peloton-api-part-1/</guid>
       <description>In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale. Since then, she’s been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.
 Jill Smiling After Her 600th Ride (and new record)!Over the last few months, a few works projects have taught me a lot about purrr, functional programming, collaborative projects, and APIs.</description>
     </item>

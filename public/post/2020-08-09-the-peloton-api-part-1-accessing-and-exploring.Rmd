@@ -2,7 +2,7 @@
 title: 'The Peloton API Part 1: Accessing and Exploring'
 author: Dusty Turner
 date: '2020-08-09'
-slug: the-peloton-api-part-1-accessing-and-exploring
+slug: the-peloton-api-part-1
 categories:
   - peloton
   - API
@@ -20,7 +20,7 @@ options(width = 100)
 ```
 
 In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale.  Since then, she's been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.  
-
+ 
 <center>
 <img src="/peloton_wife_1.jpg" alt="peloton" width="500">
 <figcaption>Jill Smiling After Her 600th Ride (and new record)! </figcaption>
