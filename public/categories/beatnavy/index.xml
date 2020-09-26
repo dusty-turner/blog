@@ -44,11 +44,11 @@ Below I summarize how I got the data, the information I can glean from the data,
     </item>
     
     <item>
-      <title>Parellel Processing and Bootstrapping for Diamonds</title>
-      <link>/post/parellel-processing-and-bootstrapping-for-diamonds/</link>
+      <title>Parallel Processing and Bootstrapping</title>
+      <link>/post/parallel-processing-and-bootstrapping-for-diamonds/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/parellel-processing-and-bootstrapping-for-diamonds/</guid>
+      <guid>/post/parallel-processing-and-bootstrapping-for-diamonds/</guid>
       <description>IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
 Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</description>
     </item>

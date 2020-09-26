@@ -1,8 +1,8 @@
 ---
-title: Parellel Processing and Bootstrapping for Diamonds
+title: Parallel Processing and Bootstrapping
 author: Dusty Turner
 date: '2019-06-05'
-slug: parellel-processing-and-bootstrapping-for-diamonds
+slug: parallel-processing-and-bootstrapping-for-diamonds
 categories:
   - army math
   - beatnavy
@@ -151,19 +151,23 @@ head(sampledata)
 Now the point is to find a 95% confidence interval of what the true $\beta_0$ and $\beta_is$ are. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(gt)
 coefs %>% 
-  select(-iteration) %>%
-  summarise_all(funs(list(quantile(., probs = c(0.25, 0.95))))) %>%
-  unnest %>%
-  transpose %>%
-  setNames(., c('25%','95%')) %>%
-  map_df(unlist) %>%
-  bind_cols(data.frame(vars = names(coefs %>% select(-iteration))), .)
-## Thank you Stackoverflow for this code
-## https://stackoverflow.com/questions/43373568/dplyr-to-iterate-over-all-columns-for-quantile
+  pivot_longer(cols = -iteration, names_to = "Factor") %>% 
+  group_by(Factor) %>% 
+  arrange(Factor,value) %>% 
+  slice(c(50,950)) %>% 
+  select(Factor,value)  %>%
+  mutate(side = c("low", "high")) %>% 
+  pivot_wider(names_from = side, values_from = value) %>%
+  ungroup() %>% 
+  gt() %>% 
+  tab_header(title = "95% Confidence Interval")
+
+
 ```
 
-Looks like none of the confidence intervals contain `0`.  Therefore carat does have a relationship with price for each level of cut.
+Looks like none of the confidence intervals contain `0`.  Therefore carat does have a relationship with price for each level of cut. 
 
 ## Displaying the Results
 

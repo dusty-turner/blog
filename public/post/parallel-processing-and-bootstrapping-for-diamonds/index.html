@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Parallel Processing and Bootstrapping</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="Dusty Turner" />
+  <meta name="description" content="IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
+Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students." />
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dtdusty" />
+    <meta name="twitter:title" content="Parallel Processing and Bootstrapping" />
+    <meta name="twitter:description" content="IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
+Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students." />
+    <meta name="twitter:image" content="/img/boot.jpg" />
+  
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2" />
+
+
+<link rel="canonical" href="/post/parallel-processing-and-bootstrapping-for-diamonds/" />
+<link rel="alternative" href="/index.xml" title="Dusty Turner" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="google-site-verification" content="-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo" />
+<meta name="msvalidate.01" content="84DDAAE7986A2E9D73062694A69D33A9" />
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Dusty Turner" />
+<meta name="msapplication-tooltip" content="Dusty Turner" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/css/lightfair.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/dusty.png" alt="Avatar">
+  
+  <h2 class="title">Dusty Turner</h2>
+  
+  <p class="subtitle">~Data Science: Lightly Edited~</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item  is-active"><a href="/">Home</a></li>
+      
+        <li class="menu-item "><a href="https://github.com/dusty-turner">Github</a></li>
+      
+        <li class="menu-item "><a href="/links/">Links</a></li>
+      
+        <li class="menu-item "><a href="/about/">About</a></li>
+      
+        <li class="menu-item "><a href="/community/">Community</a></li>
+      
+        <li class="menu-item "><a href="/cv.pdf">CV</a></li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:dusty.s.turner@gmail.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/dusty-turner" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/dtdusty" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//www.facebook.com/dusty.turner" title="Facebook"><span class="icon icon-facebook"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/dusty-turner-34a148112" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Parallel Processing and Bootstrapping</h1>
+      <p class="post-meta">@Dusty Turner · Jun 5, 2019 · 9 min read</p>
+    </header>
+    <article class="post-content">
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Often times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.</p>
+<p>Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</p>
+</div>
+<div id="gratitude" class="section level2">
+<h2>Gratitude</h2>
+<p>Much of what I learned I figured out from this nice <a href="https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html">blog post</a> by Matt Jones.</p>
+</div>
+<div id="problem-to-solve" class="section level2">
+<h2>Problem to Solve</h2>
+<p>To motivate this problem, I decided I wanted to bootstrap from the <strong>diamonds</strong> data-set to create a range of coefficients which could be the slope and intercept for the linear relationship between the price and cut/carat. Because this could feasibly take a while, I wanted to use parallel processing to split up the bootstrapping portion on several cores.</p>
+</div>
+<div id="my-old-way" class="section level2">
+<h2>My Old Way</h2>
+<p>This is how the old me would have done it. I ran a ‘for’ loop to create 100 bootstraped linear regression of a sample from the data.</p>
+<pre class="r"><code>data(&quot;diamonds&quot;)
+
+diamonds = diamonds %&gt;%
+  select(price,carat,cut)
+
+coefdf = NULL
+allsamples = NULL
+system.time({
+  for (i in 1:100) {
+    subsample = diamonds %&gt;%
+      sample_frac(.001) %&gt;%
+      mutate(iteration = i)
+    result = lm(price~cut+carat,data = subsample)
+    coef = coefficients(result)
+    coefdf = coefdf %&gt;%
+      bind_rows(coef)
+    allsamples = allsamples %&gt;%
+      bind_rows(subsample)
+  }
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##    0.77    0.00    0.77</code></pre>
+<p>I tracked the time and it doesn’t take all that long… but then again its only 100 loops.</p>
+<p>After executing this loop, I can do my future analysis with the following data:</p>
+<pre class="r"><code>head(coefdf)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   `(Intercept)` cut.L  cut.Q cut.C `cut^4` carat
+##           &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1        -2691.  756.  -225.  851.  564.   7847.
+## 2        -3244.  553.   454. 1070.   NA    8784.
+## 3        -1402.  998. -1072.  512.  -64.6  5612.
+## 4        -3906. 3027. -1270.  696.  296.   8953.
+## 5        -2633.  772.  -344.  770.  503.   8222.
+## 6        -2057.  702.  -997.  558.    2.85 7459.</code></pre>
+<pre class="r"><code>head(allsamples)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   price carat cut       iteration
+##   &lt;int&gt; &lt;dbl&gt; &lt;ord&gt;         &lt;int&gt;
+## 1  9987  1.5  Very Good         1
+## 2  9205  1.79 Premium           1
+## 3  3384  0.79 Ideal             1
+## 4  3674  0.71 Ideal             1
+## 5  3536  1    Good              1
+## 6  5915  1.11 Very Good         1</code></pre>
+<p>But you can see how this can quickly balloon into taking too much time. We can solve that problem with parallel processing.</p>
+</div>
+<div id="parallel-processing" class="section level2">
+<h2>Parallel Processing</h2>
+<p>This code requires the following libraries:</p>
+<pre class="r"><code>library(tidyverse)
+library(foreach)
+library(doParallel)</code></pre>
+<p>Typically, all of our work is done is series. Sometimes, if jobs can be done in parallel, we can do this by sending them to different cores in our computer. The amount of time that this saves depends on the speed of your computer, the number of cores in which you can put to work doing jobs, and, of course, the amount of work you need done. Also, there is a ‘start up cost’ to firing up a core - but if you have a lot of repetitive processes that can be spread out and little that must be done for each core, you can save a lot of time.</p>
+<p>First thing, we determine how many cores we have available on our computer to do the work.</p>
+<pre class="r"><code>numCores &lt;- detectCores()
+numCores</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code>registerDoParallel(numCores)</code></pre>
+<p>Now I can execute the same code as above with <code>foreach</code> and <code>%dopar%</code>.</p>
+<pre class="r"><code>data(&quot;diamonds&quot;)
+
+diamonds = diamonds %&gt;%
+  select(price,carat,cut)
+
+allsamples = NULL
+trials &lt;- 10000
+system.time({
+  r &lt;- foreach(i=icount(trials), .combine=rbind, .packages = &quot;tidyverse&quot;) %dopar% {
+    subsample = diamonds %&gt;%
+      sample_frac(.01) 
+    result = lm(price~cut+carat+0,data = subsample)
+    coefs = data.frame(t(coefficients(result)))
+    list(subsample,coefs)
+  }
+})</code></pre>
+<pre><code>##    user  system elapsed 
+##    5.05    0.79   16.83</code></pre>
+<p>Now we can retrieve the data from our ‘loop’ in the following way:</p>
+<pre class="r"><code>coefs = 
+bind_rows(r[,2],.id = &quot;iteration&quot;) %&gt;% as_tibble()
+head(coefs)</code></pre>
+<pre><code>## # A tibble: 6 x 7
+##   iteration cutFair cutGood cutVery.Good cutPremium cutIdeal carat
+##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1 result.1   -3916.  -2545.       -2348.     -2530.   -2048. 7836.
+## 2 result.2   -3358.  -2854.       -2430.     -2123.   -2049. 7612.
+## 3 result.3   -3681.  -2305.       -1829.     -2124.   -1827. 7422.
+## 4 result.4   -3016.  -3059.       -2392.     -2620.   -2109. 7977.
+## 5 result.5   -3995.  -2750.       -2628.     -2462.   -2186. 8027.
+## 6 result.6   -4259.  -2931.       -2452.     -2577.   -2161. 8051.</code></pre>
+<pre class="r"><code>sampledata = 
+bind_rows(r[,1],.id = &quot;iteration&quot;) %&gt;% as_tibble()
+head(sampledata)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   iteration price carat cut      
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;ord&gt;    
+## 1 result.1   1323  0.4  Premium  
+## 2 result.1    451  0.33 Ideal    
+## 3 result.1  12981  1.51 Very Good
+## 4 result.1   1168  0.31 Ideal    
+## 5 result.1    907  0.31 Premium  
+## 6 result.1   4106  0.9  Premium</code></pre>
+<p>Now the point is to find a 95% confidence interval of what the true <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_is\)</span> are.</p>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#flfpczxwbw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#flfpczxwbw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#flfpczxwbw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#flfpczxwbw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#flfpczxwbw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#flfpczxwbw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#flfpczxwbw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#flfpczxwbw .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#flfpczxwbw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#flfpczxwbw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#flfpczxwbw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#flfpczxwbw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#flfpczxwbw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#flfpczxwbw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#flfpczxwbw .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#flfpczxwbw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#flfpczxwbw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#flfpczxwbw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#flfpczxwbw .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#flfpczxwbw .gt_left {
+  text-align: left;
+}
+
+#flfpczxwbw .gt_center {
+  text-align: center;
+}
+
+#flfpczxwbw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#flfpczxwbw .gt_font_normal {
+  font-weight: normal;
+}
+
+#flfpczxwbw .gt_font_bold {
+  font-weight: bold;
+}
+
+#flfpczxwbw .gt_font_italic {
+  font-style: italic;
+}
+
+#flfpczxwbw .gt_super {
+  font-size: 65%;
+}
+
+#flfpczxwbw .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="flfpczxwbw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="3" class="gt_heading gt_title gt_font_normal" style>95% Confidence Interval</th>
+    </tr>
+    <tr>
+      <th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style></th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Factor</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">high</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">carat</td>
+      <td class="gt_row gt_right">7198.820</td>
+      <td class="gt_row gt_right">7557.531</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">cutFair</td>
+      <td class="gt_row gt_right">-5407.211</td>
+      <td class="gt_row gt_right">-4555.459</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">cutGood</td>
+      <td class="gt_row gt_right">-3447.783</td>
+      <td class="gt_row gt_right">-3109.451</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">cutIdeal</td>
+      <td class="gt_row gt_right">-2445.210</td>
+      <td class="gt_row gt_right">-2280.089</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">cutPremium</td>
+      <td class="gt_row gt_right">-2948.220</td>
+      <td class="gt_row gt_right">-2704.754</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">cutVery.Good</td>
+      <td class="gt_row gt_right">-2869.998</td>
+      <td class="gt_row gt_right">-2626.906</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<p>Looks like none of the confidence intervals contain <code>0</code>. Therefore carat does have a relationship with price for each level of cut.</p>
+</div>
+<div id="displaying-the-results" class="section level2">
+<h2>Displaying the Results</h2>
+<p>The ShinyApp I use to display the results is below.</p>
+<p>If you’d rather view the app outside the blog, here is the <a href="https://westpointmath.shinyapps.io/parallelbootstrapdiamonds/">link</a></p>
+<center>
+<iframe src="https://westpointmath.shinyapps.io/parallelbootstrapdiamonds/" width="1000" height="500&quot;">
+</iframe>
+</center>
+<p>I also include the code for the ShinyApp below the embedded application.</p>
+<pre class="r"><code>allsamples = NULL
+trials &lt;- 10000
+  r &lt;-
+    foreach(i = icount(trials),.combine = rbind,.packages = &quot;tidyverse&quot;) %dopar% {
+              subsample = diamonds %&gt;%
+                sample_frac(.001)
+              result = lm(price ~ cut + carat + 0, data = subsample)
+              coefs = data.frame(t(coefficients(result)))
+              list(subsample, coefs)
+            }
+
+sampledata =
+  bind_rows(r[, 1], .id = &quot;iteration&quot;)
+coefs =
+  bind_rows(r[, 2], .id = &quot;iteration&quot;)
+
+help =
+  sampledata %&gt;% as_tibble() %&gt;% janitor::clean_names()
+
+coefdata =
+  coefs %&gt;% as_tibble() %&gt;%
+  gather(cuttype, intercept, -carat, -iteration)
+
+shinyApp(
+  ui = fluidPage(
+    sliderInput(
+      &quot;number&quot;,
+      &quot;Which Iteration to Display&quot;,
+      min = 1,
+      max = trials,
+      value = floor(runif(1, 1, trials))
+    ),
+    plotOutput(&quot;diamond&quot;)
+  ),
+  
+  server = function(input, output) {
+    subhelp = reactive({
+      help %&gt;%
+        mutate(iteration = as.numeric(str_remove(iteration, &quot;result.&quot;))) %&gt;%
+        filter(iteration == input$number)
+    })
+    
+    subcoefdata = reactive({
+      coefdata %&gt;%
+        mutate(iteration = as.numeric(str_remove(iteration, &quot;result.&quot;))) %&gt;%
+        filter(iteration == input$number)
+    })
+    
+    output$diamond = renderPlot({
+      diamonds %&gt;%
+        ggplot(aes(x = carat, y = price)) +
+        geom_point(alpha = .1) +
+        geom_point(data = subhelp(),
+                   aes(x = carat, y = price),
+                   color = &quot;blue&quot;) +
+        geom_abline(data = subcoefdata(),
+                    aes(intercept = intercept, slope = carat),
+                    color = &quot;red&quot;) +
+        facet_wrap( ~ cuttype, drop = TRUE, nrow = 1) +
+        labs(
+          x = &quot;Carat&quot;,
+          y = &quot;Price&quot;,
+          title = &quot;Price of Diamond as Carat Increases&quot;,
+          subtitle = &quot;By Cut&quot;,
+          caption = paste(&quot;Currently Showing Bootstrap Sample &quot;, input$number)
+        )
+    })
+  },
+  
+  options = list(height = 1000)
+)</code></pre>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/army-math"><span class="tag">Army Math</span></a></li>
+        
+          <li><a href="/tags/beatnavy"><span class="tag">Beatnavy</span></a></li>
+        
+          <li><a href="/tags/datascience"><span class="tag">Datascience</span></a></li>
+        
+          <li><a href="/tags/foreach"><span class="tag">Foreach</span></a></li>
+        
+          <li><a href="/tags/bootstrap"><span class="tag">Bootstrap</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>479</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "dusty-turner" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2020 Dusty Turner</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-109926409-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
