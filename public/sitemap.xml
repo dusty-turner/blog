@@ -38,12 +38,12 @@
   </url>
   
   <url>
-    <loc>/categories/fitness/</loc>
+    <loc>/tags/fitness/</loc>
     <lastmod>2020-08-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/fitness/</loc>
+    <loc>/categories/fitness/</loc>
     <lastmod>2020-08-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -73,12 +73,12 @@
   </url>
   
   <url>
-    <loc>/categories/beatnavy/</loc>
+    <loc>/tags/beatnavy/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/beatnavy/</loc>
+    <loc>/categories/beatnavy/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -103,12 +103,12 @@
   </url>
   
   <url>
-    <loc>/categories/tidyverse/</loc>
+    <loc>/tags/tidyverse/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/tidyverse/</loc>
+    <loc>/categories/tidyverse/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -133,22 +133,22 @@
   </url>
   
   <url>
-    <loc>/categories/ford/</loc>
-    <lastmod>2019-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/ford/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/espn-api/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+    <loc>/categories/ford/</loc>
+    <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/espn-api/</loc>
+    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/espn-api/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -193,12 +193,12 @@
   </url>
   
   <url>
-    <loc>/tags/army-math/</loc>
+    <loc>/categories/army-math/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/army-math/</loc>
+    <loc>/tags/army-math/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -228,12 +228,12 @@
   </url>
   
   <url>
-    <loc>/tags/devtools/</loc>
+    <loc>/categories/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/devtools/</loc>
+    <loc>/tags/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,22 +258,22 @@
   </url>
   
   <url>
-    <loc>/categories/shiny/</loc>
-    <lastmod>2019-04-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/usma/</loc>
+    <loc>/categories/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/usma/</loc>
+    <lastmod>2019-04-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/usma/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -293,12 +293,12 @@
   </url>
   
   <url>
-    <loc>/categories/children/</loc>
+    <loc>/tags/children/</loc>
     <lastmod>2019-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/children/</loc>
+    <loc>/categories/children/</loc>
     <lastmod>2019-01-04T00:00:00+00:00</lastmod>
   </url>
   
@@ -318,12 +318,12 @@
   </url>
   
   <url>
-    <loc>/categories/yahoo-api/</loc>
+    <loc>/tags/yahoo-api/</loc>
     <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/yahoo-api/</loc>
+    <loc>/categories/yahoo-api/</loc>
     <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -353,17 +353,12 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/r/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/tidytext/</loc>
+    <loc>/tags/r/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -373,12 +368,12 @@
   </url>
   
   <url>
-    <loc>/post/2018-ncaa-college-bowl-pick-em/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <loc>/categories/tidytext/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/ggplot2/</loc>
+    <loc>/post/2018-ncaa-college-bowl-pick-em/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -388,12 +383,17 @@
   </url>
   
   <url>
-    <loc>/tags/model-building/</loc>
-    <lastmod>2018-08-15T00:00:00+00:00</lastmod>
+    <loc>/categories/ggplot2/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/model-building/</loc>
+    <lastmod>2018-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/model-building/</loc>
     <lastmod>2018-08-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -408,12 +408,12 @@
   </url>
   
   <url>
-    <loc>/categories/forecast/</loc>
+    <loc>/tags/forecast/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/forecast/</loc>
+    <loc>/categories/forecast/</loc>
     <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -423,12 +423,12 @@
   </url>
   
   <url>
-    <loc>/tags/dplyr/</loc>
+    <loc>/categories/dplyr/</loc>
     <lastmod>2018-05-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/dplyr/</loc>
+    <loc>/tags/dplyr/</loc>
     <lastmod>2018-05-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -448,12 +448,12 @@
   </url>
   
   <url>
-    <loc>/tags/scraping/</loc>
+    <loc>/categories/scraping/</loc>
     <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/scraping/</loc>
+    <loc>/tags/scraping/</loc>
     <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -463,12 +463,12 @@
   </url>
   
   <url>
-    <loc>/tags/rmd/</loc>
+    <loc>/categories/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/rmd/</loc>
+    <loc>/tags/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   
