@@ -19,21 +19,71 @@
   
   <url>
     <loc>/tags/api/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/api/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/espn/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/espn/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/espn-fantasy-football-api-2020/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/fantasy-football/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fantasy-football/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/fitness/</loc>
     <lastmod>2020-08-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,27 +93,12 @@
   </url>
   
   <url>
-    <loc>/categories/fitness/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/peloton/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/peloton/</loc>
     <lastmod>2020-08-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
+    <loc>/categories/peloton/</loc>
     <lastmod>2020-08-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -83,12 +118,12 @@
   </url>
   
   <url>
-    <loc>/categories/simulation/</loc>
+    <loc>/tags/simulation/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/simulation/</loc>
+    <loc>/categories/simulation/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -123,17 +158,12 @@
   </url>
   
   <url>
-    <loc>/categories/datascience/</loc>
-    <lastmod>2019-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/datascience/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/ford/</loc>
+    <loc>/categories/datascience/</loc>
     <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -143,8 +173,8 @@
   </url>
   
   <url>
-    <loc>/categories/espn-api/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+    <loc>/tags/ford/</loc>
+    <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -153,17 +183,12 @@
   </url>
   
   <url>
+    <loc>/categories/espn-api/</loc>
+    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/fantasy-football-2019-analysis/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/fantasy-football/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/fantasy-football/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -203,12 +228,12 @@
   </url>
   
   <url>
-    <loc>/tags/bootstrap/</loc>
+    <loc>/categories/bootstrap/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/bootstrap/</loc>
+    <loc>/tags/bootstrap/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -228,12 +253,12 @@
   </url>
   
   <url>
-    <loc>/tags/devtools/</loc>
+    <loc>/categories/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/devtools/</loc>
+    <loc>/tags/devtools/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -243,12 +268,12 @@
   </url>
   
   <url>
-    <loc>/categories/roxygen/</loc>
+    <loc>/tags/roxygen/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/roxygen/</loc>
+    <loc>/categories/roxygen/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,12 +283,12 @@
   </url>
   
   <url>
-    <loc>/categories/shiny/</loc>
+    <loc>/tags/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/shiny/</loc>
+    <loc>/categories/shiny/</loc>
     <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -353,12 +378,7 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
+    <loc>/tags/tidytext/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -368,22 +388,17 @@
   </url>
   
   <url>
-    <loc>/tags/tidytext/</loc>
-    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/2018-ncaa-college-bowl-pick-em/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/ggplot2/</loc>
+    <loc>/categories/ggplot2/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/ggplot2/</loc>
+    <loc>/tags/ggplot2/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -448,12 +463,12 @@
   </url>
   
   <url>
-    <loc>/categories/scraping/</loc>
+    <loc>/tags/scraping/</loc>
     <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/scraping/</loc>
+    <loc>/categories/scraping/</loc>
     <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -463,12 +478,12 @@
   </url>
   
   <url>
-    <loc>/categories/rmd/</loc>
+    <loc>/tags/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/rmd/</loc>
+    <loc>/categories/rmd/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
   

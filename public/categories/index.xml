@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 09 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,36 @@
     <item>
       <title>API</title>
       <link>/categories/api/</link>
-      <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/categories/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ESPN</title>
+      <link>/categories/espn/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/espn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fantasy football</title>
+      <link>/categories/fantasy-football/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/fantasy-football/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r</title>
+      <link>/categories/r/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/r/</guid>
       <description></description>
     </item>
     
@@ -99,15 +126,6 @@
       <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/espn-api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fantasy football</title>
-      <link>/categories/fantasy-football/</link>
-      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/fantasy-football/</guid>
       <description></description>
     </item>
     
@@ -225,15 +243,6 @@
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/lubridate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r</title>
-      <link>/categories/r/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r/</guid>
       <description></description>
     </item>
     

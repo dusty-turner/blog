@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 09 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,17 @@ Motivation While I teach statistics, Data Science has become my hobby. I hope to
       <description>What follows is a growing collection of examples of why I am grateful to be a part of this community.
 I met @jaredlander at the 2017 MIT Sloan Sports Analytics Conference. He gave a phenomenal talk (except for the focus on the NY Giants), and he was gracious in his conversation afterwards. We&amp;rsquo;ve had several interactions in the ensuing months &amp;ndash; What a great mentor!
  Thank you @DTDusty for my new army frisbee!</description>
+    </item>
+    
+    <item>
+      <title>ESPN Fantasy Football API 2020</title>
+      <link>/post/espn-fantasy-football-api-2020/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/espn-fantasy-football-api-2020/</guid>
+      <description>Its that time of year!Its that time of year again. The time when we dust off the old ESPN fantasy football API R code and fix everything that broke in the last year.
+Here’s what I hope to show over the next few posts.
+How to access your ESPN public fantasy football league’s data.How to organize that data and create a few interesting displays.How to create a dashboard to supplement your league’s fun.</description>
     </item>
     
     <item>
