@@ -1,5 +1,5 @@
 ---
-title: ESPN Fantasy Football API 2020
+title: "ESPN Fantasy Football 2020 Part 1: Accessing the API"
 author: Dusty Turner
 date: '2020-10-03'
 slug: espn-fantasy-football-api-2020
