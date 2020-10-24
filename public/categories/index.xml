@@ -7,10 +7,64 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 03 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>children</title>
+      <link>/categories/children/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/children/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>games</title>
+      <link>/categories/games/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/games/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linear programing</title>
+      <link>/categories/linear-programing/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/linear-programing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r</title>
+      <link>/categories/r/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>the price is right</title>
+      <link>/categories/the-price-is-right/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/the-price-is-right/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web scraping</title>
+      <link>/categories/web-scraping/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/web-scraping/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>API</title>
@@ -36,15 +90,6 @@
       <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/categories/fantasy-football/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r</title>
-      <link>/categories/r/</link>
-      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r/</guid>
       <description></description>
     </item>
     
@@ -198,24 +243,6 @@
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/usma/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>games</title>
-      <link>/categories/games/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/games/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>children</title>
-      <link>/categories/children/</link>
-      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/children/</guid>
       <description></description>
     </item>
     
