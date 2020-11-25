@@ -1,0 +1,352 @@
+---
+title: Helping A Colleague Explore Data
+author: Dusty Turner
+date: '2017-11-19'
+slug: helping-a-colleague-explore-data
+categories:
+  - r
+  - datascience
+  - ggplot2
+  - lubridate
+  - dplyr 
+  - tidyverse
+  - beatnavy
+tags:
+  - r
+  - datascience
+  - ggplot2
+  - lubridate
+  - dplyr
+  - tidyverse
+  - beatnavy
+# output: 
+  # blogdown::html_page:
+    # toc: true
+    # toc_depth: 2
+    # dev: "svg"
+    # theme: lumen
+    # highlight: tango
+    # code_folding: show  #doesn't work yet with html_page
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>A colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.</p>
+<div id="install-andor-load-necessary-packages" class="section level3">
+<h3>Install and/or load necessary packages</h3>
+<pre class="r"><code>if (!require(&quot;tidyverse&quot;)) install.packages(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.0.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.0.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.3</code></pre>
+<pre class="r"><code>if (!require(&quot;readr&quot;)) install.packages(&quot;readr&quot;)
+if (!require(&quot;lubridate&quot;)) install.packages(&quot;lubridate&quot;)</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.0.3</code></pre>
+<pre class="r"><code>if (!require(&quot;stringi&quot;)) install.packages(&quot;stringi&quot;)</code></pre>
+</div>
+<div id="set-working-directory-if-necessary" class="section level3">
+<h3>Set Working Directory If Necessary</h3>
+<pre class="r"><code># setwd(&quot;//filepath/of/your/csvfile&quot;)</code></pre>
+</div>
+<div id="read-in-data" class="section level3">
+<h3>Read in data</h3>
+<p>We use <code>read_csv</code> from the <code>readr</code> package because it does a better job than the base <code>read.csv</code> command at recognizing data types from our csv file.</p>
+<pre class="r"><code>data = read_csv(&quot;data.csv&quot;)</code></pre>
+<pre><code>## 
+## -- Column specification ------------------------------------------------------------------------------------------------
+## cols(
+##   `Date Time (GMT)` = col_character(),
+##   DotW = col_character(),
+##   Hosts = col_double(),
+##   Users = col_double(),
+##   `Users Per Host` = col_double(),
+##   weekno = col_double(),
+##   desdate = col_double()
+## )</code></pre>
+<p>We notice that it read in our data column as a character string. We’ll have to do some work to fix that, but lets to some further exploration for now.</p>
+</div>
+</div>
+<div id="exploratory-data-anlaysis" class="section level2">
+<h2>Exploratory Data Anlaysis</h2>
+<p>First, we will look at our data summary</p>
+<pre class="r"><code>summary(data)</code></pre>
+<pre><code>##  Date Time (GMT)        DotW               Hosts          Users       Users Per Host       weekno         desdate     
+##  Length:7519        Length:7519        Min.   :  82   Min.   : 1042   Min.   : 1.078   Min.   :1.000   Min.   :42875  
+##  Class :character   Class :character   1st Qu.:1146   1st Qu.:18585   1st Qu.:14.327   1st Qu.:2.000   1st Qu.:42914  
+##  Mode  :character   Mode  :character   Median :1286   Median :21483   Median :16.421   Median :3.000   Median :42950  
+##                                        Mean   :1286   Mean   :21372   Mean   :16.799   Mean   :2.657   Mean   :42950  
+##                                        3rd Qu.:1423   3rd Qu.:24269   3rd Qu.:19.040   3rd Qu.:3.000   3rd Qu.:42986  
+##                                        Max.   :1921   Max.   :41216   Max.   :34.664   Max.   :3.000   Max.   :43028</code></pre>
+<p>This confirms that our date is in the wrong format. It appears everything else is fine.</p>
+<p>The structure command is also a valuable tool. This shows us how R interprets the data and if there are any hidden levels or format issues in which we are unaware.</p>
+<pre class="r"><code>str(data)</code></pre>
+<pre><code>## tibble [7,519 x 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Date Time (GMT): chr [1:7519] &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; ...
+##  $ DotW           : chr [1:7519] &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; &quot;Sat&quot; ...
+##  $ Hosts          : num [1:7519] 1368 1355 1351 1344 1375 ...
+##  $ Users          : num [1:7519] 27084 26674 26424 28796 29589 ...
+##  $ Users Per Host : num [1:7519] 19.8 19.7 19.6 21.4 21.5 ...
+##  $ weekno         : num [1:7519] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ desdate        : num [1:7519] 42875 42875 42875 42875 42875 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   `Date Time (GMT)` = col_character(),
+##   ..   DotW = col_character(),
+##   ..   Hosts = col_double(),
+##   ..   Users = col_double(),
+##   ..   `Users Per Host` = col_double(),
+##   ..   weekno = col_double(),
+##   ..   desdate = col_double()
+##   .. )</code></pre>
+<p>One issue we notice is there there areparenthesis <code>()</code> in the <code>Date Time (GMT)</code> column name. We will run into issues calling this column in the future because we will have to put the name in ‘single quotes’. To allow us to directly call the column name, we will rename this column, as well as several others for similar reasons.</p>
+<p>An ounce of prevention…</p>
+<pre class="r"><code>names(data) = c(&quot;DateTimeGMT&quot;, &quot;DotW&quot;,&quot;Hosts&quot;, &quot;Users&quot;, &quot;UsersPerHost&quot;, &quot;weekno&quot;, &quot;desdate&quot;)
+names(data)</code></pre>
+<pre><code>## [1] &quot;DateTimeGMT&quot;  &quot;DotW&quot;         &quot;Hosts&quot;        &quot;Users&quot;        &quot;UsersPerHost&quot; &quot;weekno&quot;       &quot;desdate&quot;</code></pre>
+<p>Much better!</p>
+<div id="handle-the-date-column" class="section level3">
+<h3>Handle the Date column</h3>
+<p>In order for R to read <code>DateTimeGMT</code> as a Date and not as a character string, we’ll use several commands from the <code>lubridate</code> package.</p>
+<p>It will be best if we translate our time into ‘POSIXct’.</p>
+<ul>
+<li><strong>POSIX</strong> time is the number of seconds that have elapsed since January 1, 1970.</li>
+<li><strong>ct</strong> stands for ‘calendar time’.</li>
+</ul>
+<p>This should give you insite as to how R is storing the information. Now we need to tell R the order of our characters.</p>
+<p>Here is a snipit of what it looks like.</p>
+<pre class="r"><code>data$DateTimeGMT[1:10]</code></pre>
+<pre><code>##  [1] &quot;5/20/2017 0:35&quot; &quot;5/20/2017 2:19&quot; &quot;5/20/2017 2:24&quot; &quot;5/20/2017 3:11&quot; &quot;5/20/2017 3:36&quot; &quot;5/20/2017 4:07&quot;
+##  [7] &quot;5/20/2017 4:37&quot; &quot;5/20/2017 5:02&quot; &quot;5/20/2017 5:27&quot; &quot;5/20/2017 5:52&quot;</code></pre>
+<p>We must tell R where the months, days, years, hours, minutes, etc are located in the character vector we provide.</p>
+<pre class="r"><code>data$newdate = as.POSIXct(data$DateTimeGMT, &quot;%m/%d/%Y %H:%M&quot;, tz = &quot;UTC&quot;)
+data$newdate[1:10]</code></pre>
+<pre><code>##  [1] &quot;2017-05-20 00:35:00 UTC&quot; &quot;2017-05-20 02:19:00 UTC&quot; &quot;2017-05-20 02:24:00 UTC&quot; &quot;2017-05-20 03:11:00 UTC&quot;
+##  [5] &quot;2017-05-20 03:36:00 UTC&quot; &quot;2017-05-20 04:07:00 UTC&quot; &quot;2017-05-20 04:37:00 UTC&quot; &quot;2017-05-20 05:02:00 UTC&quot;
+##  [9] &quot;2017-05-20 05:27:00 UTC&quot; &quot;2017-05-20 05:52:00 UTC&quot;</code></pre>
+<pre class="r"><code>class(data$newdate)</code></pre>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<p>Nice - we can see how it is being stored and that the data time is correct.</p>
+</div>
+<div id="visualise" class="section level3">
+<h3>Visualise</h3>
+<p>Lets take a first look at at our UsersPerHost over time.</p>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost)) +
+  geom_point()</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/first%20look-1.png" width="672" /></p>
+<p>There is clearly something going on here. Lets explore more deeply by creating a column for day of the week and month. We’ll plot the data based on these different levels.</p>
+<pre class="r"><code>data$weekday = wday(data$newdate)
+data$month = month(data$newdate)</code></pre>
+<p>A good tool for seeing how data changes based on certain factors is by changing the colors based on a level of a specific factor.</p>
+</div>
+<div id="plot-it" class="section level3">
+<h3>Plot it</h3>
+<p>Lets see how <code>UsersPerHost</code> changes based off of month.</p>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost, color = weekday)) +
+  geom_point()</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/different%20colors-1.png" width="672" /></p>
+<p>Notice how our points are shaded by a fluid scale instead of having one color per day of the week. This is because R sees <code>weekday</code> as a continuous variable. Lets fix that by adding <code>as.factor(weekday)</code> to our <code>color</code> argument.</p>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point()</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/different%20colors%20factor-1.png" width="672" /></p>
+<p>That looks better – and it appears that each level of <code>weekday</code> has an impact on <code>UsersPerHost</code>.</p>
+<p>Maybe it would be better to see this effect by month?</p>
+<pre class="r"><code>ggplot(data, aes(x=newdate, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  facet_wrap(~month)</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>What’s Wrong? Our data points are all clumped together. That’s because we are faceting over each month (good), but our x axis contains the entire time scale over each facet (bad). We have to remove the month value from our x and maintain only the time element. We will do that by extracting the time from our <code>DateTimeGMT</code> column.</p>
+<pre class="r"><code>time = stri_sub(data$DateTimeGMT, -5,-1)
+data$time = gsub(&quot; &quot;,0, time)</code></pre>
+<p>Lets try the plot again using <code>time</code> as our x variable.</p>
+<pre class="r"><code>ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  facet_wrap(~month)</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>There certainly appears to be a relationship.</p>
+</div>
+</div>
+<div id="statistical-analysis" class="section level2">
+<h2>Statistical Analysis</h2>
+<p>Lets test this using a <code>pairwise.t.test</code></p>
+<pre class="r"><code>test = pairwise.t.test(data$UsersPerHost,as.factor(data$weekday), p.adjust.method = &quot;bonferroni&quot;)</code></pre>
+<p>The null hypothesis is that the <code>UsersPerHost</code> are equal to each other across all months. Everywhere the P Values are &lt;.05, we reject the null hypothesis and determine that the <code>UsersPerHost</code> for that specific month to month combination are different.</p>
+<p>Lets make this information more conveyable. We’ll do that with a graphic with a little different test.</p>
+<p>The following code will execute an ANOVA (analysis of variance) and extract the Tukey comparisons. The Tukey results show us the estimated mean of the level and it provides a confidence interval of the true mean.</p>
+<pre class="r"><code>results = aov(UsersPerHost~as.factor(weekday), data = data)
+tukey = TukeyHSD(results)</code></pre>
+<p>Lets put this information in a datafame that we can plot using <code>ggplot</code>.</p>
+<pre class="r"><code>plotting = data.frame(names = rownames(tukey$`as.factor(weekday)`),
+                      diff = tukey$`as.factor(weekday)`[,1],
+                      ymin = tukey$`as.factor(weekday)`[,2],
+                      ymax = tukey$`as.factor(weekday)`[,3])
+plotting</code></pre>
+<pre><code>##     names        diff        ymin         ymax
+## 2-1   2-1 -2.86319494 -3.21018235 -2.516207527
+## 3-1   3-1 -4.55973264 -4.91048577 -4.208979503
+## 4-1   4-1 -5.32234667 -5.67562184 -4.969071512
+## 5-1   5-1 -5.15195058 -5.50443012 -4.799471047
+## 6-1   6-1 -4.92126477 -5.27784546 -4.564684093
+## 7-1   7-1 -2.89897050 -3.24989374 -2.548047250
+## 3-2   3-2 -1.69653770 -2.05022084 -1.342854558
+## 4-2   4-2 -2.45915174 -2.81533616 -2.102967312
+## 5-2   5-2 -2.28875565 -2.64415096 -1.933360335
+## 6-2   6-2 -2.05806984 -2.41753303 -1.698606645
+## 7-2   7-2 -0.03577556 -0.38962741  0.318076287
+## 4-3   4-3 -0.76261404 -1.12246796 -0.402760118
+## 5-3   5-3 -0.59221794 -0.95129081 -0.233145076
+## 6-3   6-3 -0.36153214 -0.72463169  0.001567416
+## 7-3   7-3  1.66076214  1.30321686  2.018307421
+## 5-4   5-4  0.17039609 -0.19114077  0.531932957
+## 6-4   6-4  0.40108190  0.03554549  0.766618307
+## 7-4   7-4  2.42337618  2.06335645  2.783395909
+## 6-5   6-5  0.23068581 -0.13408172  0.595453332
+## 7-5   7-5  2.25298009  1.89374104  2.612219127
+## 7-6   7-6  2.02229428  1.65903039  2.385558162</code></pre>
+<div id="plot-tukey-comparisons" class="section level3">
+<h3>Plot Tukey Comparisons</h3>
+<pre class="r"><code>ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;)</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We should draw two conclusions.</p>
+<ol style="list-style-type: decimal">
+<li>If the error bar overlaps <code>0</code>, we conclude the <code>UsersPerHost</code> are not different across that month pair.</li>
+<li>Every month pair whose error bar does not overlap is different from all other months.</li>
+</ol>
+</div>
+<div id="analysis-by-week" class="section level3">
+<h3>Analysis by week</h3>
+<p>Lets plot the <code>UsersPerHost</code> by week.</p>
+<p>First, we must create a column for week. The code below identifies each week in the dataset and numbers them 1 through n. </p>
+<pre class="r"><code>data$week = trunc((data$newdate - min(data$newdate))/dweeks(1))</code></pre>
+<p>Now for the plot by week.</p>
+<pre class="r"><code>ggplot(data, aes(x=time, y = UsersPerHost, color = as.factor(weekday))) +
+  geom_point() +
+  # geom_boxplot() +
+  # geom_smooth() +
+  facet_wrap(~as.factor(week))</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Much like the analysis above, lets see if there’s a differnece between any week pair.</p>
+<pre class="r"><code>options(scipen=999)
+test = pairwise.t.test(data$UsersPerHost,as.factor(data$week), p.adjust.method = &quot;bonferroni&quot;)
+round(test$p.value[,c(1:15)],3)</code></pre>
+<pre><code>##        0     1     2     3     4     5     6     7     8     9    10    11    12    13    14
+## 1  1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 2  1.000 0.604    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 3  1.000 1.000 1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 4  0.023 0.000 1.000 0.039    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 5  1.000 0.558 1.000 1.000 1.000    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 6  0.000 0.000 0.000 0.000 0.002 0.000    NA    NA    NA    NA    NA    NA    NA    NA    NA
+## 7  1.000 1.000 0.074 1.000 0.000 0.064 0.000    NA    NA    NA    NA    NA    NA    NA    NA
+## 8  1.000 0.106 1.000 1.000 1.000 1.000 0.000 0.006    NA    NA    NA    NA    NA    NA    NA
+## 9  1.000 1.000 1.000 1.000 0.000 1.000 0.000 1.000 0.889    NA    NA    NA    NA    NA    NA
+## 10 1.000 0.909 1.000 1.000 1.000 1.000 0.000 0.151 1.000 1.000    NA    NA    NA    NA    NA
+## 11 1.000 0.179 1.000 1.000 1.000 1.000 0.000 0.014 1.000 1.000 1.000    NA    NA    NA    NA
+## 12 0.033 0.000 1.000 0.058 1.000 1.000 0.001 0.000 1.000 0.000 1.000 1.000    NA    NA    NA
+## 13 1.000 1.000 1.000 1.000 0.000 1.000 0.000 1.000 1.000 1.000 1.000 1.000 0.000    NA    NA
+## 14 0.000 0.300 0.000 0.000 0.000 0.000 0.000 0.028 0.000 0.000 0.000 0.000 0.000 0.000    NA
+## 15 0.595 1.000 0.011 0.364 0.000 0.009 0.000 1.000 0.001 1.000 0.026 0.002 0.000 1.000 0.098
+## 16 0.000 0.119 0.000 0.000 0.000 0.000 0.000 0.007 0.000 0.000 0.000 0.000 0.000 0.000 1.000
+## 17 1.000 1.000 0.185 1.000 0.000 0.160 0.000 1.000 0.016 1.000 0.360 0.037 0.000 1.000 0.004
+## 18 1.000 1.000 1.000 1.000 0.477 1.000 0.000 1.000 1.000 1.000 1.000 1.000 0.661 1.000 0.000
+## 19 1.000 1.000 1.000 1.000 0.000 1.000 0.000 1.000 0.264 1.000 1.000 0.465 0.000 1.000 0.003
+## 20 0.000 0.140 0.000 0.000 0.000 0.000 0.000 0.011 0.000 0.000 0.000 0.000 0.000 0.000 1.000
+## 21 0.012 1.000 0.000 0.007 0.000 0.000 0.000 1.000 0.000 0.678 0.000 0.000 0.000 0.454 1.000</code></pre>
+<p>We will explore the same ANOVA as before with Tukey results. This time, however, since there are 231 pairwise comparisons, I will only display a sample of 20 weeks that are different from each other.</p>
+<pre class="r"><code>options(scipen=999)
+results = aov(UsersPerHost~as.factor(week), data = data)
+tukey = TukeyHSD(results)
+helper = as.data.frame(round(tukey$`as.factor(week)`[which(tukey$`as.factor(week)`[,4]&lt;.001),],3)) %&gt;% 
+  sample_n(20) 
+helper %&gt;%  
+  mutate(weekpair = rownames(helper)) %&gt;%
+  arrange(desc(diff)) %&gt;%
+  select(&quot;weekpair&quot;, &quot;p adj&quot;, &quot;diff&quot;, &quot;lwr&quot;, &quot;upr&quot;)</code></pre>
+<pre><code>##    weekpair p adj   diff    lwr    upr
+## 1       6-1     0  2.603  1.575  3.630
+## 2       4-1     0  1.547  0.504  2.589
+## 3     21-10     0 -1.295 -2.267 -0.323
+## 4      21-2     0 -1.308 -2.248 -0.369
+## 5      16-9     0 -1.324 -2.162 -0.487
+## 6     20-18     0 -1.596 -2.728 -0.463
+## 7     15-12     0 -1.601 -2.439 -0.762
+## 8       8-6     0 -1.601 -2.437 -0.766
+## 9      20-0     0 -1.621 -2.500 -0.742
+## 10     16-3     0 -1.641 -2.484 -0.797
+## 11     15-4     0 -1.643 -2.500 -0.786
+## 12    14-10     0 -1.778 -2.666 -0.891
+## 13     14-5     0 -1.792 -2.635 -0.949
+## 14     20-2     0 -1.878 -2.762 -0.994
+## 15    16-11     0 -1.971 -2.828 -1.114
+## 16     16-8     0 -1.996 -2.833 -1.159
+## 17    16-12     0 -2.499 -3.337 -1.661
+## 18     16-4     0 -2.541 -3.398 -1.685
+## 19     14-6     0 -3.525 -4.364 -2.686
+## 20     16-6     0 -3.597 -4.435 -2.760</code></pre>
+<p>Lets tranform this information into a datafame that we can plot.</p>
+<pre class="r"><code>tukeydata = as.data.frame(tukey$`as.factor(week)`)
+plotting = tukeydata %&gt;%
+  mutate(names = rownames(tukeydata), ymin = lwr, ymax = upr) %&gt;%
+  select(names, diff, ymin, ymax) %&gt;%
+  arrange(diff)</code></pre>
+<p>Lets view a sample of 20 rows.</p>
+<pre class="r"><code>plotting %&gt;%
+  sample_n(20) %&gt;%
+  arrange(diff)</code></pre>
+<pre><code>##    names       diff       ymin       ymax
+## 1   16-6 -3.5973872 -4.4349971 -2.7597773
+## 2   20-4 -2.5554293 -3.4458062 -1.6650524
+## 3   15-4 -1.6428598 -2.4997626 -0.7859569
+## 4   17-4 -1.4662646 -2.3178682 -0.6146610
+## 5   16-1 -0.9946613 -2.0234305  0.0341079
+## 6  13-11 -0.6162754 -1.4706055  0.2380547
+## 7   11-4 -0.5704183 -1.4441779  0.3033412
+## 8   17-3 -0.5655521 -1.4038874  0.2727832
+## 9   19-3 -0.4605220 -1.3677391  0.4466951
+## 10  18-8 -0.4145303 -1.5189721  0.6899115
+## 11 17-13 -0.2795709 -1.1112275  0.5520858
+## 12  11-2  0.1069814 -0.7607316  0.9746944
+## 13   8-5  0.1313337 -0.7079632  0.9706306
+## 14 19-15  0.2816253 -0.6224644  1.1857150
+## 15   8-3  0.3556364 -0.4853595  1.1966324
+## 16  13-1  0.3599034 -0.6666463  1.3864531
+## 17 21-16  0.5557697 -0.3739061  1.4854455
+## 18  18-1  0.5869909 -0.6689848  1.8429666
+## 19 12-10  0.6479394 -0.2370245  1.5329033
+## 20  12-1  1.5043115  0.4764365  2.5321865</code></pre>
+</div>
+<div id="plots-of-pairwise-compaisons" class="section level3">
+<h3>Plots of Pairwise Compaisons</h3>
+<pre class="r"><code>ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;)</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>This is very difficult to read. Lets make two fixes:</p>
+<ol style="list-style-type: decimal">
+<li>Since our data is scattered everywhere, lets reorder our plot based off the difference in means between weeks.<br />
+</li>
+<li>Since our y labels are hard to read, lets create a vector that will allow us to show the label for every 7th value.</li>
+</ol>
+<pre class="r"><code>plotting$order = 1:nrow(plotting)
+plotting$names = factor(plotting$names, levels=unique(plotting$names[order(plotting$order)]), ordered=TRUE)
+
+plothelp = plotting$names[c(TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE)]</code></pre>
+<p>Now the plot.</p>
+<pre class="r"><code>ggplot(data = plotting, aes(x = names, y = diff, ymin = ymin, ymax = ymax)) +
+  geom_point() +
+  geom_errorbar() +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = &quot;dotted&quot;) +
+  scale_x_discrete(breaks=plothelp,
+                      labels=plothelp)</code></pre>
+<p><img src="public/post/2017-11-19-helping-a-colleague-explore-data_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+</div>
