@@ -1,0 +1,177 @@
+---
+title: 'Super Bowl LIII Prop Bet Tracking'
+author: Dusty Turner
+date: '2019-02-01'
+slug: super-bowl-liii-prop-bet-tracking
+categories:
+  - army math
+  - games
+tags:
+  - army math
+  - games
+runtime: shiny
+---
+
+
+
+<p>Hi all, thanks for participating in the prop bets for the 2019 Super Bowl.</p>
+<p>During my ear recovery, I accumulated some fun prop “bets” (no money is involved) for the upcoming Super Bowl to make the game more fun and interesting. Questions range from “Who will be the winner” to “How long will the National Anthem Last” to “What color will the post-game Gatorade bath be”?</p>
+<p>If you have not made your selections, please do so <a href="https://goo.gl/forms/fCzb9maHCsRbU3Nc2">here</a>!</p>
+<p>This will update live during the game. Please Enjoy!</p>
+<center>
+<iframe src="https://dustyturner.shinyapps.io/PropBetsSuperBowl50/?showcase=0" width="100%" height="1700px">
+</iframe>
+</center>
+<!-- ```{r introcode, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE} -->
+<!-- library(googlesheets) -->
+<!-- library(tidyverse) -->
+<!-- library(stringr) -->
+<!-- gap <- gs_title("Super Bowl LIII Prop Bets (Responses)") -->
+<!-- data = gs_read(gap) %>% janitor::clean_names() -->
+<!-- thesenames = data  -->
+<!-- these = data %>%  -->
+<!--   # select_if(~ !any(is.na(.))) %>% -->
+<!--   filter(email_address=="dusty.s.turner@gmail.com") -->
+<!-- prescores =  -->
+<!-- data %>%  -->
+<!--   # select(thesenames) %>% -->
+<!--   mutate(who_will_win_the_coin_toss = ifelse(who_will_win_the_coin_toss==these$who_will_win_the_coin_toss,str_sub(who_will_win_the_coin_toss,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_coin_be_heads_or_tails = ifelse(will_the_coin_be_heads_or_tails==these$will_the_coin_be_heads_or_tails,str_sub(will_the_coin_be_heads_or_tails,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_call_be_heads_or_tails = ifelse(will_the_call_be_heads_or_tails==these$will_the_call_be_heads_or_tails,str_sub(will_the_call_be_heads_or_tails,-2,-2),NA)) %>% -->
+<!--   mutate(who_will_receive_the_first_kickoff = ifelse(who_will_receive_the_first_kickoff==these$who_will_receive_the_first_kickoff,str_sub(who_will_receive_the_first_kickoff,-2,-2),NA)) %>% -->
+<!--   mutate(how_long_will_gladys_knights_rendition_of_the_national_anthem_last = ifelse(how_long_will_gladys_knights_rendition_of_the_national_anthem_last==these$how_long_will_gladys_knights_rendition_of_the_national_anthem_last,str_sub(how_long_will_gladys_knights_rendition_of_the_national_anthem_last,-2,-2),NA)) %>% -->
+<!--   mutate(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams = ifelse(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams==these$will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams,str_sub(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams,-2,-2),NA)) %>% -->
+<!--   mutate(which_will_be_mentioned_first_after_the_opening_kickoff = ifelse(which_will_be_mentioned_first_after_the_opening_kickoff==these$which_will_be_mentioned_first_after_the_opening_kickoff,str_sub(which_will_be_mentioned_first_after_the_opening_kickoff,-2,-2),NA)) %>% -->
+<!--   mutate(the_first_play_from_scrimmage_in_the_game_will_be_a = ifelse(the_first_play_from_scrimmage_in_the_game_will_be_a==these$the_first_play_from_scrimmage_in_the_game_will_be_a,str_sub(the_first_play_from_scrimmage_in_the_game_will_be_a,-2,-2),NA)) %>% -->
+<!--   mutate(the_first_play_from_scrimmage_in_the_second_half_will_be_a = ifelse(the_first_play_from_scrimmage_in_the_second_half_will_be_a==these$the_first_play_from_scrimmage_in_the_second_half_will_be_a,str_sub(the_first_play_from_scrimmage_in_the_second_half_will_be_a,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_first_score_be_a = ifelse(will_the_first_score_be_a==these$will_the_first_score_be_a,str_sub(will_the_first_score_be_a,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_first_touchdown_be = ifelse(will_the_first_touchdown_be==these$will_the_first_touchdown_be,str_sub(will_the_first_touchdown_be,-2,-2),NA)) %>% -->
+<!--   mutate(what_will_happen_first = ifelse(what_will_happen_first==these$what_will_happen_first,str_sub(what_will_happen_first,-2,-2),NA)) %>% -->
+<!--   mutate(what_will_happen_first_1 = ifelse(what_will_happen_first_1==these$what_will_happen_first_1,str_sub(what_will_happen_first_1,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_first_penalty_be_offensive_or_defensive = ifelse(will_the_first_penalty_be_offensive_or_defensive==these$will_the_first_penalty_be_offensive_or_defensive,str_sub(will_the_first_penalty_be_offensive_or_defensive,-2,-2),NA)) %>% -->
+<!--   mutate(will_there_be_a_penalty_for_roughing_the_passer = ifelse(will_there_be_a_penalty_for_roughing_the_passer==these$will_there_be_a_penalty_for_roughing_the_passer,str_sub(will_there_be_a_penalty_for_roughing_the_passer,-2,-2),NA)) %>% -->
+<!--   mutate(which_team_will_punt_first_in_the_game = ifelse(which_team_will_punt_first_in_the_game==these$which_team_will_punt_first_in_the_game,str_sub(which_team_will_punt_first_in_the_game,-2,-2),NA)) %>% -->
+<!--   mutate(will_a_non_qb_throw_a_pass = ifelse(will_a_non_qb_throw_a_pass==these$will_a_non_qb_throw_a_pass,str_sub(will_a_non_qb_throw_a_pass,-2,-2),NA)) %>% -->
+<!--   mutate(will_there_be_a_special_teams_or_defensive_touchdown = ifelse(will_there_be_a_special_teams_or_defensive_touchdown==these$will_there_be_a_special_teams_or_defensive_touchdown,str_sub(will_there_be_a_special_teams_or_defensive_touchdown,-2,-2),NA)) %>% -->
+<!--   mutate(who_will_the_first_penalty_be_on = ifelse(who_will_the_first_penalty_be_on==these$who_will_the_first_penalty_be_on,str_sub(who_will_the_first_penalty_be_on,-2,-2),NA)) %>% -->
+<!--   mutate(will_there_be_an_onside_kick_attempt_in_the_game = ifelse(will_there_be_an_onside_kick_attempt_in_the_game==these$will_there_be_an_onside_kick_attempt_in_the_game,str_sub(will_there_be_an_onside_kick_attempt_in_the_game,-2,-2),NA)) %>% -->
+<!--   mutate(which_team_will_give_up_the_first_turn_over = ifelse(which_team_will_give_up_the_first_turn_over==these$which_team_will_give_up_the_first_turn_over,str_sub(which_team_will_give_up_the_first_turn_over,-2,-2),NA)) %>% -->
+<!--   mutate(will_tom_brady_throw_for_more_yards_than_his_season_average_272_2 = ifelse(will_tom_brady_throw_for_more_yards_than_his_season_average_272_2==these$will_tom_brady_throw_for_more_yards_than_his_season_average_272_2,str_sub(will_tom_brady_throw_for_more_yards_than_his_season_average_272_2,-2,-2),NA)) %>% -->
+<!--   mutate(will_jared_goff_throw_for_more_yards_than_his_season_average_293_0 = ifelse(will_jared_goff_throw_for_more_yards_than_his_season_average_293_0==these$will_jared_goff_throw_for_more_yards_than_his_season_average_293_0,str_sub(will_jared_goff_throw_for_more_yards_than_his_season_average_293_0,-2,-2),NA)) %>% -->
+<!--   mutate(which_former_georgia_bulldog_will_have_more_rushing_yards = ifelse(which_former_georgia_bulldog_will_have_more_rushing_yards==these$which_former_georgia_bulldog_will_have_more_rushing_yards,str_sub(which_former_georgia_bulldog_will_have_more_rushing_yards,-2,-2),NA)) %>% -->
+<!--   mutate(who_will_win_the_super_bowl = ifelse(who_will_win_the_super_bowl==these$who_will_win_the_super_bowl,str_sub(who_will_win_the_super_bowl,-2,-2),NA)) %>% -->
+<!--   mutate(how_many_points_will_the_patriots_score = ifelse(how_many_points_will_the_patriots_score==these$how_many_points_will_the_patriots_score,str_sub(how_many_points_will_the_patriots_score,-2,-2),NA)) %>% -->
+<!--   mutate(how_many_points_will_the_rams_score = ifelse(how_many_points_will_the_rams_score==these$how_many_points_will_the_rams_score,str_sub(how_many_points_will_the_rams_score,-2,-2),NA)) %>% -->
+<!--   mutate(will_there_be_more_or_less_points_scored_in_the_first_half_than_than_27_5_current_over_under = ifelse(will_there_be_more_or_less_points_scored_in_the_first_half_than_than_27_5_current_over_under==these$will_there_be_more_or_less_points_scored_in_the_first_half_than_than_27_5_current_over_under,str_sub(will_there_be_more_or_less_points_scored_in_the_first_half_than_than_27_5_current_over_under,-2,-2),NA)) %>% -->
+<!--   mutate(will_there_be_more_or_less_points_scored_than_56_5_current_over_under = ifelse(will_there_be_more_or_less_points_scored_than_56_5_current_over_under==these$will_there_be_more_or_less_points_scored_than_56_5_current_over_under,str_sub(will_there_be_more_or_less_points_scored_than_56_5_current_over_under,-2,-2),NA)) %>% -->
+<!--   mutate(will_both_teams_combined_score_76_or_more_points_to_break_the_super_bowl_record = ifelse(will_both_teams_combined_score_76_or_more_points_to_break_the_super_bowl_record==these$will_both_teams_combined_score_76_or_more_points_to_break_the_super_bowl_record,str_sub(will_both_teams_combined_score_76_or_more_points_to_break_the_super_bowl_record,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_patriots_score_more_than_2_5_more_points_than_the_rams_current_spread = ifelse(will_the_patriots_score_more_than_2_5_more_points_than_the_rams_current_spread==these$will_the_patriots_score_more_than_2_5_more_points_than_the_rams_current_spread,str_sub(will_the_patriots_score_more_than_2_5_more_points_than_the_rams_current_spread,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_patriots_team_rush_for_more_than_their_season_average_127_3 = ifelse(will_the_patriots_team_rush_for_more_than_their_season_average_127_3==these$will_the_patriots_team_rush_for_more_than_their_season_average_127_3,str_sub(will_the_patriots_team_rush_for_more_than_their_season_average_127_3,-2,-2),NA)) %>% -->
+<!--   mutate(will_the_rams_team_rush_for_more_than_their_season_average_139_4 = ifelse(will_the_rams_team_rush_for_more_than_their_season_average_139_4==these$will_the_rams_team_rush_for_more_than_their_season_average_139_4,str_sub(will_the_rams_team_rush_for_more_than_their_season_average_139_4,-2,-2),NA)) %>% -->
+<!--   mutate(who_will_be_the_mvp = ifelse(who_will_be_the_mvp==these$who_will_be_the_mvp,str_sub(who_will_be_the_mvp,-2,-2),NA)) %>% -->
+<!--   mutate(will_either_team_have_a_scoring_drive_that_lasts_less_time_than_it_takes_for_gladys_knight_to_sing_the_national_anthem = ifelse(will_either_team_have_a_scoring_drive_that_lasts_less_time_than_it_takes_for_gladys_knight_to_sing_the_national_anthem==these$will_either_team_have_a_scoring_drive_that_lasts_less_time_than_it_takes_for_gladys_knight_to_sing_the_national_anthem,str_sub(will_either_team_have_a_scoring_drive_that_lasts_less_time_than_it_takes_for_gladys_knight_to_sing_the_national_anthem,-2,-2),NA)) %>% -->
+<!--   mutate(which_commercial_will_come_first = ifelse(which_commercial_will_come_first==these$which_commercial_will_come_first,str_sub(which_commercial_will_come_first,-2,-2),NA)) %>% -->
+<!--   mutate(how_many_songs_will_be_played_during_the_halftime_show = ifelse(how_many_songs_will_be_played_during_the_halftime_show==these$how_many_songs_will_be_played_during_the_halftime_show,str_sub(how_many_songs_will_be_played_during_the_halftime_show,-2,-2),NA)) %>% -->
+<!--   mutate(what_color_will_the_gatorade_be_that_is_dumped_on_the_winning_coach = ifelse(what_color_will_the_gatorade_be_that_is_dumped_on_the_winning_coach==these$what_color_will_the_gatorade_be_that_is_dumped_on_the_winning_coach,str_sub(what_color_will_the_gatorade_be_that_is_dumped_on_the_winning_coach,-2,-2),NA)) %>% -->
+<!--   mutate(which_will_be_larger = ifelse(which_will_be_larger==these$which_will_be_larger,str_sub(which_will_be_larger,-2,-2),NA)) %>% -->
+<!--   mutate(which_will_be_larger_1 = ifelse(which_will_be_larger_1==these$which_will_be_larger_1,str_sub(which_will_be_larger_1,-2,-2),NA)) %>% -->
+<!--   mutate(which_will_be_higher = ifelse(which_will_be_higher==these$which_will_be_higher,str_sub(which_will_be_higher,-2,-2),NA)) %>% -->
+<!--   mutate(which_will_be_higher_1 = ifelse(which_will_be_higher_1==these$which_will_be_higher_1,str_sub(which_will_be_higher_1,-2,-2),NA))  -->
+<!--   # select(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams) -->
+<!-- # prescores %>% select(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams) -->
+<!-- scores =  -->
+<!-- prescores %>% -->
+<!--   filter(email_address!="dusty.s.turner@gmail.com") %>% -->
+<!--   column_to_rownames(var = "email_address") %>%  -->
+<!--   # as_tibble() %>% -->
+<!--   mutate_if(is.logical, as.numeric) %>% select(-c(timestamp,are_you_a_cadet_im_keeping_these_separate_for_my_cadet_super_bowl_party)) %>% -->
+<!--   mutate_all(funs(replace(., is.na(.), 0))) %>% -->
+<!--   mutate_if(is.character, as.numeric) %>% -->
+<!--   t() %>% -->
+<!--   colSums()  -->
+<!-- # CurrentScores =    -->
+<!-- # tibble(Score = scores, name = prescores$email_address) %>% -->
+<!-- #   column_to_rownames(var = "name")  -->
+<!-- ## remaining points possible -->
+<!-- remaining =  -->
+<!--   data %>%  -->
+<!--   # select(thesenames) %>% -->
+<!--   mutate(who_will_win_the_coin_toss = str_sub(who_will_win_the_coin_toss,-2,-2)) %>% -->
+<!--   mutate(will_the_coin_be_heads_or_tails = str_sub(will_the_coin_be_heads_or_tails,-2,-2)) %>% -->
+<!--   mutate(will_the_call_be_heads_or_tails = str_sub(will_the_call_be_heads_or_tails,-2,-2)) %>% -->
+<!--   mutate(who_will_receive_the_first_kickoff = str_sub(who_will_receive_the_first_kickoff,-2,-2)) %>% -->
+<!--   mutate(how_long_will_gladys_knights_rendition_of_the_national_anthem_last = str_sub(how_long_will_gladys_knights_rendition_of_the_national_anthem_last,-2,-2)) %>% -->
+<!--   mutate(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams = str_sub(will_gladys_knight_wear_clothing_in_support_of_one_of_the_teams,-2,-2)) %>% -->
+<!--   mutate(which_will_be_mentioned_first_after_the_opening_kickoff = str_sub(which_will_be_mentioned_first_after_the_opening_kickoff,-2,-2)) %>% -->
+<!--   mutate(the_first_play_from_scrimmage_in_the_game_will_be_a = str_sub(the_first_play_from_scrimmage_in_the_game_will_be_a,-2,-2)) %>% -->
+<!--   mutate(the_first_play_from_scrimmage_in_the_second_half_will_be_a = str_sub(the_first_play_from_scrimmage_in_the_second_half_will_be_a,-2,-2)) %>% -->
+<!--   mutate(will_the_first_score_be_a = str_sub(will_the_first_score_be_a,-2,-2)) %>% -->
+<!--   mutate(will_the_first_touchdown_be = str_sub(will_the_first_touchdown_be,-2,-2)) %>% -->
+<!--   mutate(what_will_happen_first = str_sub(what_will_happen_first,-2,-2)) %>% -->
+<!--   mutate(what_will_happen_first_1 = str_sub(what_will_happen_first_1,-2,-2)) %>% -->
+<!--   mutate(will_the_first_penalty_be_offensive_or_defensive = str_sub(will_the_first_penalty_be_offensive_or_defensive,-2,-2)) %>% -->
+<!--   mutate(will_there_be_a_penalty_for_roughing_the_passer = str_sub(will_there_be_a_penalty_for_roughing_the_passer,-2,-2)) %>% -->
+<!--   mutate(which_team_will_punt_first_in_the_game = str_sub(which_team_will_punt_first_in_the_game,-2,-2)) %>% -->
+<!--   mutate(will_a_non_qb_throw_a_pass = str_sub(will_a_non_qb_throw_a_pass,-2,-2)) %>% -->
+<!--   mutate(will_there_be_a_special_teams_or_defensive_touchdown = str_sub(will_there_be_a_special_teams_or_defensive_touchdown,-2,-2)) %>% -->
+<!--   mutate(who_will_the_first_penalty_be_on = str_sub(who_will_the_first_penalty_be_on,-2,-2)) %>% -->
+<!--   mutate(will_there_be_an_onside_kick_attempt_in_the_game = str_sub(will_there_be_an_onside_kick_attempt_in_the_game,-2,-2)) %>% -->
+<!--   mutate(which_team_will_give_up_the_first_turn_over = str_sub(which_team_will_give_up_the_first_turn_over,-2,-2)) %>% -->
+<!--   mutate(will_tom_brady_throw_for_more_yards_than_his_season_average_272_2 = str_sub(will_tom_brady_throw_for_more_yards_than_his_season_average_272_2,-2,-2)) %>% -->
+<!--   mutate(will_jared_goff_throw_for_more_yards_than_his_season_average_293_0 = str_sub(will_jared_goff_throw_for_more_yards_than_his_season_average_293_0,-2,-2)) %>% -->
+<!--   mutate(which_former_georgia_bulldog_will_have_more_rushing_yards = str_sub(which_former_georgia_bulldog_will_have_more_rushing_yards,-2,-2)) %>% -->
+<!--   mutate(who_will_win_the_super_bowl = str_sub(who_will_win_the_super_bowl,-2,-2)) %>% -->
+<!--   mutate(how_many_points_will_the_patriots_score = str_sub(how_many_points_will_the_patriots_score,-2,-2)) %>% -->
+<!--   mutate(how_many_points_will_the_rams_score = str_sub(how_many_points_will_the_rams_score,-2,-2)) %>% -->
+<!--   mutate(will_there_be_more_or_less_points_scored_in_the_first_half_than_than_27_5_current_over_under = str_sub(will_there_be_more_or_less_points_scored_in_the_first_half_than_than_27_5_current_over_under,-2,-2)) %>% -->
+<!--   mutate(will_there_be_more_or_less_points_scored_than_56_5_current_over_under = str_sub(will_there_be_more_or_less_points_scored_than_56_5_current_over_under,-2,-2)) %>% -->
+<!--   mutate(will_both_teams_combined_score_76_or_more_points_to_break_the_super_bowl_record = str_sub(will_both_teams_combined_score_76_or_more_points_to_break_the_super_bowl_record,-2,-2)) %>% -->
+<!--   mutate(will_the_patriots_score_more_than_2_5_more_points_than_the_rams_current_spread = str_sub(will_the_patriots_score_more_than_2_5_more_points_than_the_rams_current_spread,-2,-2)) %>% -->
+<!--   mutate(will_the_patriots_team_rush_for_more_than_their_season_average_127_3 = str_sub(will_the_patriots_team_rush_for_more_than_their_season_average_127_3,-2,-2)) %>% -->
+<!--   mutate(will_the_rams_team_rush_for_more_than_their_season_average_139_4 = str_sub(will_the_rams_team_rush_for_more_than_their_season_average_139_4,-2,-2)) %>% -->
+<!--   mutate(who_will_be_the_mvp = str_sub(who_will_be_the_mvp,-2,-2)) %>% -->
+<!--   mutate(will_either_team_have_a_scoring_drive_that_lasts_less_time_than_it_takes_for_gladys_knight_to_sing_the_national_anthem = str_sub(will_either_team_have_a_scoring_drive_that_lasts_less_time_than_it_takes_for_gladys_knight_to_sing_the_national_anthem,-2,-2)) %>% -->
+<!--   mutate(which_commercial_will_come_first = str_sub(which_commercial_will_come_first,-2,-2)) %>% -->
+<!--   mutate(how_many_songs_will_be_played_during_the_halftime_show = str_sub(how_many_songs_will_be_played_during_the_halftime_show,-2,-2)) %>% -->
+<!--   mutate(what_color_will_the_gatorade_be_that_is_dumped_on_the_winning_coach = str_sub(what_color_will_the_gatorade_be_that_is_dumped_on_the_winning_coach,-2,-2)) %>% -->
+<!--   mutate(which_will_be_larger = str_sub(which_will_be_larger,-2,-2)) %>% -->
+<!--   mutate(which_will_be_larger_1 = str_sub(which_will_be_larger_1,-2,-2)) %>% -->
+<!--   mutate(which_will_be_higher = str_sub(which_will_be_higher,-2,-2)) %>% -->
+<!--   mutate(which_will_be_higher_1 = str_sub(which_will_be_higher_1,-2,-2))  -->
+<!-- unresolved =  -->
+<!--   remaining %>% -->
+<!--   filter(email_address=="dusty.s.turner@gmail.com") %>% select_if(~ any(is.na(.))) %>% names() -->
+<!-- unresolvedshow =  -->
+<!--   remaining %>% select(email_address, unresolved)  -->
+<!-- possiblescores =  -->
+<!--   unresolvedshow %>% filter(email_address!="dusty.s.turner@gmail.com") %>% -->
+<!--   column_to_rownames(var = "email_address") %>%  -->
+<!--   # as_tibble() %>% -->
+<!--   mutate_if(is.character, as.numeric) %>%  -->
+<!--   # select(-c(timestamp)) %>% -->
+<!--   mutate_all(funs(replace(., is.na(.), 0))) %>% -->
+<!--   mutate_if(is.character, as.numeric) %>% -->
+<!--   t() %>% -->
+<!--   colSums()  -->
+<!-- finalemails = data %>% select(email_address) %>% filter(email_address!="dusty.s.turner@gmail.com") -->
+<!-- CurrentScores =    -->
+<!--   tibble(Score = scores, name = finalemails$email_address, remainingpoints = possiblescores) %>% -->
+<!--   column_to_rownames(var = "name")  -->
+<!-- intermediate =  -->
+<!-- unresolvedshow %>% filter(email_address!="dusty.s.turner@gmail.com") %>% -->
+<!--   t() %>% as.data.frame() -->
+<!-- rownames(intermediate) = colnames(unresolvedshow) -->
+<!-- colnames(intermediate) = finalemails$email_address -->
+<!-- intermediate = intermediate[-1,] -->
+<!-- ``` -->
+<!-- # Current Scores -->
+<!-- ```{r echo=FALSE} -->
+<!-- library(DT) -->
+<!-- datatable(CurrentScores) -->
+<!-- ``` -->
+<!-- # Selections -->
+<!-- ```{r echo=FALSE} -->
+<!-- library(DT) -->
+<!-- intermediate %>% -->
+<!--   datatable() -->
+<!-- ``` -->

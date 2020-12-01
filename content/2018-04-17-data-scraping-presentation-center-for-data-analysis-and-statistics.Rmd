@@ -1,0 +1,16 @@
+---
+title: 'Data Scraping Presentation: Center for Data Analysis and Statistics'
+author: Dusty Turner
+date: '2018-04-17'
+slug: data-scraping-presentation-center-for-data-analysis-and-statistics
+categories:
+  - r
+  - scraping
+  - beatnavy
+tags:
+  - r
+  - scraping
+  - beatnavy
+---
+
+On 17 April 2018, I gave a tutorial to the Department of Mathematical Sciences at West Point and the Sports Analytics Club.  The Power Point presentation, R file, and R Markdown file are at my github page at this [link](https://github.com/dusty-turner/CDAS-Presentation-17-April-2018)  

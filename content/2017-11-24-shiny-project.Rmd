@@ -1,0 +1,31 @@
+---
+title: "Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity"
+author: Dusty Turner
+date: '2017-11-24'
+slug: shiny-project
+categories:
+  - army math
+  - beatnavy
+  - datascience
+  - r
+  - rmd
+  - shiny
+tags:
+  - army math
+  - beatnavy
+  - datascience
+  - r
+  - rmd
+  - shiny
+---
+
+## Taking A Look Across The Country
+
+<center>
+
+
+```{r, echo=FALSE} 
+knitr::include_app("https://dustyturner.shinyapps.io/AdmissionsShiny/", height = "600px")
+```
+</center>
+ 

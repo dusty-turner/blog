@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313"
+baseURL = "http://localhost:1313/post"
 languageCode = "en"
 title = "Dusty Turner"
 theme = "hugo-nuo"
@@ -6,6 +6,8 @@ enableRobotsTXT = true
 pygmentsuseclasses = true
 PygmentsCodeFences = true
 canonifyurls = true
+
+relativeurls = true
 
 ignoreFiles = [ "^Thumbs\\.db$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$" ]
 
@@ -23,7 +25,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
 name = "Home"
 weight = 10
 identifier = "home"
-url = "/"
+url = "/post"
 
 [[menu.main]]
 name = "Github"

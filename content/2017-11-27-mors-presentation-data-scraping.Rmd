@@ -1,0 +1,28 @@
+---
+title: 2017 MORS Presentation
+author: Dusty Turner
+date: '2017-11-27'
+slug: 2017-MORS-Presentation 
+categories:
+  - r
+  - datascience
+  - scraping
+  - beatnavy
+tags:
+  - army math
+  - datascience
+  - scraping
+  - beatnavy
+
+---
+ 
+Midway through my first semester teaching at West Point, my mentor, asked me what "scholarship" I was working on.  To be honest, at the time, I was doing my best to make sure I understood what material I was teaching the next day and making sure my grading was up-to-date.  I had been tinkering around with the idea of 'data scraping' which was a nebulous term to be then.  I was intrigued by it and had google searched ways to get data in the days before (my old tried and true method of copy and paste was frustratingly slow...).
+
+I spouted off that I was interested in data scraping and he responded immediatly with something to the effect of, "Great!  You should put together a presentation for the upcoming MORS Conference."  
+
+Knowing even less about what a *MORS* was, I set to work to figure out enough about data scraping to make a respectable presentation and the link below is the ioslides presentation using R Markdown.  
+
+**[June 2017 MORS Presentation on Data Scraping in R](https://dusty-turner.netlify.com/mors_presentation)**
+
+I learned a ton -- to include what MORS stands for **[Military Operations Research Society](http://www.mors.org/)**.  I am grateful to be pushed, and honored to share my presentation.
+

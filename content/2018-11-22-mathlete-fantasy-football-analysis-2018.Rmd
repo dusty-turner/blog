@@ -1,0 +1,279 @@
+---
+title: Fantasy Football - Navigating the ESPN and Yahoo! APIs
+author: Dusty Turner
+date: '2018-12-29'
+slug: ESPN-YAHOO-API-Navigation
+categories:
+  - army math
+  - beatnavy
+  - ESPN API
+  - fantasy football
+  - YAHOO API
+tags:
+  - army math
+  - beatnavy
+  - ESPN API
+  - fantasy football
+  - YAHOO API
+---
+
+## Introduction
+
+For the last two years I've had the honor of being the commissioner for the West Point Department of Mathematical Science's Fantasy Football League.  This year we had 20 managers so we had to split our department into two leagues.  I hosted one using ESPN and a colleague hosted on in Yahoo. 
+
+In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league's information.  I'll join the two leagues and identify the top scoring teams each week and conduct some other comparative analysis.  
+
+I'll also use this post as both a tutorial of how to download your league information. 
+
+I am very interested in feedback to improve this process.  Shoot me a note or leave a comment below.
+
+### Libraries
+
+Here are the libraries we'll need to do this analysis.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(httr)
+library(httpuv)
+library(XML)
+library(jsonlite)
+library(stringr)
+library(DT)
+```
+
+## ESPN API
+
+Downloading your league information with the ESPN API is simple.  
+
+First, you'll need to make sure your ESPN league is public.  
+
+```{r}
+baseurl = "http://games.espn.com/ffl/api/v2/leagueSettings?leagueId="
+leagueID = "1314476"
+season = "&seasonId=2018"
+```
+
+Next, build the url:
+
+```{r}
+url = paste0(baseurl, leagueID, season)
+```
+
+Then, download the data.  The API will download your information in JSON format.  You'll need to convert it to a format you can work with in R.
+
+```{r}
+ESPNGet <- GET(url = url)
+ESPNRaw <- rawToChar(ESPNGet$content)
+ESPNFromJSON <- fromJSON(ESPNRaw)
+```
+
+This JSON file contains a ton of information about your league. You can hack away to find out all types of information, but I've experimented a bit and have decided to extract both teams as well as their scores.  
+
+Below is a shell for the dataframe I will build.  
+
+```{r}
+df = rep(NA, 7)
+names(df) = c("AwayLoc",
+              "AwayNick",
+              "HomeLoc",
+              "HomeNick",
+              "AwayScore",
+              "HomeScore",
+              "week")
+```
+
+Next, we'll loop through the JSON file to extract the information each week.  
+
+```{r}
+for (j in 1:10) {
+  for (i in 1:16) {
+    vec = c(
+      ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$awayTeam$teamLocation,
+      ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$awayTeam$teamNickname,
+      ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$homeTeam$teamLocation,
+      ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$homeTeam$teamNickname,
+      ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$awayTeamScores[[1]],
+      ESPNFromJSON$leaguesettings$teams[[j]]$scheduleItems$matchups[[i]]$homeTeamScores[[1]],
+      week = i
+    )
+    df = rbind(df, vec)
+  }
+}
+df = as.tibble(df) %>% remove_rownames() %>% filter(complete.cases(.)) %>% unique()
+```
+
+Now, we have the information.  Lets take a look at it.
+
+```{r}
+df %>%
+  datatable()
+```
+
+Lets clean this up a little bit and take another look.
+
+```{r}
+espndf = df %>%
+  unite(TeamA, c("AwayLoc", "AwayNick")) %>%
+  unite(TeamB, c("HomeLoc", "HomeNick")) %>%
+  rename(PointsA = AwayScore, PointsB = HomeScore) %>%
+  mutate(PointsA = as.numeric(PointsA),PointsB = as.numeric(PointsB)) %>%
+  mutate(league = "espn")
+
+espndf %>% datatable()
+```
+
+The resulting dataframe with has all 14 weeks of regular season games.  Great work!
+
+## YAHOO API
+
+The YAHOO API is a little more difficult to navigate.  I figured most of it out at the Yahoo Fantasy Sports Developer  [Documentation](https://developer.yahoo.com/fantasysports/guide/), this  [stackoverflow](https://stackoverflow.com/questions/49709988/r-yahoo-fantasy-api-permission) page, and a lot of trial and error.
+
+It requires a Yahoo [developer API](https://developer.yahoo.com/apps/create/).  Be sure to select `Installed Application` as the application type and check `fantasy sports` at the bottom.   
+
+Next, you'll need to make a handshake with your API and create a token.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+options("httr_oob_default" = T)
+
+cKey     <- "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+cSecret  <- "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+yahoo <- httr::oauth_endpoint(authorize = "https://api.login.yahoo.com/oauth2/request_auth"
+                              , access = "https://api.login.yahoo.com/oauth2/get_token"
+                              , base_url = "https://fantasysports.yahooapis.com")
+
+myapp <- httr::oauth_app("yahoo", key=cKey, secret = cSecret,redirect_uri = "oob")
+```
+
+
+Of course, I have not shared my `key` and `secret`.  This specific code will not work for you, but if you use yours, it should work fine.
+
+The next code chunk will open a browser.  You'll have to grant it access and then copy and paste your passcode where I have written `passcode` in order to create your token.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+httr::BROWSE(httr::oauth2.0_authorize_url(yahoo, myapp, scope="fspt-r"
+                                          , redirect_uri = myapp$redirect_uri))
+
+passcode = "xxxxxxx"
+
+yahoo_token <- httr::oauth2.0_access_token(yahoo,myapp,code=passcode)
+save(yahoo_token,file="yahoo_token.Rdata")
+
+```
+
+Full disclaimer here.  I have yet to figure out how to access this saved code.  I have been recreating a passcode every time I run this.  I would love it if someone could show me how to do this.
+
+The next step is to determine your `game key`.  You need this `game key` to tell Yahoo what type of information you will request later on.  If this doesn't make sense, go with me now and hopefully it will later.  
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+standings_page <- GET("https://fantasysports.yahooapis.com/fantasy/v2/game/nfl",
+                      add_headers(Authorization=paste0("Bearer ", yahoo_token$access_token)))
+XMLstandings<- content(standings_page, as="parsed", encoding="utf-8")
+doc<-xmlTreeParse(XMLstandings, useInternal=TRUE)
+myList<- xmlToList(xmlRoot(doc))
+game_key = myList$game$game_key
+game_key
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+game_key = "380"
+game_key
+```
+
+My `game key` is 380.  I do not know if this will be yours.  This very well may be the same `game key` for every Yahoo fantasy football league, but it's worth checking just in case. 
+
+Now we'll build our URL to extract the information we want from the Yahoo API.
+
+Your baseURL will be the same as mine.
+
+You'll need your leagueID.  You can find this from your Yahoo Fantasy Football page.  Make sure your league is a public league.
+
+You'll also need what I called a `tag`.  The example that I used are the scoreboard for week 1.  Of course, you can choose any week.  There are other options too that include `metadata`, `settings`,`teams`, and `players` among others.  You can get a full list [here](https://developer.yahoo.com/fantasysports/guide/league-resource.html).  
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+baseURL     <- "https://fantasysports.yahooapis.com/fantasy/v2/league/"
+
+leagueID    <- "1244633"
+
+tag <- "/scoreboard;week=1"
+
+standingsURL <-paste0(baseURL,game_key,".l.",leagueID,tag)
+standings_page <- GET(standingsURL, add_headers(Authorization = paste0("Bearer ", yahoo_token$access_token)))
+XMLstandings <- content(standings_page, as = "parsed", encoding = "utf-8")
+
+doc <- xmlTreeParse(XMLstandings, useInternal = TRUE)
+myList <- xmlToList(xmlRoot(doc))
+```
+
+Lets look below at everything this list offers.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+names(myList$league)
+```
+
+
+```{r echo=FALSE}
+c("league_key","league_id","name","url","logo_url","draft_status","num_teams","edit_key","weekly_deadline","league_update_timestamp","scoring_type","league_type","renew","renewed","iris_group_chat_id","allow_add_to_dl_extra_pos","is_pro_league","is_cash_league","current_week","start_week","start_date","end_week","end_date","is_finished","game_code","season","scoreboard")
+```
+
+Now that we know we can get this information, lets set up a loop to extract the entire season.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+baseURL     <- "https://fantasysports.yahooapis.com/fantasy/v2/league/"
+leagueID    <- "1244633"
+tag <- "/scoreboard;week=1"
+
+yahoodf = data.frame(
+  TeamA = NA,
+  TeamB = NA,
+  PointsA = NA,
+  PointsB = NA,
+  week = NA
+)
+
+for (j in 1:14) {
+  standingsURL <-paste0(baseURL,game_key,".l.",leagueID,tag)
+  standings_page <- GET(standingsURL,add_headers(Authorization = paste0("Bearer ", yahoo_token$access_token)))
+  XMLstandings <- content(standings_page, as = "parsed", encoding = "utf-8")
+  
+  doc <- xmlTreeParse(XMLstandings, useInternal = TRUE)
+  myList <- xmlToList(xmlRoot(doc))
+  
+  vec = NA
+  for (i in 1:5) {
+    TeamA = myList$league$scoreboard$matchups[i]$matchup$teams[1]$team$name
+    TeamB = myList$league$scoreboard$matchups[i]$matchup$teams[2]$team$name
+    PointsA = myList$league$scoreboard$matchups[i]$matchup$teams[1]$team$team_points$total
+    PointsB = myList$league$scoreboard$matchups[i]$matchup$teams[2]$team$team_points$total
+    
+    vec = c(TeamA, TeamB, PointsA, PointsB, j)
+    yahoodf = rbind(yahoodf, vec)
+  }
+}
+```
+
+I'll clean up the dataframe a little bit.  
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+yahoodf = yahoodf %>% 
+  filter(complete.cases(.)) %>%
+  mutate(PointsA = as.numeric(PointsA),PointsB = as.numeric(PointsB)) %>%
+  mutate(league = "yahoo")
+```
+
+Now that we've got the information extracted and cleaned, lets take a look at it.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+yahoodf %>% data.table()
+```
+
+```{r echo=FALSE}
+yahoodf = read_csv("yahoodf.csv")
+yahoodf %>% datatable()
+```
+
+
+
+
