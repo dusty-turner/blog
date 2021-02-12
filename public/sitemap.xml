@@ -18,8 +18,58 @@
   </url>
   
   <url>
+    <loc>/tags/api/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/api/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/peloton/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/peloton/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2021-02-12-the-peloton-api-part-2-exploring-the-data-who-does-it-better/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/tidyverse/</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -29,11 +79,6 @@
   
   <url>
     <loc>/categories/children/</loc>
-    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2020-10-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -58,22 +103,12 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/r/</loc>
     <lastmod>2020-10-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-10-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -98,43 +133,13 @@
   </url>
   
   <url>
-    <loc>/post/winning-pay-the-rent-on-the-price-is-right/</loc>
+    <loc>/winning-pay-the-rent-on-the-price-is-right/</loc>
     <lastmod>2020-10-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/api/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/api/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/espn/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/espn/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/espn-fantasy-football-api-2020/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/fantasy-football/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/fantasy-football/</loc>
-    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+    <loc>/post/winning-pay-the-rent-on-the-price-is-right/</loc>
+    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -148,12 +153,7 @@
   </url>
   
   <url>
-    <loc>/tags/peloton/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/peloton/</loc>
+    <loc>/the-peloton-api-part-1/</loc>
     <lastmod>2020-08-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -193,18 +193,18 @@
   </url>
   
   <url>
-    <loc>/tags/tidyverse/</loc>
-    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/tidyverse/</loc>
+    <loc>/wheel-spin-strategy-on-the-price-is-right/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/wheel-spin-strategy-on-the-price-is-right/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/a-farewell-ode-to-my-old-grey-truck/</loc>
+    <lastmod>2019-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -243,13 +243,38 @@
   </url>
   
   <url>
+    <loc>/fantasy-football-2019-analysis/</loc>
+    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/fantasy-football-2019-analysis/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>/tags/fantasy-football/</loc>
+    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/fantasy-football/</loc>
+    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</loc>
     <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/</loc>
+    <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -265,6 +290,11 @@
   <url>
     <loc>/categories/python/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/espn-fantasy-football-v3-api-an-r-solution/</loc>
+    <lastmod>2019-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -303,6 +333,11 @@
   </url>
   
   <url>
+    <loc>/parallel-processing-and-bootstrapping-for-diamonds/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/parallel-processing-and-bootstrapping-for-diamonds/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url>
@@ -314,6 +349,11 @@
   
   <url>
     <loc>/categories/devtools/</loc>
+    <lastmod>2019-05-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/introducing-the-turnr-package/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -330,6 +370,11 @@
   <url>
     <loc>/categories/roxygen/</loc>
     <lastmod>2019-05-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/cadet-summer-tracker-2019/</loc>
+    <lastmod>2019-04-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -358,8 +403,18 @@
   </url>
   
   <url>
+    <loc>/super-bowl-liii-prop-bet-tracking/</loc>
+    <lastmod>2019-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/super-bowl-liii-prop-bet-tracking/</loc>
     <lastmod>2019-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/losing-uno-to-a-5-year-old-an-exercise-in-probability/</loc>
+    <lastmod>2019-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -368,7 +423,17 @@
   </url>
   
   <url>
+    <loc>/espn-yahoo-api-navigation/</loc>
+    <lastmod>2018-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/espn-yahoo-api-navigation/</loc>
+    <lastmod>2018-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/mathlete-fantasy-football-analysis2018/</loc>
     <lastmod>2018-12-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -398,6 +463,11 @@
   </url>
   
   <url>
+    <loc>/analysis-of-my-children-s-reading-list/</loc>
+    <lastmod>2018-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/analysis-of-my-children-s-reading-list/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url>
@@ -420,6 +490,11 @@
   <url>
     <loc>/categories/tidytext/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018-ncaa-college-bowl-pick-em/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -448,8 +523,18 @@
   </url>
   
   <url>
+    <loc>/2018-joint-statistical-meeting-presentation/</loc>
+    <lastmod>2018-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018-joint-statistical-meeting-presentation/</loc>
     <lastmod>2018-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/ford-f150-analysis/</loc>
+    <lastmod>2018-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -468,6 +553,11 @@
   </url>
   
   <url>
+    <loc>/dates-in-r/</loc>
+    <lastmod>2018-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/dates-in-r/</loc>
     <lastmod>2018-06-20T00:00:00+00:00</lastmod>
   </url>
@@ -483,13 +573,28 @@
   </url>
   
   <url>
+    <loc>/tracking-my-cadets-summer-plans/</loc>
+    <lastmod>2018-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/tracking-my-cadets-summer-plans/</loc>
     <lastmod>2018-05-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>/2018-ny-r-conference/</loc>
+    <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018-ny-r-conference/</loc>
     <lastmod>2018-04-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data-scraping-presentation-center-for-data-analysis-and-statistics/</loc>
+    <lastmod>2018-04-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -508,6 +613,11 @@
   </url>
   
   <url>
+    <loc>/2017-ncaa-college-bowl-pick-em/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017-ncaa-college-bowl-pick-em/</loc>
     <lastmod>2017-12-31T00:00:00+00:00</lastmod>
   </url>
@@ -523,8 +633,18 @@
   </url>
   
   <url>
+    <loc>/2017-mors-presentation/</loc>
+    <lastmod>2017-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017-mors-presentation/</loc>
     <lastmod>2017-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/shiny-project/</loc>
+    <lastmod>2017-11-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -533,13 +653,28 @@
   </url>
   
   <url>
+    <loc>/helping-a-colleague-explore-data/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/helping-a-colleague-explore-data/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/mathlete-fantasy-football-analysis/</loc>
     <lastmod>2017-11-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/mathlete-fantasy-football-analysis/</loc>
     <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog-introduction/</loc>
+    <lastmod>2017-11-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -44,7 +44,8 @@ Jill Smiling After Her 600th Ride (and new record)!
 <h2>Load Libraries</h2>
 <p>Let’s fire up <code>pelotonR</code> and, as always, the <code>tidyverse</code> and take them for a spin.</p>
 <pre class="r"><code>library(pelotonR)
-library(tidyverse)</code></pre>
+library(tidyverse)
+library(lubridate)</code></pre>
 </div>
 <div id="connect-to-api" class="section level2">
 <h2>Connect To API</h2>
@@ -54,7 +55,7 @@ library(tidyverse)</code></pre>
 <pre class="r"><code>me &lt;- get_my_info() </code></pre>
 <p>For our own edification, here is a list of all the output columns alphabetized.</p>
 <blockquote>
-<p>birthday, block_explicit, can_charge, contract_agreements, created_at, created_country, customized_heart_rate_zones, customized_max_heart_rate, cycling_ftp, cycling_ftp_source, cycling_ftp_workout_id, cycling_workout_ftp, default_heart_rate_zones, default_max_heart_rate, email, estimated_cycling_ftp, external_music_auth_list, facebook_access_token, facebook_id, first_name, gender, hardware_settings, has_active_device_subscription, has_active_digital_subscription, has_signed_waiver, height, id, image_url, instructor_id, is_complete_profile, is_demo, is_external_beta_tester, is_fitbit_authenticated, is_internal_beta_tester, is_profile_private, is_provisional, is_strava_authenticated, last_name, last_workout_at, location, member_groups, middle_initial, name, obfuscated_email, paired_devices, phone_number, quick_hits, referrals_made, total_followers, total_following, total_non_pedaling_metric_workouts, total_pedaling_metric_workouts, total_pending_followers, total_workouts, username, v1_referrals_made, weight, workout_counts</p>
+<p>allow_marketing, birthday, block_explicit, can_charge, contract_agreements, created_at, created_country, customized_heart_rate_zones, customized_max_heart_rate, cycling_ftp, cycling_ftp_source, cycling_ftp_workout_id, cycling_workout_ftp, default_heart_rate_zones, default_max_heart_rate, email, estimated_cycling_ftp, external_music_auth_list, facebook_access_token, facebook_id, first_name, gender, hardware_settings, has_active_device_subscription, has_active_digital_subscription, has_signed_waiver, height, id, image_url, instructor_id, is_complete_profile, is_demo, is_external_beta_tester, is_fitbit_authenticated, is_internal_beta_tester, is_profile_private, is_provisional, is_strava_authenticated, last_name, last_workout_at, location, member_groups, middle_initial, name, obfuscated_email, paired_devices, phone_number, quick_hits, referrals_made, total_followers, total_following, total_non_pedaling_metric_workouts, total_pedaling_metric_workouts, total_pending_followers, total_workouts, username, v1_referrals_made, weight, workout_counts</p>
 </blockquote>
 </div>
 <div id="explore-api" class="section level2">
@@ -63,25 +64,26 @@ library(tidyverse)</code></pre>
 <p>Here it is below:</p>
 <pre class="r"><code>my_workout_df &lt;- pelotonR::get_all_workouts(userid = me$id, num_workouts = me$total_workouts, joins = &quot;ride,ride.instructor&quot;)
 my_workout_df </code></pre>
-<pre><code>## # A tibble: 213 x 79
+<pre><code>## # A tibble: 359 x 82
 ##    created_at          device_type end_time            fitbit_id fitness_discipl~ has_pedaling_me~
 ##    &lt;dttm&gt;              &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt;            &lt;lgl&gt;           
-##  1 2020-09-17 18:12:20 home_bike_~ 2020-09-17 18:43:19 &lt;NA&gt;      cycling          TRUE            
-##  2 2020-09-17 18:05:42 home_bike_~ 2020-09-17 18:10:40 &lt;NA&gt;      cycling          TRUE            
-##  3 2020-09-09 20:42:54 home_bike_~ 2020-09-09 21:13:53 &lt;NA&gt;      cycling          TRUE            
-##  4 2020-09-09 20:35:40 home_bike_~ 2020-09-09 20:40:40 &lt;NA&gt;      cycling          TRUE            
-##  5 2020-09-03 21:53:49 home_bike_~ 2020-09-03 21:58:45 &lt;NA&gt;      cycling          TRUE            
-##  6 2020-09-03 21:17:34 home_bike_~ 2020-09-03 21:48:31 &lt;NA&gt;      cycling          TRUE            
-##  7 2020-09-03 21:10:04 home_bike_~ 2020-09-03 21:15:04 &lt;NA&gt;      cycling          TRUE            
-##  8 2020-09-01 22:01:18 home_bike_~ 2020-09-01 22:06:16 &lt;NA&gt;      stretching       FALSE           
-##  9 2020-09-01 21:20:35 home_bike_~ 2020-09-01 21:51:33 &lt;NA&gt;      cycling          TRUE            
-## 10 2020-09-01 21:13:31 home_bike_~ 2020-09-01 21:18:30 &lt;NA&gt;      cycling          TRUE            
-## # ... with 203 more rows, and 73 more variables: has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
+##  1 2021-02-11 21:40:15 home_bike_~ 2021-02-11 21:45:13 64096309  stretching       FALSE           
+##  2 2021-02-11 21:16:59 home_bike_~ 2021-02-11 21:37:56 65742856  cycling          TRUE            
+##  3 2021-02-11 21:08:52 home_bike_~ 2021-02-11 21:13:49 65263874  cycling          TRUE            
+##  4 2021-02-10 20:58:06 home_bike_~ 2021-02-10 21:03:05 65702889  stretching       FALSE           
+##  5 2021-02-10 20:21:06 home_bike_~ 2021-02-10 20:52:04 65702056  cycling          TRUE            
+##  6 2021-02-10 20:11:18 home_bike_~ 2021-02-10 20:16:16 64590752  cycling          TRUE            
+##  7 2021-02-09 21:06:55 home_bike_~ 2021-02-09 21:11:55 65658699  cycling          TRUE            
+##  8 2021-02-09 20:32:50 home_bike_~ 2021-02-09 21:03:48 65660579  cycling          TRUE            
+##  9 2021-02-09 20:23:35 home_bike_~ 2021-02-09 20:28:34 65263874  cycling          TRUE            
+## 10 2021-02-06 16:51:13 home_bike_~ 2021-02-06 17:37:12 65529368  cycling          TRUE            
+## # ... with 349 more rows, and 76 more variables: has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
 ## #   is_total_work_personal_record &lt;lgl&gt;, metrics_type &lt;chr&gt;, name &lt;chr&gt;, peloton_id &lt;chr&gt;,
 ## #   platform &lt;chr&gt;, start_time &lt;dttm&gt;, strava_id &lt;chr&gt;, status &lt;chr&gt;, timezone &lt;chr&gt;, title &lt;chr&gt;,
 ## #   total_work &lt;dbl&gt;, user_id &lt;chr&gt;, workout_type &lt;chr&gt;, total_video_watch_time_seconds &lt;int&gt;,
 ## #   total_video_buffering_seconds &lt;int&gt;, v2_total_video_watch_time_seconds &lt;chr&gt;,
-## #   v2_total_video_buffering_seconds &lt;chr&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
+## #   v2_total_video_buffering_seconds &lt;chr&gt;, total_music_audio_play_seconds &lt;chr&gt;,
+## #   total_music_audio_buffer_seconds &lt;chr&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
 ## #   device_time_created_at &lt;dttm&gt;, effort_zones &lt;chr&gt;, ride_has_closed_captions &lt;lgl&gt;,
 ## #   ride_content_provider &lt;chr&gt;, ride_content_format &lt;chr&gt;, ride_description &lt;chr&gt;,
 ## #   ride_difficulty_rating_avg &lt;dbl&gt;, ride_difficulty_rating_count &lt;int&gt;,
@@ -91,8 +93,8 @@ my_workout_df </code></pre>
 ## #   ride_image_url &lt;chr&gt;, ride_instructor_id &lt;chr&gt;, ride_is_archived &lt;lgl&gt;,
 ## #   ride_is_closed_caption_shown &lt;lgl&gt;, ride_is_explicit &lt;lgl&gt;, ride_is_live_in_studio_only &lt;lgl&gt;,
 ## #   ride_language &lt;chr&gt;, ride_length &lt;int&gt;, ride_live_stream_id &lt;chr&gt;, ride_live_stream_url &lt;chr&gt;,
-## #   ride_location &lt;chr&gt;, ride_metrics &lt;list&gt;, ride_original_air_time &lt;dttm&gt;,
-## #   ride_overall_rating_avg &lt;dbl&gt;, ride_overall_rating_count &lt;int&gt;,
+## #   ride_location &lt;chr&gt;, ride_metrics &lt;list&gt;, ride_origin_locale &lt;chr&gt;,
+## #   ride_original_air_time &lt;dttm&gt;, ride_overall_rating_avg &lt;dbl&gt;, ride_overall_rating_count &lt;int&gt;,
 ## #   ride_pedaling_start_offset &lt;int&gt;, ride_pedaling_end_offset &lt;int&gt;, ride_pedaling_duration &lt;int&gt;,
 ## #   ride_rating &lt;int&gt;, ride_ride_type_id &lt;chr&gt;, ride_ride_type_ids &lt;list&gt;,
 ## #   ride_sample_vod_stream_url &lt;chr&gt;, ride_scheduled_start_time &lt;dttm&gt;, ride_series_id &lt;chr&gt;,
@@ -119,20 +121,20 @@ And here’s Jill on one of those workouts!
   purrr::map(~unnest(.x)) %&gt;% 
   purrr::map(~slice(.x, 1)) %&gt;% 
   purrr::map_dfr(~unnest(.x))</code></pre>
-<pre><code>## # A tibble: 32 x 1
+<pre><code>## # A tibble: 33 x 1
 ##    ride_instructor                 
 ##    &lt;chr&gt;                           
-##  1 731d7b7f6b414a49892c21f01e25317d
-##  2 4672db841da0495caf4b8f9cda405512
-##  3 048f0ce00edb4427b2dced6cbeb107fd
-##  4 561f95c405734d8488ed8dcc8980d599
-##  5 7f3de5e78bb44d8591a0f77f760478c3
-##  6 2e57092bee334c8c8dcb9fe16ba5308c
-##  7 c0a9505d8135412d824cf3c97406179b
-##  8 c406f36aa2a44a5baf8831f8b92f6920
-##  9 4904612965164231a37143805a387e40
-## 10 51702da3a4684b988d31d89eebb43175
-## # ... with 22 more rows</code></pre>
+##  1 4904612965164231a37143805a387e40
+##  2 3ff679ebbd324c83a8ab6cfa6bb4be37
+##  3 1b79e462bd564b6ca5ec728f1a5c2af0
+##  4 c0a9505d8135412d824cf3c97406179b
+##  5 c406f36aa2a44a5baf8831f8b92f6920
+##  6 048f0ce00edb4427b2dced6cbeb107fd
+##  7 1e59e949a19341539214a4a13ea7ff01
+##  8 b8c2734e18a7496fa146b3a42465da67
+##  9 561f95c405734d8488ed8dcc8980d599
+## 10 2e57092bee334c8c8dcb9fe16ba5308c
+## # ... with 23 more rows</code></pre>
 <p>While I was selective in what I extracted from this JSON, I do not see instructor name. Lets see what we can find if we dig into the API.</p>
 <div id="access-api" class="section level3">
 <h3>Access API</h3>
@@ -141,10 +143,10 @@ And here’s Jill on one of those workouts!
 parsed &lt;- jsonlite::fromJSON(httr::content(pull, &quot;text&quot;, encoding = &quot;UTF-8&quot;), simplifyVector = FALSE)
 pull</code></pre>
 <pre><code>## Response [https://api.onepeloton.com/api/instructor?limit=1000&amp;page=0]
-##   Date: 2020-08-10 02:07
+##   Date: 2021-02-12 18:45
 ##   Status: 200
 ##   Content-Type: application/json
-##   Size: 102 kB</code></pre>
+##   Size: 165 kB</code></pre>
 <p>Status 200 means success!</p>
 <p>This function below will pull out one instructor’s information. There is a LOT more information for each instructor – but I will only extract a few interesting headings.</p>
 <pre class="r"><code>instructor_function &lt;- function(num = 2) {
@@ -175,20 +177,20 @@ instructor_function(5)</code></pre>
 1:parse_list_to_df(parsed)$total %&gt;%
   purrr::map_dfr(~ instructor_function(num = .x))
 instructor_df</code></pre>
-<pre><code>## # A tibble: 34 x 4
-##    instructor_name    ride_instructor_id    ride_instructor_bio                   ride_instructor_b~
-##    &lt;chr&gt;              &lt;chr&gt;                 &lt;chr&gt;                                 &lt;list&gt;            
-##  1 Aditi Shah         b8c2734e18a7496fa146~ &quot;To Aditi, yoga is a workout, a scie~ &lt;list [2]&gt;        
-##  2 Adrian Williams    f962a2b1b34d424cabab~ &quot;Adrian is a powerhouse instructor w~ &lt;list [6]&gt;        
-##  3 Anna Greenberg     a8c56f162c964e939256~ &quot;When Anna first turned to yoga, she~ &lt;list [2]&gt;        
-##  4 Alex Toussaint     2e57092bee334c8c8dcb~ &quot;Alex Toussaint has a love for fitne~ &lt;list [1]&gt;        
-##  5 Ally Love          731d7b7f6b414a49892c~ &quot;As a model, dancer, certified healt~ &lt;list [1]&gt;        
-##  6 Andy Speer         c9fa21c2004c4544a7c3~ &quot;Andy takes a technique-centered app~ &lt;list [2]&gt;        
-##  7 Becs Gentry        286fc17080d34406a54b~ &quot;Becs joins Peloton from London as a~ &lt;list [2]&gt;        
-##  8 Ben Alldis         7f3de5e78bb44d8591a0~ &quot;Growing up, Ben was an accomplished~ &lt;list [1]&gt;        
-##  9 Chase Tucker       1423df9e4ad64a84a304~ &quot;Growing up in a household of athlet~ &lt;list [2]&gt;        
-## 10 Chelsea Jackson R~ 0021e2220a7940cf94a7~ &quot;Chelsea has traveled a unique path ~ &lt;list [2]&gt;        
-## # ... with 24 more rows</code></pre>
+<pre><code>## # A tibble: 36 x 4
+##    instructor_name ride_instructor_id    ride_instructor_bio                      ride_instructor_b~
+##    &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;                                    &lt;list&gt;            
+##  1 Aditi Shah      b8c2734e18a7496fa146~ &quot;To Aditi, yoga goes beyond movement an~ &lt;list [2]&gt;        
+##  2 Adrian Williams f962a2b1b34d424cabab~ &quot;Adrian is a powerhouse instructor with~ &lt;list [6]&gt;        
+##  3 Anna Greenberg  a8c56f162c964e939256~ &quot;When Anna first turned to yoga, she fe~ &lt;list [2]&gt;        
+##  4 Alex Toussaint  2e57092bee334c8c8dcb~ &quot;Alex Toussaint has a love for fitness,~ &lt;list [1]&gt;        
+##  5 Ally Love       731d7b7f6b414a49892c~ &quot;As a model, dancer, certified health c~ &lt;list [1]&gt;        
+##  6 Andy Speer      c9fa21c2004c4544a7c3~ &quot;Andy takes a technique-centered approa~ &lt;list [2]&gt;        
+##  7 Becs Gentry     286fc17080d34406a54b~ &quot;Becs joins Peloton from London as an a~ &lt;list [2]&gt;        
+##  8 Ben Alldis      7f3de5e78bb44d8591a0~ &quot;Growing up, Ben was an accomplished at~ &lt;list [2]&gt;        
+##  9 Chase Tucker    1423df9e4ad64a84a304~ &quot;Growing up in a household of athletes ~ &lt;list [2]&gt;        
+## 10 Cliff Dwenger   e2e6586d898d4422b3f6~ &quot;Growing up in Hamburg, Cliff’s first l~ &lt;list [1]&gt;        
+## # ... with 26 more rows</code></pre>
 <p>There’s all the instructors. Now lets join them to our workout dataframe. You can see the additional columns of instructor information at the end of the dataframe.</p>
 <pre class="r"><code>my_workout_df &lt;-
   my_workout_df %&gt;%
@@ -199,19 +201,20 @@ my_workout_df %&gt;%
   filter(!is.na(instructor_name)) %&gt;% 
   slice_head(n = 5)</code></pre>
 <pre><code>## # A tibble: 5 x 3
-##   created_at          name               instructor_name        
-##   &lt;dttm&gt;              &lt;chr&gt;              &lt;chr&gt;                  
-## 1 2020-08-09 12:02:42 Yoga Workout       Chelsea Jackson Roberts
-## 2 2020-08-04 17:53:32 Cycling Workout    Alex Toussaint         
-## 3 2020-08-04 17:47:23 Cycling Workout    Hannah Corbin          
-## 4 2020-08-03 19:34:03 Stretching Workout Hannah Frankson        
-## 5 2020-08-03 19:21:02 Cycling Workout    Alex Toussaint</code></pre>
+##   created_at          name               instructor_name
+##   &lt;dttm&gt;              &lt;chr&gt;              &lt;chr&gt;          
+## 1 2021-02-11 21:40:15 Stretching Workout Kendall Toole  
+## 2 2021-02-11 21:16:59 Cycling Workout    Kendall Toole  
+## 3 2021-02-11 21:08:52 Cycling Workout    Hannah Frankson
+## 4 2021-02-10 20:58:06 Stretching Workout Jess Sims      
+## 5 2021-02-10 20:21:06 Cycling Workout    Kendall Toole</code></pre>
 </div>
 </div>
 <div id="visualize" class="section level2">
 <h2>Visualize</h2>
 <p>In my next plot post, I’ll do more to explore the data in the API. In the meantime, lets take a look at which instructors I seem to prefer!</p>
 <pre class="r"><code>my_workout_df %&gt;% 
+  filter(created_at &lt;= ymd(20200809)) %&gt;% 
   filter(fitness_discipline == &quot;cycling&quot;) %&gt;%
   count(instructor_name,fitness_discipline) %&gt;% 
   filter(!is.na(instructor_name)) %&gt;% 

@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 23 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API</title>
+      <link>/tags/api/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>peloton</title>
+      <link>/tags/peloton/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/peloton/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>children</title>
       <link>/tags/children/</link>
@@ -63,47 +90,11 @@
     </item>
     
     <item>
-      <title>API</title>
-      <link>/tags/api/</link>
-      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ESPN</title>
-      <link>/tags/espn/</link>
-      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/espn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fantasy football</title>
-      <link>/tags/fantasy-football/</link>
-      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/fantasy-football/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>fitness</title>
       <link>/tags/fitness/</link>
       <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/fitness/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>peloton</title>
-      <link>/tags/peloton/</link>
-      <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/peloton/</guid>
       <description></description>
     </item>
     
@@ -135,15 +126,6 @@
     </item>
     
     <item>
-      <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>datascience</title>
       <link>/tags/datascience/</link>
       <pubDate>Fri, 11 Oct 2019 00:00:00 +0000</pubDate>
@@ -167,6 +149,15 @@
       <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/espn-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fantasy football</title>
+      <link>/tags/fantasy-football/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fantasy-football/</guid>
       <description></description>
     </item>
     

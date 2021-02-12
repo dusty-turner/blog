@@ -10,6 +10,17 @@
     <lastBuildDate>Fri, 11 Oct 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/datascience/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Farewell Ode To My Old Grey Truck</title>
+      <link>/a-farewell-ode-to-my-old-grey-truck/</link>
+      <pubDate>Fri, 11 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/a-farewell-ode-to-my-old-grey-truck/</guid>
+      <description>A Tribute!Since the dawn of time, people have been developing human-like attachments to their transportation. I imagine Moses naming his chariot, Noah his ark, and maybe even Jesus naming his borrowed donkey.
+Well, maybe I’m taking too much historical license, but man’s affinity for their transportation remains.
+At the age of 21, my dad and I split the cost of a 2005 Ford F150.</description>
+    </item>
+    
+    <item>
+      <title>A Farewell Ode To My Old Grey Truck</title>
       <link>/post/a-farewell-ode-to-my-old-grey-truck/</link>
       <pubDate>Fri, 11 Oct 2019 00:00:00 +0000</pubDate>
       
@@ -17,6 +28,16 @@
       <description>A Tribute!Since the dawn of time, people have been developing human-like attachments to their transportation. I imagine Moses naming his chariot, Noah his ark, and maybe even Jesus naming his borrowed donkey.
 Well, maybe I’m taking too much historical license, but man’s affinity for their transportation remains.
 At the age of 21, my dad and I split the cost of a 2005 Ford F150.</description>
+    </item>
+    
+    <item>
+      <title>ESPN Fantasy Football 2019: League and Team Analysis</title>
+      <link>/fantasy-football-2019-analysis/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fantasy-football-2019-analysis/</guid>
+      <description>The Goal of this AnalysisOne of my superpowers is being a bad fantasy football manager. My motivation for this analysis is to show how I’m not actually that bad - but rather unlucky. To show this, I created this post.
+Below I summarize how I got the data, the information I can glean from the data, share the link to this analysis for my league, and share the code so you can do it to.</description>
     </item>
     
     <item>
@@ -31,12 +52,34 @@ Below I summarize how I got the data, the information I can glean from the data,
     
     <item>
       <title>Parallel Processing and Bootstrapping</title>
+      <link>/parallel-processing-and-bootstrapping-for-diamonds/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/parallel-processing-and-bootstrapping-for-diamonds/</guid>
+      <description>IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
+Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</description>
+    </item>
+    
+    <item>
+      <title>Parallel Processing and Bootstrapping</title>
       <link>/post/parallel-processing-and-bootstrapping-for-diamonds/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/parallel-processing-and-bootstrapping-for-diamonds/</guid>
       <description>IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
 Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</description>
+    </item>
+    
+    <item>
+      <title>Goal: Read 1000 (Children&#39;s) Books in 2018</title>
+      <link>/analysis-of-my-children-s-reading-list/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/analysis-of-my-children-s-reading-list/</guid>
+      <description>IntroductionOver Christmas 2017, my wife, Jill, resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.
+A goal like this takes dedication, love, and of course, a Data Science-y approach.
+Special thanks to Ally, Zia, and Bookbuddy for help in accomplishing this goal!
+Also, special thanks to drob and juliasilge who privde the tidytext package and the entire R open-source community I rely on to do this analysis.</description>
     </item>
     
     <item>
@@ -49,6 +92,20 @@ Complaining about this let me to Googling, which, as usual, let me to a solution
 A goal like this takes dedication, love, and of course, a Data Science-y approach.
 Special thanks to Ally, Zia, and Bookbuddy for help in accomplishing this goal!
 Also, special thanks to drob and juliasilge who privde the tidytext package and the entire R open-source community I rely on to do this analysis.</description>
+    </item>
+    
+    <item>
+      <title>Vancouver: Joint Statistical Meeting Presentation</title>
+      <link>/2018-joint-statistical-meeting-presentation/</link>
+      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018-joint-statistical-meeting-presentation/</guid>
+      <description>I was honored to present some collaborative work between my friend Jim Pleuss and I at the 2018 Joint Statistical Meetings
+The question we attemped to answer is: Do students who are grouped with others of like ability perform better?
+Short answer: Not really.
+Full details are included in my presentations repository on my Github here
+The poster is located here
+Oh, and Jim and I went for a little “R” run as well in Vancouver.</description>
     </item>
     
     <item>
@@ -67,11 +124,29 @@ Oh, and Jim and I went for a little “R” run as well in Vancouver.</descripti
     
     <item>
       <title>2005 Ford F150 Gas Milage Analysis</title>
+      <link>/ford-f150-analysis/</link>
+      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/ford-f150-analysis/</guid>
+      <description>In February 2006, my dad and I split the cost of a 2005 Ford F150. He probably paid the larger half, but I believe he (and I) have got our money’s worth out of it as I still drive it to this day. Since the purchase, I have tracked the gas mileage every time I’ve filled up the tank. This tutorial uses this data set to highlight some functions in R to do the following:</description>
+    </item>
+    
+    <item>
+      <title>2005 Ford F150 Gas Milage Analysis</title>
       <link>/post/ford-f150-analysis/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/ford-f150-analysis/</guid>
       <description>In February 2006, my dad and I split the cost of a 2005 Ford F150. He probably paid the larger half, but I believe he (and I) have got our money’s worth out of it as I still drive it to this day. Since the purchase, I have tracked the gas mileage every time I’ve filled up the tank. This tutorial uses this data set to highlight some functions in R to do the following:</description>
+    </item>
+    
+    <item>
+      <title>2017 MORS Presentation</title>
+      <link>/2017-mors-presentation/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017-mors-presentation/</guid>
+      <description>Midway through my first semester teaching at West Point, my mentor, asked me what “scholarship” I was working on. To be honest, at the time, I was doing my best to make sure I understood what material I was teaching the next day and making sure my grading was up-to-date. I had been tinkering around with the idea of ‘data scraping’ which was a nebulous term to be then. I was intrigued by it and had google searched ways to get data in the days before (my old tried and true method of copy and paste was frustratingly slow…).</description>
     </item>
     
     <item>
@@ -85,11 +160,30 @@ Oh, and Jim and I went for a little “R” run as well in Vancouver.</descripti
     
     <item>
       <title>Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity</title>
+      <link>/shiny-project/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/shiny-project/</guid>
+      <description>Taking A Look Across The Country</description>
+    </item>
+    
+    <item>
+      <title>Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity</title>
       <link>/post/shiny-project/</link>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
       <description>Taking A Look Across The Country</description>
+    </item>
+    
+    <item>
+      <title>Helping A Colleague Explore Data</title>
+      <link>/helping-a-colleague-explore-data/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/helping-a-colleague-explore-data/</guid>
+      <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
+Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.3## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.</description>
     </item>
     
     <item>
@@ -100,6 +194,18 @@ Oh, and Jim and I went for a little “R” run as well in Vancouver.</descripti
       <guid>/post/helping-a-colleague-explore-data/</guid>
       <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
 Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tidyverse&amp;#39; was built under R version 3.6.1## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 3.</description>
+    </item>
+    
+    <item>
+      <title>Blog Introduction</title>
+      <link>/blog-introduction/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/blog-introduction/</guid>
+      <description>As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
+Creating this blog serves several purposes.
+It archives some projects I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
+It helps me share what I’ve learned with the community that has been so helpful to me.</description>
     </item>
     
     <item>

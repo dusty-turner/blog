@@ -57,6 +57,7 @@ Let's fire up `pelotonR` and, as always, the `tidyverse` and take them for a spi
 ```{r message=FALSE, warning=FALSE}
 library(pelotonR)
 library(tidyverse)
+library(lubridate)
 ```
 
 ## Connect To API
@@ -69,7 +70,8 @@ peloton_auth(login = "your.email@domain.com", password = "cl3v3r_pa$$w0rd")
 
 
 ```{r include=FALSE, eval=TRUE, message=TRUE,warning=TRUE}
-peloton_auth(login = read_csv("C:/Users/turne/Desktop/Dusty's Files/R Work/blog/content/post/password_file.csv")$username[1], password = read_csv("C:/Users/turne/Desktop/Dusty's Files/R Work/blog/content/post/password_file.csv")$password[1])
+# peloton_auth(login = "turner.jill.e@gmail.com", password = get_peloton_passwords(who = "Jill"))
+peloton_auth(login = "dusty.s.turner@gmail.com", password = get_peloton_passwords(who = "Dusty"))
 ```
 
 After connecting to the API, you can get your info with the following function.  
@@ -189,6 +191,7 @@ In my next plot post, I'll do more to explore the data in the API.  In the meant
 
 ```{r, message=F,warning=F,cache=T, fig.align="center"}
 my_workout_df %>% 
+  filter(created_at <= ymd(20200809)) %>% 
   filter(fitness_discipline == "cycling") %>%
   count(instructor_name,fitness_discipline) %>% 
   filter(!is.na(instructor_name)) %>% 

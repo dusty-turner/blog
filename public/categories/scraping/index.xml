@@ -10,11 +10,29 @@
     <lastBuildDate>Tue, 17 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="/categories/scraping/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Data Scraping Presentation: Center for Data Analysis and Statistics</title>
+      <link>/data-scraping-presentation-center-for-data-analysis-and-statistics/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/data-scraping-presentation-center-for-data-analysis-and-statistics/</guid>
+      <description>On 17 April 2018, I gave a tutorial to the Department of Mathematical Sciences at West Point and the Sports Analytics Club. The Power Point presentation, R file, and R Markdown file are at my github page at this link</description>
+    </item>
+    
+    <item>
+      <title>Data Scraping Presentation: Center for Data Analysis and Statistics</title>
       <link>/post/data-scraping-presentation-center-for-data-analysis-and-statistics/</link>
       <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/data-scraping-presentation-center-for-data-analysis-and-statistics/</guid>
       <description>On 17 April 2018, I gave a tutorial to the Department of Mathematical Sciences at West Point and the Sports Analytics Club. The Power Point presentation, R file, and R Markdown file are at my github page at this link</description>
+    </item>
+    
+    <item>
+      <title>2017 MORS Presentation</title>
+      <link>/2017-mors-presentation/</link>
+      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017-mors-presentation/</guid>
+      <description>Midway through my first semester teaching at West Point, my mentor, asked me what “scholarship” I was working on. To be honest, at the time, I was doing my best to make sure I understood what material I was teaching the next day and making sure my grading was up-to-date. I had been tinkering around with the idea of ‘data scraping’ which was a nebulous term to be then. I was intrigued by it and had google searched ways to get data in the days before (my old tried and true method of copy and paste was frustratingly slow…).</description>
     </item>
     
     <item>

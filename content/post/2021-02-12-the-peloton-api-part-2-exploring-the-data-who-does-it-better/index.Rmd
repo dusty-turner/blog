@@ -11,14 +11,7 @@ tags:
   - API
   - tidyverse
   - peloton
-#draft: yes
 cover: /img/cover.jpg
 ---
 
 Testing
-
-Cut out summary from your post content here.
-
-<!--more-->
-
-The remaining content of your post.
