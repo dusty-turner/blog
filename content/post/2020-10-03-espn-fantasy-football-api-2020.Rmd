@@ -14,7 +14,7 @@ tags:
   - fantasy football
   - R
 cover: /img/football.jpg
-draft: TRUE
+draft: FALSE
 ---
 
 ```{r setup, include=FALSE}
@@ -166,7 +166,7 @@ team_list <-
 
 team_list %>% 
   group_by(teamId) %>% 
-  slice_head(1) %>% 
+  slice_head(n = 1) %>% 
   ungroup() %>% 
   gt() %>% 
   tab_header("First player on each team")
@@ -198,7 +198,7 @@ team_list %>%
 
 team_list %>% 
   group_by(teamId) %>% 
-  slice_head(1) %>% 
+  slice_head(n = 1) %>% 
   ungroup() %>% 
   gt() %>% 
   tab_header("First player on each team")
