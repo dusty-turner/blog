@@ -7,31 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/tidyverse/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Peloton API Part 2: Exploring the Data; Who does it better?</title>
-      <link>/post/2021-02-12-the-peloton-api-part-2-exploring-the-data-who-does-it-better/</link>
-      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2021-02-12-the-peloton-api-part-2-exploring-the-data-who-does-it-better/</guid>
-      <description>
-
-
-&lt;p&gt;Testing&lt;/p&gt;
-&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Wheel Spin Strategy on The Price Is Right</title>
-      <link>/wheel-spin-strategy-on-the-price-is-right/</link>
-      <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/wheel-spin-strategy-on-the-price-is-right/</guid>
-      <description>MotivationLike many, COVID-19 completely altered our lives as the virus spread across the country and became a mainstay in our society. Though my family and I have been spared of tragedy, we’ve had to find ways to replace kid’s activities, work routines, and social interactions with other (hopefully) enriching activities… Like family games.
-Ticket to Ride caused a lot of strife between my kids :)One thing that we’ve added to our new normal is watching “The Price is Right” after dinner.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="/categories/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wheel Spin Strategy on The Price Is Right</title>
       <link>/post/wheel-spin-strategy-on-the-price-is-right/</link>
@@ -44,34 +20,12 @@
     
     <item>
       <title>ESPN Fantasy Football V3 API for Private Leagues: An R Solution (Finally!)</title>
-      <link>/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</guid>
-      <description>Accessing ESPN’s New V3 API for Private Leagues: How We Got HereThis marks post 3 of n of my 2019 ESPN Fantasy Football blog posts. In the last few months, ESPN upgraded their API from V2 to V3, breaking all of our previous work accessing and analysing the data from the API.
-In my last two posts, I explored how to access data from ESPN’s V3 API for public leagues.</description>
-    </item>
-    
-    <item>
-      <title>ESPN Fantasy Football V3 API for Private Leagues: An R Solution (Finally!)</title>
       <link>/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</link>
       <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/espn-fantasy-football-v3-api-for-private-leagues-an-r-solution-finally/</guid>
       <description>Accessing ESPN’s New V3 API for Private Leagues: How We Got HereThis marks post 3 of n of my 2019 ESPN Fantasy Football blog posts. In the last few months, ESPN upgraded their API from V2 to V3, breaking all of our previous work accessing and analysing the data from the API.
 In my last two posts, I explored how to access data from ESPN’s V3 API for public leagues.</description>
-    </item>
-    
-    <item>
-      <title>ESPN Fantasy Football V3 API for Private Leagues: Python Through R</title>
-      <link>/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/espn-fantasy-football-v3-api-for-private-leagues-python-through-r/</guid>
-      <description>Accessing ESPN Fantasy Football for Private LeaguesIn my previous post, I explained how to access the ESPN Fantasy Football’s new (V3) public API. But what if your league manager does not make the league public? Are you out of luck?
-In this post I’ll explain how to pass ‘cookies’ to ESPN and access private league data.
-To accomplish this, we’ll use…
-PythonretriculatepurrrPython?</description>
     </item>
     
     <item>
@@ -88,17 +42,6 @@ To accomplish this, we’ll use…
     
     <item>
       <title>ESPN Fantasy Football V3 API for Public Leagues: An R Solution</title>
-      <link>/espn-fantasy-football-v3-api-an-r-solution/</link>
-      <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/espn-fantasy-football-v3-api-an-r-solution/</guid>
-      <description>ESPN’s New API (V3)In previous seasons, we’ve enjoyed relatively easy access to ESPN’s fantasy sports data. Sometime in the last few months, ESPN altered/upgraded their AP to V3.
-As I’ve tried to replicate previous analysis, old methods accessing the V2 API no longer work.
-Credit Where Credit Is DueQuick crash course on ESPN’s new #fantasyfootball API, #python focused — https://t.</description>
-    </item>
-    
-    <item>
-      <title>ESPN Fantasy Football V3 API for Public Leagues: An R Solution</title>
       <link>/post/espn-fantasy-football-v3-api-an-r-solution/</link>
       <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
       
@@ -106,18 +49,6 @@ As I’ve tried to replicate previous analysis, old methods accessing the V2 API
       <description>ESPN’s New API (V3)In previous seasons, we’ve enjoyed relatively easy access to ESPN’s fantasy sports data. Sometime in the last few months, ESPN altered/upgraded their AP to V3.
 As I’ve tried to replicate previous analysis, old methods accessing the V2 API no longer work.
 Credit Where Credit Is DueQuick crash course on ESPN’s new #fantasyfootball API, #python focused — https://t.</description>
-    </item>
-    
-    <item>
-      <title>Goal: Read 1000 (Children&#39;s) Books in 2018</title>
-      <link>/analysis-of-my-children-s-reading-list/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/analysis-of-my-children-s-reading-list/</guid>
-      <description>IntroductionOver Christmas 2017, my wife, Jill, resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.
-A goal like this takes dedication, love, and of course, a Data Science-y approach.
-Special thanks to Ally, Zia, and Bookbuddy for help in accomplishing this goal!
-Also, special thanks to drob and juliasilge who privde the tidytext package and the entire R open-source community I rely on to do this analysis.</description>
     </item>
     
     <item>
@@ -134,20 +65,6 @@ Also, special thanks to drob and juliasilge who privde the tidytext package and 
     
     <item>
       <title>Working with Dates in R</title>
-      <link>/dates-in-r/</link>
-      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/dates-in-r/</guid>
-      <description>A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
-There are 3 date/time classes are built in to R
-- Date
-- POSIXct
-- POSIXlt
-Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</description>
-    </item>
-    
-    <item>
-      <title>Working with Dates in R</title>
       <link>/post/dates-in-r/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
       
@@ -158,16 +75,6 @@ There are 3 date/time classes are built in to R
 - POSIXct
 - POSIXlt
 Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</description>
-    </item>
-    
-    <item>
-      <title>Helping A Colleague Explore Data</title>
-      <link>/helping-a-colleague-explore-data/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/helping-a-colleague-explore-data/</guid>
-      <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
-Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.3## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.</description>
     </item>
     
     <item>

@@ -1,26 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Kids on Dusty Turner</title>
-    <link>/categories/kids/</link>
-    <description>Recent content in Kids on Dusty Turner</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/kids/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Color Mixer For My Children</title>
-      <link>/post/color-mixer-for-my-children/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/color-mixer-for-my-children/</guid>
-      <description>Does this work?!
-## Loading required package: xml2## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.Shiny applications not supported in static R Markdown documents</description>
-    </item>
-    
-  </channel>
-</rss>

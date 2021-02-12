@@ -10,22 +10,6 @@
     <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2018 NCAA College Bowl Pick &#39;em</title>
-      <link>/2018-ncaa-college-bowl-pick-em/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
-Incorporated this year are a few (transparent) things.
-Bowl selections automatically lock once they start.
-Bowl results automatically update once they are complete.
-Multiple scoring techniques (weighted by confidence and raw).
-Analysis of everyone’s picks.
-Enjoy!
-</description>
-    </item>
-    
-    <item>
-      <title>2018 NCAA College Bowl Pick &#39;em</title>
       <link>/post/2018-ncaa-college-bowl-pick-em/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
@@ -42,15 +26,6 @@ Bowl selections automatically lock once they start.
     
     <item>
       <title>2005 Ford F150 Gas Milage Analysis</title>
-      <link>/ford-f150-analysis/</link>
-      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/ford-f150-analysis/</guid>
-      <description>In February 2006, my dad and I split the cost of a 2005 Ford F150. He probably paid the larger half, but I believe he (and I) have got our money’s worth out of it as I still drive it to this day. Since the purchase, I have tracked the gas mileage every time I’ve filled up the tank. This tutorial uses this data set to highlight some functions in R to do the following:</description>
-    </item>
-    
-    <item>
-      <title>2005 Ford F150 Gas Milage Analysis</title>
       <link>/post/ford-f150-analysis/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
@@ -60,30 +35,11 @@ Bowl selections automatically lock once they start.
     
     <item>
       <title>Tracking My Cadet&#39;s Summer Plans</title>
-      <link>/tracking-my-cadets-summer-plans/</link>
-      <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tracking-my-cadets-summer-plans/</guid>
-      <description>Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!% --% --% --% --% --% --% --% --% --% --</description>
-    </item>
-    
-    <item>
-      <title>Tracking My Cadet&#39;s Summer Plans</title>
       <link>/post/tracking-my-cadets-summer-plans/</link>
       <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/tracking-my-cadets-summer-plans/</guid>
       <description>Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!% --% --% --% --% --% --% --% --% --% --</description>
-    </item>
-    
-    <item>
-      <title>Helping A Colleague Explore Data</title>
-      <link>/helping-a-colleague-explore-data/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/helping-a-colleague-explore-data/</guid>
-      <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
-Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.3## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.</description>
     </item>
     
     <item>

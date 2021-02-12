@@ -10,18 +10,6 @@
     <lastBuildDate>Thu, 27 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/lubridate/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Goal: Read 1000 (Children&#39;s) Books in 2018</title>
-      <link>/analysis-of-my-children-s-reading-list/</link>
-      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/analysis-of-my-children-s-reading-list/</guid>
-      <description>IntroductionOver Christmas 2017, my wife, Jill, resolved that our family (to include babysitters) would read our children over 1000 new books in 2018. More specifically, 29 December 2017 - 28 December 2018.
-A goal like this takes dedication, love, and of course, a Data Science-y approach.
-Special thanks to Ally, Zia, and Bookbuddy for help in accomplishing this goal!
-Also, special thanks to drob and juliasilge who privde the tidytext package and the entire R open-source community I rely on to do this analysis.</description>
-    </item>
-    
-    <item>
-      <title>Goal: Read 1000 (Children&#39;s) Books in 2018</title>
       <link>/post/analysis-of-my-children-s-reading-list/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       
@@ -34,34 +22,11 @@ Also, special thanks to drob and juliasilge who privde the tidytext package and 
     
     <item>
       <title>2005 Ford F150 Gas Milage Analysis</title>
-      <link>/ford-f150-analysis/</link>
-      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/ford-f150-analysis/</guid>
-      <description>In February 2006, my dad and I split the cost of a 2005 Ford F150. He probably paid the larger half, but I believe he (and I) have got our money’s worth out of it as I still drive it to this day. Since the purchase, I have tracked the gas mileage every time I’ve filled up the tank. This tutorial uses this data set to highlight some functions in R to do the following:</description>
-    </item>
-    
-    <item>
-      <title>2005 Ford F150 Gas Milage Analysis</title>
       <link>/post/ford-f150-analysis/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/ford-f150-analysis/</guid>
       <description>In February 2006, my dad and I split the cost of a 2005 Ford F150. He probably paid the larger half, but I believe he (and I) have got our money’s worth out of it as I still drive it to this day. Since the purchase, I have tracked the gas mileage every time I’ve filled up the tank. This tutorial uses this data set to highlight some functions in R to do the following:</description>
-    </item>
-    
-    <item>
-      <title>Working with Dates in R</title>
-      <link>/dates-in-r/</link>
-      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/dates-in-r/</guid>
-      <description>A Little About Dates in RBefore we launch into any analysis that contains dates, we should know a few important nuggets about how R handles date-like objects.
-There are 3 date/time classes are built in to R
-- Date
-- POSIXct
-- POSIXlt
-Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</description>
     </item>
     
     <item>
@@ -76,16 +41,6 @@ There are 3 date/time classes are built in to R
 - POSIXct
 - POSIXlt
 Base RFirst, base R can read a string of text and convert it to a date class. To help it read the date, you must tell R what date format your character string should expect.</description>
-    </item>
-    
-    <item>
-      <title>Helping A Colleague Explore Data</title>
-      <link>/helping-a-colleague-explore-data/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/helping-a-colleague-explore-data/</guid>
-      <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
-Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.3## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.</description>
     </item>
     
     <item>

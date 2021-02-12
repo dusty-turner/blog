@@ -10,30 +10,11 @@
     <lastBuildDate>Thu, 17 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/dplyr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tracking My Cadet&#39;s Summer Plans</title>
-      <link>/tracking-my-cadets-summer-plans/</link>
-      <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tracking-my-cadets-summer-plans/</guid>
-      <description>Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!% --% --% --% --% --% --% --% --% --% --</description>
-    </item>
-    
-    <item>
-      <title>Tracking My Cadet&#39;s Summer Plans</title>
       <link>/post/tracking-my-cadets-summer-plans/</link>
       <pubDate>Thu, 17 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/tracking-my-cadets-summer-plans/</guid>
       <description>Tracking my cadet’s summer plans with dplyr and ggplot. The interactive ShinyApp is below!% --% --% --% --% --% --% --% --% --% --</description>
-    </item>
-    
-    <item>
-      <title>Helping A Colleague Explore Data</title>
-      <link>/helping-a-colleague-explore-data/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/helping-a-colleague-explore-data/</guid>
-      <description>IntroductionA colleague of mine asked me to help him explore a dataset in R. He has little experience in R, so I will provide as much detail as I can in this exploration. My goal here is to make this post both ‘learn-able’ and ‘replicable’.
-Install and/or load necessary packagesif (!require(&amp;quot;tidyverse&amp;quot;)) install.packages(&amp;quot;tidyverse&amp;quot;)## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.3## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.</description>
     </item>
     
     <item>

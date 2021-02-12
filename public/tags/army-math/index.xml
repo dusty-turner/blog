@@ -10,33 +10,12 @@
     <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/army-math/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Parallel Processing and Bootstrapping</title>
-      <link>/parallel-processing-and-bootstrapping-for-diamonds/</link>
-      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/parallel-processing-and-bootstrapping-for-diamonds/</guid>
-      <description>IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
-Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</description>
-    </item>
-    
-    <item>
-      <title>Parallel Processing and Bootstrapping</title>
       <link>/post/parallel-processing-and-bootstrapping-for-diamonds/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/parallel-processing-and-bootstrapping-for-diamonds/</guid>
       <description>IntroductionOften times, I run simulations on my computer to help educate my students about different statistical topics. In doing this, I often end up running fairly “long” simulations that take up more time than what I’d like to use in the classrooms.
 Complaining about this let me to Googling, which, as usual, let me to a solution. Posted below is an example of what I learned with an accompanying ShinyApp which helps me explain bootstrapping to my students.</description>
-    </item>
-    
-    <item>
-      <title>Super Bowl LIII Prop Bet Tracking</title>
-      <link>/super-bowl-liii-prop-bet-tracking/</link>
-      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/super-bowl-liii-prop-bet-tracking/</guid>
-      <description>Hi all, thanks for participating in the prop bets for the 2019 Super Bowl.
-During my ear recovery, I accumulated some fun prop “bets” (no money is involved) for the upcoming Super Bowl to make the game more fun and interesting. Questions range from “Who will be the winner” to “How long will the National Anthem Last” to “What color will the post-game Gatorade bath be”?
-If you have not made your selections, please do so here!</description>
     </item>
     
     <item>
@@ -52,16 +31,6 @@ If you have not made your selections, please do so here!</description>
     
     <item>
       <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
-      <link>/espn-yahoo-api-navigation/</link>
-      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/espn-yahoo-api-navigation/</guid>
-      <description>IntroductionFor the last two years I’ve had the honor of being the commissioner for the West Point Department of Mathematical Science’s Fantasy Football League. This year we had 20 managers so we had to split our department into two leagues. I hosted one using ESPN and a colleague hosted on in Yahoo.
-In order to compare our two leagues, I will use the ESPN API and YAHOO API to download our league’s information.</description>
-    </item>
-    
-    <item>
-      <title>Fantasy Football - Navigating the ESPN and Yahoo! APIs</title>
       <link>/post/espn-yahoo-api-navigation/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
@@ -72,38 +41,12 @@ In order to compare our two leagues, I will use the ESPN API and YAHOO API to do
     
     <item>
       <title>Mathlete Fantasy Football Analysis</title>
-      <link>/mathlete-fantasy-football-analysis2018/</link>
-      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/mathlete-fantasy-football-analysis2018/</guid>
-      <description>IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
-The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.</description>
-    </item>
-    
-    <item>
-      <title>Mathlete Fantasy Football Analysis</title>
       <link>/post/mathlete-fantasy-football-analysis2018/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/mathlete-fantasy-football-analysis2018/</guid>
       <description>IntroductionIn my previous post, I worked through how to get your league information from the ESPN and YAHOO APIs.
 The motivation for this project was to compare two leagues performances over the 2018 fantasy football season. As the ring leader of the West Point Department of Mathematical Sciences fantasy football league, we had 20 managers. This, of course, is too many for one league so we split the teams across two leagues.</description>
-    </item>
-    
-    <item>
-      <title>2018 NCAA College Bowl Pick &#39;em</title>
-      <link>/2018-ncaa-college-bowl-pick-em/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
-Incorporated this year are a few (transparent) things.
-Bowl selections automatically lock once they start.
-Bowl results automatically update once they are complete.
-Multiple scoring techniques (weighted by confidence and raw).
-Analysis of everyone’s picks.
-Enjoy!
-</description>
     </item>
     
     <item>
@@ -124,20 +67,6 @@ Bowl selections automatically lock once they start.
     
     <item>
       <title>Vancouver: Joint Statistical Meeting Presentation</title>
-      <link>/2018-joint-statistical-meeting-presentation/</link>
-      <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018-joint-statistical-meeting-presentation/</guid>
-      <description>I was honored to present some collaborative work between my friend Jim Pleuss and I at the 2018 Joint Statistical Meetings
-The question we attemped to answer is: Do students who are grouped with others of like ability perform better?
-Short answer: Not really.
-Full details are included in my presentations repository on my Github here
-The poster is located here
-Oh, and Jim and I went for a little “R” run as well in Vancouver.</description>
-    </item>
-    
-    <item>
-      <title>Vancouver: Joint Statistical Meeting Presentation</title>
       <link>/post/2018-joint-statistical-meeting-presentation/</link>
       <pubDate>Wed, 15 Aug 2018 00:00:00 +0000</pubDate>
       
@@ -148,19 +77,6 @@ Short answer: Not really.
 Full details are included in my presentations repository on my Github here
 The poster is located here
 Oh, and Jim and I went for a little “R” run as well in Vancouver.</description>
-    </item>
-    
-    <item>
-      <title>2018 NY R Conference Presentation</title>
-      <link>/2018-ny-r-conference/</link>
-      <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018-ny-r-conference/</guid>
-      <description>Was honored to speak at this years 2018 New York R Conference hosted by Lander Analytics and Work-Bench. Jared Lander sure knows how to host a good party, I mean, conference.
-My Slides are available, and you can contact me at dusty.s.turner@gmail.com
-Here is the youtube link to the video:
-
-Oh, and I got to go for a little run before the conferece!</description>
     </item>
     
     <item>
@@ -178,31 +94,12 @@ Oh, and I got to go for a little run before the conferece!</description>
     
     <item>
       <title>2017 NCAA College Bowl Pick &#39;em</title>
-      <link>/2017-ncaa-college-bowl-pick-em/</link>
-      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
-</description>
-    </item>
-    
-    <item>
-      <title>2017 NCAA College Bowl Pick &#39;em</title>
       <link>/post/2017-ncaa-college-bowl-pick-em/</link>
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-ncaa-college-bowl-pick-em/</guid>
       <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
 </description>
-    </item>
-    
-    <item>
-      <title>2017 MORS Presentation</title>
-      <link>/2017-mors-presentation/</link>
-      <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017-mors-presentation/</guid>
-      <description>Midway through my first semester teaching at West Point, my mentor, asked me what “scholarship” I was working on. To be honest, at the time, I was doing my best to make sure I understood what material I was teaching the next day and making sure my grading was up-to-date. I had been tinkering around with the idea of ‘data scraping’ which was a nebulous term to be then. I was intrigued by it and had google searched ways to get data in the days before (my old tried and true method of copy and paste was frustratingly slow…).</description>
     </item>
     
     <item>
@@ -216,31 +113,11 @@ Oh, and I got to go for a little run before the conferece!</description>
     
     <item>
       <title>Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity</title>
-      <link>/shiny-project/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/shiny-project/</guid>
-      <description>Taking A Look Across The Country</description>
-    </item>
-    
-    <item>
-      <title>Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity</title>
       <link>/post/shiny-project/</link>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-project/</guid>
       <description>Taking A Look Across The Country</description>
-    </item>
-    
-    <item>
-      <title>Mathlete Fantasy Football Analysis</title>
-      <link>/mathlete-fantasy-football-analysis/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/mathlete-fantasy-football-analysis/</guid>
-      <description>IntroductionLets see who really has fantasy football bragging rights and who is just lucky (or unlucky).
-During this analysis I will display most of my code. While this doesn’t provided the most pleasent visual experience, it will hopefully help the reader learn from my examples. (And potentially provide feedback on how to improve my methods.)
-LibrariesThe libraries I will use for this analysis are the following:</description>
     </item>
     
     <item>
@@ -252,18 +129,6 @@ LibrariesThe libraries I will use for this analysis are the following:</descrip
       <description>IntroductionLets see who really has fantasy football bragging rights and who is just lucky (or unlucky).
 During this analysis I will display most of my code. While this doesn’t provided the most pleasent visual experience, it will hopefully help the reader learn from my examples. (And potentially provide feedback on how to improve my methods.)
 LibrariesThe libraries I will use for this analysis are the following:</description>
-    </item>
-    
-    <item>
-      <title>Blog Introduction</title>
-      <link>/blog-introduction/</link>
-      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/blog-introduction/</guid>
-      <description>As my experience with statistics, computer science, and the all encompasing term, data science, increases, I have decided that it is time to share some of my projects.
-Creating this blog serves several purposes.
-It archives some projects I’ve created.It makes my work public so I can receive (hopefully) constructive feedback to improve my tools/analysis.
-It helps me share what I’ve learned with the community that has been so helpful to me.</description>
     </item>
     
     <item>

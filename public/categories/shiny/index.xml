@@ -10,17 +10,6 @@
     <lastBuildDate>Fri, 26 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="/categories/shiny/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cadet Summer Tracker 2019</title>
-      <link>/cadet-summer-tracker-2019/</link>
-      <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/cadet-summer-tracker-2019/</guid>
-      <description>It is our last summer at West Point! We will sure miss our cadets. To keep touch with everyone, I’ve created a ShinyApp (embedded below) that shows the location (and dates) of everyone over the summer training period.
-If you’d rather view the app outside the blog, here is the link
-----</description>
-    </item>
-    
-    <item>
-      <title>Cadet Summer Tracker 2019</title>
       <link>/post/cadet-summer-tracker-2019/</link>
       <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
       
@@ -32,36 +21,11 @@ If you’d rather view the app outside the blog, here is the link
     
     <item>
       <title>Losing UNO to a 5 Year Old: An Exercise In Probability</title>
-      <link>/losing-uno-to-a-5-year-old-an-exercise-in-probability/</link>
-      <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/losing-uno-to-a-5-year-old-an-exercise-in-probability/</guid>
-      <description>BackgroundOne of my son’s favorite games he received for Christmas this year is UNO Attack. If you are not familiar with the rules, you can get up to speed here. In short, the rules are no different than usual UNO except when you cannot play, instead of taking a card, you press a button on an UNO card shooting contraption. Most of the time you get no cards, but some of the time it will “attack” with 1 or more cards.</description>
-    </item>
-    
-    <item>
-      <title>Losing UNO to a 5 Year Old: An Exercise In Probability</title>
       <link>/post/losing-uno-to-a-5-year-old-an-exercise-in-probability/</link>
       <pubDate>Fri, 04 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/losing-uno-to-a-5-year-old-an-exercise-in-probability/</guid>
       <description>BackgroundOne of my son’s favorite games he received for Christmas this year is UNO Attack. If you are not familiar with the rules, you can get up to speed here. In short, the rules are no different than usual UNO except when you cannot play, instead of taking a card, you press a button on an UNO card shooting contraption. Most of the time you get no cards, but some of the time it will “attack” with 1 or more cards.</description>
-    </item>
-    
-    <item>
-      <title>2018 NCAA College Bowl Pick &#39;em</title>
-      <link>/2018-ncaa-college-bowl-pick-em/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!The new and improved version of my NCAA College Bowl Pick’em Shiny App is available below.
-Incorporated this year are a few (transparent) things.
-Bowl selections automatically lock once they start.
-Bowl results automatically update once they are complete.
-Multiple scoring techniques (weighted by confidence and raw).
-Analysis of everyone’s picks.
-Enjoy!
-</description>
     </item>
     
     <item>
@@ -82,19 +46,6 @@ Bowl selections automatically lock once they start.
     
     <item>
       <title>2018 NY R Conference Presentation</title>
-      <link>/2018-ny-r-conference/</link>
-      <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018-ny-r-conference/</guid>
-      <description>Was honored to speak at this years 2018 New York R Conference hosted by Lander Analytics and Work-Bench. Jared Lander sure knows how to host a good party, I mean, conference.
-My Slides are available, and you can contact me at dusty.s.turner@gmail.com
-Here is the youtube link to the video:
-
-Oh, and I got to go for a little run before the conferece!</description>
-    </item>
-    
-    <item>
-      <title>2018 NY R Conference Presentation</title>
       <link>/post/2018-ny-r-conference/</link>
       <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
       
@@ -108,31 +59,12 @@ Oh, and I got to go for a little run before the conferece!</description>
     
     <item>
       <title>2017 NCAA College Bowl Pick &#39;em</title>
-      <link>/2017-ncaa-college-bowl-pick-em/</link>
-      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017-ncaa-college-bowl-pick-em/</guid>
-      <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
-</description>
-    </item>
-    
-    <item>
-      <title>2017 NCAA College Bowl Pick &#39;em</title>
       <link>/post/2017-ncaa-college-bowl-pick-em/</link>
       <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-ncaa-college-bowl-pick-em/</guid>
       <description>Bowl Season!Its one of the best times of the year. In order to celebrate (and to participate in a little competition), I put together a Shiny App to track my collegues picks over the season. Its improved throughout the season, and there are still improvment’s I’d like to add - but below is a working prototype.
 </description>
-    </item>
-    
-    <item>
-      <title>Shiny Project: Experimentation with Leaflet, Shapefiles, and Interactivity</title>
-      <link>/shiny-project/</link>
-      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/shiny-project/</guid>
-      <description>Taking A Look Across The Country</description>
     </item>
     
     <item>

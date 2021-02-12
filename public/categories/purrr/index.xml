@@ -1,27 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>purrr on Dusty Turner</title>
-    <link>/categories/purrr/</link>
-    <description>Recent content in purrr on Dusty Turner</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/purrr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>ESPN Fantasy Football V3 API: An R Solution</title>
-      <link>/post/espn-fantasy-football-v3-api-an-r-solution/</link>
-      <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/espn-fantasy-football-v3-api-an-r-solution/</guid>
-      <description>ESPN’s New API (V3)In previous seasons, we’ve enjoyed relatively easy access to ESPN’s fantasy sports data. Sometime in the last few months, ESPN altered/upgraded their AP to V3.
-As I’ve tried to replicate previous analysis, old methods accessing the V2 API no longer work.
-Credit Where Credit Is DueQuick crash course on ESPN’s new #fantasyfootball API, #python focused — https://t.</description>
-    </item>
-    
-  </channel>
-</rss>
