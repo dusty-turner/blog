@@ -104,12 +104,37 @@
   
   <url>
     <loc>/tags/api/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/api/</loc>
-    <lastmod>2020-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/espn/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/espn/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/espn-fantasy-football-api-2020/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fantasy-football/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/fantasy-football/</loc>
+    <lastmod>2020-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -219,16 +244,6 @@
   
   <url>
     <loc>/post/fantasy-football-2019-analysis/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/fantasy-football/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/fantasy-football/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   

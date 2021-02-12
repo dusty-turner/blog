@@ -21,6 +21,17 @@ In this post, I’ll explore the rarely won game, Pay the Rent
     </item>
     
     <item>
+      <title>ESPN Fantasy Football 2020 Part 1: Accessing the API</title>
+      <link>/post/espn-fantasy-football-api-2020/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/espn-fantasy-football-api-2020/</guid>
+      <description>Its that time of year!Its that time of year again. The time when we dust off the old ESPN fantasy football API R code and fix everything that broke in the last year.
+Here’s what I hope to show over the next few posts.
+How to access your ESPN public fantasy football league’s data.How to organize that data and create a few interesting displays.How to create a dashboard to supplement your league’s fun.</description>
+    </item>
+    
+    <item>
       <title>The Peloton API Part 1: Accessing and Exploring</title>
       <link>/post/the-peloton-api-part-1/</link>
       <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>

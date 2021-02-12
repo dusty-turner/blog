@@ -65,9 +65,27 @@
     <item>
       <title>API</title>
       <link>/tags/api/</link>
-      <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ESPN</title>
+      <link>/tags/espn/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/espn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fantasy football</title>
+      <link>/tags/fantasy-football/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fantasy-football/</guid>
       <description></description>
     </item>
     
@@ -149,15 +167,6 @@
       <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/espn-api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fantasy football</title>
-      <link>/tags/fantasy-football/</link>
-      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/fantasy-football/</guid>
       <description></description>
     </item>
     
