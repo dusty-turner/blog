@@ -65,42 +65,51 @@ library(lubridate)</code></pre>
 <pre class="r"><code>my_workout_df &lt;- pelotonR::get_all_workouts(userid = me$id, num_workouts = me$total_workouts, joins = &quot;ride,ride.instructor&quot;)
 my_workout_df </code></pre>
 <pre><code>## # A tibble: 359 x 82
-##    created_at          device_type end_time            fitbit_id fitness_discipl~ has_pedaling_me~
-##    &lt;dttm&gt;              &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt;            &lt;lgl&gt;           
-##  1 2021-02-11 21:40:15 home_bike_~ 2021-02-11 21:45:13 64096309  stretching       FALSE           
-##  2 2021-02-11 21:16:59 home_bike_~ 2021-02-11 21:37:56 65742856  cycling          TRUE            
-##  3 2021-02-11 21:08:52 home_bike_~ 2021-02-11 21:13:49 65263874  cycling          TRUE            
-##  4 2021-02-10 20:58:06 home_bike_~ 2021-02-10 21:03:05 65702889  stretching       FALSE           
-##  5 2021-02-10 20:21:06 home_bike_~ 2021-02-10 20:52:04 65702056  cycling          TRUE            
-##  6 2021-02-10 20:11:18 home_bike_~ 2021-02-10 20:16:16 64590752  cycling          TRUE            
-##  7 2021-02-09 21:06:55 home_bike_~ 2021-02-09 21:11:55 65658699  cycling          TRUE            
-##  8 2021-02-09 20:32:50 home_bike_~ 2021-02-09 21:03:48 65660579  cycling          TRUE            
-##  9 2021-02-09 20:23:35 home_bike_~ 2021-02-09 20:28:34 65263874  cycling          TRUE            
-## 10 2021-02-06 16:51:13 home_bike_~ 2021-02-06 17:37:12 65529368  cycling          TRUE            
-## # ... with 349 more rows, and 76 more variables: has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
-## #   is_total_work_personal_record &lt;lgl&gt;, metrics_type &lt;chr&gt;, name &lt;chr&gt;, peloton_id &lt;chr&gt;,
-## #   platform &lt;chr&gt;, start_time &lt;dttm&gt;, strava_id &lt;chr&gt;, status &lt;chr&gt;, timezone &lt;chr&gt;, title &lt;chr&gt;,
-## #   total_work &lt;dbl&gt;, user_id &lt;chr&gt;, workout_type &lt;chr&gt;, total_video_watch_time_seconds &lt;int&gt;,
-## #   total_video_buffering_seconds &lt;int&gt;, v2_total_video_watch_time_seconds &lt;chr&gt;,
-## #   v2_total_video_buffering_seconds &lt;chr&gt;, total_music_audio_play_seconds &lt;chr&gt;,
+##    created_at          device_type end_time            fitbit_id
+##    &lt;dttm&gt;              &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;    
+##  1 2021-02-11 21:40:15 home_bike_~ 2021-02-11 21:45:13 64096309 
+##  2 2021-02-11 21:16:59 home_bike_~ 2021-02-11 21:37:56 65742856 
+##  3 2021-02-11 21:08:52 home_bike_~ 2021-02-11 21:13:49 65263874 
+##  4 2021-02-10 20:58:06 home_bike_~ 2021-02-10 21:03:05 65702889 
+##  5 2021-02-10 20:21:06 home_bike_~ 2021-02-10 20:52:04 65702056 
+##  6 2021-02-10 20:11:18 home_bike_~ 2021-02-10 20:16:16 64590752 
+##  7 2021-02-09 21:06:55 home_bike_~ 2021-02-09 21:11:55 65658699 
+##  8 2021-02-09 20:32:50 home_bike_~ 2021-02-09 21:03:48 65660579 
+##  9 2021-02-09 20:23:35 home_bike_~ 2021-02-09 20:28:34 65263874 
+## 10 2021-02-06 16:51:13 home_bike_~ 2021-02-06 17:37:12 65529368 
+## # ... with 349 more rows, and 78 more variables: fitness_discipline &lt;chr&gt;,
+## #   has_pedaling_metrics &lt;lgl&gt;, has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
+## #   is_total_work_personal_record &lt;lgl&gt;, metrics_type &lt;chr&gt;, name &lt;chr&gt;,
+## #   peloton_id &lt;chr&gt;, platform &lt;chr&gt;, start_time &lt;dttm&gt;, strava_id &lt;chr&gt;,
+## #   status &lt;chr&gt;, timezone &lt;chr&gt;, title &lt;chr&gt;, total_work &lt;dbl&gt;, user_id &lt;chr&gt;,
+## #   workout_type &lt;chr&gt;, total_video_watch_time_seconds &lt;int&gt;,
+## #   total_video_buffering_seconds &lt;int&gt;,
+## #   v2_total_video_watch_time_seconds &lt;chr&gt;,
+## #   v2_total_video_buffering_seconds &lt;chr&gt;,
+## #   total_music_audio_play_seconds &lt;chr&gt;,
 ## #   total_music_audio_buffer_seconds &lt;chr&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
-## #   device_time_created_at &lt;dttm&gt;, effort_zones &lt;chr&gt;, ride_has_closed_captions &lt;lgl&gt;,
-## #   ride_content_provider &lt;chr&gt;, ride_content_format &lt;chr&gt;, ride_description &lt;chr&gt;,
+## #   device_time_created_at &lt;dttm&gt;, effort_zones &lt;chr&gt;,
+## #   ride_has_closed_captions &lt;lgl&gt;, ride_content_provider &lt;chr&gt;,
+## #   ride_content_format &lt;chr&gt;, ride_description &lt;chr&gt;,
 ## #   ride_difficulty_rating_avg &lt;dbl&gt;, ride_difficulty_rating_count &lt;int&gt;,
 ## #   ride_difficulty_level &lt;chr&gt;, ride_duration &lt;int&gt;, ride_extra_images &lt;chr&gt;,
 ## #   ride_fitness_discipline &lt;chr&gt;, ride_fitness_discipline_display_name &lt;chr&gt;,
 ## #   ride_has_pedaling_metrics &lt;lgl&gt;, ride_home_peloton_id &lt;chr&gt;, ride_id &lt;chr&gt;,
 ## #   ride_image_url &lt;chr&gt;, ride_instructor_id &lt;chr&gt;, ride_is_archived &lt;lgl&gt;,
-## #   ride_is_closed_caption_shown &lt;lgl&gt;, ride_is_explicit &lt;lgl&gt;, ride_is_live_in_studio_only &lt;lgl&gt;,
-## #   ride_language &lt;chr&gt;, ride_length &lt;int&gt;, ride_live_stream_id &lt;chr&gt;, ride_live_stream_url &lt;chr&gt;,
-## #   ride_location &lt;chr&gt;, ride_metrics &lt;list&gt;, ride_origin_locale &lt;chr&gt;,
-## #   ride_original_air_time &lt;dttm&gt;, ride_overall_rating_avg &lt;dbl&gt;, ride_overall_rating_count &lt;int&gt;,
-## #   ride_pedaling_start_offset &lt;int&gt;, ride_pedaling_end_offset &lt;int&gt;, ride_pedaling_duration &lt;int&gt;,
+## #   ride_is_closed_caption_shown &lt;lgl&gt;, ride_is_explicit &lt;lgl&gt;,
+## #   ride_is_live_in_studio_only &lt;lgl&gt;, ride_language &lt;chr&gt;, ride_length &lt;int&gt;,
+## #   ride_live_stream_id &lt;chr&gt;, ride_live_stream_url &lt;chr&gt;, ride_location &lt;chr&gt;,
+## #   ride_metrics &lt;list&gt;, ride_origin_locale &lt;chr&gt;,
+## #   ride_original_air_time &lt;dttm&gt;, ride_overall_rating_avg &lt;dbl&gt;,
+## #   ride_overall_rating_count &lt;int&gt;, ride_pedaling_start_offset &lt;int&gt;,
+## #   ride_pedaling_end_offset &lt;int&gt;, ride_pedaling_duration &lt;int&gt;,
 ## #   ride_rating &lt;int&gt;, ride_ride_type_id &lt;chr&gt;, ride_ride_type_ids &lt;list&gt;,
-## #   ride_sample_vod_stream_url &lt;chr&gt;, ride_scheduled_start_time &lt;dttm&gt;, ride_series_id &lt;chr&gt;,
-## #   ride_sold_out &lt;lgl&gt;, ride_studio_peloton_id &lt;chr&gt;, ride_title &lt;chr&gt;, ride_total_ratings &lt;int&gt;,
-## #   ride_total_in_progress_workouts &lt;int&gt;, ride_total_workouts &lt;int&gt;, ride_vod_stream_url &lt;chr&gt;,
-## #   ride_vod_stream_id &lt;chr&gt;, ride_class_type_ids &lt;list&gt;, ride_difficulty_estimate &lt;dbl&gt;,
+## #   ride_sample_vod_stream_url &lt;chr&gt;, ride_scheduled_start_time &lt;dttm&gt;,
+## #   ride_series_id &lt;chr&gt;, ride_sold_out &lt;lgl&gt;, ride_studio_peloton_id &lt;chr&gt;,
+## #   ride_title &lt;chr&gt;, ride_total_ratings &lt;int&gt;,
+## #   ride_total_in_progress_workouts &lt;int&gt;, ride_total_workouts &lt;int&gt;,
+## #   ride_vod_stream_url &lt;chr&gt;, ride_vod_stream_id &lt;chr&gt;,
+## #   ride_class_type_ids &lt;list&gt;, ride_difficulty_estimate &lt;dbl&gt;,
 ## #   ride_overall_estimate &lt;dbl&gt;, ride_instructor &lt;list&gt;</code></pre>
 <p>You can see the function returns quite a bit of information - one row per workout.</p>
 <center>
@@ -143,7 +152,7 @@ And here’s Jill on one of those workouts!
 parsed &lt;- jsonlite::fromJSON(httr::content(pull, &quot;text&quot;, encoding = &quot;UTF-8&quot;), simplifyVector = FALSE)
 pull</code></pre>
 <pre><code>## Response [https://api.onepeloton.com/api/instructor?limit=1000&amp;page=0]
-##   Date: 2021-02-12 18:45
+##   Date: 2021-02-12 21:26
 ##   Status: 200
 ##   Content-Type: application/json
 ##   Size: 165 kB</code></pre>
@@ -160,9 +169,9 @@ pull</code></pre>
 
 instructor_function(5)</code></pre>
 <pre><code>## # A tibble: 1 x 4
-##   instructor_name ride_instructor_id    ride_instructor_bio                       ride_instructor_b~
-##   &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;                                     &lt;list&gt;            
-## 1 Ally Love       731d7b7f6b414a49892c~ &quot;As a model, dancer, certified health co~ &lt;list [1]&gt;</code></pre>
+##   instructor_name ride_instructor_id  ride_instructor_bio      ride_instructor_~
+##   &lt;chr&gt;           &lt;chr&gt;               &lt;chr&gt;                    &lt;list&gt;           
+## 1 Ally Love       731d7b7f6b414a4989~ &quot;As a model, dancer, ce~ &lt;list [1]&gt;</code></pre>
 <center>
 <a href="https://www.instagram.com/allymisslove/?hl=en">Ally Love</a>, my wife’s favorite!
 </center>
@@ -178,18 +187,18 @@ instructor_function(5)</code></pre>
   purrr::map_dfr(~ instructor_function(num = .x))
 instructor_df</code></pre>
 <pre><code>## # A tibble: 36 x 4
-##    instructor_name ride_instructor_id    ride_instructor_bio                      ride_instructor_b~
-##    &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;                                    &lt;list&gt;            
-##  1 Aditi Shah      b8c2734e18a7496fa146~ &quot;To Aditi, yoga goes beyond movement an~ &lt;list [2]&gt;        
-##  2 Adrian Williams f962a2b1b34d424cabab~ &quot;Adrian is a powerhouse instructor with~ &lt;list [6]&gt;        
-##  3 Anna Greenberg  a8c56f162c964e939256~ &quot;When Anna first turned to yoga, she fe~ &lt;list [2]&gt;        
-##  4 Alex Toussaint  2e57092bee334c8c8dcb~ &quot;Alex Toussaint has a love for fitness,~ &lt;list [1]&gt;        
-##  5 Ally Love       731d7b7f6b414a49892c~ &quot;As a model, dancer, certified health c~ &lt;list [1]&gt;        
-##  6 Andy Speer      c9fa21c2004c4544a7c3~ &quot;Andy takes a technique-centered approa~ &lt;list [2]&gt;        
-##  7 Becs Gentry     286fc17080d34406a54b~ &quot;Becs joins Peloton from London as an a~ &lt;list [2]&gt;        
-##  8 Ben Alldis      7f3de5e78bb44d8591a0~ &quot;Growing up, Ben was an accomplished at~ &lt;list [2]&gt;        
-##  9 Chase Tucker    1423df9e4ad64a84a304~ &quot;Growing up in a household of athletes ~ &lt;list [2]&gt;        
-## 10 Cliff Dwenger   e2e6586d898d4422b3f6~ &quot;Growing up in Hamburg, Cliff’s first l~ &lt;list [1]&gt;        
+##    instructor_name ride_instructor_id  ride_instructor_bio     ride_instructor_~
+##    &lt;chr&gt;           &lt;chr&gt;               &lt;chr&gt;                   &lt;list&gt;           
+##  1 Aditi Shah      b8c2734e18a7496fa1~ &quot;To Aditi, yoga goes b~ &lt;list [2]&gt;       
+##  2 Adrian Williams f962a2b1b34d424cab~ &quot;Adrian is a powerhous~ &lt;list [6]&gt;       
+##  3 Anna Greenberg  a8c56f162c964e9392~ &quot;When Anna first turne~ &lt;list [2]&gt;       
+##  4 Alex Toussaint  2e57092bee334c8c8d~ &quot;Alex Toussaint has a ~ &lt;list [1]&gt;       
+##  5 Ally Love       731d7b7f6b414a4989~ &quot;As a model, dancer, c~ &lt;list [1]&gt;       
+##  6 Andy Speer      c9fa21c2004c4544a7~ &quot;Andy takes a techniqu~ &lt;list [2]&gt;       
+##  7 Becs Gentry     286fc17080d34406a5~ &quot;Becs joins Peloton fr~ &lt;list [2]&gt;       
+##  8 Ben Alldis      7f3de5e78bb44d8591~ &quot;Growing up, Ben was a~ &lt;list [2]&gt;       
+##  9 Chase Tucker    1423df9e4ad64a84a3~ &quot;Growing up in a house~ &lt;list [2]&gt;       
+## 10 Cliff Dwenger   e2e6586d898d4422b3~ &quot;Growing up in Hamburg~ &lt;list [1]&gt;       
 ## # ... with 26 more rows</code></pre>
 <p>There’s all the instructors. Now lets join them to our workout dataframe. You can see the additional columns of instructor information at the end of the dataframe.</p>
 <pre class="r"><code>my_workout_df &lt;-
@@ -226,7 +235,7 @@ my_workout_df %&gt;%
   coord_flip() +
   labs(title = &quot;My Favorite Instructors&quot;, x = &quot;&quot;, y = &quot;Rides&quot;) +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/post/2020-08-09-the-peloton-api-part-1-accessing-and-exploring_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <center>
 <a href="https://www.instagram.com/jesskingnyc/?hl=en">Jess King</a>, <a href="https://www.instagram.com/hannahcorbinnyc/?hl=en">Hannah Corbin</a>, <a href="https://www.instagram.com/alextoussaint25/?hl=en">Alex Toussaint</a>: My three favorite instructors!
 </center>
