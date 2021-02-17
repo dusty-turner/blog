@@ -67,22 +67,22 @@ library(DT)</code></pre>
 <h3>Read in Data</h3>
 <p>Lets read in the data and get a feel for what information we have. Since my wife, our babysitter, and I have scanned the books in bookbuddy, I need to upload all the data and join it together. We have the data in many different spreadsheets to I’ll have to read them all in separately. I had to change some of the columns to character to make joining these dataframes go more smooth later on.</p>
 <pre class="r"><code>options(stringsAsFactors = TRUE)
-book = read_csv(&quot;BookBuddy.csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN))
-book1 = read_csv(&quot;BookBuddy (1).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book2 = read_csv(&quot;BookBuddy (2).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book3 = read_csv(&quot;BookBuddy (3).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book4 = read_csv(&quot;BookBuddy (4).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book5 = read_csv(&quot;BookBuddy (5).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book6 = read_csv(&quot;BookBuddy (6).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book7 = read_csv(&quot;BookBuddy (7).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book8 = read_csv(&quot;BookBuddy (8).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book9 = read_csv(&quot;BookBuddy (9).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book10 = read_csv(&quot;BookBuddy (10).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book11 = read_csv(&quot;BookBuddy (11).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book12 = read_csv(&quot;BookBuddy (12).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;%  mutate(`Date Added` = as.character(`Date Added`))
-book13 = read_csv(&quot;BookBuddy (13).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book14 = read_csv(&quot;BookBuddy (14).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
-book15 = read_csv(&quot;BookBuddy (15).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))</code></pre>
+book = read_csv(&quot;data/BookBuddy.csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN))
+book1 = read_csv(&quot;data/BookBuddy (1).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book2 = read_csv(&quot;data/BookBuddy (2).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book3 = read_csv(&quot;data/BookBuddy (3).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book4 = read_csv(&quot;data/BookBuddy (4).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book5 = read_csv(&quot;data/BookBuddy (5).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book6 = read_csv(&quot;data/BookBuddy (6).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book7 = read_csv(&quot;data/BookBuddy (7).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book8 = read_csv(&quot;data/BookBuddy (8).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book9 = read_csv(&quot;data/BookBuddy (9).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book10 = read_csv(&quot;data/BookBuddy (10).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book11 = read_csv(&quot;data/BookBuddy (11).csv&quot;)  %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book12 = read_csv(&quot;data/BookBuddy (12).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;%  mutate(`Date Added` = as.character(`Date Added`))
+book13 = read_csv(&quot;data/BookBuddy (13).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book14 = read_csv(&quot;data/BookBuddy (14).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))
+book15 = read_csv(&quot;data/BookBuddy (15).csv&quot;) %&gt;% mutate(ISBN = as.numeric(ISBN)) %&gt;% mutate(OCLC = as.character(OCLC)) %&gt;% mutate(`Date Published` = mdy(`Date Published`)) %&gt;% mutate(`Date Added` = as.character(`Date Added`))</code></pre>
 </div>
 <div id="join-and-clean-data" class="section level3">
 <h3>Join and Clean Data</h3>
@@ -416,7 +416,7 @@ God
 </div>
 <div id="length-of-books" class="section level3">
 <h3>Length of Books</h3>
-<p>I can hear you now…“So you’ve read over 1000 books this year. Its nice that they are all picture books…”&quot;</p>
+<p>I can hear you now…“So you’ve read over 1000 books this year. Its nice that they are all picture books…”"</p>
 <pre class="r"><code>ggplot(data = booksread, aes(NumberOfPages)) +
   geom_histogram() +
   ggtitle(&quot;Books By Number of Pages&quot;) + ylab(&quot;Total Books&quot;)</code></pre>
@@ -1096,6 +1096,7 @@ ggplot(aes(sent, fill = sent)) +
   filter(n&gt;5) %&gt;%
   arrange(desc(n)) %&gt;%
   kable()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;book&#39;. You can override using the `.groups` argument.</code></pre>
 <table>
 <thead>
 <tr>
@@ -1244,6 +1245,7 @@ Patricia MacLachlan
   filter(n&gt;1) %&gt;%
   arrange(desc(n)) %&gt;%
   kable()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;book&#39;. You can override using the `.groups` argument.</code></pre>
 <table>
 <thead>
 <tr>
@@ -1448,6 +1450,7 @@ filter(Title==&quot;Big Cat, Little Cat&quot;) %&gt;%
   filter(n&gt;80) %&gt;%
   arrange(desc(n)) %&gt;%
   kable()</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;book&#39;. You can override using the `.groups` argument.</code></pre>
 <table>
 <thead>
 <tr>

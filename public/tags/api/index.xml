@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 03 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Peloton API Part 2: A Valentine Peloton Tribute to my Wife</title>
+      <link>/post/the-peloton-api-part-2/</link>
+      <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-peloton-api-part-2/</guid>
+      <description>Peloton RIn part 1 of my Peloton API post, I explored the pelotonR package created by Ben Weiher’s. Its a great package for accessing your Peloton data and I recommend it.
+In part 2, I’ll explore a different Peloton package from Laura Ellis. She provides a great tutorial to display the functionality.
+ObjectivesThe objectives for this post is to…
+Show how awesome my wife is.Highlight a second package.</description>
+    </item>
+    
     <item>
       <title>ESPN Fantasy Football 2020 Part 1: Accessing the API</title>
       <link>/post/espn-fantasy-football-api-2020/</link>
