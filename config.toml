@@ -88,3 +88,8 @@ googleSiteVerification = "-jH0wqxQCDh6JrcCbL9tuGso_EV4u1BRT93XjGqNsfo"
 # Bing Webmaster
 # https://www.bing.com/toolbox/webmaster/
 msValidate = "84DDAAE7986A2E9D73062694A69D33A9"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
