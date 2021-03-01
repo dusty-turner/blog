@@ -31,7 +31,7 @@ In that post, I looked at first player's strategy when spinning the big wheel pr
 In this post, I'll explore the rarely won game, Pay the Rent
 
 <center>
-<img src="/pay_the_rent.jpg" alt="Pay The Rent" width="500">
+<img src="/images/tpir2/pay_the_rent.jpg" alt="Pay The Rent" width="500">
 <figcaption>[Pay The Rent](https://priceisright.fandom.com/wiki/Pay_the_Rent?file=PTR552020_2.jpg)</figcaption>
 </center> 
 
@@ -49,7 +49,7 @@ To gain a better understanding of how to play, here is one of the few winning co
 
 
 ```{r, eval=TRUE, echo=F}
-blogdown::shortcode("youtube", "bAzh7h6owDo")
+blogdown::shortcode("youtube", "QXh8szLAG00")
 ```
 
 # What We'll Do
@@ -312,10 +312,10 @@ tibble(prize = rep(c("a","b","c","d","e","f"),4),
 We can see that this solution meets our constraints for the game.  Nice!
 
 <center>
-<img src="/tpir_celebration.gif" alt="celebration" width="500">
+<img src="/images/tpir2/tpir_celebration.gif" alt="celebration" width="500">
 <figcaption>[Celebration!](https://giphy.com/gifs/cbs-dance-excited-the-price-is-right-kEEoiaBM3jCr6Sb95E)
 </center> 
-
+ 
 
 ## Functionalize and solve all games
 

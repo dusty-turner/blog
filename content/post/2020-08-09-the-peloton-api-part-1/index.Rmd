@@ -12,10 +12,12 @@ tags:
   - API
   - fitness
 cover: /img/bikecover.jpg
+draft: FALSE
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,warning = F,message = F)
+# devtools::install_github("bweiher/pelotonR")
 ```
 
 In 2018, my wife and I were fortunate enough to find a deeply discounted Peloton on an online garage sale.  Since then, she's been going hard and I have been trying to keep up when the weather is bad or injuries keep me from running.  

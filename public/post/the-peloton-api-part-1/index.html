@@ -250,7 +250,7 @@ library(lubridate)</code></pre>
 <pre class="r"><code>me &lt;- get_my_info() </code></pre>
 <p>For our own edification, here is a list of all the output columns alphabetized.</p>
 <blockquote>
-<p>allow_marketing, birthday, block_explicit, can_charge, contract_agreements, created_at, created_country, customized_heart_rate_zones, customized_max_heart_rate, cycling_ftp, cycling_ftp_source, cycling_ftp_workout_id, cycling_workout_ftp, default_heart_rate_zones, default_max_heart_rate, email, estimated_cycling_ftp, external_music_auth_list, facebook_access_token, facebook_id, first_name, gender, hardware_settings, has_active_device_subscription, has_active_digital_subscription, has_signed_waiver, height, id, image_url, instructor_id, is_complete_profile, is_demo, is_external_beta_tester, is_fitbit_authenticated, is_internal_beta_tester, is_profile_private, is_provisional, is_strava_authenticated, last_name, last_workout_at, location, member_groups, middle_initial, name, obfuscated_email, paired_devices, phone_number, quick_hits, referrals_made, total_followers, total_following, total_non_pedaling_metric_workouts, total_pedaling_metric_workouts, total_pending_followers, total_workouts, username, v1_referrals_made, weight, workout_counts</p>
+<p>allow_marketing, birthday, block_explicit, can_charge, contract_agreements, created_at, created_country, customized_heart_rate_zones, customized_max_heart_rate, cycling_ftp, cycling_ftp_source, cycling_ftp_workout_id, cycling_workout_ftp, default_heart_rate_zones, default_max_heart_rate, email, estimated_cycling_ftp, external_music_auth_list, facebook_access_token, facebook_id, first_name, gender, hardware_settings, has_active_device_subscription, has_active_digital_subscription, has_signed_waiver, height, id, image_url, instructor_id, is_complete_profile, is_demo, is_effort_score_enabled, is_external_beta_tester, is_fitbit_authenticated, is_internal_beta_tester, is_profile_private, is_provisional, is_strava_authenticated, last_name, last_workout_at, location, member_groups, middle_initial, name, obfuscated_email, paired_devices, phone_number, quick_hits, referrals_made, total_followers, total_following, total_non_pedaling_metric_workouts, total_pedaling_metric_workouts, total_pending_followers, total_workouts, username, v1_referrals_made, weight, workout_counts</p>
 </blockquote>
 </div>
 <div id="explore-api" class="section level2">
@@ -259,28 +259,28 @@ library(lubridate)</code></pre>
 <p>Here it is below:</p>
 <pre class="r"><code>my_workout_df &lt;- pelotonR::get_all_workouts(userid = me$id, num_workouts = me$total_workouts, joins = &quot;ride,ride.instructor&quot;)
 my_workout_df </code></pre>
-<pre><code>## # A tibble: 359 x 82
-##    created_at          device_type end_time            fitbit_id
-##    &lt;dttm&gt;              &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;    
-##  1 2021-02-11 21:40:15 home_bike_~ 2021-02-11 21:45:13 64096309 
-##  2 2021-02-11 21:16:59 home_bike_~ 2021-02-11 21:37:56 65742856 
-##  3 2021-02-11 21:08:52 home_bike_~ 2021-02-11 21:13:49 65263874 
-##  4 2021-02-10 20:58:06 home_bike_~ 2021-02-10 21:03:05 65702889 
-##  5 2021-02-10 20:21:06 home_bike_~ 2021-02-10 20:52:04 65702056 
-##  6 2021-02-10 20:11:18 home_bike_~ 2021-02-10 20:16:16 64590752 
-##  7 2021-02-09 21:06:55 home_bike_~ 2021-02-09 21:11:55 65658699 
-##  8 2021-02-09 20:32:50 home_bike_~ 2021-02-09 21:03:48 65660579 
-##  9 2021-02-09 20:23:35 home_bike_~ 2021-02-09 20:28:34 65263874 
-## 10 2021-02-06 16:51:13 home_bike_~ 2021-02-06 17:37:12 65529368 
-## # ... with 349 more rows, and 78 more variables: fitness_discipline &lt;chr&gt;,
+<pre><code>## # A tibble: 382 x 82
+##    created_at          device_type  end_time            fitbit_id
+##    &lt;dttm&gt;              &lt;chr&gt;        &lt;dttm&gt;              &lt;chr&gt;    
+##  1 2021-02-28 16:08:57 home_bike_v1 2021-02-28 16:54:57 65529368 
+##  2 2021-02-28 15:59:04 home_bike_v1 2021-02-28 16:04:05 66294445 
+##  3 2021-02-25 20:11:14 home_bike_v1 2021-02-25 20:42:09 66342955 
+##  4 2021-02-25 19:56:36 home_bike_v1 2021-02-25 20:01:32 66294445 
+##  5 2021-02-24 20:42:48 home_bike_v1 2021-02-24 20:47:44 65983283 
+##  6 2021-02-24 20:06:47 home_bike_v1 2021-02-24 20:37:43 66295944 
+##  7 2021-02-24 19:58:01 home_bike_v1 2021-02-24 20:02:58 66294445 
+##  8 2021-02-23 21:48:32 home_bike_v1 2021-02-23 21:53:29 66249970 
+##  9 2021-02-23 21:09:04 home_bike_v1 2021-02-23 21:40:00 66248447 
+## 10 2021-02-23 21:00:14 home_bike_v1 2021-02-23 21:05:11 65978970 
+## # ... with 372 more rows, and 78 more variables: fitness_discipline &lt;chr&gt;,
 ## #   has_pedaling_metrics &lt;lgl&gt;, has_leaderboard_metrics &lt;lgl&gt;, id &lt;chr&gt;,
 ## #   is_total_work_personal_record &lt;lgl&gt;, metrics_type &lt;chr&gt;, name &lt;chr&gt;,
 ## #   peloton_id &lt;chr&gt;, platform &lt;chr&gt;, start_time &lt;dttm&gt;, strava_id &lt;chr&gt;,
 ## #   status &lt;chr&gt;, timezone &lt;chr&gt;, title &lt;chr&gt;, total_work &lt;dbl&gt;, user_id &lt;chr&gt;,
 ## #   workout_type &lt;chr&gt;, total_video_watch_time_seconds &lt;int&gt;,
 ## #   total_video_buffering_seconds &lt;int&gt;,
-## #   v2_total_video_watch_time_seconds &lt;chr&gt;,
-## #   v2_total_video_buffering_seconds &lt;chr&gt;,
+## #   v2_total_video_watch_time_seconds &lt;dbl&gt;,
+## #   v2_total_video_buffering_seconds &lt;dbl&gt;,
 ## #   total_music_audio_play_seconds &lt;chr&gt;,
 ## #   total_music_audio_buffer_seconds &lt;chr&gt;, ride &lt;list&gt;, created &lt;dttm&gt;,
 ## #   device_time_created_at &lt;dttm&gt;, effort_zones &lt;chr&gt;,
@@ -328,16 +328,16 @@ And here’s Jill on one of those workouts!
 <pre><code>## # A tibble: 33 x 1
 ##    ride_instructor                 
 ##    &lt;chr&gt;                           
-##  1 4904612965164231a37143805a387e40
-##  2 3ff679ebbd324c83a8ab6cfa6bb4be37
-##  3 1b79e462bd564b6ca5ec728f1a5c2af0
-##  4 c0a9505d8135412d824cf3c97406179b
-##  5 c406f36aa2a44a5baf8831f8b92f6920
-##  6 048f0ce00edb4427b2dced6cbeb107fd
-##  7 1e59e949a19341539214a4a13ea7ff01
-##  8 b8c2734e18a7496fa146b3a42465da67
-##  9 561f95c405734d8488ed8dcc8980d599
-## 10 2e57092bee334c8c8dcb9fe16ba5308c
+##  1 048f0ce00edb4427b2dced6cbeb107fd
+##  2 2e57092bee334c8c8dcb9fe16ba5308c
+##  3 c0a9505d8135412d824cf3c97406179b
+##  4 05735e106f0747d2a112d32678be8afd
+##  5 4904612965164231a37143805a387e40
+##  6 f6f2d613dc344e4bbf6428cd34697820
+##  7 7f3de5e78bb44d8591a0f77f760478c3
+##  8 561f95c405734d8488ed8dcc8980d599
+##  9 3ff679ebbd324c83a8ab6cfa6bb4be37
+## 10 1b79e462bd564b6ca5ec728f1a5c2af0
 ## # ... with 23 more rows</code></pre>
 <p>While I was selective in what I extracted from this JSON, I do not see instructor name. Lets see what we can find if we dig into the API.</p>
 <div id="access-api" class="section level3">
@@ -456,7 +456,7 @@ my_workout_df %&gt;%
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>192</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you likes to quote or reproduce.This post was published <strong>204</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
