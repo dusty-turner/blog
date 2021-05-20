@@ -14,8 +14,8 @@ command = "hugo -F -b $DEPLOY_PRIME_URL"
 HUGO_ENV = "production"
 
 [[redirects]]
-  from = "/"
-  to = "/post/"
+  from = "dustysturner.com"
+  to = "dustysturner.com/post/"
   status = 301
   force = true
   query = {path = ":path"}
